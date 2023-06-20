@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
+import Grid from '@mui/material/Grid';
+import HistoryCard from './historyCard';
 
 interface HistoryProperties {
   name: string,
   startDate: Date,
-  endDate: Date,
+  endDate: Date | string,
   _id: string,
 }
 
@@ -17,7 +19,12 @@ export default function History() {
         return res.json();
       })
       .then((data) => {
-        const documents: HistoryProperties[] = data.documents;
+        const documents: HistoryProperties[] = data.documents.map((document: HistoryProperties) => {
+          document.startDate = new Date(document.startDate);
+          document.endDate = document.endDate ? new Date(document.endDate) : '';
+          return document;
+        })
+
         documents.sort((a, b) => {
           if (a.startDate < b.startDate) {
             return -1;
@@ -34,11 +41,16 @@ export default function History() {
       })
   }, []);
 
-  return <>
+  return <Grid container spacing={2}>
     {history.map((villager) =>
-      <p key={villager.name}>
-        {villager.name}
-      </p>
+      <Grid
+        item
+        key={villager.name}
+      >
+        <HistoryCard
+          history={villager}
+        />
+      </Grid>
     )}
-  </>
+  </Grid>
 }
