@@ -1,15 +1,9 @@
 import { useState, useEffect } from 'react';
 import Grid from '@mui/material/Grid';
 import HistoryCard from './historyCard';
+import { HistoryProperties, VillagerProperties } from './interfaces';
 
-interface HistoryProperties {
-  name: string,
-  startDate: Date,
-  endDate: Date | string,
-  _id: string,
-}
-
-export default function History() {
+export default function History({villagersData}:{villagersData: Map<string, VillagerProperties>}) {
 
   const [history, setHistory] = useState<HistoryProperties[]>([]);
 
@@ -21,7 +15,13 @@ export default function History() {
       .then((data) => {
         const documents: HistoryProperties[] = data.documents.map((document: HistoryProperties) => {
           document.startDate = new Date(document.startDate);
-          document.endDate = document.endDate ? new Date(document.endDate) : '';
+          if (!document.endDate) {
+            document.currentResident = true;
+            document.endDate = new Date();
+          } else {
+            document.currentResident = false;
+            document.endDate = new Date(document.endDate);
+          }
           return document;
         })
 
@@ -49,6 +49,7 @@ export default function History() {
       >
         <HistoryCard
           history={villager}
+          villagerData={villagersData.get(villager.name)}
         />
       </Grid>
     )}

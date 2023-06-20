@@ -2,18 +2,18 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
+import Avatar from '@mui/material/Avatar';
+import { HistoryProperties, VillagerProperties } from './interfaces';
 
-const dateFormat = {
-  month: "2-digit",
-  year: "numeric",
-  day: "2-digit"
-};
-
-export default function HistoryCard({history}) {
+export default function HistoryCard({history, villagerData}: {history: HistoryProperties, villagerData: VillagerProperties | undefined}) {
   return (
     <Paper elevation={2}>
       <Box padding={1}>
         <Stack>
+          <Avatar
+            variant="square"
+            src={`http://acnhapi.com/v1/images/villagers/${villagerData?.id}`}
+          />
           <Typography>
             {history.name}
           </Typography>
@@ -21,7 +21,7 @@ export default function HistoryCard({history}) {
             {history.startDate.toLocaleDateString("en-ZA")}
           </Typography>
           <Typography>
-            {history.endDate ? history.endDate.toLocaleDateString("en-ZA") : 'Present'}
+            {!history.currentResident ? history.endDate.toLocaleDateString("en-ZA") : 'Present'}
           </Typography>
         </Stack>
       </Box>
