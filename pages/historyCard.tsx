@@ -8,7 +8,7 @@ import { HistoryProperties, VillagerProperties } from '../types';
 export default function HistoryCard({history, villagerData}: {history: HistoryProperties, villagerData: VillagerProperties | undefined}) {
   return (
     <Paper elevation={2}>
-      <Box padding={1} bgcolor={history.currentResident ? 'success.light' : ''}>
+      <Box padding={1} bgcolor={history?.currentResident ? 'success.light' : ''}>
         <Stack>
           <Avatar
             variant="square"
