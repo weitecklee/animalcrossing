@@ -1,6 +1,6 @@
 import History from './history';
 import { useState, useEffect } from 'react';
-import { VillagerProperties } from './interfaces';
+import { VillagerProperties } from '../types';
 
 function HomePage() {
 

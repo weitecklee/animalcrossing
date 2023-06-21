@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Grid from '@mui/material/Grid';
 import HistoryCard from './historyCard';
-import { HistoryProperties, VillagerProperties } from './interfaces';
+import { HistoryProperties, VillagerProperties } from '../types';
 
 export default function History({villagersData}:{villagersData: Map<string, VillagerProperties>}) {
 

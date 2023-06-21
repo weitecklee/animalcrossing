@@ -3,7 +3,7 @@ import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
-import { HistoryProperties, VillagerProperties } from './interfaces';
+import { HistoryProperties, VillagerProperties } from '../types';
 
 export default function HistoryCard({history, villagerData}: {history: HistoryProperties, villagerData: VillagerProperties | undefined}) {
   return (
@@ -15,13 +15,13 @@ export default function HistoryCard({history, villagerData}: {history: HistoryPr
             src={`http://acnhapi.com/v1/images/villagers/${villagerData?.id}`}
           />
           <Typography>
-            {history.name}
+            {history?.name}
           </Typography>
           <Typography>
-            {history.startDate.toLocaleDateString("en-ZA")}
+            {history?.startDate.toLocaleDateString("en-ZA")}
           </Typography>
           <Typography>
-            {!history.currentResident ? history.endDate.toLocaleDateString("en-ZA") : 'Present'}
+            {!history?.currentResident ? history?.endDate.toLocaleDateString("en-ZA") : 'Present'}
           </Typography>
         </Stack>
       </Box>
