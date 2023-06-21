@@ -2,27 +2,21 @@ import History from './history';
 import { useState, useEffect } from 'react';
 import { VillagerProperties } from '../types';
 
-function HomePage() {
+export default function HomePage({APIdata}) {
 
   const [villagersData, setVillagersData] = useState<Map<string, VillagerProperties>>(new Map());
 
   useEffect(() => {
-    fetch('http://acnhapi.com/v1/villagers')
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        const tmp: Map<string, VillagerProperties> = new Map();
-        const tmp2: VillagerProperties[] = Object.values(data);
-        for (const val of tmp2) {
-          tmp.set(val.name["name-USen"], val);
-        }
-        setVillagersData(tmp);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  }, []);
+    const vData: Map<string, VillagerProperties> = new Map();
+    const tmp: VillagerProperties[] = Object.values(APIdata);
+
+    for (const val of tmp) {
+      vData.set(val.name["name-USen"], val);
+    }
+
+    setVillagersData(vData);
+
+  }, [APIdata]);
 
   return (<>
     <div>Animal Crossing!</div>
@@ -30,4 +24,13 @@ function HomePage() {
   </>)
 }
 
-export default HomePage
+export async function getStaticProps() {
+  const res = await fetch('http://acnhapi.com/v1/villagers');
+  const APIdata = await res.json();
+
+  return {
+    props: {
+      APIdata,
+    }
+  }
+}
