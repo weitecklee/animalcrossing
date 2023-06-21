@@ -3,23 +3,20 @@ import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
-import { HistoryProperties, VillagerProperties } from '../types';
+import { HistoryProperties, VillagerProperties2 } from '../types';
 
-export default function HistoryCard({history, villagerData}: {history: HistoryProperties, villagerData: VillagerProperties | undefined}) {
+export default function HistoryCard({history, villagerData}: {history: HistoryProperties, villagerData: VillagerProperties2 | undefined}) {
   return (
     <Paper elevation={2}>
       <Box padding={1} bgcolor={history?.currentResident ? 'success.light' : ''}>
         <Stack>
           <Avatar
             variant="square"
-            src={`http://acnhapi.com/v1/images/villagers/${villagerData?.id}`}
+            src={villagerData?.nh_details.photo_url}
             sx={{ width: 150, height: 150 }}
           />
           <Typography>
             {history?.name}
-          </Typography>
-          <Typography>
-            {villagerData?.name['name-JPja']}
           </Typography>
           <Typography>
             {history?.startDate.toLocaleDateString("en-ZA")}
