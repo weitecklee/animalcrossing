@@ -1,7 +1,8 @@
-import History from './history';
+import History from '../components/history';
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { HistoryProperties, VillagerProperties2 } from '../types';
+import TopBar from '../components/topBar';
 
 export default function HomePage({APIdata, HistoryData}: {APIdata : VillagerProperties2[], HistoryData: HistoryProperties[]}) {
 
@@ -50,9 +51,9 @@ export default function HomePage({APIdata, HistoryData}: {APIdata : VillagerProp
       <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
       <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
       <link rel="manifest" href="/site.webmanifest" />
-      <meta name="msapplication-TileColor" content="#da532c" />
       <meta name="theme-color" content="#ffffff" />
     </Head>
+    <TopBar />
     <History villagersData={villagersData} history={history} />
   </>)
 }
