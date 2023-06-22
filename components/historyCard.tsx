@@ -20,7 +20,7 @@ export default function HistoryCard({history, villagerData}: {history: HistoryPr
         />
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography>
+            <Typography variant="h6">
               {history?.name}
             </Typography>
             <Typography>

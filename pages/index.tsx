@@ -1,8 +1,23 @@
-import History from '../components/history';
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { HistoryProperties, VillagerProperties2 } from '../types';
 import TopBar from '../components/topBar';
+import History from '../components/history';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#9dffb0",
+    },
+    secondary: {
+      main: "#c48d3f",
+    }
+  },
+  typography: {
+    fontFamily: "Montserrat"
+  }
+});
 
 export default function HomePage({APIdata, HistoryData}: {APIdata : VillagerProperties2[], HistoryData: HistoryProperties[]}) {
 
@@ -47,14 +62,11 @@ export default function HomePage({APIdata, HistoryData}: {APIdata : VillagerProp
   return (<>
     <Head>
       <title>My Animal Crossing Island</title>
-      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-      <link rel="manifest" href="/site.webmanifest" />
-      <meta name="theme-color" content="#ffffff" />
     </Head>
-    <TopBar />
-    <History villagersData={villagersData} history={history} />
+    <ThemeProvider theme={theme}>
+      <TopBar />
+      <History villagersData={villagersData} history={history} />
+    </ThemeProvider>
   </>)
 }
 

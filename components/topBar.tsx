@@ -12,7 +12,7 @@ export default function TopBar() {
         <Toolbar>
           <Stack direction="row" spacing={1} alignItems="center">
             <Avatar variant="square" src="/Animal_Crossing_Leaf.svg" />
-            <Typography variant="body1" fontWeight="700">
+            <Typography variant="h5" fontWeight="500">
               My Animal Crossing Island
             </Typography>
           </Stack>
