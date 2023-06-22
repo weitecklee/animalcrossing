@@ -1,5 +1,6 @@
 import History from './history';
 import { useState, useEffect } from 'react';
+import Head from 'next/head';
 import { HistoryProperties, VillagerProperties2 } from '../types';
 
 export default function HomePage({APIdata, HistoryData}: {APIdata : VillagerProperties2[], HistoryData: HistoryProperties[]}) {
@@ -17,33 +18,41 @@ export default function HomePage({APIdata, HistoryData}: {APIdata : VillagerProp
 
   useEffect(() => {
     const documents: HistoryProperties[] = HistoryData?.map((document: HistoryProperties) => {
-    document.startDate = new Date(document.startDate);
-    if (!document.endDate) {
-      document.currentResident = true;
-      document.endDate = new Date();
-    } else {
-      document.currentResident = false;
-      document.endDate = new Date(document.endDate);
-    }
-    return document;
-  })
+      document.startDate = new Date(document.startDate);
+      if (!document.endDate) {
+        document.currentResident = true;
+        document.endDate = new Date();
+      } else {
+        document.currentResident = false;
+        document.endDate = new Date(document.endDate);
+      }
+      return document;
+    })
 
-  documents?.sort((a, b) => {
-    if (a.startDate < b.startDate) {
-      return -1;
-    } else if (a.startDate > b.startDate) {
-      return 1;
-    } else {
-      return 0;
-    }
-  });
-  setHistory(documents);
+    documents?.sort((a, b) => {
+      if (a.startDate < b.startDate) {
+        return -1;
+      } else if (a.startDate > b.startDate) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+
+    setHistory(documents);
 
   }, [HistoryData])
 
-
   return (<>
-    <div>Animal Crossing!</div>
+    <Head>
+      <title>My Animal Crossing Island</title>
+      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+      <link rel="manifest" href="/site.webmanifest" />
+      <meta name="msapplication-TileColor" content="#da532c" />
+      <meta name="theme-color" content="#ffffff" />
+    </Head>
     <History villagersData={villagersData} history={history} />
   </>)
 }
@@ -88,4 +97,8 @@ export async function getStaticProps(): Promise<{
       HistoryData
     }
   }
+}
+
+export const metadata = {
+  title: 'Animal Crossing',
 }
