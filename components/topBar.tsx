@@ -10,7 +10,7 @@ const pages = ['Cards', 'Timeline'];
 export default function TopBar({setComponent}: { setComponent: Dispatch<SetStateAction<string>> }) {
   return (
     <>
-      <AppBar>
+      <AppBar color="secondary">
         <Toolbar>
             <Button>
               <Avatar

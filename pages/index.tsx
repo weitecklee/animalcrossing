@@ -10,10 +10,10 @@ import Timeline from '../components/timeline';
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#9dffb0",
+      main: "#c48d3f",
     },
     secondary: {
-      main: "#c48d3f",
+      main: "#9dffb0",
     }
   },
   typography: {
