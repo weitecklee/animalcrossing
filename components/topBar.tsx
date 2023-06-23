@@ -1,21 +1,36 @@
-import React from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 
-export default function TopBar() {
+const pages = ['Cards', 'Timeline'];
+
+export default function TopBar({setComponent}: { setComponent: Dispatch<SetStateAction<string>> }) {
   return (
     <>
       <AppBar>
         <Toolbar>
-          <Stack direction="row" spacing={1} alignItems="center">
-            <Avatar variant="square" src="/Animal_Crossing_Leaf.svg" />
-            <Typography variant="h5" fontWeight="500">
+            <Button>
+              <Avatar
+                variant="square"
+                src="/Animal_Crossing_Leaf.svg"
+                onClick={() => setComponent('Index')}
+              />
+            </Button>
+            <Typography variant="h5" fontWeight="500" sx={{flexGrow: 1}}>
               My Animal Crossing Island
             </Typography>
-          </Stack>
+            {pages.map((page) => (
+              <Button
+                key={page}
+                sx={{color:'black', mx: 1}}
+                onClick={() => setComponent(page)}
+              >
+                {page}
+              </Button>
+            ))}
         </Toolbar>
       </AppBar>
       <Toolbar />

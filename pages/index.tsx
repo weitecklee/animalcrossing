@@ -1,9 +1,11 @@
-import { useState, useEffect, createContext } from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { HistoryProperties, VillagerProperties2 } from '../types';
 import TopBar from '../components/topBar';
-import History from '../components/history';
+import IndexComponent from '../components/indexComponent';
+import Cards from '../components/cards';
+import Timeline from '../components/timeline';
 
 const theme = createTheme({
   palette: {
@@ -23,6 +25,7 @@ export default function HomePage({APIdata, HistoryData}: {APIdata : VillagerProp
 
   const [villagersData, setVillagersData] = useState<Map<string, VillagerProperties2>>(new Map());
   const [history, setHistory] = useState<HistoryProperties[]>([]);
+  const [component, setComponent] =  useState('Index');
 
   useEffect(() => {
     const vData: Map<string, VillagerProperties2> = new Map();
@@ -64,8 +67,12 @@ export default function HomePage({APIdata, HistoryData}: {APIdata : VillagerProp
       <title>My Animal Crossing Island</title>
     </Head>
     <ThemeProvider theme={theme}>
-      <TopBar />
-      <History villagersData={villagersData} history={history} />
+      <TopBar setComponent={setComponent} />
+      {component === 'Index' ? <IndexComponent /> : ""}
+      {component === 'Cards' ?
+        <Cards villagersData={villagersData} history={history} />
+      : ""}
+      {component === 'Timeline' ? <Timeline /> : ""}
     </ThemeProvider>
   </>)
 }
