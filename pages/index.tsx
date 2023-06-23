@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, createContext } from 'react';
 import Head from 'next/head';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { HistoryProperties, VillagerProperties2 } from '../types';
@@ -70,12 +70,7 @@ export default function HomePage({APIdata, HistoryData}: {APIdata : VillagerProp
   </>)
 }
 
-export async function getStaticProps(): Promise<{
-  props: {
-      APIdata: VillagerProperties2[];
-      HistoryData: HistoryProperties[];
-  };
-}> {
+async function getAPIdata() {
   const res = await fetch(`https://api.nookipedia.com/villagers?game=nh&nhdetails=true`, {
     method: 'GET',
     headers: {
@@ -84,8 +79,10 @@ export async function getStaticProps(): Promise<{
       'Accept-Version': '1.0.0',
     },
   });
-  const APIdata = await res.json();
+  return res.json();
+}
 
+async function getMongoData() {
   const payload = {
     dataSource: 'AnimalCrossing',
     database: 'lasagnark',
@@ -93,7 +90,7 @@ export async function getStaticProps(): Promise<{
     filter: {},
   }
 
-  const res2 = await fetch(`${process.env.api_url}/action/find`, {
+  const res = await fetch(`${process.env.api_url}/action/find`, {
     method: 'POST',
     headers: {
       'api-key': `${process.env.api_key}`,
@@ -101,7 +98,17 @@ export async function getStaticProps(): Promise<{
     },
     body: JSON.stringify(payload)
   })
-  const mongoData = await res2.json();
+  return res.json();
+}
+
+export async function getStaticProps(): Promise<{
+  props: {
+      APIdata: VillagerProperties2[];
+      HistoryData: HistoryProperties[];
+  };
+}> {
+
+  const [APIdata, mongoData] = await Promise.all([getAPIdata(), getMongoData()]);
   const HistoryData = mongoData.documents;
 
   return {
