@@ -6,6 +6,7 @@ import TopBar from '../components/topBar';
 import IndexComponent from '../components/indexComponent';
 import Cards from '../components/cards';
 import Timeline from '../components/timeline';
+import { villagersData } from '../lib/apiData';
 
 const theme = createTheme({
   palette: {
@@ -23,17 +24,9 @@ const theme = createTheme({
 
 export default function HomePage({APIdata, HistoryData}: {APIdata : VillagerProperties2[], HistoryData: HistoryProperties[]}) {
 
-  const [villagersData, setVillagersData] = useState<Map<string, VillagerProperties2>>(new Map());
   const [history, setHistory] = useState<HistoryProperties[]>([]);
   const [component, setComponent] =  useState('Index');
 
-  useEffect(() => {
-    const vData: Map<string, VillagerProperties2> = new Map();
-    for (const v of APIdata) {
-      vData.set(v.name, v);
-    }
-    setVillagersData(vData);
-  }, [APIdata]);
 
   useEffect(() => {
     const documents: HistoryProperties[] = HistoryData?.map((document: HistoryProperties) => {
@@ -77,17 +70,6 @@ export default function HomePage({APIdata, HistoryData}: {APIdata : VillagerProp
   </>)
 }
 
-async function getAPIdata() {
-  const res = await fetch(`https://api.nookipedia.com/villagers?game=nh&nhdetails=true`, {
-    method: 'GET',
-    headers: {
-      'X-API-KEY': `${process.env.nookipedia_api_key}`,
-      'Content-Type': 'application/json',
-      'Accept-Version': '1.0.0',
-    },
-  });
-  return res.json();
-}
 
 async function getMongoData() {
   const payload = {
@@ -110,17 +92,15 @@ async function getMongoData() {
 
 export async function getStaticProps(): Promise<{
   props: {
-      APIdata: VillagerProperties2[];
       HistoryData: HistoryProperties[];
   };
 }> {
 
-  const [APIdata, mongoData] = await Promise.all([getAPIdata(), getMongoData()]);
+  const mongoData = await getMongoData();
   const HistoryData = mongoData.documents;
 
   return {
     props: {
-      APIdata,
       HistoryData
     }
   }
