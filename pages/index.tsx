@@ -6,6 +6,7 @@ import TopBar from '../components/topBar';
 import IndexComponent from '../components/indexComponent';
 import Cards from '../components/cards';
 import Timeline from '../components/timeline';
+import VillagerDialogs from '../components/villagerDialogs';
 import { villagersData } from '../lib/combinedData';
 
 const theme = createTheme({
@@ -60,11 +61,10 @@ export default function HomePage({ HistoryData}: {APIdata : VillagerProperties2[
     </Head>
     <ThemeProvider theme={theme}>
       <TopBar setComponent={setComponent} />
-      {component === 'Index' ? <IndexComponent /> : ""}
-      {component === 'Cards' ?
-        <Cards villagersData={villagersData} history={history} />
-      : ""}
-      {component === 'Timeline' ? <Timeline /> : ""}
+      {component === 'Index' && <IndexComponent />}
+      {component === 'Cards' && <Cards villagersData={villagersData} history={history} />}
+      {component === 'Timeline' && <Timeline />}
+      {component === 'Villagers' && <VillagerDialogs  villagersData={villagersData} history={history}/>}
     </ThemeProvider>
   </>)
 }
