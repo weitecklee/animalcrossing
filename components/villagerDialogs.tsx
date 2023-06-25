@@ -19,7 +19,7 @@ export default function VillagerDialogs({villagersData, histories}:{ villagersDa
         >
           <VillagerDialogImage
             history={history}
-            villagerData={villagersData.get(history.name)}
+            villagerData={villagersData.get(history.name)!}
             setShowDialog={setShowDialog}
             setDialogVillager={setDialogVillager}
           />
