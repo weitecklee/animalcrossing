@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Grid from '@mui/material/Grid';
 import HistoryCard from './card';
-import VillagerDialog from './villagerDialog';
+import CardDialog from './cardDialog';
 import { HistoryProperties, VillagerProperties2 } from '../types';
 
 export default function Cards({villagersData, histories}:{ villagersData: Map<string, VillagerProperties2>, histories: Map<string,HistoryProperties>}) {
@@ -26,7 +26,7 @@ export default function Cards({villagersData, histories}:{ villagersData: Map<st
         </Grid>
       )}
     </Grid>
-    {showDialog && <VillagerDialog
+    {showDialog && <CardDialog
       history={histories.get(dialogVillager)!}
       villagerData={villagersData.get(dialogVillager)!}
       showDialog={showDialog}

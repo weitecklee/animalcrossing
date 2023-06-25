@@ -15,7 +15,7 @@ export default function Timeline() {
       &nbsp;island. You can find the following information:
     </Typography>
     <Typography>
-      &emsp;CARDS: shows all the villagers that have been on my island
+      &emsp;VILLAGERS: shows all the villagers that have been on my island
     </Typography>
     <Typography>
       &emsp;TIMELINE: a timeline chart of the villagers

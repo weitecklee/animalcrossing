@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { HistoryProperties, VillagerProperties2 } from '../types';
+import { HistoryProperties } from '../types';
 import TopBar from '../components/topBar';
 import IndexComponent from '../components/indexComponent';
 import Cards from '../components/cards';
 import Timeline from '../components/timeline';
-import VillagerDialogs from '../components/villagerDialogs';
 import { villagersData } from '../lib/combinedData';
 
 const theme = createTheme({
@@ -29,18 +28,6 @@ export default function HomePage({ historyData}: { historyData: HistoryPropertie
   const [component, setComponent] =  useState('Index');
 
   useEffect(() => {
-    // const documents: HistoryProperties[] = historyData?.map((document: HistoryProperties) => {
-    //   document.startDate = new Date(document.startDate);
-    //   if (!document.endDate) {
-    //     document.currentResident = true;
-    //     document.endDate = new Date();
-    //   } else {
-    //     document.currentResident = false;
-    //     document.endDate = new Date(document.endDate);
-    //   }
-    //   return document;
-    // })
-
     const tmp: Map<string,HistoryProperties> = new Map();
 
     for (const hist of historyData) {
@@ -76,9 +63,8 @@ export default function HomePage({ historyData}: { historyData: HistoryPropertie
     <ThemeProvider theme={theme}>
       <TopBar setComponent={setComponent} />
       {component === 'Index' && <IndexComponent />}
-      {component === 'Cards' && <Cards villagersData={villagersData} histories={histories} />}
+      {component === 'Villagers' && <Cards villagersData={villagersData} histories={histories} />}
       {component === 'Timeline' && <Timeline />}
-      {component === 'Villagers' && <VillagerDialogs  villagersData={villagersData} histories={histories}/>}
     </ThemeProvider>
   </>)
 }
@@ -116,5 +102,5 @@ export async function getStaticProps(): Promise<{
 }
 
 export const metadata = {
-  title: 'Animal Crossing',
+  title: 'My Animal Crossing Island',
 }

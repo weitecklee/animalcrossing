@@ -5,7 +5,7 @@ import { HistoryProperties, VillagerProperties2 } from '../types';
 import { Typography } from '@mui/material';
 import Image from 'next/image';
 
-export default function VillagerDialog({history, villagerData, showDialog, setShowDialog} : {history: HistoryProperties, villagerData: VillagerProperties2, showDialog: boolean, setShowDialog: Dispatch<SetStateAction<boolean>>}) {
+export default function CardDialog({history, villagerData, showDialog, setShowDialog} : {history: HistoryProperties, villagerData: VillagerProperties2, showDialog: boolean, setShowDialog: Dispatch<SetStateAction<boolean>>}) {
 
   return (
     <Dialog
