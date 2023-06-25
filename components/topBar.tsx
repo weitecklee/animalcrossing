@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 
-const pages = ['Cards', 'Timeline'];
+const pages = ['Villagers', 'Timeline'];
 
 export default function TopBar({setComponent}: { setComponent: Dispatch<SetStateAction<string>> }) {
   return (

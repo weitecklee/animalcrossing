@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { HistoryProperties, VillagerProperties2 } from '../types';
+import { HistoryProperties } from '../types';
 import TopBar from '../components/topBar';
 import IndexComponent from '../components/indexComponent';
 import Cards from '../components/cards';
@@ -22,37 +22,39 @@ const theme = createTheme({
   }
 });
 
-export default function HomePage({ HistoryData}: {APIdata : VillagerProperties2[], HistoryData: HistoryProperties[]}) {
+export default function HomePage({ historyData}: { historyData: HistoryProperties[]}) {
 
-  const [history, setHistory] = useState<HistoryProperties[]>([]);
+  const [histories, setHistories] = useState<Map<string,HistoryProperties>>(new Map());
   const [component, setComponent] =  useState('Index');
 
   useEffect(() => {
-    const documents: HistoryProperties[] = HistoryData?.map((document: HistoryProperties) => {
-      document.startDate = new Date(document.startDate);
-      if (!document.endDate) {
-        document.currentResident = true;
-        document.endDate = new Date();
+    const tmp: Map<string,HistoryProperties> = new Map();
+
+    for (const hist of historyData) {
+      hist.startDate = new Date(hist.startDate);
+      if (!hist.endDate) {
+        hist.currentResident = true;
+        hist.endDate = new Date();
       } else {
-        document.currentResident = false;
-        document.endDate = new Date(document.endDate);
+        hist.currentResident = false;
+        hist.endDate = new Date(hist.endDate);
       }
-      return document;
-    })
+      tmp.set(hist.name, hist);
+    }
 
-    documents?.sort((a, b) => {
-      if (a.startDate < b.startDate) {
-        return -1;
-      } else if (a.startDate > b.startDate) {
-        return 1;
-      } else {
-        return 0;
-      }
-    });
+    // documents?.sort((a, b) => {
+    //   if (a.startDate < b.startDate) {
+    //     return -1;
+    //   } else if (a.startDate > b.startDate) {
+    //     return 1;
+    //   } else {
+    //     return 0;
+    //   }
+    // });
 
-    setHistory(documents);
+    setHistories(tmp);
 
-  }, [HistoryData])
+  }, [historyData])
 
   return (<>
     <Head>
@@ -60,18 +62,16 @@ export default function HomePage({ HistoryData}: {APIdata : VillagerProperties2[
     </Head>
     <ThemeProvider theme={theme}>
       <TopBar setComponent={setComponent} />
-      {component === 'Index' ? <IndexComponent /> : ""}
-      {component === 'Cards' ?
-        <Cards villagersData={villagersData} history={history} />
-      : ""}
-      {component === 'Timeline' ? <Timeline /> : ""}
+      {component === 'Index' && <IndexComponent />}
+      {component === 'Villagers' && <Cards villagersData={villagersData} histories={histories} />}
+      {component === 'Timeline' && <Timeline />}
     </ThemeProvider>
   </>)
 }
 
 export async function getStaticProps(): Promise<{
   props: {
-    HistoryData: HistoryProperties[];
+    historyData: HistoryProperties[];
   };
 }> {
 
@@ -92,15 +92,15 @@ export async function getStaticProps(): Promise<{
   })
 
   const mongoData = await res.json();
-  const HistoryData = mongoData.documents;
+  const historyData = mongoData.documents;
 
   return {
     props: {
-      HistoryData
+      historyData
     }
   }
 }
 
 export const metadata = {
-  title: 'Animal Crossing',
+  title: 'My Animal Crossing Island',
 }
