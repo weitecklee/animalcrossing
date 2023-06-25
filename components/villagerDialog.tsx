@@ -6,20 +6,20 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Divider from '@mui/material/Divider';
-import { VillagerProperties2 } from '../types';
+import { HistoryProperties, VillagerProperties2 } from '../types';
 
-export default function VillagerDialog({villagerData, showDialog, setShowDialog} : {villagerData: VillagerProperties2 | undefined, showDialog: boolean, setShowDialog: Dispatch<SetStateAction<boolean>>}) {
+export default function VillagerDialog({history, villagerData, showDialog, setShowDialog} : {history: HistoryProperties, villagerData: VillagerProperties2, showDialog: boolean, setShowDialog: Dispatch<SetStateAction<boolean>>}) {
   return (
     <Dialog
       open={showDialog}
       keepMounted
       onClose={() => setShowDialog(false)}
     >
-      <DialogTitle>{villagerData!.name}</DialogTitle>
+      <DialogTitle>{villagerData.name}</DialogTitle>
       <Divider light sx={{ borderBottomWidth: "4px" }} />
       <DialogContent>
         <DialogContentText>
-          {villagerData!.ja_name}
+          {villagerData.ja_name}
         </DialogContentText>
       </DialogContent>
       <DialogActions>

@@ -2,17 +2,19 @@ import Grid from '@mui/material/Grid';
 import HistoryCard from './card';
 import { HistoryProperties, VillagerProperties2 } from '../types';
 
-export default function Cards({villagersData, history}:{ villagersData: Map<string, VillagerProperties2>, history: HistoryProperties[]}) {
+export default function Cards({villagersData, histories}:{ villagersData: Map<string, VillagerProperties2>, histories: Map<string,HistoryProperties>}) {
+
+  const historiesArray = Array.from(histories.values());
 
   return <Grid container spacing={2}>
-    {history?.map((villager) =>
+    {historiesArray.map((history) =>
       <Grid
         item
-        key={villager.name}
+        key={history.name}
       >
         <HistoryCard
-          history={villager}
-          villagerData={villagersData.get(villager.name)}
+          history={history}
+          villagerData={villagersData.get(history.name)!}
         />
       </Grid>
     )}

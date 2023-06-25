@@ -4,21 +4,22 @@ import VillagerDialogImage from './villagerDialogImage';
 import VillagerDialog from './villagerDialog';
 import { HistoryProperties, VillagerProperties2 } from '../types';
 
-export default function VillagerDialogs({villagersData, history}:{ villagersData: Map<string, VillagerProperties2>, history: HistoryProperties[]}) {
+export default function VillagerDialogs({villagersData, histories}:{ villagersData: Map<string, VillagerProperties2>, histories: Map<string,HistoryProperties>}) {
 
   const [showDialog, setShowDialog] = useState(false);
   const [dialogVillager, setDialogVillager] = useState('');
+  const historiesArray = Array.from(histories.values());
 
   return <>
     <Grid container spacing={2}>
-      {history?.map((villager) =>
+      {historiesArray.map((history) =>
         <Grid
           item
-          key={villager.name}
+          key={history.name}
         >
           <VillagerDialogImage
-            history={villager}
-            villagerData={villagersData.get(villager.name)}
+            history={history}
+            villagerData={villagersData.get(history.name)}
             setShowDialog={setShowDialog}
             setDialogVillager={setDialogVillager}
           />
@@ -26,7 +27,8 @@ export default function VillagerDialogs({villagersData, history}:{ villagersData
       )}
     </Grid>
     {showDialog && <VillagerDialog
-      villagerData={villagersData.get(dialogVillager)}
+      history={histories.get(dialogVillager)!}
+      villagerData={villagersData.get(dialogVillager)!}
       showDialog={showDialog}
       setShowDialog={setShowDialog}
     />}
