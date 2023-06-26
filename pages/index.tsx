@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import dynamic from 'next/dynamic'
 import { HistoryProperties, TimelineDataProperties } from '../types';
 import TopBar from '../components/topBar';
 import IndexComponent from '../components/indexComponent';
 import Cards from '../components/cards';
-import Timeline from '../components/timeline';
 import { villagersData } from '../lib/combinedData';
 
 const theme = createTheme({
@@ -21,6 +21,8 @@ const theme = createTheme({
     fontFamily: "Montserrat"
   }
 });
+
+const Timeline = dynamic(() => import('../components/timeline'), {ssr: false})
 
 const convertStart = (d) => (`${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, '0')}-${(d.getDate()).toString().padStart(2, '0')}`);
 const convertEnd = (d) => (`${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, '0')}-${(d.getDate()).toString().padStart(2, '0')} 23:59:00`);

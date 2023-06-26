@@ -1,4 +1,3 @@
-import Typography from '@mui/material/Typography';
 import {
   Chart as ChartJS,
   CategoryScale,
