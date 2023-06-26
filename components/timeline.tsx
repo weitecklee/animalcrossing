@@ -30,7 +30,9 @@ const options = {
   indexAxis: 'y' as const ,
   elements: {
     bar: {
-      borderWidth: 0,
+      borderWidth: 1,
+      borderSkipped: false,
+      borderColor: '#000'
     },
   },
   plugins: {

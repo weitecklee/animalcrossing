@@ -34,6 +34,7 @@ export default function HomePage({ historyData}: { historyData: HistoryPropertie
     const tmp: Map<string,HistoryProperties> = new Map();
     const labels: string[] = [];
     const timeData: string[][] = [];
+    const backgroundColor: string[] = [];
 
     for (const hist of historyData) {
       hist.startDate = new Date(hist.startDate);
@@ -47,6 +48,7 @@ export default function HomePage({ historyData}: { historyData: HistoryPropertie
       tmp.set(hist.name, hist);
       labels.push(hist.name);
       timeData.push([hist.startDate.toLocaleDateString("fr-CA"), hist.endDate.toLocaleDateString("fr-CA")])
+      backgroundColor.push('#' + villagersData.get(hist.name)?.title_color!)
     }
 
     // documents?.sort((a, b) => {
@@ -65,6 +67,7 @@ export default function HomePage({ historyData}: { historyData: HistoryPropertie
         {
           label: 'Villagers',
           data: timeData,
+          backgroundColor,
         }
       ]
     }
