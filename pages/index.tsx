@@ -24,56 +24,26 @@ const theme = createTheme({
 
 const Timeline = dynamic(() => import('../components/timeline'), {ssr: false})
 
-export default function HomePage({ historyData}: { historyData: HistoryProperties[]}) {
+export default function HomePage({ historyData, timelineData}: { historyData: HistoryProperties[], timelineData: TimelineDataProperties }) {
 
   const [histories, setHistories] = useState<Map<string,HistoryProperties>>(new Map());
   const [component, setComponent] =  useState('Index');
-  const [timelineData, setTimelineData] = useState<TimelineDataProperties>({} as TimelineDataProperties);
 
   useEffect(() => {
     const tmp: Map<string,HistoryProperties> = new Map();
-    const labels: string[] = [];
-    const timeData: string[][] = [];
-    const backgroundColor: string[] = [];
 
     for (const hist of historyData) {
       hist.startDate = new Date(hist.startDate);
       if (!hist.endDate) {
-        hist.currentResident = true;
         hist.endDate = new Date();
+        hist.endDate.setHours(0, 0, 0);
       } else {
-        hist.currentResident = false;
         hist.endDate = new Date(hist.endDate);
       }
       tmp.set(hist.name, hist);
-      labels.push(hist.name);
-      timeData.push([hist.startDate.toLocaleDateString("fr-CA"), hist.endDate.toLocaleDateString("fr-CA")])
-      backgroundColor.push('#' + villagersData.get(hist.name)?.title_color!)
-    }
-
-    // documents?.sort((a, b) => {
-    //   if (a.startDate < b.startDate) {
-    //     return -1;
-    //   } else if (a.startDate > b.startDate) {
-    //     return 1;
-    //   } else {
-    //     return 0;
-    //   }
-    // });
-
-    const tmpTimelineData = {
-      labels,
-      datasets: [
-        {
-          label: 'Villagers',
-          data: timeData,
-          backgroundColor,
-        }
-      ]
     }
 
     setHistories(tmp);
-    setTimelineData(tmpTimelineData);
 
   }, [historyData])
 
@@ -90,9 +60,10 @@ export default function HomePage({ historyData}: { historyData: HistoryPropertie
   </>)
 }
 
-export async function getStaticProps(): Promise<{
+export async function getServerSideProps(): Promise<{
   props: {
-    historyData: HistoryProperties[];
+    historyData: HistoryProperties[],
+    timelineData: TimelineDataProperties,
   };
 }> {
 
@@ -115,9 +86,41 @@ export async function getStaticProps(): Promise<{
   const mongoData = await res.json();
   const historyData = mongoData.documents;
 
+  const labels: string[] = [];
+  const timeData: string[][] = [];
+  const backgroundColor: string[] = [];
+
+  for (const hist of historyData) {
+    const startDate = new Date(hist.startDate);
+    let endDate: Date;
+    if (!hist.endDate) {
+      hist.currentResident = true;
+      endDate = new Date();
+      endDate.setHours(0, 0, 0);
+    } else {
+      hist.currentResident = false;
+      endDate = new Date(hist.endDate);
+    }
+    labels.push(hist.name);
+    timeData.push([startDate.toLocaleDateString("fr-CA"), endDate.toLocaleDateString("fr-CA")])
+    backgroundColor.push('#' + villagersData.get(hist.name)?.title_color!)
+  }
+
+  const timelineData = {
+    labels,
+    datasets: [
+      {
+        label: 'Villagers',
+        data: timeData,
+        backgroundColor,
+      }
+    ]
+  }
+
   return {
     props: {
-      historyData
+      historyData,
+      timelineData,
     }
   }
 }
