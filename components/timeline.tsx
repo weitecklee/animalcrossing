@@ -73,7 +73,13 @@ const options = {
           day: 'MMM d yyyy',
         },
       },
+      grid: {
+        display: false,
+      }
     },
+    y: {
+      display: false,
+    }
   }
 };
 
