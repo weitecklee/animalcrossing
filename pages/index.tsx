@@ -24,9 +24,6 @@ const theme = createTheme({
 
 const Timeline = dynamic(() => import('../components/timeline'), {ssr: false})
 
-const convertStart = (d) => (`${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, '0')}-${(d.getDate()).toString().padStart(2, '0')}`);
-const convertEnd = (d) => (`${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, '0')}-${(d.getDate()).toString().padStart(2, '0')} 23:59:00`);
-
 export default function HomePage({ historyData}: { historyData: HistoryProperties[]}) {
 
   const [histories, setHistories] = useState<Map<string,HistoryProperties>>(new Map());
@@ -49,7 +46,7 @@ export default function HomePage({ historyData}: { historyData: HistoryPropertie
       }
       tmp.set(hist.name, hist);
       labels.push(hist.name);
-      timeData.push([convertStart(hist.startDate), convertEnd(hist.endDate)])
+      timeData.push([hist.startDate.toLocaleDateString("fr-CA"), hist.endDate.toLocaleDateString("fr-CA")])
     }
 
     // documents?.sort((a, b) => {

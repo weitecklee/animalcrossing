@@ -28,10 +28,10 @@ export default function HistoryCard({history, villagerData, setShowDialog, setDi
             {history.name}
           </Typography>
           <Typography>
-            {history.startDate.toLocaleDateString("en-ZA")}
+            {history.startDate.toLocaleDateString("fr-CA")}
           </Typography>
           <Typography>
-            {!history.currentResident ? history.endDate.toLocaleDateString("en-ZA") : 'Present'}
+            {!history.currentResident ? history.endDate.toLocaleDateString("fr-CA") : 'Present'}
           </Typography>
           <Typography>
             {Math.round((history.endDate.getTime() - history.startDate.getTime()) / (1000 * 3600 * 24)) + 1} days

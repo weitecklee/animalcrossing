@@ -66,10 +66,10 @@ export default function CardDialog({history, villagerData, showDialog, setShowDi
           </Typography>
           <br />
           <Typography>
-            Moved in on {history.startDate.toLocaleDateString("en-ZA")}
+            Moved in on {history.startDate.toLocaleDateString("fr-CA")}
           </Typography>
           {!history.currentResident && <Typography>
-            Moved out on {history.endDate.toLocaleDateString("en-ZA")}
+            Moved out on {history.endDate.toLocaleDateString("fr-CA")}
             </Typography>}
           <Typography>
             Duration of residence:&nbsp;

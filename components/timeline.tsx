@@ -53,7 +53,7 @@ const options = {
     tooltip: {
       enabled: true,
       callbacks: {
-        label: ({ raw }) => (`${raw[0]} - ${raw[1].substring(0, raw[1].indexOf(' '))}`),
+        label: ({ raw }) => (`${raw[0]} - ${raw[1]}`),
       },
     },
   },
