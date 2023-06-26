@@ -23,7 +23,8 @@ ChartJS.register(
   Tooltip,
   Legend,
   Colors,
-  TimeScale
+  TimeScale,
+  Zoom,
 );
 
 const options = {
