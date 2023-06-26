@@ -27,7 +27,7 @@ export default function Timeline() {
       <br />
     </Typography>
     <Typography variant="caption">
-      Thank you to:
+      Special thanks to:
       <br />
       &emsp;
       <Link
