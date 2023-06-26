@@ -12,6 +12,7 @@ import {
 import { Bar } from 'react-chartjs-2';
 import Zoom from 'chartjs-plugin-zoom';
 import 'chartjs-adapter-date-fns';
+import Box from '@mui/material/Box';
 import { TimelineDataProperties } from '../types';
 
 ChartJS.register(
@@ -28,6 +29,7 @@ ChartJS.register(
 
 const options = {
   indexAxis: 'y' as const ,
+  maintainAspectRatio: false,
   elements: {
     bar: {
       borderWidth: 1,
@@ -71,15 +73,20 @@ const options = {
           day: 'MMM d yyyy',
         },
       },
-    } as any,
+    },
   }
 };
 
 export default function Timeline({ timelineData }: { timelineData: TimelineDataProperties }) {
-  return <>
-    <Bar
-      data={timelineData}
-      options={options as any}
-    />
-  </>
+  return <Box sx={{
+    position: "relative",
+    margin: "auto",
+    width: "90vw",
+    height: "90vh",
+  }}>
+      <Bar
+        data={timelineData}
+        options={options as any}
+      />
+  </Box>
 }
