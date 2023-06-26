@@ -81,3 +81,13 @@ export interface VillagerProperties2 {
   nh_details: NH_Details,
   ja_name: string,
 }
+
+interface DatasetProperties {
+  label: string,
+  data: any[],
+}
+
+export interface TimelineDataProperties {
+  labels: string[],
+  datasets: DatasetProperties[],
+}
