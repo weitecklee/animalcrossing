@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { HistoryProperties } from '../types';
+import dynamic from 'next/dynamic'
+import { HistoryProperties, TimelineDataProperties } from '../types';
 import TopBar from '../components/topBar';
 import IndexComponent from '../components/indexComponent';
 import Cards from '../components/cards';
-import Timeline from '../components/timeline';
 import { villagersData } from '../lib/combinedData';
 
 const theme = createTheme({
@@ -22,13 +22,19 @@ const theme = createTheme({
   }
 });
 
+const Timeline = dynamic(() => import('../components/timeline'), {ssr: false})
+
 export default function HomePage({ historyData}: { historyData: HistoryProperties[]}) {
 
   const [histories, setHistories] = useState<Map<string,HistoryProperties>>(new Map());
   const [component, setComponent] =  useState('Index');
+  const [timelineData, setTimelineData] = useState<TimelineDataProperties>({} as TimelineDataProperties);
 
   useEffect(() => {
     const tmp: Map<string,HistoryProperties> = new Map();
+    const labels: string[] = [];
+    const timeData: string[][] = [];
+    const backgroundColor: string[] = [];
 
     for (const hist of historyData) {
       hist.startDate = new Date(hist.startDate);
@@ -40,6 +46,9 @@ export default function HomePage({ historyData}: { historyData: HistoryPropertie
         hist.endDate = new Date(hist.endDate);
       }
       tmp.set(hist.name, hist);
+      labels.push(hist.name);
+      timeData.push([hist.startDate.toLocaleDateString("fr-CA"), hist.endDate.toLocaleDateString("fr-CA")])
+      backgroundColor.push('#' + villagersData.get(hist.name)?.title_color!)
     }
 
     // documents?.sort((a, b) => {
@@ -52,7 +61,19 @@ export default function HomePage({ historyData}: { historyData: HistoryPropertie
     //   }
     // });
 
+    const tmpTimelineData = {
+      labels,
+      datasets: [
+        {
+          label: 'Villagers',
+          data: timeData,
+          backgroundColor,
+        }
+      ]
+    }
+
     setHistories(tmp);
+    setTimelineData(tmpTimelineData);
 
   }, [historyData])
 
@@ -64,7 +85,7 @@ export default function HomePage({ historyData}: { historyData: HistoryPropertie
       <TopBar setComponent={setComponent} />
       {component === 'Index' && <IndexComponent />}
       {component === 'Villagers' && <Cards villagersData={villagersData} histories={histories} />}
-      {component === 'Timeline' && <Timeline />}
+      {component === 'Timeline' && <Timeline timelineData={timelineData} />}
     </ThemeProvider>
   </>)
 }
