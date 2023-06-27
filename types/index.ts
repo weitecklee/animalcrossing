@@ -29,12 +29,24 @@ export interface VillagerProperties {
   "image_uri": string,
 }
 
-export interface HistoryProperties {
+export interface MongoProperties {
   name: string,
-  startDate: Date,
-  endDate: Date,
-  currentResident: boolean,
+  startDate: string,
+  endDate: string,
+  photoDate: string,
   _id: string,
+  currentResident: boolean,
+  photo: boolean,
+  startDateString: string,
+  photoDateString: string,
+}
+
+export interface HistoryProperties extends MongoProperties {
+  duration: number,
+  startDateDate: Date,
+  endDateDate: Date,
+  endDateString: string,
+  photoDateDate: Date,
 }
 
 interface NH_Details {

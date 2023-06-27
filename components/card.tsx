@@ -28,13 +28,13 @@ export default function HistoryCard({history, villagerData, setShowDialog, setDi
             {history.name}
           </Typography>
           <Typography>
-            {history.startDate.toLocaleDateString("fr-CA")}
+            {history.startDateString}
           </Typography>
           <Typography>
-            {!history.currentResident ? history.endDate.toLocaleDateString("fr-CA") : 'Present'}
+            {!history.currentResident ? history.endDateString : 'Present'}
           </Typography>
           <Typography>
-            {Math.round((history.endDate.getTime() - history.startDate.getTime()) / (1000 * 3600 * 24)) + 1} days
+            {history.duration} days
           </Typography>
           <IconButton
             onClick={() => {

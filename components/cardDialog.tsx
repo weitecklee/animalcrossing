@@ -67,14 +67,14 @@ export default function CardDialog({history, villagerData, showDialog, setShowDi
           </Typography>
           <br />
           <Typography>
-            Moved in on {history.startDate.toLocaleDateString("fr-CA")}
+            Moved in on {history.startDateString}
           </Typography>
           {!history.currentResident && <Typography>
-            Moved out on {history.endDate.toLocaleDateString("fr-CA")}
+            Moved out on {history.endDateString}
             </Typography>}
           <Typography>
             Duration of residence:&nbsp;
-            {Math.round((history.endDate.getTime() - history.startDate.getTime()) / (1000 * 3600 * 24)) + 1} days{history.currentResident && " and counting"}
+            {history.duration} days{history.currentResident && " and counting"}
           </Typography>
           <br />
           <Typography variant="body2">
