@@ -60,7 +60,7 @@ export default function HomePage({ historyData, timelineData}: { historyData: Hi
   </>)
 }
 
-export async function getServerSideProps(): Promise<{
+export async function getStaticProps(): Promise<{
   props: {
     historyData: HistoryProperties[],
     timelineData: TimelineDataProperties,

@@ -1,29 +1,10 @@
-import Box, { BoxProps } from '@mui/material/Box';
-import Container, {ContainerProps} from '@mui/material/Container'
+import Box from '@mui/material/Box';
 import Paper, {PaperProps} from '@mui/material/Paper'
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 import Draggable from 'react-draggable';
 import OpenWithRoundedIcon from '@mui/icons-material/OpenWithRounded';
 import { VillagerProperties2 } from '../types';
-
-function DraggableBox(props: BoxProps) {
-  return (
-    <Draggable
-      handle="#dragHandle"
-      bounds="parent"
-    >
-      <Box {...props} sx={{
-        position: 'absolute',
-        top: '20%',
-        left: '80%',
-        padding: 2,
-        bgcolor: 'secondary.main'
-      }}
-      />
-    </Draggable>
-  )
-}
 
 function DraggablePaper(props: PaperProps) {
   return (
@@ -88,5 +69,4 @@ export default function TimelineTooltip({chart, tooltip, villagerData}: {chart: 
           </Box>
       </DraggablePaper>
   )
-
 }

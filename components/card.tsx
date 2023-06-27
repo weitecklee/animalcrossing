@@ -23,7 +23,7 @@ export default function HistoryCard({history, villagerData, setShowDialog, setDi
         />
       </CardActionArea>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
+        <CardContent sx={{ position: 'relative' }}>
           <Typography variant="h6">
             {history.name}
           </Typography>
@@ -36,20 +36,20 @@ export default function HistoryCard({history, villagerData, setShowDialog, setDi
           <Typography>
             {Math.round((history.endDate.getTime() - history.startDate.getTime()) / (1000 * 3600 * 24)) + 1} days
           </Typography>
-        </CardContent>
-        <CardActions>
           <IconButton
             onClick={() => {
               setDialogVillager(history.name);
               setShowDialog(true);
             }}
             sx={{
-              marginLeft: 'auto'
+              position: 'absolute',
+              bottom: 0,
+              right: 0,
             }}
           >
             <InfoIcon />
           </IconButton>
-        </CardActions>
+        </CardContent>
       </Collapse>
     </Card>
   );

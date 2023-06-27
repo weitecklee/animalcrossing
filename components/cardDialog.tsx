@@ -20,6 +20,7 @@ export default function CardDialog({history, villagerData, showDialog, setShowDi
       <Grid
         container
         alignItems='center'
+        padding={2}
       >
         <Grid item pl={2}>
           <Stack direction="row">
