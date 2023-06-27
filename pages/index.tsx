@@ -24,13 +24,18 @@ const theme = createTheme({
 
 const Timeline = dynamic(() => import('../components/timeline'), {ssr: false})
 
-export default function HomePage({ mongoData, timelineData}: { mongoData: MongoProperties[], timelineData: TimelineDataProperties }) {
+export default function HomePage({ mongoData}: { mongoData: MongoProperties[] }) {
 
   const [histories, setHistories] = useState<Map<string,HistoryProperties>>(new Map());
   const [component, setComponent] =  useState('Index');
+  const [timelineData, setTimelineData] = useState({} as TimelineDataProperties);
 
   useEffect(() => {
     const tmp: Map<string,HistoryProperties> = new Map();
+
+    const labels: string[] = [];
+    const timeData: string[][] = [];
+    const backgroundColor: string[] = [];
 
     for (const mongoDatum of mongoData) {
       const tmpHist: HistoryProperties = {
@@ -49,9 +54,22 @@ export default function HomePage({ mongoData, timelineData}: { mongoData: MongoP
       tmpHist.endDateString = tmpHist.endDateDate.toLocaleDateString("fr-CA");
       tmpHist.duration = Math.round((tmpHist.endDateDate.getTime() - tmpHist.startDateDate.getTime()) / (1000 * 3600 * 24)) + 1;
       tmp.set(tmpHist.name, tmpHist);
+      labels.push(mongoDatum.name);
+      timeData.push([tmpHist.startDateString, tmpHist.endDateString])
+      backgroundColor.push('#' + villagersData.get(tmpHist.name)?.title_color!)
     }
 
     setHistories(tmp);
+    setTimelineData({
+      labels,
+      datasets: [
+        {
+          label: 'Villagers',
+          data: timeData,
+          backgroundColor,
+        }
+      ]
+    });
 
   }, [mongoData])
 
@@ -63,7 +81,7 @@ export default function HomePage({ mongoData, timelineData}: { mongoData: MongoP
       <TopBar setComponent={setComponent} />
       {component === 'Index' && <IndexComponent />}
       {component === 'Villagers' && <Cards villagersData={villagersData} histories={histories} />}
-      {component === 'Timeline' && <Timeline timelineData={timelineData} villagersData={villagersData} />}
+      {component === 'Timeline' && <Timeline timelineData={timelineData} villagersData={villagersData} histories={histories} />}
     </ThemeProvider>
   </>)
 }
@@ -71,7 +89,6 @@ export default function HomePage({ mongoData, timelineData}: { mongoData: MongoP
 export async function getStaticProps(): Promise<{
   props: {
     mongoData: MongoProperties[],
-    timelineData: TimelineDataProperties,
   };
 }> {
 
@@ -94,10 +111,6 @@ export async function getStaticProps(): Promise<{
   const mongoResponse = await res.json();
   const mongoData = mongoResponse.documents;
 
-  const labels: string[] = [];
-  const timeData: string[][] = [];
-  const backgroundColor: string[] = [];
-
   for (const mongoDatum of mongoData) {
     const startDate = new Date(mongoDatum.startDate);
     let endDate: Date;
@@ -116,26 +129,11 @@ export async function getStaticProps(): Promise<{
       mongoDatum.photo = false;
     }
     mongoDatum.startDateString = startDate.toLocaleDateString("fr-CA");
-    labels.push(mongoDatum.name);
-    timeData.push([mongoDatum.startDateString, endDate.toLocaleDateString("fr-CA")])
-    backgroundColor.push('#' + villagersData.get(mongoDatum.name)?.title_color!)
-  }
-
-  const timelineData = {
-    labels,
-    datasets: [
-      {
-        label: 'Villagers',
-        data: timeData,
-        backgroundColor,
-      }
-    ]
   }
 
   return {
     props: {
       mongoData,
-      timelineData,
     }
   }
 }

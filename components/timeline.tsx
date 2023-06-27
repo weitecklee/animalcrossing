@@ -12,10 +12,9 @@ import {
 import { Bar } from 'react-chartjs-2';
 import Zoom from 'chartjs-plugin-zoom';
 import 'chartjs-adapter-date-fns';
-import Box, { BoxProps } from '@mui/material/Box';
+import Box from '@mui/material/Box';
 import { useState } from 'react';
-import Draggable from 'react-draggable';
-import { TimelineDataProperties, VillagerProperties2 } from '../types';
+import { TimelineDataProperties, VillagerProperties2, HistoryProperties } from '../types';
 import TimelineTooltip from './timelineTooltip';
 
 ChartJS.register(
@@ -83,19 +82,19 @@ const options = {
   }
 } as any;
 
-export default function Timeline({ timelineData, villagersData }: { timelineData: TimelineDataProperties, villagersData: Map<string,VillagerProperties2> }) {
+export default function Timeline({ timelineData, villagersData, histories }: { timelineData: TimelineDataProperties, villagersData: Map<string,VillagerProperties2>, histories: Map<string,HistoryProperties> }) {
 
-  const [timelineChart, setTimelineChart] = useState({} as any);
-  const [timelineTooltip, setTimelineTooltip] = useState({} as any);
+  // const [timelineChart, setTimelineChart] = useState({} as any);
+  // const [timelineTooltip, setTimelineTooltip] = useState({} as any);
   const [timelineVillager, setTimelineVillager] = useState('');
   const [showTooltip, setShowTooltip] = useState(false);
 
-  options.plugins.tooltip.external = ({ chart, tooltip }) => {
-    const a = {...chart};
-    const b = {...tooltip};
-    setTimelineVillager(b.title[0]);
-    setTimelineChart(a);
-    setTimelineTooltip(b);
+  options.plugins.tooltip.external = ({ tooltip }) => {
+    // const a = {...chart};
+    // const b = {...tooltip};
+    setTimelineVillager(tooltip.title[0]);
+    // setTimelineChart(a);
+    // setTimelineTooltip(b);
     setShowTooltip(true);
   }
 
@@ -111,9 +110,8 @@ export default function Timeline({ timelineData, villagersData }: { timelineData
       />
       {showTooltip &&
         <TimelineTooltip
-          chart={timelineChart}
-          tooltip={timelineTooltip}
           villagerData={villagersData.get(timelineVillager)!}
+          history={histories.get(timelineVillager)!}
         />
       }
   </Box>

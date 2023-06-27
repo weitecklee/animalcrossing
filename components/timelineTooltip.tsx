@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 import Draggable from 'react-draggable';
 import OpenWithRoundedIcon from '@mui/icons-material/OpenWithRounded';
-import { VillagerProperties2 } from '../types';
+import { VillagerProperties2, HistoryProperties } from '../types';
 
 function DraggablePaper(props: PaperProps) {
   return (
@@ -26,7 +26,7 @@ function DraggablePaper(props: PaperProps) {
   )
 }
 
-export default function TimelineTooltip({chart, tooltip, villagerData}: {chart: any, tooltip: any, villagerData: VillagerProperties2}) {
+export default function TimelineTooltip({villagerData, history}: { villagerData: VillagerProperties2, history: HistoryProperties}) {
 
   return (
       <DraggablePaper>
@@ -61,10 +61,13 @@ export default function TimelineTooltip({chart, tooltip, villagerData}: {chart: 
             &nbsp;&nbsp;{villagerData.name}
             </Typography>
             <Typography>
-              {tooltip.dataPoints[0].raw[0]}
+              {history.startDateString}
             </Typography>
             <Typography>
-              {tooltip.dataPoints[0].raw[1]}
+              {!history.currentResident ? history.endDateString : 'Present'}
+            </Typography>
+            <Typography>
+              {history.duration} days
             </Typography>
           </Box>
       </DraggablePaper>

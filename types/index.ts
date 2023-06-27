@@ -97,6 +97,7 @@ export interface VillagerProperties2 {
 interface DatasetProperties {
   label: string,
   data: any[],
+  backgroundColor: string[],
 }
 
 export interface TimelineDataProperties {
