@@ -12,8 +12,11 @@ import {
 import { Bar } from 'react-chartjs-2';
 import Zoom from 'chartjs-plugin-zoom';
 import 'chartjs-adapter-date-fns';
-import Box from '@mui/material/Box';
-import { TimelineDataProperties } from '../types';
+import Box, { BoxProps } from '@mui/material/Box';
+import { useState } from 'react';
+import Draggable from 'react-draggable';
+import { TimelineDataProperties, VillagerProperties2 } from '../types';
+import TimelineTooltip from './timelineTooltip';
 
 ChartJS.register(
   CategoryScale,
@@ -56,10 +59,7 @@ const options = {
       },
     },
     tooltip: {
-      enabled: true,
-      callbacks: {
-        label: ({ raw }) => (`${raw[0]} - ${raw[1]}`),
-      },
+      enabled: false,
     },
   },
   scales: {
@@ -81,9 +81,24 @@ const options = {
       display: false,
     }
   }
-};
+} as any;
 
-export default function Timeline({ timelineData }: { timelineData: TimelineDataProperties }) {
+export default function Timeline({ timelineData, villagersData }: { timelineData: TimelineDataProperties, villagersData: Map<string,VillagerProperties2> }) {
+
+  const [timelineChart, setTimelineChart] = useState({} as any);
+  const [timelineTooltip, setTimelineTooltip] = useState({} as any);
+  const [timelineVillager, setTimelineVillager] = useState('');
+  const [showTooltip, setShowTooltip] = useState(false);
+
+  options.plugins.tooltip.external = ({ chart, tooltip }) => {
+    const a = {...chart};
+    const b = {...tooltip};
+    setTimelineVillager(b.title[0]);
+    setTimelineChart(a);
+    setTimelineTooltip(b);
+    setShowTooltip(true);
+  }
+
   return <Box sx={{
     position: "relative",
     margin: "auto",
@@ -92,7 +107,14 @@ export default function Timeline({ timelineData }: { timelineData: TimelineDataP
   }}>
       <Bar
         data={timelineData}
-        options={options as any}
+        options={options}
       />
+      {showTooltip &&
+        <TimelineTooltip
+          chart={timelineChart}
+          tooltip={timelineTooltip}
+          villagerData={villagersData.get(timelineVillager)!}
+        />
+      }
   </Box>
 }

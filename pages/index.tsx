@@ -55,7 +55,7 @@ export default function HomePage({ historyData, timelineData}: { historyData: Hi
       <TopBar setComponent={setComponent} />
       {component === 'Index' && <IndexComponent />}
       {component === 'Villagers' && <Cards villagersData={villagersData} histories={histories} />}
-      {component === 'Timeline' && <Timeline timelineData={timelineData} />}
+      {component === 'Timeline' && <Timeline timelineData={timelineData} villagersData={villagersData} />}
     </ThemeProvider>
   </>)
 }
