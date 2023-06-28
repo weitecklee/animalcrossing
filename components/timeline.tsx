@@ -14,6 +14,8 @@ import Zoom from 'chartjs-plugin-zoom';
 import 'chartjs-adapter-date-fns';
 import Box from '@mui/material/Box';
 import { useState } from 'react';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 import { TimelineDataProperties, VillagerProperties2, HistoryProperties } from '../types';
 import TimelineTooltip from './timelineTooltip';
 
@@ -91,6 +93,7 @@ export default function Timeline({ timelineData, villagersData, histories }: { t
   // const [timelineTooltip, setTimelineTooltip] = useState({} as any);
   const [timelineVillager, setTimelineVillager] = useState('');
   const [showTooltip, setShowTooltip] = useState(false);
+  const shortScreen = useMediaQuery('(max-height:700px)')
 
   options.plugins.tooltip.external = ({ tooltip }) => {
     // const a = {...chart};
@@ -105,7 +108,7 @@ export default function Timeline({ timelineData, villagersData, histories }: { t
     position: "relative",
     margin: "auto",
     width: "90vw",
-    height: "90vh",
+    height: shortScreen ? "80vh" : "90vh",
   }}>
       <Bar
         data={timelineData}
