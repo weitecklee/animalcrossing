@@ -11,7 +11,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 
-const pages = ['Villagers', 'Timeline'];
+const pages = ['Villagers', 'Timeline', 'Stats'];
 
 export default function TopBar({setComponent}: { setComponent: Dispatch<SetStateAction<string>> }) {
 

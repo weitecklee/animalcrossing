@@ -7,6 +7,7 @@ import TopBar from '../components/topBar';
 import IndexComponent from '../components/indexComponent';
 import Cards from '../components/cards';
 import { villagersData } from '../lib/combinedData';
+import Stats from '../components/stats';
 
 let theme = createTheme({
   palette: {
@@ -36,9 +37,10 @@ export default function HomePage({ mongoData}: { mongoData: MongoProperties[] })
   const [histories, setHistories] = useState<Map<string,HistoryProperties>>(new Map());
   const [component, setComponent] =  useState('Index');
   const [timelineData, setTimelineData] = useState({} as TimelineDataProperties);
+  const [sortedDurations, setSortedDurations] = useState<string[]>([]);
 
   useEffect(() => {
-    const tmp: Map<string,HistoryProperties> = new Map();
+    const tmpHistories: Map<string,HistoryProperties> = new Map();
 
     const labels: string[] = [];
     const timeData: string[][] = [];
@@ -60,13 +62,16 @@ export default function HomePage({ mongoData}: { mongoData: MongoProperties[] })
       }
       tmpHist.endDateString = tmpHist.endDateDate.toLocaleDateString("fr-CA");
       tmpHist.duration = Math.round((tmpHist.endDateDate.getTime() - tmpHist.startDateDate.getTime()) / (1000 * 3600 * 24)) + 1;
-      tmp.set(tmpHist.name, tmpHist);
+      tmpHistories.set(tmpHist.name, tmpHist);
       labels.push(mongoDatum.name);
       timeData.push([tmpHist.startDateString, tmpHist.endDateString])
       backgroundColor.push('#' + villagersData.get(tmpHist.name)?.title_color!)
     }
 
-    setHistories(tmp);
+    const tmpDurations = [... labels];
+    tmpDurations.sort((a, b) => tmpHistories.get(b)?.duration! - tmpHistories.get(a)?.duration!);
+
+    setHistories(tmpHistories);
     setTimelineData({
       labels,
       datasets: [
@@ -77,7 +82,7 @@ export default function HomePage({ mongoData}: { mongoData: MongoProperties[] })
         }
       ]
     });
-
+    setSortedDurations(tmpDurations);
   }, [mongoData])
 
   return (<>
@@ -87,8 +92,20 @@ export default function HomePage({ mongoData}: { mongoData: MongoProperties[] })
     <ThemeProvider theme={theme}>
       <TopBar setComponent={setComponent} />
       {component === 'Index' && <IndexComponent />}
-      {component === 'Villagers' && <Cards villagersData={villagersData} histories={histories} />}
-      {component === 'Timeline' && <Timeline timelineData={timelineData} villagersData={villagersData} histories={histories} />}
+      {component === 'Villagers' && <Cards
+        villagersData={villagersData}
+        histories={histories}
+      />}
+      {component === 'Timeline' && <Timeline
+        timelineData={timelineData}
+        villagersData={villagersData}
+        histories={histories}
+      />}
+      {component === 'Stats' && <Stats
+        villagersData={villagersData}
+        histories={histories}
+        sortedDurations={sortedDurations}
+      />}
     </ThemeProvider>
   </>)
 }
