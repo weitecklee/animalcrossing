@@ -31,6 +31,7 @@ export default function CardDialog({history, villagerData, showDialog, setShowDi
       <Grid
         container
         alignItems='center'
+        justifyContent='center'
         padding={4}
         spacing={5}
       >
