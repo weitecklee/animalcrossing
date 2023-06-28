@@ -64,7 +64,13 @@ export default function TopBar({setComponent}: { setComponent: Dispatch<SetState
             {pages.map((page) => (
               <Button
                 key={page}
-                sx={{color:'black', mx: 1}}
+                sx={{
+                  color:'black',
+                  mx: 1,
+                  ':hover': {
+                    bgcolor: "success.main",
+                  }
+                }}
                 onClick={() => setComponent(page)}
               >
                 {page}
