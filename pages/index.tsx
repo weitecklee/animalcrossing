@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
 import dynamic from 'next/dynamic'
-import { MongoProperties, HistoryProperties, TimelineDataProperties } from '../types';
+import { MongoProperties, HistoryProperties, TimelineDataProperties, SpeciesDatumProperties } from '../types';
 import TopBar from '../components/topBar';
 import IndexComponent from '../components/indexComponent';
 import Cards from '../components/cards';
@@ -32,7 +32,7 @@ theme = responsiveFontSizes(theme, {
 
 const Timeline = dynamic(() => import('../components/timeline'), {ssr: false})
 
-export default function HomePage({ mongoData}: { mongoData: MongoProperties[] }) {
+export default function HomePage({ mongoData, speciesData }: { mongoData: MongoProperties[], speciesData: SpeciesDatumProperties[] }) {
 
   const [histories, setHistories] = useState<Map<string,HistoryProperties>>(new Map());
   const [component, setComponent] =  useState('Index');
@@ -105,6 +105,7 @@ export default function HomePage({ mongoData}: { mongoData: MongoProperties[] })
         villagersData={villagersData}
         histories={histories}
         sortedDurations={sortedDurations}
+        speciesData={speciesData}
       />}
     </ThemeProvider>
   </>)
@@ -113,6 +114,7 @@ export default function HomePage({ mongoData}: { mongoData: MongoProperties[] })
 export async function getStaticProps(): Promise<{
   props: {
     mongoData: MongoProperties[],
+    speciesData: SpeciesDatumProperties[],
   };
 }> {
 
@@ -135,6 +137,8 @@ export async function getStaticProps(): Promise<{
   const mongoResponse = await res.json();
   const mongoData = mongoResponse.documents;
 
+  const speciesMap: Map<string, SpeciesDatumProperties> = new Map();
+
   for (const mongoDatum of mongoData) {
     const startDate = new Date(mongoDatum.startDate);
     let endDate: Date;
@@ -153,11 +157,26 @@ export async function getStaticProps(): Promise<{
       mongoDatum.photo = false;
     }
     mongoDatum.startDateString = startDate.toLocaleDateString("fr-CA");
+    const species = villagersData.get(mongoDatum.name)!.species;
+    if (!speciesMap.has(species)) {
+      speciesMap.set(species, {
+        species,
+        count: 0,
+        villagers: [],
+      });
+    }
+    const tmp = speciesMap.get(species)!;
+    tmp.count++;
+    tmp.villagers.push(mongoDatum.name);
   }
+
+  const speciesData = Array.from(speciesMap.values());
+  speciesData.sort((a, b) => b.count - a.count);
 
   return {
     props: {
       mongoData,
+      speciesData,
     }
   }
 }
