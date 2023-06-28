@@ -55,6 +55,9 @@ const options = {
         wheel: {
           enabled: true,
         },
+        pinch: {
+          enabled: true,
+        }
       },
     },
     tooltip: {
