@@ -13,11 +13,13 @@ import { Bar } from 'react-chartjs-2';
 import Zoom from 'chartjs-plugin-zoom';
 import 'chartjs-adapter-date-fns';
 import Box from '@mui/material/Box';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { TimelineDataProperties, VillagerProperties2, HistoryProperties } from '../types';
 import TimelineTooltip from './timelineTooltip';
+import Alert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
 
 ChartJS.register(
   CategoryScale,
@@ -93,7 +95,10 @@ export default function Timeline({ timelineData, villagersData, histories }: { t
   // const [timelineTooltip, setTimelineTooltip] = useState({} as any);
   const [timelineVillager, setTimelineVillager] = useState('');
   const [showTooltip, setShowTooltip] = useState(false);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
   const shortScreen = useMediaQuery('(max-height:700px)')
+  const theme = useTheme();
+  const smallScreen = useMediaQuery(theme.breakpoints.down('md'))
 
   options.plugins.tooltip.external = ({ tooltip }) => {
     // const a = {...chart};
@@ -104,21 +109,46 @@ export default function Timeline({ timelineData, villagersData, histories }: { t
     setShowTooltip(true);
   }
 
+  const handleClose = (event?: Event | React.SyntheticEvent, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpenSnackbar(false);
+  }
+
+  useEffect(() => {
+    setOpenSnackbar(smallScreen);
+  }, [smallScreen]);
+
   return <Box sx={{
     position: "relative",
     margin: "auto",
     width: "90vw",
     height: shortScreen ? "80vh" : "90vh",
   }}>
-      <Bar
-        data={timelineData}
-        options={options}
+    <Snackbar
+      open={openSnackbar}
+      onClose={handleClose}
+    >
+      <Alert
+        severity="warning"
+        onClose={handleClose}
+        sx={{
+          width: "100%"
+        }}
+      >
+        This page is best viewed on a large screen.
+      </Alert>
+    </Snackbar>
+    <Bar
+      data={timelineData}
+      options={options}
+    />
+    {showTooltip &&
+      <TimelineTooltip
+        villagerData={villagersData.get(timelineVillager)!}
+        history={histories.get(timelineVillager)!}
       />
-      {showTooltip &&
-        <TimelineTooltip
-          villagerData={villagersData.get(timelineVillager)!}
-          history={histories.get(timelineVillager)!}
-        />
-      }
+    }
   </Box>
 }
