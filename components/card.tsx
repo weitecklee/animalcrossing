@@ -1,4 +1,4 @@
-import { useState, Dispatch, SetStateAction } from 'react';
+import { useState, useEffect, Dispatch, SetStateAction } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -8,22 +8,29 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import InfoIcon from '@mui/icons-material/Info';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 import { HistoryProperties, VillagerProperties2 } from '../types';
 
-export default function HistoryCard({history, villagerData, setShowDialog, setDialogVillager}: {history: HistoryProperties, villagerData: VillagerProperties2, setShowDialog: Dispatch<SetStateAction<boolean>>, setDialogVillager: Dispatch<SetStateAction<string>>}) {
+export default function HistoryCard({history, villagerData, setShowDialog, setDialogVillager, expandAll}: {history: HistoryProperties, villagerData: VillagerProperties2, setShowDialog: Dispatch<SetStateAction<boolean>>, setDialogVillager: Dispatch<SetStateAction<string>>, expandAll: boolean}) {
 
   const [expanded, setExpanded] = useState(false);
-  const Content = ({mobile = false}) => <>
-    <Typography variant={mobile ? 'subtitle2' : 'h6'}>
+  const theme = useTheme();
+  const smallScreen = useMediaQuery(theme.breakpoints.down('md'))
+
+  useEffect(() => {
+    setExpanded(expandAll);
+  }, [expandAll])
+
+  const Content = () => <>
+    <Typography variant={smallScreen ? 'subtitle2' : 'h6'}>
       {history.name}
     </Typography>
-    <Typography variant={mobile ? 'caption' : 'body1'}>
+    <Typography variant={smallScreen ? 'caption' : 'body1'}>
       {history.startDateString}
-    </Typography>
-    <Typography variant={mobile ? 'caption' : 'body1'}>
+      <br />
       {!history.currentResident ? history.endDateString : 'Present'}
-    </Typography>
-    <Typography variant={mobile ? 'caption' : 'body1'}>
+      <br />
       {history.duration} days
     </Typography>
     <IconButton
@@ -31,11 +38,11 @@ export default function HistoryCard({history, villagerData, setShowDialog, setDi
         setDialogVillager(history.name);
         setShowDialog(true);
       }}
-      size={mobile ? "small" : "medium"}
+      size={smallScreen ? "small" : "medium"}
       sx={{
         position: 'absolute',
-        bottom: mobile ? '15%' : 0,
-        right: mobile ? '15%' : 0,
+        bottom: smallScreen ? '15%' : 0,
+        right: smallScreen ? '15%' : 0,
       }}
     >
       <InfoIcon fontSize="inherit" />
@@ -71,7 +78,7 @@ export default function HistoryCard({history, villagerData, setShowDialog, setDi
           left: 0,
         }}
       >
-        <Content mobile={true} />
+        <Content />
       </Stack>
       <Collapse in={expanded} timeout="auto" unmountOnExit sx={{
         display: {

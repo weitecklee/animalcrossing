@@ -54,7 +54,7 @@ export default function TopBar({setComponent}: { setComponent: Dispatch<SetState
             <Image
               src={LeafIcon}
               alt="Animal Crossing Leaf"
-              height={42}
+              height={36}
             />
           </Button>
           <Typography variant="h5" fontWeight="500" sx={{flexGrow: 1}}>
