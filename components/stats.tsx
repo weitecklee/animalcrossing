@@ -17,7 +17,7 @@ export default function Stats({ villagersData, histories, sortedDurations, speci
 
   const [showAll, setShowAll] = useState(false);
   const [reverseOrder, setReverseOrder] = useState(false);
-  const reversedSortedDuration = sortedDurations.toReversed();
+  const reversedSortedDuration = sortedDurations.slice().reverse();
 
   return <>
     <Stack direction="row" spacing={2} divider={<Divider orientation="vertical" flexItem />}>
