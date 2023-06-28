@@ -35,7 +35,7 @@ export default function CardDialog({history, villagerData, showDialog, setShowDi
         padding={4}
         spacing={5}
       >
-        <Grid item xs="auto">
+        <Grid item>
           <Stack direction="row" spacing={2}>
             <Box
               position="relative"
@@ -71,7 +71,7 @@ export default function CardDialog({history, villagerData, showDialog, setShowDi
             </Stack>
           </Stack>
         </Grid>
-        <Grid item xs="auto">
+        <Grid item>
           <Typography variant="h6">
             {history.name}&emsp;{villagerData.ja_name}
           </Typography>
