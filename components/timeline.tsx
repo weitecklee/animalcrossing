@@ -50,8 +50,8 @@ const options = {
     },
     zoom: {
       limits: {
-        x: { min: 'original', max: 'original', minRange: 86400000 },
-        y: { min: 'original', max: 'original' },
+        x: { min: 'original', max: 'original', minRange: 86400000 * 365 },
+        y: { min: 'original', max: 'original', minRange: 20 },
       },
       pan: { enabled: true, mode: 'xy', threshold: 10 },
       zoom: {
@@ -61,7 +61,7 @@ const options = {
         },
         pinch: {
           enabled: true,
-        }
+        },
       },
     },
     tooltip: {
@@ -74,14 +74,11 @@ const options = {
       min: new Date('2020/03/26').valueOf() - 86400000,
       max: new Date().valueOf() + 86400000,
       time: {
-        minUnit: 'day',
+        minUnit: 'month',
         displayFormats: {
           day: 'MMM d yyyy',
         },
       },
-      grid: {
-        display: false,
-      }
     },
     y: {
       display: false,
