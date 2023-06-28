@@ -41,7 +41,10 @@ export default function Cards({villagersData, histories}:{ villagersData: Map<st
       <Fab variant="extended" onClick={()=> setExpandAll((a)=> !a)} color="secondary" sx={{
         position: "fixed",
         right: "5%",
-        bottom: "5%"
+        bottom: "5%",
+        ':hover': {
+          bgcolor: "white"
+        }
       }}>
         <ListRoundedIcon sx={{mr: 1}} />
           {expandAll ? 'Collapse All' : 'Expand All'}
@@ -51,7 +54,10 @@ export default function Cards({villagersData, histories}:{ villagersData: Map<st
       <Fab size="medium" onClick={()=> setExpandAll((a)=> !a)} color="secondary" sx={{
         position: "fixed",
         right: "5%",
-        bottom: "5%"
+        bottom: "5%",
+        ':hover': {
+          bgcolor: "white"
+        }
       }}>
         <ListRoundedIcon />
       </Fab>

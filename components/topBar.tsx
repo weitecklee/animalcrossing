@@ -29,7 +29,13 @@ export default function TopBar({setComponent}: { setComponent: Dispatch<SetState
       <AppBar color="secondary">
         <Toolbar>
           <Box sx={{display: {xs: 'flex', md: 'none'}}}>
-            <IconButton onClick={handleClick}>
+            <IconButton
+              onClick={handleClick}
+              sx={{
+                ':hover': {
+                  bgcolor: "white",
+                }
+              }}>
               <MenuIcon/>
             </IconButton>
             <Menu
@@ -43,20 +49,31 @@ export default function TopBar({setComponent}: { setComponent: Dispatch<SetState
                   setComponent(page);
                   handleClose();
                 }}
+                sx={{
+                  ':hover': {
+                    bgcolor: "secondary.main",
+                  }
+                }}
               >
                 {page}
               </MenuItem>)}
             </Menu>
           </Box>
-          <Button
+          <IconButton
             onClick={() => setComponent('Index')}
+            sx={{
+              mr: 1,
+              ':hover': {
+                bgcolor: "white"
+              }
+            }}
           >
             <Image
               src={LeafIcon}
               alt="Animal Crossing Leaf"
               height={36}
             />
-          </Button>
+          </IconButton>
           <Typography variant="h5" fontWeight="500" sx={{flexGrow: 1}}>
             My Animal Crossing Island
           </Typography>
@@ -66,9 +83,9 @@ export default function TopBar({setComponent}: { setComponent: Dispatch<SetState
                 key={page}
                 sx={{
                   color:'black',
-                  mx: 1,
+                  ml: 1,
                   ':hover': {
-                    bgcolor: "success.main",
+                    bgcolor: "white",
                   }
                 }}
                 onClick={() => setComponent(page)}
