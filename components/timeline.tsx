@@ -20,6 +20,7 @@ import { TimelineDataProperties, VillagerProperties2, HistoryProperties } from '
 import TimelineTooltip from './timelineTooltip';
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
+import VillagerDialog from './villagerDialog';
 
 ChartJS.register(
   CategoryScale,
@@ -96,6 +97,7 @@ export default function Timeline({ timelineData, villagersData, histories }: { t
   const shortScreen = useMediaQuery('(max-height:700px)')
   const theme = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down('md'))
+  const [showDialog, setShowDialog] = useState(false);
 
   options.plugins.tooltip.external = ({ tooltip }) => {
     // const a = {...chart};
@@ -147,7 +149,14 @@ export default function Timeline({ timelineData, villagersData, histories }: { t
       <TimelineTooltip
         villagerData={villagersData.get(timelineVillager)!}
         history={histories.get(timelineVillager)!}
+        setShowDialog={setShowDialog}
       />
     }
+    {showDialog && <VillagerDialog
+      history={histories.get(timelineVillager)!}
+      villagerData={villagersData.get(timelineVillager)!}
+      showDialog={showDialog}
+      setShowDialog={setShowDialog}
+    />}
   </Box>
 }
