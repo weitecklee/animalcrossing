@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid';
 import Fab from '@mui/material/Fab';
 import Box from '@mui/material/Box';
 import HistoryCard from './card';
-import CardDialog from './cardDialog';
+import VillagerDialog from './villagerDialog';
 import ListRoundedIcon from '@mui/icons-material/ListRounded';
 import { HistoryProperties, VillagerProperties2 } from '../types';
 
@@ -31,7 +31,7 @@ export default function Cards({villagersData, histories}:{ villagersData: Map<st
         </Grid>
       )}
     </Grid>
-    {showDialog && <CardDialog
+    {showDialog && <VillagerDialog
       history={histories.get(dialogVillager)!}
       villagerData={villagersData.get(dialogVillager)!}
       showDialog={showDialog}

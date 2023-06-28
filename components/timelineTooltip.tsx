@@ -7,6 +7,9 @@ import Draggable from 'react-draggable';
 import OpenWithRoundedIcon from '@mui/icons-material/OpenWithRounded';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import { Dispatch, SetStateAction } from 'react';
+import IconButton from '@mui/material/IconButton';
+import InfoIcon from '@mui/icons-material/Info';
 import { VillagerProperties2, HistoryProperties } from '../types';
 
 function DraggablePaper(props: PaperProps) {
@@ -29,54 +32,67 @@ function DraggablePaper(props: PaperProps) {
   )
 }
 
-export default function TimelineTooltip({villagerData, history}: { villagerData: VillagerProperties2, history: HistoryProperties}) {
+export default function TimelineTooltip({villagerData, history, setShowDialog}: { villagerData: VillagerProperties2, history: HistoryProperties, setShowDialog: Dispatch<SetStateAction<boolean>>}) {
 
   const theme = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down('md'))
 
   return (
       <DraggablePaper>
-          <OpenWithRoundedIcon
-            id="dragHandle"
-            fontSize={smallScreen ? 'small' : 'medium'}
-            sx={{
-              cursor: 'move',
-              position: 'absolute',
-              top: '1%',
-              left: '1%',
-            }}
-          />
-          <Image
-            src={villagerData.nh_details.icon_url}
-            alt={villagerData.name}
-            height={smallScreen ? 64 : 128}
-            width={smallScreen ? 64 : 128}
-          />
-          <Box>
-            <Stack direction="row" alignItems="center">
-              <span
-                style={{
-                  display: 'inline-block',
-                  height: '10px',
-                  width: '20px',
-                  backgroundColor: '#' + villagerData.title_color,
-                  border: '1px solid black',
-                  borderRadius: 50
-                }}
-              >
-              </span>
-              <Typography display="inline" variant={smallScreen ? 'subtitle2' : 'h6'} >
-              &nbsp;&nbsp;{villagerData.name}
-              </Typography>
-            </Stack>
-            <Typography variant={smallScreen ? 'caption' : 'body1'}>
-              {history.startDateString}
-              <br />
-              {!history.currentResident ? history.endDateString : 'Present'}
-              <br />
-              {history.duration} days
+        <OpenWithRoundedIcon
+          id="dragHandle"
+          fontSize={smallScreen ? 'small' : 'medium'}
+          sx={{
+            cursor: 'move',
+            position: 'absolute',
+            top: '1%',
+            left: '1%',
+          }}
+        />
+        <Image
+          src={villagerData.nh_details.icon_url}
+          alt={villagerData.name}
+          height={smallScreen ? 64 : 128}
+          width={smallScreen ? 64 : 128}
+        />
+        <Box>
+          <Stack direction="row" alignItems="center">
+            <span
+              style={{
+                display: 'inline-block',
+                height: '10px',
+                width: '20px',
+                backgroundColor: '#' + villagerData.title_color,
+                border: '1px solid black',
+                borderRadius: 50
+              }}
+            >
+            </span>
+            <Typography display="inline" variant={smallScreen ? 'subtitle2' : 'h6'} >
+            &nbsp;&nbsp;{villagerData.name}
             </Typography>
-          </Box>
+          </Stack>
+          <Typography variant={smallScreen ? 'caption' : 'body1'}>
+            {history.startDateString}
+            <br />
+            {!history.currentResident ? history.endDateString : 'Present'}
+            <br />
+            {history.duration} days
+          </Typography>
+        </Box>
+        <IconButton
+          onClick={() => {
+            setShowDialog(true);
+          }}
+          size={smallScreen ? "small" : "medium"}
+          sx={{
+            position: 'absolute',
+            bottom: 0,
+            right: 0,
+          }}
+        >
+          <InfoIcon fontSize="inherit" />
+        </IconButton>
       </DraggablePaper>
   )
 }
