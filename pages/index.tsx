@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
 import dynamic from 'next/dynamic'
 import { MongoProperties, HistoryProperties, TimelineDataProperties } from '../types';
 import TopBar from '../components/topBar';
@@ -8,7 +8,7 @@ import IndexComponent from '../components/indexComponent';
 import Cards from '../components/cards';
 import { villagersData } from '../lib/combinedData';
 
-const theme = createTheme({
+let theme = createTheme({
   palette: {
     primary: {
       main: "#c48d3f",
@@ -20,6 +20,10 @@ const theme = createTheme({
   typography: {
     fontFamily: "Montserrat"
   }
+});
+
+theme = responsiveFontSizes(theme, {
+  factor: 5
 });
 
 const Timeline = dynamic(() => import('../components/timeline'), {ssr: false})
