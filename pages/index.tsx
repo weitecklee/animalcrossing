@@ -15,6 +15,9 @@ let theme = createTheme({
     },
     secondary: {
       main: "#9dffb0",
+    },
+    success: {
+      main: "#1aae5e"
     }
   },
   typography: {

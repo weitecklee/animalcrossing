@@ -13,11 +13,13 @@ import { Bar } from 'react-chartjs-2';
 import Zoom from 'chartjs-plugin-zoom';
 import 'chartjs-adapter-date-fns';
 import Box from '@mui/material/Box';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { TimelineDataProperties, VillagerProperties2, HistoryProperties } from '../types';
 import TimelineTooltip from './timelineTooltip';
+import Alert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
 
 ChartJS.register(
   CategoryScale,
@@ -48,8 +50,8 @@ const options = {
     },
     zoom: {
       limits: {
-        x: { min: 'original', max: 'original', minRange: 86400000 },
-        y: { min: 'original', max: 'original' },
+        x: { min: 'original', max: 'original', minRange: 86400000 * 365 },
+        y: { min: 'original', max: 'original', minRange: 20 },
       },
       pan: { enabled: true, mode: 'xy', threshold: 10 },
       zoom: {
@@ -59,7 +61,7 @@ const options = {
         },
         pinch: {
           enabled: true,
-        }
+        },
       },
     },
     tooltip: {
@@ -72,14 +74,11 @@ const options = {
       min: new Date('2020/03/26').valueOf() - 86400000,
       max: new Date().valueOf() + 86400000,
       time: {
-        minUnit: 'day',
+        minUnit: 'month',
         displayFormats: {
           day: 'MMM d yyyy',
         },
       },
-      grid: {
-        display: false,
-      }
     },
     y: {
       display: false,
@@ -93,16 +92,32 @@ export default function Timeline({ timelineData, villagersData, histories }: { t
   // const [timelineTooltip, setTimelineTooltip] = useState({} as any);
   const [timelineVillager, setTimelineVillager] = useState('');
   const [showTooltip, setShowTooltip] = useState(false);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
   const shortScreen = useMediaQuery('(max-height:700px)')
+  const theme = useTheme();
+  const smallScreen = useMediaQuery(theme.breakpoints.down('md'))
 
   options.plugins.tooltip.external = ({ tooltip }) => {
     // const a = {...chart};
     // const b = {...tooltip};
-    setTimelineVillager(tooltip.title[0]);
     // setTimelineChart(a);
     // setTimelineTooltip(b);
-    setShowTooltip(true);
+    if (tooltip && tooltip.title) {
+      setTimelineVillager(tooltip.title[0]);
+      setShowTooltip(true);
+    }
   }
+
+  const handleClose = (event?: Event | React.SyntheticEvent, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpenSnackbar(false);
+  }
+
+  useEffect(() => {
+    setOpenSnackbar(smallScreen);
+  }, [smallScreen]);
 
   return <Box sx={{
     position: "relative",
@@ -110,15 +125,29 @@ export default function Timeline({ timelineData, villagersData, histories }: { t
     width: "90vw",
     height: shortScreen ? "80vh" : "90vh",
   }}>
-      <Bar
-        data={timelineData}
-        options={options}
+    <Snackbar
+      open={openSnackbar}
+      onClose={handleClose}
+    >
+      <Alert
+        severity="warning"
+        onClose={handleClose}
+        sx={{
+          width: "100%"
+        }}
+      >
+        This page is best viewed on a large screen.
+      </Alert>
+    </Snackbar>
+    <Bar
+      data={timelineData}
+      options={options}
+    />
+    {showTooltip &&
+      <TimelineTooltip
+        villagerData={villagersData.get(timelineVillager)!}
+        history={histories.get(timelineVillager)!}
       />
-      {showTooltip &&
-        <TimelineTooltip
-          villagerData={villagersData.get(timelineVillager)!}
-          history={histories.get(timelineVillager)!}
-        />
-      }
+    }
   </Box>
 }
