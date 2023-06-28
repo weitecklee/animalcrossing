@@ -103,10 +103,12 @@ export default function Timeline({ timelineData, villagersData, histories }: { t
   options.plugins.tooltip.external = ({ tooltip }) => {
     // const a = {...chart};
     // const b = {...tooltip};
-    setTimelineVillager(tooltip.title[0]);
     // setTimelineChart(a);
     // setTimelineTooltip(b);
-    setShowTooltip(true);
+    if (tooltip && tooltip.title) {
+      setTimelineVillager(tooltip.title[0]);
+      setShowTooltip(true);
+    }
   }
 
   const handleClose = (event?: Event | React.SyntheticEvent, reason?: string) => {
