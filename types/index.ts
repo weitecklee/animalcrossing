@@ -110,3 +110,7 @@ export interface TraitProperties {
   count: number,
   villagers: string[],
 }
+
+export interface DurationProperties extends TraitProperties {
+  duration: number
+}

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
 import dynamic from 'next/dynamic'
-import { MongoProperties, HistoryProperties, TimelineDataProperties, TraitProperties } from '../types';
+import { MongoProperties, HistoryProperties, TimelineDataProperties, TraitProperties, DurationProperties } from '../types';
 import TopBar from '../components/topBar';
 import IndexComponent from '../components/indexComponent';
 import Cards from '../components/cards';
@@ -42,7 +42,7 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
   const [histories, setHistories] = useState<Map<string,HistoryProperties>>(new Map());
   const [component, setComponent] =  useState('Index');
   const [timelineData, setTimelineData] = useState({} as TimelineDataProperties);
-  const [sortedDurations, setSortedDurations] = useState<string[]>([]);
+  const [durationData, setDurationData] = useState<DurationProperties[]>([]);
 
   useEffect(() => {
     const tmpHistories: Map<string,HistoryProperties> = new Map();
@@ -50,6 +50,7 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
     const labels: string[] = [];
     const timeData: string[][] = [];
     const backgroundColor: string[] = [];
+    const durationMap: Map<number, DurationProperties> = new Map();
 
     for (const mongoDatum of mongoData) {
       const tmpHist: HistoryProperties = {
@@ -67,14 +68,25 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
       }
       tmpHist.endDateString = tmpHist.endDateDate.toLocaleDateString("fr-CA");
       tmpHist.duration = Math.round((tmpHist.endDateDate.getTime() - tmpHist.startDateDate.getTime()) / (1000 * 3600 * 24)) + 1;
+      if (!durationMap.has(tmpHist.duration)) {
+        durationMap.set(tmpHist.duration, {
+          trait: tmpHist.duration.toString(),
+          count: 0,
+          villagers: [],
+          duration: tmpHist.duration,
+        })
+      }
+      const tmpDuration = durationMap.get(tmpHist.duration)!;
+      tmpDuration.count++;
+      tmpDuration.villagers.push(tmpHist.name);
       tmpHistories.set(tmpHist.name, tmpHist);
       labels.push(mongoDatum.name);
       timeData.push([tmpHist.startDateString, tmpHist.endDateString])
       backgroundColor.push('#' + villagersData.get(tmpHist.name)?.title_color!)
     }
 
-    const tmpDurations = [... labels];
-    tmpDurations.sort((a, b) => tmpHistories.get(b)?.duration! - tmpHistories.get(a)?.duration!);
+    const tmpDurations = Array.from(durationMap.values());
+    tmpDurations.sort((a, b) => b.duration - a.duration);
 
     setHistories(tmpHistories);
     setTimelineData({
@@ -87,7 +99,7 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
         }
       ]
     });
-    setSortedDurations(tmpDurations);
+    setDurationData(tmpDurations);
   }, [mongoData])
 
   return (<>
@@ -109,7 +121,7 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
       {component === 'Stats' && <Stats
         villagersData={villagersData}
         histories={histories}
-        sortedDurations={sortedDurations}
+        durationData={durationData}
         speciesData={speciesData}
         personalityData={personalityData}
         genderData={genderData}
