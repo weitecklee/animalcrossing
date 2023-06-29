@@ -2,8 +2,10 @@ import { useState } from 'react';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Image from 'next/image';
-import { VillagerProperties2, HistoryProperties, TraitProperties } from '../types';
 import { Link, Dialog, DialogContent, Box, List, ListItem } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+import { VillagerProperties2, HistoryProperties, TraitProperties } from '../types';
 
 export default function Stats({ villagersData, histories, sortedDurations, speciesData, personalityData, genderData } : {
   villagersData: Map<string,VillagerProperties2>,
@@ -17,13 +19,15 @@ export default function Stats({ villagersData, histories, sortedDurations, speci
   const [dialogTraitData, setDialogTraitData] = useState<TraitProperties[]>([]);
   const [showDialog, setShowDialog] = useState(false);
   const [showDurationDialog, setShowDurationDialog] = useState(false);
+  const theme = useTheme();
+  const smallScreen = useMediaQuery(theme.breakpoints.down('md'))
 
   const VillagerIcon = ({villager}: {villager: string}) => (
     <Image
       src={villagersData.get(villager)?.nh_details.icon_url!}
       alt={villager}
-      height={64}
-      width={64}
+      height={smallScreen ? 40 : 64}
+      width={smallScreen ? 40 : 64}
       title={villager}
     />
   )
