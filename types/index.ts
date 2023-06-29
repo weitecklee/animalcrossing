@@ -104,3 +104,9 @@ export interface TimelineDataProperties {
   labels: string[],
   datasets: DatasetProperties[],
 }
+
+export interface TraitProperties {
+  trait: string,
+  count: number,
+  villagers: string[],
+}
