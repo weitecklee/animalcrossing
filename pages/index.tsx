@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
 import dynamic from 'next/dynamic'
-import { MongoProperties, HistoryProperties, TimelineDataProperties, SpeciesDatumProperties, PersonalityDatumProperties } from '../types';
+import { MongoProperties, HistoryProperties, TimelineDataProperties, TraitProperties } from '../types';
 import TopBar from '../components/topBar';
 import IndexComponent from '../components/indexComponent';
 import Cards from '../components/cards';
@@ -32,7 +32,12 @@ theme = responsiveFontSizes(theme, {
 
 const Timeline = dynamic(() => import('../components/timeline'), {ssr: false})
 
-export default function HomePage({ mongoData, speciesData, personalityData }: { mongoData: MongoProperties[], speciesData: SpeciesDatumProperties[], personalityData: PersonalityDatumProperties[] }) {
+export default function HomePage({ mongoData, speciesData, personalityData, genderData }: {
+  mongoData: MongoProperties[],
+  speciesData: TraitProperties[],
+  personalityData: TraitProperties[],
+  genderData: TraitProperties[],
+}) {
 
   const [histories, setHistories] = useState<Map<string,HistoryProperties>>(new Map());
   const [component, setComponent] =  useState('Index');
@@ -107,6 +112,7 @@ export default function HomePage({ mongoData, speciesData, personalityData }: { 
         sortedDurations={sortedDurations}
         speciesData={speciesData}
         personalityData={personalityData}
+        genderData={genderData}
       />}
     </ThemeProvider>
   </>)
@@ -115,8 +121,9 @@ export default function HomePage({ mongoData, speciesData, personalityData }: { 
 export async function getStaticProps(): Promise<{
   props: {
     mongoData: MongoProperties[],
-    speciesData: SpeciesDatumProperties[],
-    personalityData: PersonalityDatumProperties[],
+    speciesData: TraitProperties[],
+    personalityData: TraitProperties[],
+    genderData: TraitProperties[],
   };
 }> {
 
@@ -139,8 +146,9 @@ export async function getStaticProps(): Promise<{
   const mongoResponse = await res.json();
   const mongoData = mongoResponse.documents;
 
-  const speciesMap: Map<string, SpeciesDatumProperties> = new Map();
-  const personalityMap: Map<string, PersonalityDatumProperties> = new Map();
+  const speciesMap: Map<string, TraitProperties> = new Map();
+  const personalityMap: Map<string, TraitProperties> = new Map();
+  const genderMap: Map<string, TraitProperties> = new Map();
 
   for (const mongoDatum of mongoData) {
     const startDate = new Date(mongoDatum.startDate);
@@ -163,7 +171,7 @@ export async function getStaticProps(): Promise<{
     const species = villagersData.get(mongoDatum.name)!.species;
     if (!speciesMap.has(species)) {
       speciesMap.set(species, {
-        species,
+        trait: species,
         count: 0,
         villagers: [],
       });
@@ -174,7 +182,7 @@ export async function getStaticProps(): Promise<{
     const personality = villagersData.get(mongoDatum.name)!.personality;
     if (!personalityMap.has(personality)) {
       personalityMap.set(personality, {
-        personality,
+        trait: personality,
         count: 0,
         villagers: [],
       });
@@ -182,18 +190,32 @@ export async function getStaticProps(): Promise<{
     const tmp2 = personalityMap.get(personality)!;
     tmp2.count++;
     tmp2.villagers.push(mongoDatum.name);
+    const gender = villagersData.get(mongoDatum.name)!.gender;
+    if (!genderMap.has(gender)) {
+      genderMap.set(gender, {
+        trait: gender,
+        count: 0,
+        villagers: [],
+      });
+    }
+    const tmp3 = genderMap.get(gender)!;
+    tmp3.count++;
+    tmp3.villagers.push(mongoDatum.name);
   }
 
   const speciesData = Array.from(speciesMap.values());
   speciesData.sort((a, b) => b.count - a.count);
   const personalityData = Array.from(personalityMap.values());
   personalityData.sort((a, b) => b.count - a.count);
+  const genderData = Array.from(genderMap.values());
+  genderData.sort((a, b) => b.count - a.count);
 
   return {
     props: {
       mongoData,
       speciesData,
       personalityData,
+      genderData,
     }
   }
 }

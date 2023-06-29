@@ -105,14 +105,8 @@ export interface TimelineDataProperties {
   datasets: DatasetProperties[],
 }
 
-export interface SpeciesDatumProperties {
-  species: string,
-  count: number,
-  villagers: string[],
-}
-
-export interface PersonalityDatumProperties {
-  personality: string,
+export interface TraitProperties {
+  trait: string,
   count: number,
   villagers: string[],
 }
