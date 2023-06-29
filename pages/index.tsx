@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
 import dynamic from 'next/dynamic'
-import { MongoProperties, HistoryProperties, TimelineDataProperties, SpeciesDatumProperties } from '../types';
+import { MongoProperties, HistoryProperties, TimelineDataProperties, SpeciesDatumProperties, PersonalityDatumProperties } from '../types';
 import TopBar from '../components/topBar';
 import IndexComponent from '../components/indexComponent';
 import Cards from '../components/cards';
@@ -32,7 +32,7 @@ theme = responsiveFontSizes(theme, {
 
 const Timeline = dynamic(() => import('../components/timeline'), {ssr: false})
 
-export default function HomePage({ mongoData, speciesData }: { mongoData: MongoProperties[], speciesData: SpeciesDatumProperties[] }) {
+export default function HomePage({ mongoData, speciesData, personalityData }: { mongoData: MongoProperties[], speciesData: SpeciesDatumProperties[], personalityData: PersonalityDatumProperties[] }) {
 
   const [histories, setHistories] = useState<Map<string,HistoryProperties>>(new Map());
   const [component, setComponent] =  useState('Index');
@@ -106,6 +106,7 @@ export default function HomePage({ mongoData, speciesData }: { mongoData: MongoP
         histories={histories}
         sortedDurations={sortedDurations}
         speciesData={speciesData}
+        personalityData={personalityData}
       />}
     </ThemeProvider>
   </>)
@@ -115,6 +116,7 @@ export async function getStaticProps(): Promise<{
   props: {
     mongoData: MongoProperties[],
     speciesData: SpeciesDatumProperties[],
+    personalityData: PersonalityDatumProperties[],
   };
 }> {
 
@@ -138,6 +140,7 @@ export async function getStaticProps(): Promise<{
   const mongoData = mongoResponse.documents;
 
   const speciesMap: Map<string, SpeciesDatumProperties> = new Map();
+  const personalityMap: Map<string, PersonalityDatumProperties> = new Map();
 
   for (const mongoDatum of mongoData) {
     const startDate = new Date(mongoDatum.startDate);
@@ -168,15 +171,29 @@ export async function getStaticProps(): Promise<{
     const tmp = speciesMap.get(species)!;
     tmp.count++;
     tmp.villagers.push(mongoDatum.name);
+    const personality = villagersData.get(mongoDatum.name)!.personality;
+    if (!personalityMap.has(personality)) {
+      personalityMap.set(personality, {
+        personality,
+        count: 0,
+        villagers: [],
+      });
+    }
+    const tmp2 = personalityMap.get(personality)!;
+    tmp2.count++;
+    tmp2.villagers.push(mongoDatum.name);
   }
 
   const speciesData = Array.from(speciesMap.values());
   speciesData.sort((a, b) => b.count - a.count);
+  const personalityData = Array.from(personalityMap.values());
+  personalityData.sort((a, b) => b.count - a.count);
 
   return {
     props: {
       mongoData,
       speciesData,
+      personalityData,
     }
   }
 }

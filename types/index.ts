@@ -110,3 +110,9 @@ export interface SpeciesDatumProperties {
   count: number,
   villagers: string[],
 }
+
+export interface PersonalityDatumProperties {
+  personality: string,
+  count: number,
+  villagers: string[],
+}

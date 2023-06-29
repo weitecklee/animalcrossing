@@ -3,21 +3,24 @@ import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import Image from 'next/image';
-import { VillagerProperties2, HistoryProperties, SpeciesDatumProperties } from '../types';
-import { useState } from 'react';
+import { VillagerProperties2, HistoryProperties, SpeciesDatumProperties, PersonalityDatumProperties } from '../types';
 import { ImageList, ImageListItem } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
-export default function Stats({ villagersData, histories, sortedDurations, speciesData } : { villagersData: Map<string,VillagerProperties2>, histories: Map<string,HistoryProperties>, sortedDurations: string[], speciesData: SpeciesDatumProperties[] }) {
+export default function Stats({ villagersData, histories, sortedDurations, speciesData, personalityData } : {
+  villagersData: Map<string,VillagerProperties2>,
+  histories: Map<string,HistoryProperties>,
+  sortedDurations: string[],
+  speciesData: SpeciesDatumProperties[],
+  personalityData: PersonalityDatumProperties[]
+}) {
 
-  const [showAll, setShowAll] = useState(false);
-  const [reverseOrder, setReverseOrder] = useState(false);
-  const reversedSortedDuration = sortedDurations.slice().reverse();
+  const theme = useTheme();
+  const smallScreen = useMediaQuery(theme.breakpoints.down('md'))
 
   return <>
     <Stack direction="row" spacing={2} divider={<Divider orientation="vertical" flexItem />}>
@@ -25,27 +28,11 @@ export default function Stats({ villagersData, histories, sortedDurations, speci
         <Typography variant="h6">
           Duration
         </Typography>
-        <FormGroup>
-          <FormControlLabel
-            label="Show All"
-            control={<Switch
-              color="success"
-              checked={showAll}
-              onChange={() => setShowAll((a) => !a)}
-            />}
-          />
-          <FormControlLabel
-            label="Reverse Order"
-            control={<Switch
-              color="success"
-              checked={reverseOrder}
-              onChange={() => setReverseOrder((a) => !a)}
-            />}
-          />
-        </FormGroup>
-        <List dense>
-          {(reverseOrder ? reversedSortedDuration : sortedDurations).slice(0, showAll ? sortedDurations.length : 10).map((villager) => <ListItem key={villager}>
-            <ListItemText>
+        <Typography variant="caption">
+          * = Current Resident
+        </Typography>
+        <List>
+          {sortedDurations.map((villager) => <ListItem key={villager} disablePadding>
               <Box display="flex" alignItems="center">
                 <Image
                   src={villagersData.get(villager)?.nh_details.icon_url!}
@@ -53,9 +40,10 @@ export default function Stats({ villagersData, histories, sortedDurations, speci
                   height={40}
                   width={40}
                 />
-                &nbsp;&nbsp;{villager}: {histories.get(villager)?.duration} days {histories.get(villager)?.currentResident ? "and counting" : ""}
+                <Typography variant={smallScreen ? 'body2' : 'body1'}>
+                  &nbsp;&nbsp;{histories.get(villager)?.duration} days{histories.get(villager)?.currentResident ? "*" : ""}
+                </Typography>
               </Box>
-            </ListItemText>
           </ListItem>)}
         </List>
       </Box>
@@ -63,25 +51,54 @@ export default function Stats({ villagersData, histories, sortedDurations, speci
         <Typography variant="h6">
           Species
         </Typography>
-        <List dense>
-          {speciesData.map((species, i) => <ListItemText key={species.species}>
-              {species.species}: {species.count}
-            <ImageList
-              cols={4}
-              gap={0}
-              sx={{width:160}}
-            >
-              {speciesData[i].villagers.map((villager) => <ImageListItem key={villager}>
-                <Image
-                  src={villagersData.get(villager)?.nh_details.icon_url!}
-                  alt={villager}
-                  title={villager}
-                  height={40}
-                  width={40}
-                />
-              </ImageListItem>)}
-            </ImageList>
-          </ListItemText>)}
+        <List>
+          {speciesData.map((species, i) => <>
+            <ListItem key={species.species} disableGutters>
+              <Typography variant={smallScreen ? 'body2' : 'body1'} component="span">
+                {species.species}: {species.count}
+              </Typography></ListItem><ListItem disablePadding>
+              <ImageList
+                cols={smallScreen ? 3 : 5}
+                gap={0}
+              >
+                {speciesData[i].villagers.map((villager) => <ImageListItem key={villager}>
+                  <Image
+                    src={villagersData.get(villager)?.nh_details.icon_url!}
+                    alt={villager}
+                    height={40}
+                    width={40}
+                  />
+                </ImageListItem>)}
+              </ImageList>
+            </ListItem>
+          </>)}
+        </List>
+      </Box>
+      <Box>
+        <Typography variant="h6">
+          Personality
+        </Typography>
+        <List >
+          {personalityData.map((personality, i) => <>
+            <ListItem key={personality.personality} disableGutters>
+              <Typography variant={smallScreen ? 'body2' : 'body1'} component="span">
+                {personality.personality}: {personality.count}
+              </Typography></ListItem><ListItem disablePadding>
+              <ImageList
+                cols={smallScreen ? 3 : 5}
+                gap={0}
+              >
+                {personalityData[i].villagers.map((villager) => <ImageListItem key={villager}>
+                  <Image
+                    src={villagersData.get(villager)?.nh_details.icon_url!}
+                    alt={villager}
+                    height={40}
+                    width={40}
+                  />
+                </ImageListItem>)}
+              </ImageList>
+            </ListItem>
+          </>)}
         </List>
       </Box>
     </Stack>
