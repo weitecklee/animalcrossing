@@ -23,7 +23,7 @@ export default function Stats({ villagersData, histories, sortedDurations, speci
     <Stack direction="row" spacing={2} divider={<Divider orientation="vertical" flexItem />}>
       <Box>
         <Typography variant="h6">
-          Duration of Residence
+          Duration
         </Typography>
         <FormGroup>
           <FormControlLabel
@@ -63,23 +63,24 @@ export default function Stats({ villagersData, histories, sortedDurations, speci
         <Typography variant="h6">
           Species
         </Typography>
-        <ImageList
-          cols={4}
-          gap={0}
-          sx={{width:160}}
-        >
-          {speciesData[0].villagers.map((villager) => <ImageListItem key={villager}>
-            <Image
-              src={villagersData.get(villager)?.nh_details.icon_url!}
-              alt={villager}
-              height={40}
-              width={40}
-            />
-          </ImageListItem>)}
-        </ImageList>
         <List dense>
-          {speciesData.map((species) => <ListItemText key={species.species}>
+          {speciesData.map((species, i) => <ListItemText key={species.species}>
               {species.species}: {species.count}
+            <ImageList
+              cols={4}
+              gap={0}
+              sx={{width:160}}
+            >
+              {speciesData[i].villagers.map((villager) => <ImageListItem key={villager}>
+                <Image
+                  src={villagersData.get(villager)?.nh_details.icon_url!}
+                  alt={villager}
+                  title={villager}
+                  height={40}
+                  width={40}
+                />
+              </ImageListItem>)}
+            </ImageList>
           </ListItemText>)}
         </List>
       </Box>
