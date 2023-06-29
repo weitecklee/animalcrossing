@@ -6,6 +6,7 @@ import { Link, Dialog, DialogContent, Box, List, ListItem } from '@mui/material'
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { VillagerProperties2, HistoryProperties, TraitProperties, DurationProperties } from '../types';
+import VillagerDialog from './villagerDialog';
 
 export default function Stats({ villagersData, histories, durationData, speciesData, personalityData, genderData } : {
   villagersData: Map<string,VillagerProperties2>,
@@ -17,8 +18,10 @@ export default function Stats({ villagersData, histories, durationData, speciesD
 }) {
 
   const [dialogTraitData, setDialogTraitData] = useState<TraitProperties[]>([]);
-  const [showDialog, setShowDialog] = useState(false);
+  const [showTraitDialog, setShowTraitDialog] = useState(false);
   const [showDurationDialog, setShowDurationDialog] = useState(false);
+  const [showVillagerDialog, setShowVillagerDialog] = useState(false);
+  const [dialogVillager, setDialogVillager] = useState('');
   const theme = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -29,35 +32,26 @@ export default function Stats({ villagersData, histories, durationData, speciesD
       height={smallScreen ? 40 : 64}
       width={smallScreen ? 40 : 64}
       title={villager}
+      onClick={() => {
+        setDialogVillager(villager);
+        setShowVillagerDialog(true);
+      }}
+      style={{
+        cursor: 'pointer',
+      }}
     />
   );
 
   const IconGrid = ({traitData}: {traitData: TraitProperties}) => (
     <Grid container>
       {traitData.villagers.map((villager) =>
-        <Grid key={villager} item>
+        <Grid key={villager}
+          item
+        >
           <VillagerIcon villager={villager} />
         </Grid>
       )}
     </Grid>
-  );
-
-  const TraitDialog = () => (
-    <Dialog
-      open={showDialog}
-      keepMounted
-      onClose={() => setShowDialog(false)}
-      maxWidth={false}
-    >
-      <DialogContent>
-        {dialogTraitData.map((traitData) => (<>
-          <Typography>
-            {traitData.trait}: {traitData.count}
-          </Typography>
-          <IconGrid key={traitData.trait} traitData={traitData}/>
-        </>))}
-      </DialogContent>
-    </Dialog>
   );
 
   const BreakdownLink = ({traitData} : {traitData: TraitProperties[]}) => (
@@ -67,7 +61,7 @@ export default function Stats({ villagersData, histories, durationData, speciesD
       onClick={(event: MouseEvent<HTMLAnchorElement>) => {
         event.preventDefault();
         setDialogTraitData(traitData);
-        setShowDialog(true);
+        setShowTraitDialog(true);
       }}
     >
       Full breakdown
@@ -82,12 +76,10 @@ export default function Stats({ villagersData, histories, durationData, speciesD
       <br />
       Longest duration of residence: {durationData[0].duration} days
       <br />
-      {durationData[0].villagers.map((villager) => <VillagerIcon key={villager} villager={villager} />)}
-      <br />
+      <IconGrid traitData={durationData[0]} />
       Shortest duration of residence: {durationData[durationData.length - 1].duration} days
       <br />
-      {durationData[durationData.length - 1].villagers.map((villager) => <VillagerIcon key={villager} villager={villager} />)}
-      <br />
+      <IconGrid traitData={durationData[durationData.length - 1]} />
       <Link
         href="#"
         underline="hover"
@@ -111,11 +103,20 @@ export default function Stats({ villagersData, histories, durationData, speciesD
       <br />
       <BreakdownLink traitData={genderData}/>
     </Typography>
+    <VillagerDialog
+      history={histories.get(dialogVillager)!}
+      villagerData={villagersData.get(dialogVillager)!}
+      showDialog={showVillagerDialog}
+      setShowDialog={setShowVillagerDialog}
+    />
     <Dialog
       open={showDurationDialog}
       onClose={() => setShowDurationDialog(false)}
       maxWidth={false}
       keepMounted
+      sx={{
+        zIndex: 1200,
+      }}
     >
       <DialogContent>
         <Typography variant="caption">
@@ -136,7 +137,24 @@ export default function Stats({ villagersData, histories, durationData, speciesD
         </List>
       </DialogContent>
     </Dialog>
-    <TraitDialog />
+    <Dialog
+      open={showTraitDialog}
+      keepMounted
+      onClose={() => setShowTraitDialog(false)}
+      maxWidth={false}
+      sx={{
+        zIndex: 1200,
+      }}
+    >
+      <DialogContent>
+        {dialogTraitData.map((traitData) => (<>
+          <Typography>
+            {traitData.trait}: {traitData.count}
+          </Typography>
+          <IconGrid key={traitData.trait} traitData={traitData}/>
+        </>))}
+      </DialogContent>
+    </Dialog>
   </>
 
 }
