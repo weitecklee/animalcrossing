@@ -31,12 +31,12 @@ export default function Cards({villagersData, histories}:{ villagersData: Map<st
         </Grid>
       )}
     </Grid>
-    {showDialog && <VillagerDialog
+    <VillagerDialog
       history={histories.get(dialogVillager)!}
       villagerData={villagersData.get(dialogVillager)!}
       showDialog={showDialog}
       setShowDialog={setShowDialog}
-    />}
+    />
     <Box sx={{display: {xs: 'none', md: 'flex' }}}>
       <Fab variant="extended" onClick={()=> setExpandAll((a)=> !a)} color="secondary" sx={{
         position: "fixed",

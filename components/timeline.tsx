@@ -152,11 +152,11 @@ export default function Timeline({ timelineData, villagersData, histories }: { t
         setShowDialog={setShowDialog}
       />
     }
-    {showDialog && <VillagerDialog
+    <VillagerDialog
       history={histories.get(timelineVillager)!}
       villagerData={villagersData.get(timelineVillager)!}
       showDialog={showDialog}
       setShowDialog={setShowDialog}
-    />}
+    />
   </Box>
 }

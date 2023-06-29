@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, MouseEvent } from 'react';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Image from 'next/image';
@@ -45,6 +45,7 @@ export default function Stats({ villagersData, histories, durationData, speciesD
   const TraitDialog = () => (
     <Dialog
       open={showDialog}
+      keepMounted
       onClose={() => setShowDialog(false)}
       maxWidth={false}
     >
@@ -63,7 +64,8 @@ export default function Stats({ villagersData, histories, durationData, speciesD
     <Link
       href="#"
       underline="hover"
-      onClick={() => {
+      onClick={(event: MouseEvent<HTMLAnchorElement>) => {
+        event.preventDefault();
         setDialogTraitData(traitData);
         setShowDialog(true);
       }}
@@ -89,7 +91,8 @@ export default function Stats({ villagersData, histories, durationData, speciesD
       <Link
         href="#"
         underline="hover"
-        onClick={() => {
+        onClick={(event: MouseEvent<HTMLAnchorElement>) => {
+          event.preventDefault();
           setShowDurationDialog(true);
         }}
       >
@@ -112,6 +115,7 @@ export default function Stats({ villagersData, histories, durationData, speciesD
       open={showDurationDialog}
       onClose={() => setShowDurationDialog(false)}
       maxWidth={false}
+      keepMounted
     >
       <DialogContent>
         <Typography variant="caption">

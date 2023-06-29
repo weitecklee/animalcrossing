@@ -21,6 +21,9 @@ export default function VillagerDialog({history, villagerData, showDialog, setSh
     setImageWidth((smallScreen ? 192 : 384) * aspectRatio);
   }, [aspectRatio, smallScreen]);
 
+  if (!history || !villagerData) {
+    return;
+  }
   return (
     <Dialog
       open={showDialog}
