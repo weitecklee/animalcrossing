@@ -20,7 +20,7 @@ export default function Timeline() {
       <br/>
       &emsp;&emsp;TIMELINE: a timeline chart of the villagers
       <br/>
-      &emsp;&emsp;STATS: all sorts of fun stats (coming soon!)
+      &emsp;&emsp;STATS: all sorts of fun stats
       <br/>
       &emsp;&emsp;MAP: a map of my island (coming soon!)
       <br/>
