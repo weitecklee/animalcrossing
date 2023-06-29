@@ -1,14 +1,9 @@
+import { useState } from 'react';
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import Stack from '@mui/material/Stack';
-import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid';
 import Image from 'next/image';
 import { VillagerProperties2, HistoryProperties, TraitProperties } from '../types';
-import { ImageList, ImageListItem } from '@mui/material';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
+import { Link, Dialog, DialogContent, Box, List, ListItem } from '@mui/material';
 
 export default function Stats({ villagersData, histories, sortedDurations, speciesData, personalityData, genderData } : {
   villagersData: Map<string,VillagerProperties2>,
@@ -19,70 +14,118 @@ export default function Stats({ villagersData, histories, sortedDurations, speci
   genderData: TraitProperties[],
 }) {
 
-  const theme = useTheme();
-  const smallScreen = useMediaQuery(theme.breakpoints.down('md'))
+  const [dialogTraitData, setDialogTraitData] = useState<TraitProperties[]>([]);
+  const [showDialog, setShowDialog] = useState(false);
+  const [showDurationDialog, setShowDurationDialog] = useState(false);
 
-  const TraitBox = ({traitData, traitString} : {traitData: TraitProperties[], traitString: string}) => (
-    <Box>
-      <Typography variant="h6">
-        {traitString}
-      </Typography>
-      <List>
-        {traitData.map((trait, i) => <>
-          <ListItem key={trait.trait} disableGutters>
-            <Typography variant={smallScreen ? 'body2' : 'body1'} component="span">
-              {trait.trait}: {trait.count}
-            </Typography></ListItem><ListItem disablePadding>
-            <ImageList
-              cols={smallScreen ? 3 : 5}
-              gap={0}
-            >
-              {traitData[i].villagers.map((villager) => <ImageListItem key={villager}>
-                <Image
-                  src={villagersData.get(villager)?.nh_details.icon_url!}
-                  alt={villager}
-                  height={40}
-                  width={40}
-                  title={villager}
-                />
-              </ImageListItem>)}
-            </ImageList>
-          </ListItem>
-        </>)}
-      </List>
-    </Box>
+  const VillagerIcon = ({villager}: {villager: string}) => (
+    <Image
+      src={villagersData.get(villager)?.nh_details.icon_url!}
+      alt={villager}
+      height={64}
+      width={64}
+      title={villager}
+    />
+  )
+
+  const IconGrid = ({traitData}: {traitData: TraitProperties}) => (
+    <Grid container>
+      {traitData.villagers.map((villager) =>
+        <Grid key={villager} item>
+          <VillagerIcon villager={villager} />
+        </Grid>
+      )}
+    </Grid>
+  )
+
+  const TraitDialog = () => (
+    <Dialog
+      open={showDialog}
+      onClose={() => setShowDialog(false)}
+      maxWidth={false}
+    >
+      <DialogContent>
+        {dialogTraitData.map((traitData) => (<>
+          <Typography>
+            {traitData.trait}: {traitData.count}
+          </Typography>
+          <IconGrid key={traitData.trait} traitData={traitData}/>
+        </>))}
+      </DialogContent>
+    </Dialog>
+  )
+
+  const BreakdownLink = ({traitData} : {traitData: TraitProperties[]}) => (
+    <Link
+      href="#"
+      underline="hover"
+      onClick={() => {
+        setDialogTraitData(traitData);
+        setShowDialog(true);
+      }}
+    >
+      Full breakdown
+    </Link>
   )
 
   return <>
-    <Stack direction="row" spacing={2} divider={<Divider orientation="vertical" flexItem />}>
-      <Box minWidth={125}>
-        <Typography variant="h6">
-          Duration
-        </Typography>
+    <Typography>
+      Number of Villagers: {histories.size}
+      <br />
+      Average duration of residence: {(Array.from(histories.values()).reduce((a, b) => a + b.duration, 0) / histories.size).toFixed(2)} days
+      <br />
+      Longest duration of residence: {histories.get(sortedDurations[0])?.duration} days
+      <br />
+      <VillagerIcon villager={sortedDurations[0]} />
+      <br />
+      Shortest duration of residence: {histories.get(sortedDurations[sortedDurations.length - 1])?.duration} days
+      <br />
+      <VillagerIcon villager={sortedDurations[sortedDurations.length - 1]} />
+      <br />
+      <Link
+        href="#"
+        underline="hover"
+        onClick={() => {
+          setShowDurationDialog(true);
+        }}
+      >
+        Full breakdown
+      </Link>
+      <br />
+      Most common species: {speciesData[0].trait}
+      <IconGrid traitData={speciesData[0]} />
+      <BreakdownLink traitData={speciesData}/>
+      <br />
+      Most common personality: {personalityData[0].trait}
+      <IconGrid traitData={personalityData[0]} />
+      <BreakdownLink traitData={personalityData}/>
+      <br />
+      {genderData.map((gender) => `${gender.trait}: ${gender.count}`).join(', ')}
+      <br />
+      <BreakdownLink traitData={genderData}/>
+    </Typography>
+    <Dialog
+      open={showDurationDialog}
+      onClose={() => setShowDurationDialog(false)}
+      maxWidth={false}
+    >
+      <DialogContent>
         <Typography variant="caption">
           * = Current Resident
         </Typography>
         <List>
           {sortedDurations.map((villager) => <ListItem key={villager} disablePadding>
-              <Box display="flex" alignItems="center">
-                <Image
-                  src={villagersData.get(villager)?.nh_details.icon_url!}
-                  alt={villager}
-                  height={40}
-                  width={40}
-                  title={villager}
-                />
-                <Typography variant={smallScreen ? 'body2' : 'body1'}>
-                  &nbsp;&nbsp;{histories.get(villager)?.duration} days{histories.get(villager)?.currentResident ? "*" : ""}
-                </Typography>
-              </Box>
+            <Box display="flex" alignItems="center">
+              <VillagerIcon villager={villager} />
+              <Typography>
+                &nbsp;&nbsp;{histories.get(villager)?.duration} days{histories.get(villager)?.currentResident ? "*" : ""}
+              </Typography>
+            </Box>
           </ListItem>)}
         </List>
-      </Box>
-      <TraitBox traitData={speciesData} traitString="Species" />
-      <TraitBox traitData={personalityData} traitString="Personality" />
-      <TraitBox traitData={genderData} traitString="Gender" />
-    </Stack>
-
+      </DialogContent>
+    </Dialog>
+    <TraitDialog />
   </>
+
 }
