@@ -54,6 +54,7 @@ export default function TimelineTooltip({villagerData, history, setShowDialog}: 
           alt={villagerData.name}
           height={smallScreen ? 64 : 128}
           width={smallScreen ? 64 : 128}
+          title={villagerData.name}
         />
         <Box>
           <Stack direction="row" alignItems="center">

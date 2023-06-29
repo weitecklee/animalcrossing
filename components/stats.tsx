@@ -43,6 +43,7 @@ export default function Stats({ villagersData, histories, sortedDurations, speci
                   alt={villager}
                   height={40}
                   width={40}
+                  title={villager}
                 />
               </ImageListItem>)}
             </ImageList>
@@ -69,6 +70,7 @@ export default function Stats({ villagersData, histories, sortedDurations, speci
                   alt={villager}
                   height={40}
                   width={40}
+                  title={villager}
                 />
                 <Typography variant={smallScreen ? 'body2' : 'body1'}>
                   &nbsp;&nbsp;{histories.get(villager)?.duration} days{histories.get(villager)?.currentResident ? "*" : ""}

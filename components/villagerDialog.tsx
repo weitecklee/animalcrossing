@@ -45,7 +45,8 @@ export default function VillagerDialog({history, villagerData, showDialog, setSh
               <Image
                 priority={true}
                 src={villagerData.nh_details.image_url}
-                alt={history.name}
+                alt={`${history.name} image`}
+                title={history.name}
                 fill={true}
                 style={{
                   objectFit: "contain"
@@ -58,13 +59,15 @@ export default function VillagerDialog({history, villagerData, showDialog, setSh
             <Stack alignItems="center">
               <Image
                 src={villagerData.nh_details.icon_url}
-                alt={history.name}
+                alt={`${history.name} icon`}
+                title={history.name}
                 width={smallScreen ? 64 : 128}
                 height={smallScreen ? 64 : 128}
               />
               <Image
                 src={villagerData.nh_details.photo_url}
-                alt={history.name}
+                alt={`${history.name} photo`}
+                title={history.name}
                 width={smallScreen ? 128 : 256}
                 height={smallScreen ? 128 : 256}
               />
