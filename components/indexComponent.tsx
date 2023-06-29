@@ -8,19 +8,22 @@ export default function Timeline() {
       Hello there!
     </Typography>
     <Typography>
-      This is a site I made to illustrate the residential history of my&nbsp;
+      This is a site I made to showcase my&nbsp;
       <Box component="span" sx={{fontStyle: 'italic'}}>
         Animal Crossing: New Horizons
       </Box>
-      &nbsp;island. You can find the following information:
-    </Typography>
-    <Typography>
-      &emsp;VILLAGERS: shows all the villagers that have been on my island
-    </Typography>
-    <Typography>
-      &emsp;TIMELINE: a timeline chart of the villagers
-    </Typography>
-    <Typography>
+      &nbsp;island.
+      <br/>
+      You can find the following pages and information:
+      <br/>
+      &emsp;&emsp;VILLAGERS: all the villagers that have been on my island
+      <br/>
+      &emsp;&emsp;TIMELINE: a timeline chart of the villagers
+      <br/>
+      &emsp;&emsp;STATS: all sorts of fun stats (coming soon!)
+      <br/>
+      &emsp;&emsp;MAP: a map of my island (coming soon!)
+      <br/>
       Enjoy your visit!
       <br />
       <br />
