@@ -107,7 +107,7 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
       <title>My Animal Crossing Island</title>
     </Head>
     <ThemeProvider theme={theme}>
-      <TopBar setComponent={setComponent} />
+      <TopBar component={component} setComponent={setComponent} />
       {component === 'Index' && <IndexComponent />}
       {component === 'Villagers' && <Cards
         villagersData={villagersData}

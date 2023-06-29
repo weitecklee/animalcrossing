@@ -13,7 +13,7 @@ import IconButton from '@mui/material/IconButton';
 
 const pages = ['Villagers', 'Timeline', 'Stats'];
 
-export default function TopBar({setComponent}: { setComponent: Dispatch<SetStateAction<string>> }) {
+export default function TopBar({component, setComponent}: { component: string, setComponent: Dispatch<SetStateAction<string>> }) {
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -50,6 +50,7 @@ export default function TopBar({setComponent}: { setComponent: Dispatch<SetState
                   handleClose();
                 }}
                 sx={{
+                  bgcolor: component === page ? 'primary.main' : 'white',
                   ':hover': {
                     bgcolor: "secondary.main",
                   }
@@ -82,7 +83,8 @@ export default function TopBar({setComponent}: { setComponent: Dispatch<SetState
               <Button
                 key={page}
                 sx={{
-                  color:'black',
+                  color: 'black',
+                  bgcolor: component === page ? 'primary.main' : 'secondary.main',
                   ml: 1,
                   ':hover': {
                     bgcolor: "white",
