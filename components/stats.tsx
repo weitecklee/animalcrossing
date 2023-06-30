@@ -2,7 +2,7 @@ import { useState, MouseEvent } from 'react';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Image from 'next/image';
-import { Link, Dialog, DialogContent, Box, List, ListItem } from '@mui/material';
+import { Link, Dialog, DialogContent, Box, List, ListItem, Divider, Chip } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { VillagerProperties2, HistoryProperties, TraitProperties, DurationProperties } from '../types';
@@ -71,13 +71,13 @@ export default function Stats({ villagersData, histories, durationData, speciesD
   return <>
     <Typography>
       Number of Villagers: {histories.size}
+      <Divider><Chip label="DURATION OF RESIDENCE" /></Divider>
+      Average: {(Array.from(histories.values()).reduce((a, b) => a + b.duration, 0) / histories.size).toFixed(2)} days
       <br />
-      Average duration of residence: {(Array.from(histories.values()).reduce((a, b) => a + b.duration, 0) / histories.size).toFixed(2)} days
-      <br />
-      Longest duration of residence: {durationData[0].duration} days
+      Longest: {durationData[0].duration} days
       <br />
       <IconGrid traitData={durationData[0]} />
-      Shortest duration of residence: {durationData[durationData.length - 1].duration} days
+      Shortest: {durationData[durationData.length - 1].duration} days
       <br />
       <IconGrid traitData={durationData[durationData.length - 1]} />
       <Link
@@ -90,16 +90,18 @@ export default function Stats({ villagersData, histories, durationData, speciesD
       >
         Full breakdown
       </Link>
-      <br />
-      Most common species: {speciesData[0].trait}
+      <Divider><Chip label="SPECIES" /></Divider>
+      Most common: {speciesData[0].trait}
       <IconGrid traitData={speciesData[0]} />
       <BreakdownLink traitData={speciesData}/>
-      <br />
-      Most common personality: {personalityData[0].trait}
+      <Divider><Chip label="PERSONALITY" /></Divider>
+      Most common: {personalityData[0].trait}
       <IconGrid traitData={personalityData[0]} />
       <BreakdownLink traitData={personalityData}/>
+      <Divider><Chip label="GENDER" /></Divider>
+      {genderData[0].trait}: {genderData[0].count}
       <br />
-      {genderData.map((gender) => `${gender.trait}: ${gender.count}`).join(', ')}
+      {genderData[1].trait}: {genderData[1].count}
       <br />
       <BreakdownLink traitData={genderData}/>
     </Typography>
