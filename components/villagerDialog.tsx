@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import Dialog from '@mui/material/Dialog';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
@@ -14,12 +14,12 @@ export default function VillagerDialog({history, villagerData, showDialog, setSh
 
   const theme = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down('md'))
-  const [aspectRatio, setAspectRatio] = useState(.5);
-  const [imageWidth, setImageWidth] = useState(100);
+  // const [aspectRatio, setAspectRatio] = useState(.5);
+  // const [imageWidth, setImageWidth] = useState(100);
 
-  useEffect(() => {
-    setImageWidth((smallScreen ? 192 : 384) * aspectRatio);
-  }, [aspectRatio, smallScreen]);
+  // useEffect(() => {
+  //   setImageWidth((smallScreen ? 192 : 384) * aspectRatio);
+  // }, [aspectRatio, smallScreen]);
 
   if (!history || !villagerData) {
     return;
@@ -36,26 +36,29 @@ export default function VillagerDialog({history, villagerData, showDialog, setSh
         alignItems='center'
         justifyContent='center'
         padding={4}
-        spacing={5}
+        spacing={4}
       >
         <Grid item>
           <Stack direction="row" spacing={2}>
             <Box
               position="relative"
               height={smallScreen ? 192 : 384}
-              width={imageWidth}
+              // width={imageWidth}
             >
               <Image
                 src={villagerData.nh_details.image_url}
                 alt={`${history.name} image`}
                 title={history.name}
-                fill={true}
+                width={0}
+                height={0}
+                sizes="100vw"
                 style={{
-                  objectFit: "contain"
+                  width: 'auto',
+                  height: '100%'
                 }}
-                onLoadingComplete={(img) => {
-                  setAspectRatio(img.naturalWidth / img.naturalHeight);
-                }}
+                // onLoadingComplete={(img) => {
+                //   setAspectRatio(img.naturalWidth / img.naturalHeight);
+                // }}
               />
             </Box>
             <Stack alignItems="center">
