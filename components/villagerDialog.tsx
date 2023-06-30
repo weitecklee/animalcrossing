@@ -93,6 +93,7 @@ export default function VillagerDialog({history, villagerData, showDialog, setSh
             Catchphrase: <Box component="span" sx={{fontStyle: 'italic'}}>&quot;{villagerData.nh_details.catchphrase}&quot;</Box>
             <br /><br />
             Moved in on {history.startDateString}
+          </Typography>
             {history.photo ? <Typography>
               Photo received on {history.photoDateString}
               <br />
@@ -101,6 +102,7 @@ export default function VillagerDialog({history, villagerData, showDialog, setSh
             {history.currentResident ? <br/> : <Typography>
               Moved out on {history.endDateString}
               </Typography>}
+          <Typography>
             Duration of residence:&nbsp;
             {history.duration} days{history.currentResident && " and counting"}
           </Typography>
