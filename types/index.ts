@@ -95,17 +95,6 @@ export interface VillagerProperties2 {
   ja_name: string,
 }
 
-interface DatasetProperties {
-  label: string,
-  data: any[],
-  backgroundColor: string[],
-}
-
-export interface TimelineDataProperties {
-  labels: string[],
-  datasets: DatasetProperties[],
-}
-
 export interface TraitProperties {
   trait: string,
   count: number,

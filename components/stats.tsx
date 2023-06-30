@@ -74,15 +74,23 @@ export default function Stats({ villagersData, histories, durationData, speciesD
   return <>
     <Typography>
       Number of Villagers: {histories.size}
-      <Divider><Chip label="DURATION OF RESIDENCE" /></Divider>
+    </Typography>
+    <Divider>
+      <Chip label="DURATION OF RESIDENCE" />
+    </Divider>
+    <Typography>
       Average: {(Array.from(histories.values()).reduce((a, b) => a + b.duration, 0) / histories.size).toFixed(2)} days
       <br />
       Longest: {durationData[0].duration} days
       <br />
-      <IconGrid traitData={durationData[0]} />
+    </Typography>
+    <IconGrid traitData={durationData[0]} />
+    <Typography>
       Shortest: {durationData[durationData.length - 1].duration} days
       <br />
-      <IconGrid traitData={durationData[durationData.length - 1]} />
+    </Typography>
+    <IconGrid traitData={durationData[durationData.length - 1]} />
+    <Typography>
       <Link
         href="#"
         underline="hover"
@@ -93,29 +101,53 @@ export default function Stats({ villagersData, histories, durationData, speciesD
       >
         Full breakdown
       </Link>
-      <Divider><Chip label="SPECIES" /></Divider>
+    </Typography>
+    <Divider>
+      <Chip label="SPECIES" />
+    </Divider>
+    <Typography>
       Most common: {speciesData[0].trait}
-      <IconGrid traitData={speciesData[0]} />
+    </Typography>
+    <IconGrid traitData={speciesData[0]} />
+    <Typography>
       <BreakdownLink traitData={speciesData}/>
-      <Divider><Chip label="PERSONALITY" /></Divider>
+    </Typography>
+    <Divider>
+      <Chip label="PERSONALITY" />
+    </Divider>
+    <Typography>
       Most common: {personalityData[0].trait}
-      <IconGrid traitData={personalityData[0]} />
+    </Typography>
+    <IconGrid traitData={personalityData[0]} />
+    <Typography>
       <BreakdownLink traitData={personalityData}/>
-      <Divider><Chip label="GENDER" /></Divider>
+    </Typography>
+    <Divider>
+      <Chip label="GENDER" />
+    </Divider>
+    <Typography>
       {genderData[0].trait}: {genderData[0].count}
       <br />
       {genderData[1].trait}: {genderData[1].count}
       <br />
       <BreakdownLink traitData={genderData}/>
-      <Divider><Chip label="PHOTOS" /></Divider>
+    </Typography>
+    <Divider>
+      <Chip label="PHOTOS" />
+    </Divider>
+    <Typography>
       Received: {photoStats.count}
       <br />
       Average time to receive: {photoStats.average.toFixed(2)} days
       <br />
       Quickest: {photoData[0].trait} days
-      <IconGrid traitData={photoData[0]} />
+    </Typography>
+    <IconGrid traitData={photoData[0]} />
+    <Typography>
       Slowest: {photoData[photoData.length - 1].trait} days
-      <IconGrid traitData={photoData[photoData.length - 1]} />
+    </Typography>
+    <IconGrid traitData={photoData[photoData.length - 1]} />
+    <Typography>
       <Link
         href="#"
         underline="hover"

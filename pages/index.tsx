@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
 import dynamic from 'next/dynamic'
-import { MongoProperties, HistoryProperties, TimelineDataProperties, TraitProperties, DurationProperties, PhotoStatsProperties } from '../types';
+import { MongoProperties, HistoryProperties, TraitProperties, DurationProperties, PhotoStatsProperties } from '../types';
 import TopBar from '../components/topBar';
 import IndexComponent from '../components/indexComponent';
 import Cards from '../components/cards';
@@ -43,7 +43,13 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
 
   const [histories, setHistories] = useState<Map<string,HistoryProperties>>(new Map());
   const [component, setComponent] =  useState('Index');
-  const [timelineData, setTimelineData] = useState({} as TimelineDataProperties);
+  const [timelineData, setTimelineData] = useState<string[][]>([]);
+  const [timelineData2, setTimelineData2] = useState<number[]>([]);
+  const [timelineData3, setTimelineData3] = useState<number[]>([]);
+  const [timelineLabels, setTimelineLabels] = useState<string[]>([]);
+  const [timelineLabels3, setTimelineLabels3] = useState<string[]>([]);
+  const [timelineColors, setTimelineColors] = useState<string[]>([]);
+  const [timelineColors3, setTimelineColors3] = useState<string[]>([]);
   const [durationData, setDurationData] = useState<DurationProperties[]>([]);
 
   useEffect(() => {
@@ -53,6 +59,7 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
     const timeData: string[][] = [];
     const backgroundColor: string[] = [];
     const durationMap: Map<number, DurationProperties> = new Map();
+    const durationData: number[] = [];
 
     for (const mongoDatum of mongoData) {
       const tmpHist: HistoryProperties = {
@@ -85,23 +92,33 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
       labels.push(mongoDatum.name);
       timeData.push([tmpHist.startDateString, tmpHist.endDateString])
       backgroundColor.push('#' + villagersData.get(tmpHist.name)?.title_color!)
+      durationData.push(tmpHist.duration);
     }
 
     const tmpDurations = Array.from(durationMap.values());
     tmpDurations.sort((a, b) => b.duration - a.duration);
 
+    const durationData2: number[] = [];
+    const labels2: string[] = [];
+    const colors2: string[] = [];
+
+    for (const duration of tmpDurations) {
+      for (const villager of duration.villagers) {
+        labels2.push(villager);
+        durationData2.push(duration.duration);
+        colors2.push('#' + villagersData.get(villager)?.title_color!);
+      }
+    }
+
     setHistories(tmpHistories);
-    setTimelineData({
-      labels,
-      datasets: [
-        {
-          label: 'Villagers',
-          data: timeData,
-          backgroundColor,
-        }
-      ]
-    });
+    setTimelineData(timeData);
+    setTimelineData2(durationData);
+    setTimelineLabels(labels);
+    setTimelineColors(backgroundColor);
     setDurationData(tmpDurations);
+    setTimelineData3(durationData2);
+    setTimelineLabels3(labels2);
+    setTimelineColors3(colors2);
   }, [mongoData])
 
   return (<>
@@ -117,8 +134,14 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
       />}
       {component === 'Timeline' && <Timeline
         timelineData={timelineData}
+        timelineData2={timelineData2}
         villagersData={villagersData}
         histories={histories}
+        timelineLabels={timelineLabels}
+        timelineColors={timelineColors}
+        timelineData3={timelineData3}
+        timelineLabels3={timelineLabels3}
+        timelineColors3={timelineColors3}
       />}
       {component === 'Stats' && <Stats
         villagersData={villagersData}
