@@ -40,8 +40,8 @@ export default function Cards({villagersData, histories}:{ villagersData: Map<st
     <Box sx={{display: {xs: 'none', md: 'flex' }}}>
       <Fab variant="extended" onClick={()=> setExpandAll((a)=> !a)} color="secondary" sx={{
         position: "fixed",
-        right: "5%",
-        bottom: "5%",
+        right: "1%",
+        bottom: "1%",
         ':hover': {
           bgcolor: "white"
         }
@@ -53,8 +53,8 @@ export default function Cards({villagersData, histories}:{ villagersData: Map<st
     <Box sx={{display: {xs: 'flex', md: 'none' }}}>
       <Fab size="medium" onClick={()=> setExpandAll((a)=> !a)} color="secondary" sx={{
         position: "fixed",
-        right: "5%",
-        bottom: "5%",
+        right: "1%",
+        bottom: "1%",
         ':hover': {
           bgcolor: "white"
         }

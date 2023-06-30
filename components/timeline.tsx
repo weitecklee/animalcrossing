@@ -16,7 +16,7 @@ import Box from '@mui/material/Box';
 import { useState, useEffect } from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-import { TimelineDataProperties, VillagerProperties2, HistoryProperties } from '../types';
+import { VillagerProperties2, HistoryProperties } from '../types';
 import TimelineTooltip from './timelineTooltip';
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
@@ -91,25 +91,19 @@ const options = {
 
 const options2 = JSON.parse(JSON.stringify(options));
 options2.plugins.zoom.limits = {
-  x: { min: 'original', max: 'original', minRange: 10 },
+  x: { min: 'original', max: 'original', minRange: 30 },
   y: { min: 'original', max: 'original', minRange: 20 },
-};
-options2.scales.x = {
-  min: 0,
-  max: 400,
 };
 
 export default function Timeline({ timelineData, timelineData2, villagersData, histories, timelineLabels, timelineColors }: {
-  timelineData: TimelineDataProperties,
-  timelineData2: TimelineDataProperties,
+  timelineData: string[][],
+  timelineData2: number[],
   villagersData: Map<string,VillagerProperties2>,
   histories: Map<string,HistoryProperties> ,
   timelineLabels: string[],
   timelineColors: string[],
 }) {
 
-  // const [timelineChart, setTimelineChart] = useState({} as any);
-  // const [timelineTooltip, setTimelineTooltip] = useState({} as any);
   const [timelineVillager, setTimelineVillager] = useState('');
   const [showTooltip, setShowTooltip] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -118,24 +112,22 @@ export default function Timeline({ timelineData, timelineData2, villagersData, h
   const smallScreen = useMediaQuery(theme.breakpoints.down('md'))
   const [showDialog, setShowDialog] = useState(false);
   const [timelineMode, setTimelineMode] = useState(true);
-  const [barData, setBarData] = useState(timelineData);
+  const [barData, setBarData] = useState<string[][] | number[]>(timelineData);
 
-  options.plugins.tooltip.external = ({ tooltip }) => {
-    // const a = {...chart};
-    // const b = {...tooltip};
-    // setTimelineChart(a);
-    // setTimelineTooltip(b);
-    if (tooltip && tooltip.title) {
-      setTimelineVillager(tooltip.title[0]);
-      setShowTooltip(true);
-    }
-  };
-  options2.plugins.tooltip.external = ({ tooltip }) => {
-    if (tooltip && tooltip.title) {
-      setTimelineVillager(tooltip.title[0]);
-      setShowTooltip(true);
-    }
-  };
+
+  useEffect(() => {
+    options.plugins.tooltip.external = ({ tooltip }) => {
+      if (tooltip && tooltip.title) {
+        setTimelineVillager(tooltip.title[0]);
+        setShowTooltip(true);
+      }
+    };
+    options2.plugins.tooltip.external = options.plugins.tooltip.external;
+    options2.scales.x = {
+      min: 0,
+      max: Math.max(... timelineData2),
+    };
+  }, [timelineData2]);
 
   const [barOptions, setBarOptions] = useState(options);
 
@@ -158,7 +150,7 @@ export default function Timeline({ timelineData, timelineData2, villagersData, h
       setBarOptions(options2);
       setBarData(timelineData2);
     }
-  }, [timelineMode]);
+  }, [timelineMode, timelineData, timelineData2]);
 
   return <Box sx={{
     position: "relative",
@@ -213,13 +205,38 @@ export default function Timeline({ timelineData, timelineData2, villagersData, h
       }}
       sx={{
         position: "fixed",
-        right: "5%",
-        top: "10%",
+        right: "1%",
+        bottom: "1%",
         ':hover': {
           bgcolor: "white"
-        }
+        },
+        display: {
+          xs: 'flex',
+          md: 'none',
+        },
       }}>
       <ViewTimelineRoundedIcon />
+    </Fab>
+    <Fab
+      color="secondary"
+      variant="extended"
+      onClick={() => {
+        setTimelineMode((mode) => !mode);
+      }}
+      sx={{
+        position: "fixed",
+        right: "1%",
+        bottom: "1%",
+        ':hover': {
+          bgcolor: "white"
+        },
+        display: {
+          xs: 'none',
+          md: 'flex',
+        },
+      }}>
+      <ViewTimelineRoundedIcon sx={{mr: 1}} />
+      Change view
     </Fab>
   </Box>
 }

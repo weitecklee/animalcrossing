@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
 import dynamic from 'next/dynamic'
-import { MongoProperties, HistoryProperties, TimelineDataProperties, TraitProperties, DurationProperties, PhotoStatsProperties } from '../types';
+import { MongoProperties, HistoryProperties, TraitProperties, DurationProperties, PhotoStatsProperties } from '../types';
 import TopBar from '../components/topBar';
 import IndexComponent from '../components/indexComponent';
 import Cards from '../components/cards';
@@ -43,8 +43,8 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
 
   const [histories, setHistories] = useState<Map<string,HistoryProperties>>(new Map());
   const [component, setComponent] =  useState('Index');
-  const [timelineData, setTimelineData] = useState<TimelineDataProperties>([]);
-  const [timelineData2, setTimelineData2] = useState<TimelineDataProperties>([]);
+  const [timelineData, setTimelineData] = useState<string[][]>([]);
+  const [timelineData2, setTimelineData2] = useState<number[]>([]);
   const [timelineLabels, setTimelineLabels] = useState<string[]>([]);
   const [timelineColors, setTimelineColors] = useState<string[]>([]);
   const [durationData, setDurationData] = useState<DurationProperties[]>([]);
