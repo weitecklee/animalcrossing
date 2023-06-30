@@ -95,13 +95,17 @@ options2.plugins.zoom.limits = {
   y: { min: 'original', max: 'original', minRange: 20 },
 };
 
-export default function Timeline({ timelineData, timelineData2, villagersData, histories, timelineLabels, timelineColors }: {
+console.log('recalculate this 1');
+export default function Timeline({ timelineData, timelineData2, villagersData, histories, timelineLabels, timelineColors, timelineData3, timelineLabels3, timelineColors3 }: {
   timelineData: string[][],
   timelineData2: number[],
   villagersData: Map<string,VillagerProperties2>,
   histories: Map<string,HistoryProperties> ,
   timelineLabels: string[],
   timelineColors: string[],
+  timelineData3: number[],
+  timelineLabels3: string[],
+  timelineColors3: string[],
 }) {
 
   const [timelineVillager, setTimelineVillager] = useState('');
@@ -111,10 +115,12 @@ export default function Timeline({ timelineData, timelineData2, villagersData, h
   const theme = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down('md'))
   const [showDialog, setShowDialog] = useState(false);
-  const [timelineMode, setTimelineMode] = useState(true);
+  const [timelineMode, setTimelineMode] = useState(0);
   const [barData, setBarData] = useState<string[][] | number[]>(timelineData);
+  const [barLabels, setBarLabels] = useState(timelineLabels);
+  const [barColors, setBarColors] = useState(timelineColors);
 
-
+  console.log('recalculate this 2');
   useEffect(() => {
     options.plugins.tooltip.external = ({ tooltip }) => {
       if (tooltip && tooltip.title) {
@@ -127,6 +133,7 @@ export default function Timeline({ timelineData, timelineData2, villagersData, h
       min: 0,
       max: Math.max(... timelineData2),
     };
+    console.log('recalculate this 3');
   }, [timelineData2]);
 
   const [barOptions, setBarOptions] = useState(options);
@@ -143,14 +150,25 @@ export default function Timeline({ timelineData, timelineData2, villagersData, h
   }, [smallScreen]);
 
   useEffect(() => {
-    if (timelineMode) {
+    if (timelineMode === 0) {
       setBarOptions(options);
       setBarData(timelineData);
-    } else {
+      setBarColors(timelineColors);
+      setBarLabels(timelineLabels);
+    } else if (timelineMode === 1) {
       setBarOptions(options2);
       setBarData(timelineData2);
+      setBarColors(timelineColors);
+      setBarLabels(timelineLabels);
+    } else if (timelineMode === 2) {
+      setBarOptions(options2);
+      setBarData(timelineData3);
+      setBarColors(timelineColors3);
+      setBarLabels(timelineLabels3);
     }
-  }, [timelineMode, timelineData, timelineData2]);
+
+console.log('recalculate this 4');
+  }, [timelineMode, timelineData, timelineData2, timelineData3, timelineColors, timelineColors3, timelineLabels, timelineLabels3]);
 
   return <Box sx={{
     position: "relative",
@@ -174,12 +192,12 @@ export default function Timeline({ timelineData, timelineData2, villagersData, h
     </Snackbar>
     <Bar
       data={{
-        labels: timelineLabels,
+        labels: barLabels,
         datasets: [
           {
             label: 'Villagers',
             data: barData,
-            backgroundColor: timelineColors,
+            backgroundColor: barColors,
           }
         ]
       }}
@@ -201,7 +219,7 @@ export default function Timeline({ timelineData, timelineData2, villagersData, h
     <Fab
       color="secondary"
       onClick={() => {
-        setTimelineMode((mode) => !mode);
+        setTimelineMode((mode) => mode === 2 ? 0 : (mode + 1));
       }}
       sx={{
         position: "fixed",
@@ -221,7 +239,7 @@ export default function Timeline({ timelineData, timelineData2, villagersData, h
       color="secondary"
       variant="extended"
       onClick={() => {
-        setTimelineMode((mode) => !mode);
+        setTimelineMode((mode) => mode === 2 ? 0 : (mode + 1));
       }}
       sx={{
         position: "fixed",

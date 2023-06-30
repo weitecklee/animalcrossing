@@ -45,8 +45,11 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
   const [component, setComponent] =  useState('Index');
   const [timelineData, setTimelineData] = useState<string[][]>([]);
   const [timelineData2, setTimelineData2] = useState<number[]>([]);
+  const [timelineData3, setTimelineData3] = useState<number[]>([]);
   const [timelineLabels, setTimelineLabels] = useState<string[]>([]);
+  const [timelineLabels3, setTimelineLabels3] = useState<string[]>([]);
   const [timelineColors, setTimelineColors] = useState<string[]>([]);
+  const [timelineColors3, setTimelineColors3] = useState<string[]>([]);
   const [durationData, setDurationData] = useState<DurationProperties[]>([]);
 
   useEffect(() => {
@@ -95,12 +98,27 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
     const tmpDurations = Array.from(durationMap.values());
     tmpDurations.sort((a, b) => b.duration - a.duration);
 
+    const durationData2: number[] = [];
+    const labels2: string[] = [];
+    const colors2: string[] = [];
+
+    for (const duration of tmpDurations) {
+      for (const villager of duration.villagers) {
+        labels2.push(villager);
+        durationData2.push(duration.duration);
+        colors2.push('#' + villagersData.get(villager)?.title_color!);
+      }
+    }
+
     setHistories(tmpHistories);
     setTimelineData(timeData);
     setTimelineData2(durationData);
     setTimelineLabels(labels);
     setTimelineColors(backgroundColor);
     setDurationData(tmpDurations);
+    setTimelineData3(durationData2);
+    setTimelineLabels3(labels2);
+    setTimelineColors3(colors2);
   }, [mongoData])
 
   return (<>
@@ -121,6 +139,9 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
         histories={histories}
         timelineLabels={timelineLabels}
         timelineColors={timelineColors}
+        timelineData3={timelineData3}
+        timelineLabels3={timelineLabels3}
+        timelineColors3={timelineColors3}
       />}
       {component === 'Stats' && <Stats
         villagersData={villagersData}
