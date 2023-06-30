@@ -95,7 +95,6 @@ options2.plugins.zoom.limits = {
   y: { min: 'original', max: 'original', minRange: 20 },
 };
 
-console.log('recalculate this 1');
 export default function Timeline({ timelineData, timelineData2, villagersData, histories, timelineLabels, timelineColors, timelineData3, timelineLabels3, timelineColors3 }: {
   timelineData: string[][],
   timelineData2: number[],
@@ -120,7 +119,6 @@ export default function Timeline({ timelineData, timelineData2, villagersData, h
   const [barLabels, setBarLabels] = useState(timelineLabels);
   const [barColors, setBarColors] = useState(timelineColors);
 
-  console.log('recalculate this 2');
   useEffect(() => {
     options.plugins.tooltip.external = ({ tooltip }) => {
       if (tooltip && tooltip.title) {
@@ -133,7 +131,6 @@ export default function Timeline({ timelineData, timelineData2, villagersData, h
       min: 0,
       max: Math.max(... timelineData2),
     };
-    console.log('recalculate this 3');
   }, [timelineData2]);
 
   const [barOptions, setBarOptions] = useState(options);
@@ -167,7 +164,6 @@ export default function Timeline({ timelineData, timelineData2, villagersData, h
       setBarLabels(timelineLabels3);
     }
 
-console.log('recalculate this 4');
   }, [timelineMode, timelineData, timelineData2, timelineData3, timelineColors, timelineColors3, timelineLabels, timelineLabels3]);
 
   return <Box sx={{
