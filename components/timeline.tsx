@@ -20,6 +20,8 @@ import { TimelineDataProperties, VillagerProperties2, HistoryProperties } from '
 import TimelineTooltip from './timelineTooltip';
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
+import ViewTimelineRoundedIcon from '@mui/icons-material/ViewTimelineRounded';
+import Fab from '@mui/material/Fab';
 import VillagerDialog from './villagerDialog';
 
 ChartJS.register(
@@ -87,7 +89,24 @@ const options = {
   }
 } as any;
 
-export default function Timeline({ timelineData, villagersData, histories }: { timelineData: TimelineDataProperties, villagersData: Map<string,VillagerProperties2>, histories: Map<string,HistoryProperties> }) {
+const options2 = JSON.parse(JSON.stringify(options));
+options2.plugins.zoom.limits = {
+  x: { min: 'original', max: 'original', minRange: 10 },
+  y: { min: 'original', max: 'original', minRange: 20 },
+};
+options2.scales.x = {
+  min: 0,
+  max: 400,
+};
+
+export default function Timeline({ timelineData, timelineData2, villagersData, histories, timelineLabels, timelineColors }: {
+  timelineData: TimelineDataProperties,
+  timelineData2: TimelineDataProperties,
+  villagersData: Map<string,VillagerProperties2>,
+  histories: Map<string,HistoryProperties> ,
+  timelineLabels: string[],
+  timelineColors: string[],
+}) {
 
   // const [timelineChart, setTimelineChart] = useState({} as any);
   // const [timelineTooltip, setTimelineTooltip] = useState({} as any);
@@ -98,6 +117,8 @@ export default function Timeline({ timelineData, villagersData, histories }: { t
   const theme = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down('md'))
   const [showDialog, setShowDialog] = useState(false);
+  const [timelineMode, setTimelineMode] = useState(true);
+  const [barData, setBarData] = useState(timelineData);
 
   options.plugins.tooltip.external = ({ tooltip }) => {
     // const a = {...chart};
@@ -108,7 +129,15 @@ export default function Timeline({ timelineData, villagersData, histories }: { t
       setTimelineVillager(tooltip.title[0]);
       setShowTooltip(true);
     }
-  }
+  };
+  options2.plugins.tooltip.external = ({ tooltip }) => {
+    if (tooltip && tooltip.title) {
+      setTimelineVillager(tooltip.title[0]);
+      setShowTooltip(true);
+    }
+  };
+
+  const [barOptions, setBarOptions] = useState(options);
 
   const handleClose = (event?: Event | React.SyntheticEvent, reason?: string) => {
     if (reason === 'clickaway') {
@@ -120,6 +149,16 @@ export default function Timeline({ timelineData, villagersData, histories }: { t
   useEffect(() => {
     setOpenSnackbar(smallScreen);
   }, [smallScreen]);
+
+  useEffect(() => {
+    if (timelineMode) {
+      setBarOptions(options);
+      setBarData(timelineData);
+    } else {
+      setBarOptions(options2);
+      setBarData(timelineData2);
+    }
+  }, [timelineMode]);
 
   return <Box sx={{
     position: "relative",
@@ -142,8 +181,17 @@ export default function Timeline({ timelineData, villagersData, histories }: { t
       </Alert>
     </Snackbar>
     <Bar
-      data={timelineData}
-      options={options}
+      data={{
+        labels: timelineLabels,
+        datasets: [
+          {
+            label: 'Villagers',
+            data: barData,
+            backgroundColor: timelineColors,
+          }
+        ]
+      }}
+      options={barOptions}
     />
     {showTooltip &&
       <TimelineTooltip
@@ -158,5 +206,20 @@ export default function Timeline({ timelineData, villagersData, histories }: { t
       showDialog={showDialog}
       setShowDialog={setShowDialog}
     />
+    <Fab
+      color="secondary"
+      onClick={() => {
+        setTimelineMode((mode) => !mode);
+      }}
+      sx={{
+        position: "fixed",
+        right: "5%",
+        top: "10%",
+        ':hover': {
+          bgcolor: "white"
+        }
+      }}>
+      <ViewTimelineRoundedIcon />
+    </Fab>
   </Box>
 }

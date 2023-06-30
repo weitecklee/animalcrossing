@@ -43,7 +43,10 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
 
   const [histories, setHistories] = useState<Map<string,HistoryProperties>>(new Map());
   const [component, setComponent] =  useState('Index');
-  const [timelineData, setTimelineData] = useState({} as TimelineDataProperties);
+  const [timelineData, setTimelineData] = useState<TimelineDataProperties>([]);
+  const [timelineData2, setTimelineData2] = useState<TimelineDataProperties>([]);
+  const [timelineLabels, setTimelineLabels] = useState<string[]>([]);
+  const [timelineColors, setTimelineColors] = useState<string[]>([]);
   const [durationData, setDurationData] = useState<DurationProperties[]>([]);
 
   useEffect(() => {
@@ -53,6 +56,7 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
     const timeData: string[][] = [];
     const backgroundColor: string[] = [];
     const durationMap: Map<number, DurationProperties> = new Map();
+    const durationData: number[] = [];
 
     for (const mongoDatum of mongoData) {
       const tmpHist: HistoryProperties = {
@@ -85,22 +89,17 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
       labels.push(mongoDatum.name);
       timeData.push([tmpHist.startDateString, tmpHist.endDateString])
       backgroundColor.push('#' + villagersData.get(tmpHist.name)?.title_color!)
+      durationData.push(tmpHist.duration);
     }
 
     const tmpDurations = Array.from(durationMap.values());
     tmpDurations.sort((a, b) => b.duration - a.duration);
 
     setHistories(tmpHistories);
-    setTimelineData({
-      labels,
-      datasets: [
-        {
-          label: 'Villagers',
-          data: timeData,
-          backgroundColor,
-        }
-      ]
-    });
+    setTimelineData(timeData);
+    setTimelineData2(durationData);
+    setTimelineLabels(labels);
+    setTimelineColors(backgroundColor);
     setDurationData(tmpDurations);
   }, [mongoData])
 
@@ -117,8 +116,11 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
       />}
       {component === 'Timeline' && <Timeline
         timelineData={timelineData}
+        timelineData2={timelineData2}
         villagersData={villagersData}
         histories={histories}
+        timelineLabels={timelineLabels}
+        timelineColors={timelineColors}
       />}
       {component === 'Stats' && <Stats
         villagersData={villagersData}
