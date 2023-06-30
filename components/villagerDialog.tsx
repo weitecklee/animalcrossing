@@ -84,7 +84,7 @@ export default function VillagerDialog({history, villagerData, showDialog, setSh
             {history.name}&emsp;{villagerData.ja_name}
           </Typography>
           <Typography>
-            {villagerData.gender} {villagerData.species}
+            {villagerData.personality} {villagerData.gender} {villagerData.species}
             <br />
             Birthday: {villagerData.birthday_month} {villagerData.birthday_day}
             <br />
@@ -93,7 +93,11 @@ export default function VillagerDialog({history, villagerData, showDialog, setSh
             Catchphrase: <Box component="span" sx={{fontStyle: 'italic'}}>&quot;{villagerData.nh_details.catchphrase}&quot;</Box>
             <br /><br />
             Moved in on {history.startDateString}
-            {history.photo ? <Typography>Photo received on {history.photoDateString}</Typography> : ""}
+            {history.photo ? <Typography>
+              Photo received on {history.photoDateString}
+              <br />
+              Time to receive: {history.daysToPhoto} days
+              </Typography> : ""}
             {history.currentResident ? <br/> : <Typography>
               Moved out on {history.endDateString}
               </Typography>}
