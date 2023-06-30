@@ -5,22 +5,25 @@ import Image from 'next/image';
 import { Link, Dialog, DialogContent, Box, List, ListItem, Divider, Chip } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-import { VillagerProperties2, HistoryProperties, TraitProperties, DurationProperties } from '../types';
+import { VillagerProperties2, HistoryProperties, TraitProperties, DurationProperties, PhotoStatsProperties } from '../types';
 import VillagerDialog from './villagerDialog';
 
-export default function Stats({ villagersData, histories, durationData, speciesData, personalityData, genderData } : {
+export default function Stats({ villagersData, histories, durationData, speciesData, personalityData, genderData, photoData, photoStats } : {
   villagersData: Map<string,VillagerProperties2>,
   histories: Map<string,HistoryProperties>,
   durationData: DurationProperties[],
   speciesData: TraitProperties[],
   personalityData: TraitProperties[],
   genderData: TraitProperties[],
+  photoData: DurationProperties[],
+  photoStats: PhotoStatsProperties,
 }) {
 
   const [dialogTraitData, setDialogTraitData] = useState<TraitProperties[]>([]);
   const [showTraitDialog, setShowTraitDialog] = useState(false);
   const [showDurationDialog, setShowDurationDialog] = useState(false);
   const [showVillagerDialog, setShowVillagerDialog] = useState(false);
+  const [showPhotoDialog, setShowPhotoDialog] = useState(false);
   const [dialogVillager, setDialogVillager] = useState('');
   const theme = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down('md'));
@@ -104,6 +107,25 @@ export default function Stats({ villagersData, histories, durationData, speciesD
       {genderData[1].trait}: {genderData[1].count}
       <br />
       <BreakdownLink traitData={genderData}/>
+      <Divider><Chip label="PHOTOS" /></Divider>
+      Received: {photoStats.count}
+      <br />
+      Average time to receive: {photoStats.average.toFixed(2)} days
+      <br />
+      Quickest: {photoData[0].trait} days
+      <IconGrid traitData={photoData[0]} />
+      Slowest: {photoData[photoData.length - 1].trait} days
+      <IconGrid traitData={photoData[photoData.length - 1]} />
+      <Link
+        href="#"
+        underline="hover"
+        onClick={(event: MouseEvent<HTMLAnchorElement>) => {
+          event.preventDefault();
+          setShowPhotoDialog(true);
+        }}
+      >
+        Full breakdown
+      </Link>
     </Typography>
     <VillagerDialog
       history={histories.get(dialogVillager)!}
@@ -131,7 +153,7 @@ export default function Stats({ villagersData, histories, durationData, speciesD
                 <Box display="flex" alignItems="center">
                   <VillagerIcon villager={villager} />
                   <Typography>
-                    &nbsp;&nbsp;{histories.get(villager)?.duration} days{histories.get(villager)?.currentResident ? "*" : ""}
+                    &nbsp;&nbsp;{duration.trait} days{histories.get(villager)?.currentResident ? "*" : ""}
                   </Typography>
                 </Box>
               </ListItem>
@@ -155,6 +177,31 @@ export default function Stats({ villagersData, histories, durationData, speciesD
           </Typography>
           <IconGrid key={traitData.trait} traitData={traitData}/>
         </>))}
+      </DialogContent>
+    </Dialog>
+    <Dialog
+      open={showPhotoDialog}
+      onClose={() => setShowPhotoDialog(false)}
+      maxWidth={false}
+      keepMounted
+      sx={{
+        zIndex: 1200,
+      }}
+    >
+      <DialogContent>
+        <List>
+          {photoData.map((photo) => (
+            photo.villagers.map((villager) => (
+              <ListItem key={villager} disablePadding>
+                <Box display="flex" alignItems="center">
+                  <VillagerIcon villager={villager} />
+                  <Typography>
+                    &nbsp;&nbsp;{photo.trait} days
+                  </Typography>
+                </Box>
+              </ListItem>
+          ))))}
+        </List>
       </DialogContent>
     </Dialog>
   </>
