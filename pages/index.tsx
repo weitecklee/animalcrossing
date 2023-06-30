@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
 import dynamic from 'next/dynamic'
-import { MongoProperties, HistoryProperties, TimelineDataProperties, TraitProperties, DurationProperties } from '../types';
+import { MongoProperties, HistoryProperties, TimelineDataProperties, TraitProperties, DurationProperties, PhotoStatsProperties } from '../types';
 import TopBar from '../components/topBar';
 import IndexComponent from '../components/indexComponent';
 import Cards from '../components/cards';
@@ -32,11 +32,13 @@ theme = responsiveFontSizes(theme, {
 
 const Timeline = dynamic(() => import('../components/timeline'), {ssr: false})
 
-export default function HomePage({ mongoData, speciesData, personalityData, genderData }: {
+export default function HomePage({ mongoData, speciesData, personalityData, genderData, photoData, photoStats }: {
   mongoData: MongoProperties[],
   speciesData: TraitProperties[],
   personalityData: TraitProperties[],
   genderData: TraitProperties[],
+  photoData: DurationProperties[],
+  photoStats: PhotoStatsProperties,
 }) {
 
   const [histories, setHistories] = useState<Map<string,HistoryProperties>>(new Map());
@@ -125,6 +127,8 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
         speciesData={speciesData}
         personalityData={personalityData}
         genderData={genderData}
+        photoData={photoData}
+        photoStats={photoStats}
       />}
     </ThemeProvider>
   </>)
@@ -136,6 +140,8 @@ export async function getStaticProps(): Promise<{
     speciesData: TraitProperties[],
     personalityData: TraitProperties[],
     genderData: TraitProperties[],
+    photoData: DurationProperties[],
+    photoStats: PhotoStatsProperties,
   };
 }> {
 
@@ -161,9 +167,14 @@ export async function getStaticProps(): Promise<{
   const speciesMap: Map<string, TraitProperties> = new Map();
   const personalityMap: Map<string, TraitProperties> = new Map();
   const genderMap: Map<string, TraitProperties> = new Map();
+  const photoMap: Map<string, DurationProperties> = new Map();
+  const photoStats: PhotoStatsProperties = {
+    average: 0,
+    count: 0,
+  };
 
   for (const mongoDatum of mongoData) {
-    const startDate = new Date(mongoDatum.startDate);
+    const startDateDate = new Date(mongoDatum.startDate);
     let endDate: Date;
     if (!mongoDatum.endDate) {
       mongoDatum.currentResident = true;
@@ -175,11 +186,26 @@ export async function getStaticProps(): Promise<{
     }
     if (mongoDatum.photoDate) {
       mongoDatum.photo = true
-      mongoDatum.photoDateString = new Date(mongoDatum.photoDate).toLocaleDateString("fr-CA");
+      const photoDateDate = new Date(mongoDatum.photoDate);
+      mongoDatum.photoDateString = photoDateDate.toLocaleDateString("fr-CA");
+      mongoDatum.daysToPhoto = Math.round((photoDateDate.getTime() - startDateDate.getTime()) / (1000 * 3600 * 24)) + 1;
+      photoStats.count++;
+      photoStats.average += mongoDatum.daysToPhoto;
+      if (!photoMap.has(mongoDatum.daysToPhoto)) {
+        photoMap.set(mongoDatum.daysToPhoto, {
+          trait: mongoDatum.daysToPhoto.toString(),
+          count: 0,
+          villagers: [],
+          duration: mongoDatum.daysToPhoto,
+        })
+      }
+      const tmp = photoMap.get(mongoDatum.daysToPhoto)!;
+      tmp.count++;
+      tmp.villagers.push(mongoDatum.name);
     } else {
       mongoDatum.photo = false;
     }
-    mongoDatum.startDateString = startDate.toLocaleDateString("fr-CA");
+    mongoDatum.startDateString = startDateDate.toLocaleDateString("fr-CA");
     const species = villagersData.get(mongoDatum.name)!.species;
     if (!speciesMap.has(species)) {
       speciesMap.set(species, {
@@ -221,6 +247,9 @@ export async function getStaticProps(): Promise<{
   personalityData.sort((a, b) => b.count - a.count);
   const genderData = Array.from(genderMap.values());
   genderData.sort((a, b) => b.count - a.count);
+  const photoData = Array.from(photoMap.values());
+  photoData.sort((a, b) => a.duration - b.duration);
+  photoStats.average /= photoStats.count;
 
   return {
     props: {
@@ -228,6 +257,8 @@ export async function getStaticProps(): Promise<{
       speciesData,
       personalityData,
       genderData,
+      photoData,
+      photoStats,
     }
   }
 }

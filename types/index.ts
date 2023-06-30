@@ -39,6 +39,7 @@ export interface MongoProperties {
   photo: boolean,
   startDateString: string,
   photoDateString: string,
+  daysToPhoto: number,
 }
 
 export interface HistoryProperties extends MongoProperties {
@@ -112,5 +113,10 @@ export interface TraitProperties {
 }
 
 export interface DurationProperties extends TraitProperties {
-  duration: number
+  duration: number,
+}
+
+export interface PhotoStatsProperties {
+  average: number,
+  count: number,
 }
