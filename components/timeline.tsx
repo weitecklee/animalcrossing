@@ -169,7 +169,7 @@ export default function Timeline({ timelineData, timelineData2, villagersData, h
   return <Box sx={{
     position: "relative",
     margin: "auto",
-    width: "90vw",
+    width: "100%",
     height: shortScreen ? "80vh" : "90vh",
   }}>
     <Snackbar
