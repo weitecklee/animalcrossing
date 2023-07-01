@@ -8,7 +8,7 @@ import { useTheme } from '@mui/material/styles';
 import { VillagerProperties2, HistoryProperties, TraitProperties, DurationProperties, PhotoStatsProperties } from '../types';
 import VillagerDialog from './villagerDialog';
 
-export default function Stats({ villagersData, histories, durationData, speciesData, personalityData, genderData, photoData, photoStats } : {
+export default function Stats({ villagersData, histories, durationData, speciesData, personalityData, genderData, photoData, photoStats, currentResidents } : {
   villagersData: Map<string,VillagerProperties2>,
   histories: Map<string,HistoryProperties>,
   durationData: DurationProperties[],
@@ -17,6 +17,7 @@ export default function Stats({ villagersData, histories, durationData, speciesD
   genderData: TraitProperties[],
   photoData: DurationProperties[],
   photoStats: PhotoStatsProperties,
+  currentResidents: string[],
 }) {
 
   const [dialogTraitData, setDialogTraitData] = useState<TraitProperties[]>([]);
@@ -74,6 +75,17 @@ export default function Stats({ villagersData, histories, durationData, speciesD
   return <>
     <Typography>
       Number of Villagers: {histories.size}
+      <br />
+      Current villagers:
+      <Grid container>
+        {currentResidents.map((villager) =>
+          <Grid key={villager}
+            item
+          >
+            <VillagerIcon villager={villager} />
+          </Grid>
+        )}
+      </Grid>
     </Typography>
     <Divider>
       <Chip label="DURATION OF RESIDENCE" />

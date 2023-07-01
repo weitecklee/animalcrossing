@@ -33,13 +33,14 @@ theme = responsiveFontSizes(theme, {
 
 const Timeline = dynamic(() => import('../components/timeline'), {ssr: false})
 
-export default function HomePage({ mongoData, speciesData, personalityData, genderData, photoData, photoStats }: {
+export default function HomePage({ mongoData, speciesData, personalityData, genderData, photoData, photoStats, currentResidents }: {
   mongoData: MongoProperties[],
   speciesData: TraitProperties[],
   personalityData: TraitProperties[],
   genderData: TraitProperties[],
   photoData: DurationProperties[],
   photoStats: PhotoStatsProperties,
+  currentResidents: string[],
 }) {
 
   const [histories, setHistories] = useState<Map<string,HistoryProperties>>(new Map());
@@ -163,6 +164,7 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
             genderData={genderData}
             photoData={photoData}
             photoStats={photoStats}
+            currentResidents={currentResidents}
           />
         </Box>
       </>)}
@@ -179,6 +181,7 @@ export async function getStaticProps(): Promise<{
     genderData: TraitProperties[],
     photoData: DurationProperties[],
     photoStats: PhotoStatsProperties,
+    currentResidents: string[],
   };
 }> {
 
@@ -209,6 +212,7 @@ export async function getStaticProps(): Promise<{
     average: 0,
     count: 0,
   };
+  const currentResidents: string[] = [];
 
   for (const mongoDatum of mongoData) {
     const startDateDate = new Date(mongoDatum.startDate);
@@ -217,6 +221,7 @@ export async function getStaticProps(): Promise<{
       mongoDatum.currentResident = true;
       endDate = new Date();
       endDate.setHours(0, 0, 0);
+      currentResidents.push(mongoDatum.name);
     } else {
       mongoDatum.currentResident = false;
       endDate = new Date(mongoDatum.endDate);
@@ -296,6 +301,7 @@ export async function getStaticProps(): Promise<{
       genderData,
       photoData,
       photoStats,
+      currentResidents,
     }
   }
 }
