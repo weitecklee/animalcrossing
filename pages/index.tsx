@@ -8,6 +8,7 @@ import IndexComponent from '../components/indexComponent';
 import Cards from '../components/cards';
 import { villagersData } from '../lib/combinedData';
 import Stats from '../components/stats';
+import { Box } from '@mui/material';
 
 let theme = createTheme({
   palette: {
@@ -51,6 +52,7 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
   const [timelineColors, setTimelineColors] = useState<string[]>([]);
   const [timelineColors3, setTimelineColors3] = useState<string[]>([]);
   const [durationData, setDurationData] = useState<DurationProperties[]>([]);
+  const [allReady, setAllReady] = useState(false);
 
   useEffect(() => {
     const tmpHistories: Map<string,HistoryProperties> = new Map();
@@ -119,6 +121,7 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
     setTimelineData3(durationData2);
     setTimelineLabels3(labels2);
     setTimelineColors3(colors2);
+    setAllReady(true);
   }, [mongoData])
 
   return (<>
@@ -127,32 +130,43 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
     </Head>
     <ThemeProvider theme={theme}>
       <TopBar component={component} setComponent={setComponent} />
-      {component === 'Index' && <IndexComponent />}
-      {component === 'Villagers' && <Cards
-        villagersData={villagersData}
-        histories={histories}
-      />}
-      {component === 'Timeline' && <Timeline
-        timelineData={timelineData}
-        timelineData2={timelineData2}
-        villagersData={villagersData}
-        histories={histories}
-        timelineLabels={timelineLabels}
-        timelineColors={timelineColors}
-        timelineData3={timelineData3}
-        timelineLabels3={timelineLabels3}
-        timelineColors3={timelineColors3}
-      />}
-      {component === 'Stats' && <Stats
-        villagersData={villagersData}
-        histories={histories}
-        durationData={durationData}
-        speciesData={speciesData}
-        personalityData={personalityData}
-        genderData={genderData}
-        photoData={photoData}
-        photoStats={photoStats}
-      />}
+      <Box sx={{display: component === 'Index' ? '' : 'none'}}>
+        <IndexComponent />
+      </Box>
+      {allReady && (<>
+        <Box sx={{display: component === 'Villagers' ? '' : 'none'}}>
+        <Cards
+          villagersData={villagersData}
+          histories={histories}
+        />
+        </Box>
+        <Box sx={{display: component === 'Timeline' ? '' : 'none'}}>
+          <Timeline
+            timelineData={timelineData}
+            timelineData2={timelineData2}
+            villagersData={villagersData}
+            histories={histories}
+            timelineLabels={timelineLabels}
+            timelineColors={timelineColors}
+            timelineData3={timelineData3}
+            timelineLabels3={timelineLabels3}
+            timelineColors3={timelineColors3}
+          />
+        </Box>
+        <Box sx={{display: component === 'Stats' ? '' : 'none'}}>
+          <Stats
+            villagersData={villagersData}
+            histories={histories}
+            durationData={durationData}
+            speciesData={speciesData}
+            personalityData={personalityData}
+            genderData={genderData}
+            photoData={photoData}
+            photoStats={photoStats}
+          />
+        </Box>
+      </>)}
+
     </ThemeProvider>
   </>)
 }
