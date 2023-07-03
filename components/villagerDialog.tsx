@@ -27,9 +27,7 @@ export default function VillagerDialog({history, villagerData, showDialog, setSh
 
   useEffect(() => {
     if (imagesReady === 3) {
-      setTimeout(() => {
         setDialogReady(true);
-      }, 1000)
     }
   }, [imagesReady]);
 
@@ -87,7 +85,8 @@ export default function VillagerDialog({history, villagerData, showDialog, setSh
                   sizes="100vw"
                   style={{
                     width: 'auto',
-                    height: '100%'
+                    height: '100%',
+                    transition: "width 3s ease-out",
                   }}
                   onLoadingComplete={() => {
                     setImagesReady((a) => a + 1)
