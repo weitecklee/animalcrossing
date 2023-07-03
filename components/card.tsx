@@ -7,6 +7,7 @@ import Collapse from '@mui/material/Collapse';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
 import InfoIcon from '@mui/icons-material/Info';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
@@ -80,16 +81,18 @@ export default function HistoryCard({history, villagerData, setShowDialog, setDi
       >
         <Content />
       </Stack>
-      <Collapse in={expanded} timeout="auto" unmountOnExit sx={{
-        display: {
-          xs: 'none',
-          md: 'flex',
-        }
-      }}>
-        <CardContent sx={{ position: 'relative' }}>
-          <Content />
-        </CardContent>
-      </Collapse>
+      <Box sx={{
+          display: {
+            xs: 'none',
+            md: 'flex',
+          }
+        }}>
+        <Collapse in={expanded} appear >
+          <CardContent sx={{ position: 'relative' }}>
+            <Content />
+          </CardContent>
+        </Collapse>
+      </Box>
     </Card>
   );
 }
