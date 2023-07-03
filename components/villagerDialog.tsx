@@ -9,6 +9,7 @@ import { Typography } from '@mui/material';
 import Image from 'next/image';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export default function VillagerDialog({history, villagerData, showDialog, setShowDialog} : {history: HistoryProperties, villagerData: VillagerProperties2, showDialog: boolean, setShowDialog: Dispatch<SetStateAction<boolean>>}) {
 
@@ -47,6 +48,16 @@ export default function VillagerDialog({history, villagerData, showDialog, setSh
       onClose={() => setShowDialog(false)}
       maxWidth={false}
     >
+      <Box
+        sx={{
+          position: "absolute",
+          top: "50%",
+          right: "50%",
+          display: dialogReady ? "none" : "",
+        }}
+      >
+        <CircularProgress />
+      </Box>
       <Box sx={{
         visibility: dialogReady ? 'visible' : 'hidden',
       }}>
