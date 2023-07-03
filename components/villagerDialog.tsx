@@ -48,7 +48,7 @@ export default function VillagerDialog({history, villagerData, showDialog, setSh
                 src={villagerData.nh_details.image_url}
                 alt={`${history.name} image`}
                 title={history.name}
-                width={0}
+                width={256}
                 height={0}
                 sizes="100vw"
                 style={{
