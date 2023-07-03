@@ -84,7 +84,8 @@ export default function TopBar({component, setComponent}: { component: string, s
                 key={page}
                 sx={{
                   color: 'black',
-                  bgcolor: component === page ? 'primary.main' : 'secondary.main',
+                  border: "2px solid",
+                  borderColor: component === page ? 'primary.main' : 'secondary.main',
                   ml: 1,
                   ':hover': {
                     bgcolor: "white",

@@ -61,7 +61,7 @@ export default function Stats({ villagersData, histories, durationData, speciesD
   const BreakdownLink = ({traitData} : {traitData: TraitProperties[]}) => (
     <Link
       href="#"
-      underline="hover"
+      underline="none"
       onClick={(event: MouseEvent<HTMLAnchorElement>) => {
         event.preventDefault();
         setDialogTraitData(traitData);
@@ -105,7 +105,7 @@ export default function Stats({ villagersData, histories, durationData, speciesD
     <Typography>
       <Link
         href="#"
-        underline="hover"
+        underline="none"
         onClick={(event: MouseEvent<HTMLAnchorElement>) => {
           event.preventDefault();
           setShowDurationDialog(true);
@@ -162,7 +162,7 @@ export default function Stats({ villagersData, histories, durationData, speciesD
     <Typography>
       <Link
         href="#"
-        underline="hover"
+        underline="none"
         onClick={(event: MouseEvent<HTMLAnchorElement>) => {
           event.preventDefault();
           setShowPhotoDialog(true);

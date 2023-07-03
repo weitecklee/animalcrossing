@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
-import { Box } from '@mui/material';
 import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
 import dynamic from 'next/dynamic'
 import { MongoProperties, HistoryProperties, TraitProperties, DurationProperties, PhotoStatsProperties } from '../types';
@@ -13,17 +12,26 @@ import Stats from '../components/stats';
 let theme = createTheme({
   palette: {
     primary: {
-      main: "#c48d3f",
+      main: "#1aae5e",
     },
     secondary: {
       main: "#9dffb0",
     },
     success: {
-      main: "#1aae5e"
+      main: "#c48d3f"
     }
   },
   typography: {
     fontFamily: "Montserrat"
+  },
+  components: {
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          fontWeight: 500,
+        }
+      }
+    }
   }
 });
 
