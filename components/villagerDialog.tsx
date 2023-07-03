@@ -44,120 +44,104 @@ export default function VillagerDialog({history, villagerData, showDialog, setSh
   return (
     <Dialog
       keepMounted
-      open={showDialog}
+      open={showDialog && dialogReady}
       onClose={() => setShowDialog(false)}
       maxWidth={false}
     >
-      <Box
-        sx={{
-          position: "absolute",
-          top: "50%",
-          right: "50%",
-          display: dialogReady ? "none" : "",
-        }}
+      <Grid
+        container
+        alignItems='center'
+        justifyContent='center'
+        padding={4}
+        spacing={4}
       >
-        <CircularProgress />
-      </Box>
-      <Box sx={{
-        visibility: dialogReady ? 'visible' : 'hidden',
-        transition: "width 3s ease-out",
-      }}>
-        <Grid
-          container
-          alignItems='center'
-          justifyContent='center'
-          padding={4}
-          spacing={4}
-        >
-          <Grid item>
-            <Stack direction="row" spacing={2}>
-              <Box
-                position="relative"
-                height={smallScreen ? 192 : 384}
-                // width={imageWidth}
-              >
-                <Image
-                  src={villagerData.nh_details.image_url}
-                  alt={`${history.name} image`}
-                  title={history.name}
-                  width={256}
-                  height={0}
-                  sizes="100vw"
-                  style={{
-                    width: 'auto',
-                    height: '100%',
-                    transition: "width 3s ease-out",
-                  }}
-                  onLoadingComplete={() => {
-                    setImagesReady((a) => a + 1)
-                  }}
-                />
-              </Box>
-              <Stack alignItems="center">
-                <Image
-                  src={villagerData.nh_details.icon_url}
-                  alt={`${history.name} icon`}
-                  title={history.name}
-                  width={smallScreen ? 64 : 128}
-                  height={smallScreen ? 64 : 128}
-                  onLoadingComplete={() => {
-                    setImagesReady((a) => a + 1)
-                  }}
-                />
-                <Image
-                  src={villagerData.nh_details.photo_url}
-                  alt={`${history.name} photo`}
-                  title={history.name}
-                  width={smallScreen ? 128 : 256}
-                  height={smallScreen ? 128 : 256}
-                  onLoadingComplete={() => {
-                    setImagesReady((a) => a + 1)
-                  }}
-                />
-              </Stack>
+        <Grid item>
+          <Stack direction="row" spacing={2}>
+            <Box
+              position="relative"
+              height={smallScreen ? 192 : 384}
+              // width={imageWidth}
+            >
+              <Image
+                src={villagerData.nh_details.image_url}
+                alt={`${history.name} image`}
+                title={history.name}
+                width={256}
+                height={0}
+                sizes="100vw"
+                style={{
+                  width: 'auto',
+                  height: '100%',
+                }}
+                onLoadingComplete={() => {
+                  setImagesReady((a) => a + 1)
+                }}
+              />
+            </Box>
+            <Stack alignItems="center">
+              <Image
+                src={villagerData.nh_details.icon_url}
+                alt={`${history.name} icon`}
+                title={history.name}
+                width={smallScreen ? 64 : 128}
+                height={smallScreen ? 64 : 128}
+                onLoadingComplete={() => {
+                  setImagesReady((a) => a + 1)
+                }}
+              />
+              <Image
+                src={villagerData.nh_details.photo_url}
+                alt={`${history.name} photo`}
+                title={history.name}
+                width={smallScreen ? 128 : 256}
+                height={smallScreen ? 128 : 256}
+                onLoadingComplete={() => {
+                  setImagesReady((a) => a + 1)
+                }}
+              />
             </Stack>
-          </Grid>
-          <Grid item>
-            <Typography variant="h6">
-              {history.name}&emsp;{villagerData.ja_name}
-            </Typography>
-            <Typography>
-              {villagerData.personality} {villagerData.gender} {villagerData.species}
-              <br />
-              Birthday: {villagerData.birthday_month} {villagerData.birthday_day}
-              <br />
-              Quote: <Box component="span" sx={{fontStyle: 'italic'}}>&quot;{villagerData.nh_details.quote}&quot;</Box>
-              <br />
-              Catchphrase: <Box component="span" sx={{fontStyle: 'italic'}}>&quot;{villagerData.nh_details.catchphrase}&quot;</Box>
-              <br /><br />
-              Moved in on {history.startDateString}
-            </Typography>
-              {history.photo ? <Typography>
-                Photo received on {history.photoDateString}
-                <br />
-                Time to receive: {history.daysToPhoto} days
-                </Typography> : ""}
-              {history.currentResident ? <br/> : <Typography>
-                Moved out on {history.endDateString}
-                </Typography>}
-            <Typography>
-              Duration of residence:&nbsp;
-              {history.duration} days{history.currentResident && " and counting"}
-            </Typography>
-            <br />
-            <Typography variant="body2">
-              <Link
-                href={villagerData.url}
-                target="_blank"
-                rel="noreferrer"
-                underline="hover"
-                >
-                Nookipedia page
-              </Link>
-            </Typography>
-          </Grid>
+          </Stack>
         </Grid>
-      </Box>
+        <Grid item>
+          <Typography variant="h6">
+            {history.name}&emsp;{villagerData.ja_name}
+          </Typography>
+          <Typography>
+            {villagerData.personality} {villagerData.gender} {villagerData.species}
+            <br />
+            Birthday: {villagerData.birthday_month} {villagerData.birthday_day}
+            <br />
+            Quote: <Box component="span" sx={{fontStyle: 'italic'}}>&quot;{villagerData.nh_details.quote}&quot;</Box>
+            <br />
+            Catchphrase: <Box component="span" sx={{fontStyle: 'italic'}}>&quot;{villagerData.nh_details.catchphrase}&quot;</Box>
+            <br /><br />
+            Moved in on {history.startDateString}
+          </Typography>
+            {history.photo ? <Typography>
+              Photo received on {history.photoDateString}
+              <br />
+              Time to receive: {history.daysToPhoto} days
+              </Typography> : ""}
+            {history.currentResident ? <br/> : <Typography>
+              Moved out on {history.endDateString}
+              </Typography>}
+          <Typography>
+            Duration of residence:&nbsp;
+            {history.duration} days{history.currentResident && " and counting"}
+          </Typography>
+          <br />
+          <Typography variant="body2">
+            <Link
+              href={villagerData.url}
+              target="_blank"
+              rel="noreferrer"
+              underline="hover"
+              >
+              Nookipedia page
+            </Link>
+          </Typography>
+        </Grid>
+      </Grid>
     </Dialog>
   )
 }
