@@ -41,6 +41,7 @@ export default function VillagerDialog({history, villagerData, showDialog, setSh
   }
   return (
     <Dialog
+      keepMounted
       open={showDialog}
       onClose={() => setShowDialog(false)}
       maxWidth={false}
