@@ -48,7 +48,7 @@ export default function VillagerDialog({history, villagerData, showDialog, setSh
       onClose={() => setShowDialog(false)}
       maxWidth={false}
     >
-      <Collapse in={dialogReady}>
+      <Collapse in={showDialog} appear>
         <Grid
           container
           alignItems='center'
