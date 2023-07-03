@@ -20,6 +20,7 @@ export default function VillagerDialog({history, villagerData, showDialog, setSh
   useEffect(() => {
     if (!showDialog) {
       setImagesReady(0);
+      setDialogReady(false);
     }
   }, [showDialog]);
 
