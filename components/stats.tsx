@@ -77,6 +77,7 @@ export default function Stats({ villagersData, histories, durationData, speciesD
       Number of Villagers: {histories.size}
       <br />
       Current villagers:
+    </Typography>
       <Grid container>
         {currentResidents.map((villager) =>
           <Grid key={villager}
@@ -86,7 +87,6 @@ export default function Stats({ villagersData, histories, durationData, speciesD
           </Grid>
         )}
       </Grid>
-    </Typography>
     <Divider>
       <Chip label="DURATION OF RESIDENCE" />
     </Divider>
