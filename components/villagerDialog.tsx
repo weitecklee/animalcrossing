@@ -27,7 +27,9 @@ export default function VillagerDialog({history, villagerData, showDialog, setSh
 
   useEffect(() => {
     if (imagesReady === 3) {
-      setDialogReady(true);
+      setTimeout(() => {
+        setDialogReady(true);
+      }, 1000)
     }
   }, [imagesReady]);
 
@@ -47,9 +49,6 @@ export default function VillagerDialog({history, villagerData, showDialog, setSh
       open={showDialog}
       onClose={() => setShowDialog(false)}
       maxWidth={false}
-      sx={{
-        transition: "width 1s ease-out",
-      }}
     >
       <Box
         sx={{
@@ -63,6 +62,7 @@ export default function VillagerDialog({history, villagerData, showDialog, setSh
       </Box>
       <Box sx={{
         visibility: dialogReady ? 'visible' : 'hidden',
+        transition: "width 3s ease-out",
       }}>
         <Grid
           container
