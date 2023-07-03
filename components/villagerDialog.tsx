@@ -47,6 +47,9 @@ export default function VillagerDialog({history, villagerData, showDialog, setSh
       open={showDialog}
       onClose={() => setShowDialog(false)}
       maxWidth={false}
+      sx={{
+        transition: "width 1s ease-out",
+      }}
     >
       <Box
         sx={{
