@@ -18,10 +18,17 @@ export default function VillagerDialog({history, villagerData, showDialog, setSh
   const [dialogReady, setDialogReady] = useState(false);
 
   useEffect(() => {
+    if (!showDialog) {
+      setImagesReady(0);
+    }
+  }, [showDialog]);
+
+  useEffect(() => {
     if (imagesReady === 3) {
       setDialogReady(true);
     }
   }, [imagesReady]);
+
   // const [aspectRatio, setAspectRatio] = useState(.5);
   // const [imageWidth, setImageWidth] = useState(100);
 
@@ -39,7 +46,7 @@ export default function VillagerDialog({history, villagerData, showDialog, setSh
       maxWidth={false}
     >
       <Box sx={{
-        visibility: imagesReady ? 'visible' : 'hidden',
+        visibility: dialogReady ? 'visible' : 'hidden',
       }}>
         <Grid
           container
