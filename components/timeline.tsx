@@ -1,27 +1,24 @@
+import ViewTimelineRoundedIcon from '@mui/icons-material/ViewTimelineRounded';
+import { Alert, Box, Fab, useMediaQuery } from '@mui/material';
+import Snackbar from '@mui/material/Snackbar';
+import { useTheme } from '@mui/material/styles';
 import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
   BarElement,
+  CategoryScale,
+  Chart as ChartJS,
+  Colors,
+  Legend,
+  LinearScale,
+  TimeScale,
   Title,
   Tooltip,
-  Legend,
-  Colors,
-  TimeScale,
 } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
-import Zoom from 'chartjs-plugin-zoom';
 import 'chartjs-adapter-date-fns';
-import Box from '@mui/material/Box';
-import { useState, useEffect, Dispatch, SetStateAction } from 'react';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
-import { VillagerProperties2, HistoryProperties } from '../types';
+import Zoom from 'chartjs-plugin-zoom';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Bar } from 'react-chartjs-2';
+import { HistoryProperties, VillagerProperties2 } from '../types';
 import TimelineTooltip from './timelineTooltip';
-import Alert from '@mui/material/Alert';
-import Snackbar from '@mui/material/Snackbar';
-import ViewTimelineRoundedIcon from '@mui/icons-material/ViewTimelineRounded';
-import Fab from '@mui/material/Fab';
 
 ChartJS.register(
   CategoryScale,

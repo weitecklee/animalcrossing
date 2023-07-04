@@ -1,15 +1,8 @@
-import React, { useState, useEffect, Dispatch, SetStateAction } from 'react';
-import Dialog from '@mui/material/Dialog';
-import Grid from '@mui/material/Grid';
-import Stack from '@mui/material/Stack';
-import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
-import { HistoryProperties, VillagerProperties2 } from '../types';
-import { Typography } from '@mui/material';
-import Image from 'next/image';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import { Box, Collapse, Dialog, Grid, Link, Stack, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import Collapse from "@mui/material/Collapse";
+import Image from 'next/image';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { HistoryProperties, VillagerProperties2 } from '../types';
 
 export default function VillagerDialog({ history, villagerData, showVillagerDialog, setShowVillagerDialog } : {
   history: HistoryProperties,

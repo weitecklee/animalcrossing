@@ -1,10 +1,8 @@
-import { useState, Dispatch, SetStateAction } from 'react';
-import Grid from '@mui/material/Grid';
-import Fab from '@mui/material/Fab';
-import Box from '@mui/material/Box';
-import HistoryCard from './card';
 import ListRoundedIcon from '@mui/icons-material/ListRounded';
+import { Box, Fab, Grid } from '@mui/material';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { HistoryProperties, VillagerProperties2 } from '../types';
+import HistoryCard from './card';
 
 export default function Cards({villagersData, histories, setDialogVillager, setShowVillagerDialog }:{
   villagersData: Map<string, VillagerProperties2>,

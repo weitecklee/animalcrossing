@@ -1,15 +1,8 @@
-import { Dispatch, SetStateAction, useState, MouseEvent } from 'react';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Image from 'next/image';
-import LeafIcon from '../public/Animal_Crossing_Leaf.svg';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 import MenuIcon from '@mui/icons-material/Menu';
-import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
+import { AppBar, Box, Button, IconButton, Menu, MenuItem, Toolbar, Typography } from '@mui/material';
+import Image from 'next/image';
+import { Dispatch, MouseEvent, SetStateAction, useState } from 'react';
+import LeafIcon from '../public/Animal_Crossing_Leaf.svg';
 
 const pages = ['Villagers', 'Timeline', 'Stats'];
 

@@ -1,15 +1,7 @@
-import { useState, useEffect, Dispatch, SetStateAction } from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import CardActionArea from '@mui/material/CardActionArea';
-import Collapse from '@mui/material/Collapse';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import Stack from '@mui/material/Stack';
 import InfoIcon from '@mui/icons-material/Info';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import { Card, CardActionArea, CardContent, CardMedia, Collapse, IconButton, Stack, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { HistoryProperties, VillagerProperties2 } from '../types';
 
 export default function HistoryCard({history, villagerData, setShowVillagerDialog, setDialogVillager, expandAll}: {history: HistoryProperties, villagerData: VillagerProperties2, setShowVillagerDialog: Dispatch<SetStateAction<boolean>>, setDialogVillager: Dispatch<SetStateAction<string>>, expandAll: boolean}) {

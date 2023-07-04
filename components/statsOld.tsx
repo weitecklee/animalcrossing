@@ -1,14 +1,7 @@
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import Stack from '@mui/material/Stack';
-import Divider from '@mui/material/Divider';
-import Image from 'next/image';
-import { VillagerProperties2, HistoryProperties, TraitProperties } from '../types';
-import { ImageList, ImageListItem } from '@mui/material';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import { Box, Divider, ImageList, ImageListItem, List, ListItem, Stack, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import Image from 'next/image';
+import { HistoryProperties, TraitProperties, VillagerProperties2 } from '../types';
 
 export default function Stats({ villagersData, histories, sortedDurations, speciesData, personalityData, genderData } : {
   villagersData: Map<string,VillagerProperties2>,

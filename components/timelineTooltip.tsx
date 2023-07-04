@@ -1,16 +1,12 @@
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import Paper, {PaperProps} from '@mui/material/Paper'
-import Typography from '@mui/material/Typography';
-import Image from 'next/image';
-import Draggable from 'react-draggable';
-import OpenWithRoundedIcon from '@mui/icons-material/OpenWithRounded';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
-import { Dispatch, SetStateAction } from 'react';
-import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/Info';
-import { VillagerProperties2, HistoryProperties } from '../types';
+import OpenWithRoundedIcon from '@mui/icons-material/OpenWithRounded';
+import { Box, IconButton, Stack, Typography, useMediaQuery } from '@mui/material';
+import Paper, { PaperProps } from '@mui/material/Paper';
+import { useTheme } from '@mui/material/styles';
+import Image from 'next/image';
+import { Dispatch, SetStateAction } from 'react';
+import Draggable from 'react-draggable';
+import { HistoryProperties, VillagerProperties2 } from '../types';
 
 function DraggablePaper(props: PaperProps) {
   return (
