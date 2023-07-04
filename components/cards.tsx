@@ -1,16 +1,18 @@
-import { useState } from 'react';
+import { useState, Dispatch, SetStateAction } from 'react';
 import Grid from '@mui/material/Grid';
 import Fab from '@mui/material/Fab';
 import Box from '@mui/material/Box';
 import HistoryCard from './card';
-import VillagerDialog from './villagerDialog';
 import ListRoundedIcon from '@mui/icons-material/ListRounded';
 import { HistoryProperties, VillagerProperties2 } from '../types';
 
-export default function Cards({villagersData, histories}:{ villagersData: Map<string, VillagerProperties2>, histories: Map<string,HistoryProperties>}) {
+export default function Cards({villagersData, histories, setDialogVillager, setShowVillagerDialog }:{
+  villagersData: Map<string, VillagerProperties2>,
+  histories: Map<string,HistoryProperties>,
+  setDialogVillager: Dispatch<SetStateAction<string>>,
+  setShowVillagerDialog: Dispatch<SetStateAction<boolean>>,
+}) {
 
-  const [showDialog, setShowDialog] = useState(false);
-  const [dialogVillager, setDialogVillager] = useState('');
   const historiesArray = Array.from(histories.values());
   const [expandAll, setExpandAll] = useState(false);
 
@@ -24,19 +26,13 @@ export default function Cards({villagersData, histories}:{ villagersData: Map<st
           <HistoryCard
             history={history}
             villagerData={villagersData.get(history.name)!}
-            setShowDialog={setShowDialog}
+            setShowVillagerDialog={setShowVillagerDialog}
             setDialogVillager={setDialogVillager}
             expandAll={expandAll}
           />
         </Grid>
       )}
     </Grid>
-    <VillagerDialog
-      history={histories.get(dialogVillager)!}
-      villagerData={villagersData.get(dialogVillager)!}
-      showDialog={showDialog}
-      setShowDialog={setShowDialog}
-    />
     <Box sx={{display: {xs: 'none', md: 'flex' }}}>
       <Fab variant="extended" onClick={()=> setExpandAll((a)=> !a)} color="secondary" sx={{
         position: "fixed",

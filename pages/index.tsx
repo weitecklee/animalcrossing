@@ -1,13 +1,14 @@
-import { useState, useEffect } from 'react';
-import Head from 'next/head';
 import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
-import dynamic from 'next/dynamic'
-import { MongoProperties, HistoryProperties, TraitProperties, DurationProperties, PhotoStatsProperties } from '../types';
-import TopBar from '../components/topBar';
-import IndexComponent from '../components/indexComponent';
+import dynamic from 'next/dynamic';
+import Head from 'next/head';
+import { useEffect, useState } from 'react';
 import Cards from '../components/cards';
-import { villagersData } from '../lib/combinedData';
+import IndexComponent from '../components/indexComponent';
 import Stats from '../components/stats';
+import TopBar from '../components/topBar';
+import VillagerDialog from '../components/villagerDialog';
+import { villagersData } from '../lib/combinedData';
+import { DurationProperties, HistoryProperties, MongoProperties, PhotoStatsProperties, TraitProperties } from '../types';
 
 let theme = createTheme({
   palette: {
@@ -61,6 +62,8 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
   const [timelineColors, setTimelineColors] = useState<string[]>([]);
   const [timelineColors3, setTimelineColors3] = useState<string[]>([]);
   const [durationData, setDurationData] = useState<DurationProperties[]>([]);
+  const [showVillagerDialog, setShowVillagerDialog] = useState(false);
+  const [dialogVillager, setDialogVillager] = useState('');
 
   useEffect(() => {
     const tmpHistories: Map<string,HistoryProperties> = new Map();
@@ -141,6 +144,8 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
       {component === 'Villagers' && <Cards
         villagersData={villagersData}
         histories={histories}
+        setDialogVillager={setDialogVillager}
+        setShowVillagerDialog={setShowVillagerDialog}
       />}
       {component === 'Timeline' && <Timeline
         timelineData={timelineData}
@@ -152,6 +157,8 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
         timelineData3={timelineData3}
         timelineLabels3={timelineLabels3}
         timelineColors3={timelineColors3}
+        setDialogVillager={setDialogVillager}
+        setShowVillagerDialog={setShowVillagerDialog}
       />}
       {component === 'Stats' && <Stats
         villagersData={villagersData}
@@ -163,7 +170,15 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
         photoData={photoData}
         photoStats={photoStats}
         currentResidents={currentResidents}
+        setDialogVillager={setDialogVillager}
+        setShowVillagerDialog={setShowVillagerDialog}
       />}
+      <VillagerDialog
+        history={histories.get(dialogVillager)!}
+        villagerData={villagersData.get(dialogVillager)!}
+        showVillagerDialog={showVillagerDialog}
+        setShowVillagerDialog={setShowVillagerDialog}
+      />
 
     </ThemeProvider>
   </>)

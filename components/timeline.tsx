@@ -13,7 +13,7 @@ import { Bar } from 'react-chartjs-2';
 import Zoom from 'chartjs-plugin-zoom';
 import 'chartjs-adapter-date-fns';
 import Box from '@mui/material/Box';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Dispatch, SetStateAction } from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { VillagerProperties2, HistoryProperties } from '../types';
@@ -22,7 +22,6 @@ import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 import ViewTimelineRoundedIcon from '@mui/icons-material/ViewTimelineRounded';
 import Fab from '@mui/material/Fab';
-import VillagerDialog from './villagerDialog';
 
 ChartJS.register(
   CategoryScale,
@@ -95,7 +94,7 @@ options2.plugins.zoom.limits = {
   y: { min: 'original', max: 'original', minRange: 20 },
 };
 
-export default function Timeline({ timelineData, timelineData2, villagersData, histories, timelineLabels, timelineColors, timelineData3, timelineLabels3, timelineColors3 }: {
+export default function Timeline({ timelineData, timelineData2, villagersData, histories, timelineLabels, timelineColors, timelineData3, timelineLabels3, timelineColors3, setDialogVillager, setShowVillagerDialog }: {
   timelineData: string[][],
   timelineData2: number[],
   villagersData: Map<string,VillagerProperties2>,
@@ -105,6 +104,8 @@ export default function Timeline({ timelineData, timelineData2, villagersData, h
   timelineData3: number[],
   timelineLabels3: string[],
   timelineColors3: string[],
+  setDialogVillager: Dispatch<SetStateAction<string>>,
+  setShowVillagerDialog: Dispatch<SetStateAction<boolean>>,
 }) {
 
   const [timelineVillager, setTimelineVillager] = useState('');
@@ -113,7 +114,6 @@ export default function Timeline({ timelineData, timelineData2, villagersData, h
   const shortScreen = useMediaQuery('(max-height:700px)')
   const theme = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down('md'))
-  const [showDialog, setShowDialog] = useState(false);
   const [timelineMode, setTimelineMode] = useState(0);
   const [barData, setBarData] = useState<string[][] | number[]>(timelineData);
   const [barLabels, setBarLabels] = useState(timelineLabels);
@@ -145,6 +145,10 @@ export default function Timeline({ timelineData, timelineData2, villagersData, h
   useEffect(() => {
     setOpenSnackbar(smallScreen);
   }, [smallScreen]);
+
+  useEffect(() => {
+    setDialogVillager(timelineVillager);
+  }, [timelineVillager, setDialogVillager]);
 
   useEffect(() => {
     if (timelineMode === 0) {
@@ -203,15 +207,9 @@ export default function Timeline({ timelineData, timelineData2, villagersData, h
       <TimelineTooltip
         villagerData={villagersData.get(timelineVillager)!}
         history={histories.get(timelineVillager)!}
-        setShowDialog={setShowDialog}
+        setShowVillagerDialog={setShowVillagerDialog}
       />
     }
-    <VillagerDialog
-      history={histories.get(timelineVillager)!}
-      villagerData={villagersData.get(timelineVillager)!}
-      showDialog={showDialog}
-      setShowDialog={setShowDialog}
-    />
     <Fab
       color="secondary"
       onClick={() => {
