@@ -1,7 +1,7 @@
-import { Box, Collapse, Dialog, Grid, Link, Stack, Typography, useMediaQuery } from '@mui/material';
+import { Box, CircularProgress, Collapse, Dialog, Grid, Link, Stack, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import Image from 'next/image';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import { HistoryProperties, VillagerProperties2 } from '../types';
 
 export default function VillagerDialog({ history, villagerData, showVillagerDialog, setShowVillagerDialog } : {
@@ -15,6 +15,7 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
   const smallScreen = useMediaQuery(theme.breakpoints.down('md'))
   const [imagesReady, setImagesReady] = useState(0);
   const [dialogReady, setDialogReady] = useState(true);
+  const previousVillager = useRef('');
 
   useEffect(() => {
     if (imagesReady === 3) {
@@ -22,17 +23,39 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
     }
   }, [imagesReady]);
 
+  useEffect(() => {
+    if (!villagerData) {
+      return;
+    }
+    if (previousVillager.current === villagerData.name && showVillagerDialog) {
+      setDialogReady(true);
+    }
+    previousVillager.current = villagerData.name;
+  }, [showVillagerDialog, villagerData]);
+
   if (!history || !villagerData) {
     return;
   }
-  return (
+
+  return (<>
+    <Box
+      sx={{
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        display: showVillagerDialog ? (dialogReady ? "none" : "" ) : "none",
+        zIndex: 9999,
+      }}
+    >
+      <CircularProgress size={64} />
+    </Box>
     <Dialog
       keepMounted
       open={showVillagerDialog}
       onClose={() => {
-        setShowVillagerDialog(false);
         setImagesReady(0);
         setDialogReady(false);
+        setShowVillagerDialog(false);
       }}
       maxWidth={false}
     >
@@ -132,5 +155,6 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
         </Grid>
       </Collapse>
     </Dialog>
+  </>
   )
 }
