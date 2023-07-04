@@ -16,14 +16,7 @@ export default function VillagerDialog({history, villagerData, showVillagerDialo
   const theme = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down('md'))
   const [imagesReady, setImagesReady] = useState(0);
-  const [dialogReady, setDialogReady] = useState(false);
-
-  useEffect(() => {
-    if (!showVillagerDialog) {
-      setImagesReady(0);
-      setDialogReady(false);
-    }
-  }, [showVillagerDialog]);
+  const [dialogReady, setDialogReady] = useState(true);
 
   useEffect(() => {
     if (imagesReady === 3) {
@@ -45,10 +38,14 @@ export default function VillagerDialog({history, villagerData, showVillagerDialo
     <Dialog
       keepMounted
       open={showVillagerDialog}
-      onClose={() => setShowVillagerDialog(false)}
+      onClose={() => {
+        setShowVillagerDialog(false);
+        setImagesReady(0);
+        setDialogReady(false);
+      }}
       maxWidth={false}
     >
-      <Collapse in={showVillagerDialog} appear>
+      <Collapse in={dialogReady} appear>
         <Grid
           container
           alignItems='center'
