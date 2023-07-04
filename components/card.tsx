@@ -12,7 +12,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { HistoryProperties, VillagerProperties2 } from '../types';
 
-export default function HistoryCard({history, villagerData, setShowDialog, setDialogVillager, expandAll}: {history: HistoryProperties, villagerData: VillagerProperties2, setShowDialog: Dispatch<SetStateAction<boolean>>, setDialogVillager: Dispatch<SetStateAction<string>>, expandAll: boolean}) {
+export default function HistoryCard({history, villagerData, setShowVillagerDialog, setDialogVillager, expandAll}: {history: HistoryProperties, villagerData: VillagerProperties2, setShowVillagerDialog: Dispatch<SetStateAction<boolean>>, setDialogVillager: Dispatch<SetStateAction<string>>, expandAll: boolean}) {
 
   const [expanded, setExpanded] = useState(false);
   const theme = useTheme();
@@ -36,7 +36,7 @@ export default function HistoryCard({history, villagerData, setShowDialog, setDi
     <IconButton
       onClick={() => {
         setDialogVillager(history.name);
-        setShowDialog(true);
+        setShowVillagerDialog(true);
       }}
       size={smallScreen ? "small" : "medium"}
       sx={{

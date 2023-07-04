@@ -11,7 +11,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import Collapse from "@mui/material/Collapse";
 
-export default function VillagerDialog({history, villagerData, showDialog, setShowDialog} : {history: HistoryProperties, villagerData: VillagerProperties2, showDialog: boolean, setShowDialog: Dispatch<SetStateAction<boolean>>}) {
+export default function VillagerDialog({history, villagerData, showVillagerDialog, setShowVillagerDialog} : {history: HistoryProperties, villagerData: VillagerProperties2, showVillagerDialog: boolean, setShowVillagerDialog: Dispatch<SetStateAction<boolean>>}) {
 
   const theme = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down('md'))
@@ -19,11 +19,11 @@ export default function VillagerDialog({history, villagerData, showDialog, setSh
   const [dialogReady, setDialogReady] = useState(false);
 
   useEffect(() => {
-    if (!showDialog) {
+    if (!showVillagerDialog) {
       setImagesReady(0);
       setDialogReady(false);
     }
-  }, [showDialog]);
+  }, [showVillagerDialog]);
 
   useEffect(() => {
     if (imagesReady === 3) {
@@ -44,11 +44,11 @@ export default function VillagerDialog({history, villagerData, showDialog, setSh
   return (
     <Dialog
       keepMounted
-      open={showDialog}
-      onClose={() => setShowDialog(false)}
+      open={showVillagerDialog}
+      onClose={() => setShowVillagerDialog(false)}
       maxWidth={false}
     >
-      <Collapse in={showDialog} appear>
+      <Collapse in={showVillagerDialog} appear>
         <Grid
           container
           alignItems='center'

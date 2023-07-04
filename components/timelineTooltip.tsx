@@ -32,7 +32,7 @@ function DraggablePaper(props: PaperProps) {
   )
 }
 
-export default function TimelineTooltip({villagerData, history, setShowDialog}: { villagerData: VillagerProperties2, history: HistoryProperties, setShowDialog: Dispatch<SetStateAction<boolean>>}) {
+export default function TimelineTooltip({villagerData, history, setShowVillagerDialog}: { villagerData: VillagerProperties2, history: HistoryProperties, setShowVillagerDialog: Dispatch<SetStateAction<boolean>>}) {
 
   const theme = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down('md'))
@@ -83,7 +83,7 @@ export default function TimelineTooltip({villagerData, history, setShowDialog}: 
         </Box>
         <IconButton
           onClick={() => {
-            setShowDialog(true);
+            setShowVillagerDialog(true);
           }}
           size={smallScreen ? "small" : "medium"}
           sx={{

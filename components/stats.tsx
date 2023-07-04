@@ -1,4 +1,4 @@
-import { useState, MouseEvent } from 'react';
+import { useState, MouseEvent, Dispatch, SetStateAction } from 'react';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Image from 'next/image';
@@ -6,9 +6,9 @@ import { Link, Dialog, DialogContent, Box, List, ListItem, Divider, Chip } from 
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { VillagerProperties2, HistoryProperties, TraitProperties, DurationProperties, PhotoStatsProperties } from '../types';
-import VillagerDialog from './villagerDialog';
+import Collapse from "@mui/material/Collapse";
 
-export default function Stats({ villagersData, histories, durationData, speciesData, personalityData, genderData, photoData, photoStats, currentResidents } : {
+export default function Stats({ villagersData, histories, durationData, speciesData, personalityData, genderData, photoData, photoStats, currentResidents, setDialogVillager, setShowVillagerDialog } : {
   villagersData: Map<string,VillagerProperties2>,
   histories: Map<string,HistoryProperties>,
   durationData: DurationProperties[],
@@ -18,14 +18,14 @@ export default function Stats({ villagersData, histories, durationData, speciesD
   photoData: DurationProperties[],
   photoStats: PhotoStatsProperties,
   currentResidents: string[],
+  setDialogVillager: Dispatch<SetStateAction<string>>,
+  setShowVillagerDialog: Dispatch<SetStateAction<boolean>>,
 }) {
 
   const [dialogTraitData, setDialogTraitData] = useState<TraitProperties[]>([]);
   const [showTraitDialog, setShowTraitDialog] = useState(false);
   const [showDurationDialog, setShowDurationDialog] = useState(false);
-  const [showVillagerDialog, setShowVillagerDialog] = useState(false);
   const [showPhotoDialog, setShowPhotoDialog] = useState(false);
-  const [dialogVillager, setDialogVillager] = useState('');
   const theme = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -171,12 +171,6 @@ export default function Stats({ villagersData, histories, durationData, speciesD
         Full breakdown
       </Link>
     </Typography>
-    <VillagerDialog
-      history={histories.get(dialogVillager)!}
-      villagerData={villagersData.get(dialogVillager)!}
-      showDialog={showVillagerDialog}
-      setShowDialog={setShowVillagerDialog}
-    />
     <Dialog
       open={showDurationDialog}
       onClose={() => setShowDurationDialog(false)}
@@ -187,22 +181,22 @@ export default function Stats({ villagersData, histories, durationData, speciesD
       }}
     >
       <DialogContent>
-        <Typography variant="caption">
-          * = Current Resident
-        </Typography>
-        <List>
-          {durationData.map((duration) => (
-            duration.villagers.map((villager) => (
-              <ListItem key={villager} disablePadding>
-                <Box display="flex" alignItems="center">
-                  <VillagerIcon villager={villager} />
-                  <Typography>
-                    &nbsp;&nbsp;{duration.trait} days{histories.get(villager)?.currentResident ? "*" : ""}
-                  </Typography>
-                </Box>
-              </ListItem>
-          ))))}
-        </List>
+          <Typography variant="caption">
+            * = Current Resident
+          </Typography>
+          <List>
+            {durationData.map((duration) => (
+              duration.villagers.map((villager) => (
+                <ListItem key={villager} disablePadding>
+                  <Box display="flex" alignItems="center">
+                    <VillagerIcon villager={villager} />
+                    <Typography>
+                      &nbsp;&nbsp;{duration.trait} days{histories.get(villager)?.currentResident ? "*" : ""}
+                    </Typography>
+                  </Box>
+                </ListItem>
+            ))))}
+          </List>
       </DialogContent>
     </Dialog>
     <Dialog

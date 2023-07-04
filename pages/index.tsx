@@ -8,6 +8,7 @@ import IndexComponent from '../components/indexComponent';
 import Cards from '../components/cards';
 import { villagersData } from '../lib/combinedData';
 import Stats from '../components/stats';
+import VillagerDialog from '../components/villagerDialog';
 
 let theme = createTheme({
   palette: {
@@ -61,6 +62,8 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
   const [timelineColors, setTimelineColors] = useState<string[]>([]);
   const [timelineColors3, setTimelineColors3] = useState<string[]>([]);
   const [durationData, setDurationData] = useState<DurationProperties[]>([]);
+  const [showVillagerDialog, setShowVillagerDialog] = useState(false);
+  const [dialogVillager, setDialogVillager] = useState('');
 
   useEffect(() => {
     const tmpHistories: Map<string,HistoryProperties> = new Map();
@@ -141,6 +144,8 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
       {component === 'Villagers' && <Cards
         villagersData={villagersData}
         histories={histories}
+        setDialogVillager={setDialogVillager}
+        setShowVillagerDialog={setShowVillagerDialog}
       />}
       {component === 'Timeline' && <Timeline
         timelineData={timelineData}
@@ -152,6 +157,8 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
         timelineData3={timelineData3}
         timelineLabels3={timelineLabels3}
         timelineColors3={timelineColors3}
+        setDialogVillager={setDialogVillager}
+        setShowVillagerDialog={setShowVillagerDialog}
       />}
       {component === 'Stats' && <Stats
         villagersData={villagersData}
@@ -163,7 +170,15 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
         photoData={photoData}
         photoStats={photoStats}
         currentResidents={currentResidents}
+        setDialogVillager={setDialogVillager}
+        setShowVillagerDialog={setShowVillagerDialog}
       />}
+      <VillagerDialog
+        history={histories.get(dialogVillager)!}
+        villagerData={villagersData.get(dialogVillager)!}
+        showVillagerDialog={showVillagerDialog}
+        setShowVillagerDialog={setShowVillagerDialog}
+      />
 
     </ThemeProvider>
   </>)
