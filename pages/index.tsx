@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
-import Head from 'next/head';
 import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
-import dynamic from 'next/dynamic'
-import { MongoProperties, HistoryProperties, TraitProperties, DurationProperties, PhotoStatsProperties } from '../types';
-import TopBar from '../components/topBar';
-import IndexComponent from '../components/indexComponent';
+import dynamic from 'next/dynamic';
+import Head from 'next/head';
+import { useEffect, useState } from 'react';
 import Cards from '../components/cards';
-import { villagersData } from '../lib/combinedData';
+import IndexComponent from '../components/indexComponent';
 import Stats from '../components/stats';
+import TopBar from '../components/topBar';
 import VillagerDialog from '../components/villagerDialog';
+import { villagersData } from '../lib/combinedData';
+import { DurationProperties, HistoryProperties, MongoProperties, PhotoStatsProperties, TraitProperties } from '../types';
 
 let theme = createTheme({
   palette: {

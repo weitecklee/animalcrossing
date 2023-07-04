@@ -11,7 +11,12 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import Collapse from "@mui/material/Collapse";
 
-export default function VillagerDialog({history, villagerData, showVillagerDialog, setShowVillagerDialog} : {history: HistoryProperties, villagerData: VillagerProperties2, showVillagerDialog: boolean, setShowVillagerDialog: Dispatch<SetStateAction<boolean>>}) {
+export default function VillagerDialog({ history, villagerData, showVillagerDialog, setShowVillagerDialog } : {
+  history: HistoryProperties,
+  villagerData: VillagerProperties2,
+  showVillagerDialog: boolean,
+  setShowVillagerDialog: Dispatch<SetStateAction<boolean>>,
+}) {
 
   const theme = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down('md'))

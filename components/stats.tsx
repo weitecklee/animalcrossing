@@ -180,22 +180,22 @@ export default function Stats({ villagersData, histories, durationData, speciesD
       }}
     >
       <DialogContent>
-          <Typography variant="caption">
-            * = Current Resident
-          </Typography>
-          <List>
-            {durationData.map((duration) => (
-              duration.villagers.map((villager) => (
-                <ListItem key={villager} disablePadding>
-                  <Box display="flex" alignItems="center">
-                    <VillagerIcon villager={villager} />
-                    <Typography>
-                      &nbsp;&nbsp;{duration.trait} days{histories.get(villager)?.currentResident ? "*" : ""}
-                    </Typography>
-                  </Box>
-                </ListItem>
-            ))))}
-          </List>
+        <Typography variant="caption">
+          * = Current Resident
+        </Typography>
+        <List>
+          {durationData.map((duration) => (
+            duration.villagers.map((villager) => (
+              <ListItem key={villager} disablePadding>
+                <Box display="flex" alignItems="center">
+                  <VillagerIcon villager={villager} />
+                  <Typography>
+                    &nbsp;&nbsp;{duration.trait} days{histories.get(villager)?.currentResident ? "*" : ""}
+                  </Typography>
+                </Box>
+              </ListItem>
+          ))))}
+        </List>
       </DialogContent>
     </Dialog>
     <Dialog
