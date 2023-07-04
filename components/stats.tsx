@@ -1,11 +1,8 @@
-import { useState, MouseEvent, Dispatch, SetStateAction } from 'react';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import Image from 'next/image';
-import { Link, Dialog, DialogContent, Box, List, ListItem, Divider, Chip } from '@mui/material';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import { Box, Chip, Dialog, DialogContent, Divider, Grid, Link, List, ListItem, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { VillagerProperties2, HistoryProperties, TraitProperties, DurationProperties, PhotoStatsProperties } from '../types';
+import Image from 'next/image';
+import { Dispatch, MouseEvent, SetStateAction, useState } from 'react';
+import { DurationProperties, HistoryProperties, PhotoStatsProperties, TraitProperties, VillagerProperties2 } from '../types';
 
 export default function Stats({ villagersData, histories, durationData, speciesData, personalityData, genderData, photoData, photoStats, currentResidents, setDialogVillager, setShowVillagerDialog } : {
   villagersData: Map<string,VillagerProperties2>,
