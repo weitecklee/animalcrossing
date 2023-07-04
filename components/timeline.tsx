@@ -90,6 +90,16 @@ options2.plugins.zoom.limits = {
   y: { min: 'original', max: 'original', minRange: 20 },
 };
 
+const colorBackgroundOnHover = {
+  id: 'colorBackgroundOnHover',
+  beforeDatasetsDraw(chart) {
+    const { ctx, tooltip, chartArea: { top, bottom, left, right, width, height }, scales: {x, y} } = chart;
+
+    ctx.fillStyle = 'black';
+    ctx.fillRect(left, tooltip.caretY, width, 1);
+  }
+};
+
 export default function Timeline({ timelineData, timelineData2, villagersData, histories, timelineLabels, timelineColors, timelineData3, timelineLabels3, timelineColors3, setDialogVillager, setShowVillagerDialog }: {
   timelineData: string[][],
   timelineData2: number[],
@@ -194,10 +204,13 @@ export default function Timeline({ timelineData, timelineData2, villagersData, h
             label: 'Villagers',
             data: barData,
             backgroundColor: barColors,
+            hoverBorderColor: "#000",
+            hoverBorderWidth: 2,
           }
         ]
       }}
       options={barOptions}
+      plugins={[colorBackgroundOnHover]}
     />
     {showTooltip &&
       <TimelineTooltip
