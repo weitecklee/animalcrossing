@@ -15,6 +15,7 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
   const smallScreen = useMediaQuery(theme.breakpoints.down('md'))
   const [imagesReady, setImagesReady] = useState(0);
   const [dialogReady, setDialogReady] = useState(true);
+  const [showLoading, setShowLoading] = useState(false);
   const previousVillager = useRef('');
 
   useEffect(() => {
@@ -22,6 +23,14 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
       setDialogReady(true);
     }
   }, [imagesReady]);
+
+  useEffect(() => {
+    if (showVillagerDialog) {
+      setTimeout(() => {
+        setShowLoading(true);
+      }, 1000);
+    }
+  }, [showVillagerDialog]);
 
   useEffect(() => {
     if (!villagerData) {
@@ -43,7 +52,7 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
         position: "absolute",
         top: "50%",
         left: "50%",
-        display: showVillagerDialog ? (dialogReady ? "none" : "" ) : "none",
+        display: showVillagerDialog && showLoading ? (dialogReady ? "none" : "" ) : "none",
         zIndex: 9999,
       }}
     >
@@ -55,6 +64,7 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
       onClose={() => {
         setImagesReady(0);
         setDialogReady(false);
+        setShowLoading(false);
         setShowVillagerDialog(false);
       }}
       maxWidth={false}
