@@ -1,5 +1,6 @@
-import InfoIcon from '@mui/icons-material/Info';
-import { Box, Card, CardActionArea, CardContent, CardMedia, Collapse, IconButton, Stack, Typography, useMediaQuery } from '@mui/material';
+import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import { Card, CardActionArea, CardMedia, IconButton, Stack, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { HistoryProperties, VillagerProperties2 } from '../types';
@@ -39,11 +40,24 @@ export default function HistoryCard({ history, villagerData, setShowVillagerDial
       size={smallScreen ? "small" : "medium"}
       sx={{
         position: 'absolute',
-        bottom: smallScreen ? '15%' : 0,
-        right: smallScreen ? '15%' : 0,
+        bottom:   '15px' ,
+        right:  '15px',
       }}
     >
-      <InfoIcon fontSize="inherit" />
+      <InfoOutlinedIcon fontSize="inherit" />
+    </IconButton>
+    <IconButton
+      onClick={() => {
+        setExpanded(false);
+      }}
+      size={smallScreen ? "small" : "medium"}
+      sx={{
+        position: 'absolute',
+        top:   '0px' ,
+        right:  '15px',
+      }}
+    >
+      <HighlightOffRoundedIcon fontSize="inherit" />
     </IconButton>
   </>
 
@@ -63,14 +77,14 @@ export default function HistoryCard({ history, villagerData, setShowVillagerDial
         </CardMedia>
       </CardActionArea>
       <Stack
-        height={100}
-        width={100}
+        height="100%"
+        width="100%"
         bgcolor='rgba(255, 255, 255, .8)'
         justifyContent="flex-start"
         alignItems="flex-start"
         padding={1}
         sx={{
-          display: expanded ? {xs: 'flex', md: 'none'} : 'none',
+          display: expanded ? 'flex' : 'none',
           position: 'absolute',
           top: 0,
           left: 0,
@@ -78,18 +92,6 @@ export default function HistoryCard({ history, villagerData, setShowVillagerDial
       >
         <Content />
       </Stack>
-      <Box sx={{
-          display: {
-            xs: 'none',
-            md: 'flex',
-          }
-        }}>
-        <Collapse in={expanded} appear >
-          <CardContent sx={{ position: 'relative' }}>
-            <Content />
-          </CardContent>
-        </Collapse>
-      </Box>
     </Card>
   );
 }
