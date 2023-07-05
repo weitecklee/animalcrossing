@@ -1,4 +1,6 @@
 import { Box, Link, Typography } from '@mui/material';
+import Image from 'next/image';
+import AvatarPNG from '../public/avatar13.png';
 
 export default function IndexComponent() {
   return <>
@@ -23,10 +25,13 @@ export default function IndexComponent() {
       &emsp;&emsp;MAP: a map of my island (coming soon!)
       <br/>
       Enjoy your visit!
-      <br />
-      <br />
-      <br />
     </Typography>
+    <Box py={2}>
+      <Image
+        src={AvatarPNG}
+        alt="My Villager"
+      />
+    </Box>
     <Typography variant="caption">
       Special thanks to:
       <br />
