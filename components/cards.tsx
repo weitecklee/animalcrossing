@@ -31,31 +31,19 @@ export default function Cards({villagersData, histories, setDialogVillager, setS
         </Grid>
       )}
     </Grid>
-    <Box sx={{display: {xs: 'none', md: 'flex' }}}>
-      <Fab variant="extended" onClick={()=> setExpandAll((a)=> !a)} color="secondary" sx={{
-        position: "fixed",
-        right: "1%",
-        bottom: "1%",
-        ':hover': {
-          bgcolor: "white"
-        }
-      }}>
-        <ListRoundedIcon sx={{mr: 1}} />
-          {expandAll ? 'Collapse All' : 'Expand All'}
-      </Fab>
+    <Box height={56}>
     </Box>
-    <Box sx={{display: {xs: 'flex', md: 'none' }}}>
-      <Fab size="medium" onClick={()=> setExpandAll((a)=> !a)} color="secondary" sx={{
-        position: "fixed",
-        right: "1%",
-        bottom: "1%",
-        ':hover': {
-          bgcolor: "white"
-        }
-      }}>
-        <ListRoundedIcon />
-      </Fab>
-    </Box>
+    <Fab variant="extended" onClick={()=> setExpandAll((a)=> !a)} color="secondary" sx={{
+      position: "fixed",
+      right: "1%",
+      bottom: "1%",
+      ':hover': {
+        bgcolor: "white"
+      }
+    }}>
+      <ListRoundedIcon sx={{mr: 1}} />
+        {expandAll ? 'Collapse All' : 'Expand All'}
+    </Fab>
   </>
 
 }
