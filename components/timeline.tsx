@@ -241,12 +241,29 @@ export default function Timeline({ timelineData, timelineData2, villagersData, h
               setTimelineMode((mode) => mode === 2 ? 0 : (mode + 1));
             }}
             sx={{
+              display: smallScreen ? "none" : "",
               ':hover': {
                 bgcolor: "white"
               },
             }}
           >
             Change view
+          </Button>
+          <Button
+            id="changeViewButton"
+            variant="contained"
+            color="secondary"
+            onClick={() => {
+              setTimelineMode((mode) => mode === 2 ? 0 : (mode + 1));
+            }}
+            sx={{
+              display: smallScreen ? "" : "none",
+              ':hover': {
+                bgcolor: "white"
+              },
+            }}
+          >
+            <ViewTimelineRoundedIcon />
           </Button>
         </Badge>
       </Box>

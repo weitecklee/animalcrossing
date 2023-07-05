@@ -30,6 +30,11 @@ export default function IndexComponent() {
       <Image
         src={AvatarPNG}
         alt="My Villager"
+        style={{
+          width: '90vw',
+          maxWidth: 376,
+          height: 'auto',
+        }}
       />
     </Box>
     <Typography variant="caption">
