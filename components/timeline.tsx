@@ -1,5 +1,6 @@
+import OpenWithRoundedIcon from '@mui/icons-material/OpenWithRounded';
 import ViewTimelineRoundedIcon from '@mui/icons-material/ViewTimelineRounded';
-import { Alert, Box, Fab, Snackbar, useMediaQuery } from '@mui/material';
+import { Alert, Badge, Box, Button, Snackbar, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import {
   BarElement,
@@ -16,6 +17,7 @@ import 'chartjs-adapter-date-fns';
 import Zoom from 'chartjs-plugin-zoom';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
+import Draggable from 'react-draggable';
 import { HistoryProperties, VillagerProperties2 } from '../types';
 import TimelineTooltip from './timelineTooltip';
 
@@ -168,7 +170,6 @@ export default function Timeline({ timelineData, timelineData2, villagersData, h
 
   return <Box sx={{
     position: "relative",
-    margin: "auto",
     width: "100%",
     height: shortScreen ? "80vh" : "90vh",
   }}>
@@ -206,45 +207,49 @@ export default function Timeline({ timelineData, timelineData2, villagersData, h
         setShowVillagerDialog={setShowVillagerDialog}
       />
     }
-    <Fab
-      color="secondary"
-      onClick={() => {
-        setTimelineMode((mode) => mode === 2 ? 0 : (mode + 1));
-      }}
-      sx={{
-        position: "fixed",
-        right: "1%",
-        bottom: "1%",
-        ':hover': {
-          bgcolor: "white"
-        },
-        display: {
-          xs: 'flex',
-          md: 'none',
-        },
-      }}>
-      <ViewTimelineRoundedIcon />
-    </Fab>
-    <Fab
-      color="secondary"
-      variant="extended"
-      onClick={() => {
-        setTimelineMode((mode) => mode === 2 ? 0 : (mode + 1));
-      }}
-      sx={{
-        position: "fixed",
-        right: "1%",
-        bottom: "1%",
-        ':hover': {
-          bgcolor: "white"
-        },
-        display: {
-          xs: 'none',
-          md: 'flex',
-        },
-      }}>
-      <ViewTimelineRoundedIcon sx={{mr: 1}} />
-      Change view
-    </Fab>
+    <Draggable
+      handle="#dragFab"
+      bounds="parent"
+      cancel="#changeViewButton"
+    >
+      <Box
+        sx={{
+          position: "absolute",
+          right: "1%",
+          top: "50%",
+        }}
+      >
+        <Badge
+          id="dragFab"
+          anchorOrigin={{
+            horizontal: 'left',
+            vertical: 'top',
+          }}
+          badgeContent={<OpenWithRoundedIcon
+            fontSize='small'
+            sx={{
+              cursor: 'move',
+            }}
+          />}
+        >
+          <Button
+            id="changeViewButton"
+            variant="contained"
+            color="secondary"
+            startIcon={<ViewTimelineRoundedIcon />}
+            onClick={() => {
+              setTimelineMode((mode) => mode === 2 ? 0 : (mode + 1));
+            }}
+            sx={{
+              ':hover': {
+                bgcolor: "white"
+              },
+            }}
+          >
+            Change view
+          </Button>
+        </Badge>
+      </Box>
+    </Draggable>
   </Box>
 }
