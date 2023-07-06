@@ -143,7 +143,7 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
                 <br />
                 Time to receive: {history.daysToPhoto} days
                 </Typography> : ""}
-              {history.currentResident ? <br/> : <Typography>
+              {history.currentResident ? "" : <Typography>
                 Moved out on {history.endDateString}
                 </Typography>}
             <Typography>
