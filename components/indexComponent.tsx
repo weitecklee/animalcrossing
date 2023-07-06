@@ -40,7 +40,7 @@ export default function IndexComponent() {
     <Typography variant="caption">
       Special thanks to:
       <br />
-      &emsp;
+      &emsp;&emsp;
       <Link
         href="https://www.nintendo.com/store/products/animal-crossing-new-horizons-switch/"
         target="_blank"
@@ -51,7 +51,7 @@ export default function IndexComponent() {
       </Link>
       &nbsp;for making the Animal Crossing video games
       <br />
-      &emsp;
+      &emsp;&emsp;
       <Link
         href="https://nookipedia.com/"
         target="_blank"
@@ -61,6 +61,17 @@ export default function IndexComponent() {
         Nookipedia
       </Link>
       &nbsp;for providing all the villager data and media
+      <br />
+      <br />
+      Made by&nbsp;
+      <Link
+        href="https://github.com/weitecklee"
+        target="_blank"
+        rel="noreferrer"
+        underline="hover"
+      >
+        weitecklee
+      </Link>
     </Typography>
   </>
 }
