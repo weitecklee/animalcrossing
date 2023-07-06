@@ -30,6 +30,7 @@ export default function IndexComponent() {
       <Image
         src={AvatarPNG}
         alt="My Villager"
+        priority
         style={{
           width: '90vw',
           maxWidth: 376,
