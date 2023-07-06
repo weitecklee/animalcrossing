@@ -38,7 +38,7 @@ let theme = createTheme({
 
 theme = responsiveFontSizes(theme, {
   breakpoints: ['md'],
-  factor: 2,
+  factor: 5,
 });
 
 const Timeline = dynamic(() => import('../components/timeline'), {ssr: false})
