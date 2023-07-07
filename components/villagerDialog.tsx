@@ -29,6 +29,9 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
       setTimeout(() => {
         setShowLoading(true);
       }, 1000);
+      setTimeout(() => {
+        setDialogReady(true);
+      }, 3000);
     }
   }, [showVillagerDialog]);
 
