@@ -4,6 +4,8 @@ import Image from 'next/image';
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import { HistoryProperties, VillagerProperties2 } from '../types';
 
+const timeouts: NodeJS.Timeout[] = [];
+
 export default function VillagerDialog({ history, villagerData, showVillagerDialog, setShowVillagerDialog } : {
   history: HistoryProperties,
   villagerData: VillagerProperties2,
@@ -26,12 +28,13 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
 
   useEffect(() => {
     if (showVillagerDialog) {
-      setTimeout(() => {
+      const timeoutID1 = setTimeout(() => {
         setShowLoading(true);
       }, 1000);
-      setTimeout(() => {
+      const timeoutID2 = setTimeout(() => {
         setDialogReady(true);
       }, 3000);
+      timeouts.push(timeoutID1, timeoutID2);
     }
   }, [showVillagerDialog]);
 
@@ -65,6 +68,9 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
       keepMounted
       open={showVillagerDialog}
       onClose={() => {
+        while (timeouts.length) {
+          clearTimeout(timeouts.pop());
+        }
         setImagesReady(0);
         setDialogReady(false);
         setShowLoading(false);
