@@ -1,5 +1,5 @@
 import MenuIcon from '@mui/icons-material/Menu';
-import { AppBar, Box, Button, IconButton, Menu, MenuItem, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, Button, IconButton, Menu, MenuItem, Slide, Toolbar, Typography, useScrollTrigger } from '@mui/material';
 import Image from 'next/image';
 import { Dispatch, MouseEvent, SetStateAction, useState } from 'react';
 import LeafIcon from '../public/Animal_Crossing_Leaf.svg';
@@ -20,8 +20,8 @@ export default function TopBar({ component, setComponent }: {
     setAnchorEl(null);
   };
 
-  return (
-    <>
+  return (<>
+    <Slide appear={false} direction="down" in={!useScrollTrigger()}>
       <AppBar color="secondary">
         <Toolbar>
           <Box sx={{display: {xs: 'flex', md: 'none'}}}>
@@ -95,7 +95,7 @@ export default function TopBar({ component, setComponent }: {
           </Box>
         </Toolbar>
       </AppBar>
-      <Toolbar />
-    </>
-  )
+    </Slide>
+    <Toolbar />
+  </>)
 }
