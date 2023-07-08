@@ -2,7 +2,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { AppBar, Box, Button, IconButton, Menu, MenuItem, Slide, Toolbar, Typography, useScrollTrigger } from '@mui/material';
 import Image from 'next/image';
 import { Dispatch, MouseEvent, SetStateAction, useState } from 'react';
-import LeafIcon from '../public/Animal_Crossing_Leaf.svg';
+import FavIcon from '../public/lasagnark8.png';
 
 const pages = ['Villagers', 'Timeline', 'Stats'];
 
@@ -58,6 +58,7 @@ export default function TopBar({ component, setComponent }: {
           </Box>
           <IconButton
             onClick={() => setComponent('Index')}
+            size="small"
             sx={{
               mr: 1,
               ':hover': {
@@ -66,9 +67,9 @@ export default function TopBar({ component, setComponent }: {
             }}
           >
             <Image
-              src={LeafIcon}
+              src={FavIcon}
               alt="Animal Crossing Leaf"
-              height={36}
+              height={45}
             />
           </IconButton>
           <Typography variant="h6" sx={{flexGrow: 1}}>
