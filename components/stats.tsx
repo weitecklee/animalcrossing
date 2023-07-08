@@ -1,5 +1,6 @@
 import { Box, Chip, Dialog, DialogContent, Divider, Grid, Link, List, ListItem, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import ReadMoreRoundedIcon from '@mui/icons-material/ReadMoreRounded';
 import Image from 'next/image';
 import { Dispatch, MouseEvent, SetStateAction, useState } from 'react';
 import { DurationProperties, HistoryProperties, PhotoStatsProperties, TraitProperties, VillagerProperties2 } from '../types';
@@ -65,6 +66,7 @@ export default function Stats({ villagersData, histories, durationData, speciesD
       }}
     >
       Full breakdown
+        <ReadMoreRoundedIcon fontSize="inherit" />
     </Link>
   );
 
@@ -108,6 +110,7 @@ export default function Stats({ villagersData, histories, durationData, speciesD
         }}
       >
         Full breakdown
+        <ReadMoreRoundedIcon fontSize="inherit" />
       </Link>
     </Typography>
     <Divider>
@@ -165,6 +168,7 @@ export default function Stats({ villagersData, histories, durationData, speciesD
         }}
       >
         Full breakdown
+        <ReadMoreRoundedIcon fontSize="inherit" />
       </Link>
     </Typography>
     <Dialog

@@ -23,6 +23,7 @@ function DraggablePaper(props: PaperProps) {
           left: '10%',
           padding: 2
         }}
+        className="tooltipPaper"
       />
     </Draggable>
   )
