@@ -13,13 +13,13 @@ import { DurationProperties, HistoryProperties, MongoProperties, PhotoStatsPrope
 let theme = createTheme({
   palette: {
     primary: {
-      main: "#1aae5e",
+      main: "#418869",
     },
     secondary: {
-      main: "#9dffb0",
+      main: "#79d6c2",
     },
     success: {
-      main: "#c48d3f"
+      main: "#F5F7E1"
     }
   },
   typography: {

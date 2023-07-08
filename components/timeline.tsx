@@ -178,6 +178,7 @@ export default function Timeline({ timelineData, timelineData2, villagersData, h
       onClose={handleClose}
     >
       <Alert
+        variant="filled"
         severity="warning"
         onClose={handleClose}
         sx={{

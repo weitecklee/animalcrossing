@@ -1,4 +1,5 @@
 import { Box, Link, Typography } from '@mui/material';
+import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
 import Image from 'next/image';
 import AvatarPNG from '../public/avatar13.png';
 
@@ -46,9 +47,9 @@ export default function IndexComponent() {
         href="https://www.nintendo.com/store/products/animal-crossing-new-horizons-switch/"
         target="_blank"
         rel="noreferrer"
-        underline="hover"
       >
         Nintendo
+        <OpenInNewRoundedIcon fontSize='inherit'/>
       </Link>
       &nbsp;for making the Animal Crossing video games
       <br />
@@ -57,9 +58,9 @@ export default function IndexComponent() {
         href="https://nookipedia.com/"
         target="_blank"
         rel="noopener"
-        underline="hover"
       >
         Nookipedia
+        <OpenInNewRoundedIcon fontSize='inherit'/>
       </Link>
       &nbsp;for providing all the villager data and media
       <br />
@@ -69,9 +70,9 @@ export default function IndexComponent() {
         href="https://github.com/weitecklee"
         target="_blank"
         rel="noreferrer"
-        underline="hover"
       >
         weitecklee
+        <OpenInNewRoundedIcon fontSize='inherit'/>
       </Link>
     </Typography>
   </>

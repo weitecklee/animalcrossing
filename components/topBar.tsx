@@ -29,7 +29,7 @@ export default function TopBar({ component, setComponent }: {
               onClick={handleClick}
               sx={{
                 ':hover': {
-                  bgcolor: "white",
+                  bgcolor: "success.main",
                 }
               }}>
               <MenuIcon/>
@@ -46,9 +46,9 @@ export default function TopBar({ component, setComponent }: {
                   handleClose();
                 }}
                 sx={{
-                  bgcolor: component === page ? 'primary.main' : 'white',
+                  bgcolor: component === page ? 'success.main' : 'secondary.main',
                   ':hover': {
-                    bgcolor: "secondary.main",
+                    bgcolor: "success.main",
                   }
                 }}
               >
@@ -62,7 +62,7 @@ export default function TopBar({ component, setComponent }: {
             sx={{
               mr: 1,
               ':hover': {
-                bgcolor: "white"
+                bgcolor: "success.main"
               }
             }}
           >
@@ -81,11 +81,10 @@ export default function TopBar({ component, setComponent }: {
                 key={page}
                 sx={{
                   color: 'black',
-                  border: "2px solid",
-                  borderColor: component === page ? 'primary.main' : 'secondary.main',
+                  bgcolor: component === page ? 'success.main' : 'secondary.main',
                   ml: 1,
                   ':hover': {
-                    bgcolor: "white",
+                    bgcolor: "success.main",
                   }
                 }}
                 onClick={() => setComponent(page)}
