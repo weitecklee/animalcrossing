@@ -17,13 +17,13 @@ export default function Document() {
         <meta property="og:type" content="website" />
         <meta property="og:title" content="My Animal Crossing Island" />
         <meta property="og:description" content="Showcase of my Animal Crossing: New Horizons island and its villagers" />
-        <meta property="og:image" content="https://myanimalcrossingisland.vercel.app/lasagnark8.jpg" />
+        <meta property="og:image" content="https://myanimalcrossingisland.vercel.app/og_image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:domain" content="myanimalcrossingisland.vercel.app" />
         <meta property="twitter:url" content="https://myanimalcrossingisland.vercel.app/" />
         <meta name="twitter:title" content="My Animal Crossing Island" />
         <meta name="twitter:description" content="Showcase of my Animal Crossing: New Horizons island and its villagers" />
-        <meta name="twitter:image" content="https://myanimalcrossingisland.vercel.app/lasagnark8.jpg" />
+        <meta name="twitter:image" content="https://myanimalcrossingisland.vercel.app/og_image.jpg" />
       </Head>
       <body>
         <Main />
@@ -32,4 +32,4 @@ export default function Document() {
     </Html>
   )
 }
-        
+
