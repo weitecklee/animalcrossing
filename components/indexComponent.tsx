@@ -25,6 +25,8 @@ export default function IndexComponent() {
       <br/>
       &emsp;&emsp;MAP: a map of my island (coming soon!)
       <br/>
+      &emsp;&emsp;ABOUT: info about the game and me
+      <br/>
       Enjoy your visit!
     </Typography>
     <Box py={2}>

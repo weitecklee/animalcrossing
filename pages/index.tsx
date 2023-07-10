@@ -2,6 +2,7 @@ import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/s
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
+import About from '../components/about';
 import Cards from '../components/cards';
 import IndexComponent from '../components/indexComponent';
 import Stats from '../components/stats';
@@ -174,6 +175,7 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
         setDialogVillager={setDialogVillager}
         setShowVillagerDialog={setShowVillagerDialog}
       />}
+      {component === 'About' && <About />}
       <VillagerDialog
         history={histories.get(dialogVillager)!}
         villagerData={villagersData.get(dialogVillager)!}
