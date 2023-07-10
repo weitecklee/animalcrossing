@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Dispatch, MouseEvent, SetStateAction, useState } from 'react';
 import FavIcon from '../public/lasagnark8.png';
 
-const pages = ['Villagers', 'Timeline', 'Stats'];
+const pages = ['Villagers', 'Timeline', 'Stats', 'About'];
 
 export default function TopBar({ component, setComponent }: {
   component: string,
