@@ -1,3 +1,6 @@
+import { DialogProps } from "@mui/material";
+import { Dispatch, SetStateAction } from "react";
+
 interface NameProperties {
   "name-USen": string,
   "name-EUen": string,
@@ -108,4 +111,8 @@ export interface DurationProperties extends TraitProperties {
 export interface PhotoStatsProperties {
   average: number,
   count: number,
+}
+
+export interface CustomDialogProps extends DialogProps {
+  setOpen: Dispatch<SetStateAction<boolean>>,
 }
