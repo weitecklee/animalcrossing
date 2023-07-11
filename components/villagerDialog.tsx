@@ -1,8 +1,11 @@
-import { Box, CircularProgress, Collapse, Dialog, Grid, Link, Stack, Typography, useMediaQuery } from '@mui/material';
+import { Box, CircularProgress, Collapse, Grid, Link, Stack, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import { HistoryProperties, VillagerProperties2 } from '../types';
+
+const CustomDialog = dynamic(() => import('./customDialog'), {ssr: false})
 
 const timeouts: NodeJS.Timeout[] = [];
 
@@ -64,7 +67,7 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
     >
       <CircularProgress size={64} />
     </Box>
-    <Dialog
+    <CustomDialog
       keepMounted
       open={showVillagerDialog}
       onClose={() => {
@@ -77,6 +80,8 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
         setShowVillagerDialog(false);
       }}
       maxWidth={false}
+      setOpen={setShowVillagerDialog}
+      hash="#villagerDialog"
     >
       <Collapse in={dialogReady} appear>
         <Grid
@@ -173,7 +178,7 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
           </Grid>
         </Grid>
       </Collapse>
-    </Dialog>
+    </CustomDialog>
   </>
   )
 }

@@ -1,9 +1,12 @@
-import { Box, Chip, Dialog, DialogContent, Divider, Grid, Link, List, ListItem, Typography, useMediaQuery } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
 import ReadMoreRoundedIcon from '@mui/icons-material/ReadMoreRounded';
+import { Box, Chip, DialogContent, Divider, Grid, Link, List, ListItem, Typography, useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { Dispatch, MouseEvent, SetStateAction, useState } from 'react';
 import { DurationProperties, HistoryProperties, PhotoStatsProperties, TraitProperties, VillagerProperties2 } from '../types';
+
+const CustomDialog = dynamic(() => import('./customDialog'), {ssr: false})
 
 export default function Stats({ villagersData, histories, durationData, speciesData, personalityData, genderData, photoData, photoStats, currentResidents, setDialogVillager, setShowVillagerDialog } : {
   villagersData: Map<string,VillagerProperties2>,
@@ -171,8 +174,10 @@ export default function Stats({ villagersData, histories, durationData, speciesD
         <ReadMoreRoundedIcon fontSize="inherit" />
       </Link>
     </Typography>
-    <Dialog
+    <CustomDialog
       open={showDurationDialog}
+      setOpen={setShowDurationDialog}
+      hash="#durationDialog"
       onClose={() => setShowDurationDialog(false)}
       maxWidth={false}
       keepMounted
@@ -198,9 +203,11 @@ export default function Stats({ villagersData, histories, durationData, speciesD
           ))))}
         </List>
       </DialogContent>
-    </Dialog>
-    <Dialog
+    </CustomDialog>
+    <CustomDialog
       open={showTraitDialog}
+      setOpen={setShowTraitDialog}
+      hash="#traitDialog"
       keepMounted
       onClose={() => setShowTraitDialog(false)}
       maxWidth={false}
@@ -209,16 +216,18 @@ export default function Stats({ villagersData, histories, durationData, speciesD
       }}
     >
       <DialogContent>
-        {dialogTraitData.map((traitData) => (<>
+        {dialogTraitData.map((traitData) => (<Box key={traitData.trait}>
           <Typography>
             {traitData.trait}: {traitData.count}
           </Typography>
-          <IconGrid key={traitData.trait} traitData={traitData}/>
-        </>))}
+          <IconGrid traitData={traitData}/>
+        </Box>))}
       </DialogContent>
-    </Dialog>
-    <Dialog
+    </CustomDialog>
+    <CustomDialog
       open={showPhotoDialog}
+      setOpen={setShowPhotoDialog}
+      hash="#photoDialog"
       onClose={() => setShowPhotoDialog(false)}
       maxWidth={false}
       keepMounted
@@ -241,7 +250,7 @@ export default function Stats({ villagersData, histories, durationData, speciesD
           ))))}
         </List>
       </DialogContent>
-    </Dialog>
+    </CustomDialog>
   </>
 
 }

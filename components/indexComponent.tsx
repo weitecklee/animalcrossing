@@ -1,29 +1,11 @@
-import { Box, Button, Link, Typography } from '@mui/material';
 import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
+import { Box, Link, Typography } from '@mui/material';
 import Image from 'next/image';
 import AvatarPNG from '../public/avatar13.png';
-import { useState } from 'react';
-import dynamic from 'next/dynamic';
-
-const CustomDialog = dynamic(() => import('./customDialog'), {ssr: false})
 
 export default function IndexComponent() {
 
-  const [open, setOpen] = useState(false);
-
   return <>
-    <Button onClick={() => setOpen(true)}>
-      Click!
-    </Button>
-    <CustomDialog
-      open={open}
-      setOpen={setOpen}
-      onClose={() => setOpen(false)}
-    >
-      <Typography>
-        Does this thing work?!
-      </Typography>
-    </CustomDialog>
     <Typography>
       Hello there!
     </Typography>

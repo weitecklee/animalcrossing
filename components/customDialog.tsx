@@ -1,32 +1,32 @@
 import { Dialog } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { CustomDialogProps } from "../types";
 
-export default function CustomDialog(props: CustomDialogProps) {
+export default function CustomDialog({setOpen, hash, ...props} : CustomDialogProps) {
 
-  const [open, setOpen] = useState(props.open);
+  const [openCustom, setOpenCustom] = useState(props.open);
   const originalOpen = props.open;
-  const originalSetOpen = props.setOpen;
+  const originalSetOpen = setOpen;
 
   useEffect(() => {
     const onHashChange = () => {
-      setOpen(window.location.hash === "#dialog");
-      originalSetOpen(window.location.hash === "#dialog");
+      setOpenCustom(window.location.hash === hash);
+      originalSetOpen(window.location.hash === hash);
     };
     window.addEventListener("hashchange", onHashChange);
     return () => window.removeEventListener("hashchange", onHashChange);
-  }, [originalSetOpen]);
+  }, [originalSetOpen, hash]);
 
   useEffect(() => {
     if (originalOpen) {
-      window.location.hash = "#dialog";
-    } else if (window.location.hash === "#dialog") {
+      window.location.hash = hash;
+    } else if (window.location.hash === hash) {
       window.history.back();
     }
-  }, [originalOpen]);
+  }, [originalOpen, hash]);
 
   return <Dialog
     {...props}
-    open={open}
+    open={openCustom}
   />
 }
