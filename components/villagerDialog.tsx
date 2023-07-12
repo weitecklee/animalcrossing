@@ -55,7 +55,7 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
     <CustomDialog
       keepMounted
       open={showVillagerDialog}
-      onClose={() => {
+      handleClose={() => {
         while (timeouts.length) {
           clearTimeout(timeouts.pop());
         }

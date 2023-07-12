@@ -2,9 +2,9 @@ import { Dialog } from "@mui/material";
 import { useEffect, useState } from "react";
 import { CustomDialogProps } from "../types";
 
-export default function CustomDialog({setOpen, hash, ...props} : CustomDialogProps) {
+export default function CustomDialog({setOpen, hash, handleClose, ...props} : CustomDialogProps) {
 
-  const { open, onClose } = props;
+  const { open } = props;
   const [open2, setOpen2] = useState(false);
 
   useEffect(() => {
@@ -13,12 +13,12 @@ export default function CustomDialog({setOpen, hash, ...props} : CustomDialogPro
         setOpen2(true);
       } else {
         setOpen2(false);
-        onClose!({}, "escapeKeyDown");
+        handleClose();
       }
     };
     window.addEventListener("hashchange", onHashChange);
     return () => window.removeEventListener("hashchange", onHashChange);
-  }, [hash, onClose, open]);
+  }, [hash, handleClose, open]);
 
   useEffect(() => {
     if (open) {
@@ -32,5 +32,6 @@ export default function CustomDialog({setOpen, hash, ...props} : CustomDialogPro
   return <Dialog
     {...props}
     open={open2}
+    onClose={handleClose}
   />
 }

@@ -178,7 +178,7 @@ export default function Stats({ villagersData, histories, durationData, speciesD
       open={showDurationDialog}
       setOpen={setShowDurationDialog}
       hash="#durationDialog"
-      onClose={() => setShowDurationDialog(false)}
+      handleClose={() => setShowDurationDialog(false)}
       maxWidth={false}
       keepMounted
       sx={{
@@ -209,7 +209,7 @@ export default function Stats({ villagersData, histories, durationData, speciesD
       setOpen={setShowTraitDialog}
       hash="#traitDialog"
       keepMounted
-      onClose={() => setShowTraitDialog(false)}
+      handleClose={() => setShowTraitDialog(false)}
       maxWidth={false}
       sx={{
         zIndex: 1200,
@@ -228,7 +228,7 @@ export default function Stats({ villagersData, histories, durationData, speciesD
       open={showPhotoDialog}
       setOpen={setShowPhotoDialog}
       hash="#photoDialog"
-      onClose={() => setShowPhotoDialog(false)}
+      handleClose={() => setShowPhotoDialog(false)}
       maxWidth={false}
       keepMounted
       sx={{
