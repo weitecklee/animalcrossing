@@ -2,7 +2,7 @@ import { Dialog } from "@mui/material";
 import { useEffect, useState } from "react";
 import { CustomDialogProps } from "../types";
 
-export default function CustomDialog({setOpen, hash, handleClose, ...props} : CustomDialogProps) {
+export default function CustomDialog({ hash, handleClose, ...props} : CustomDialogProps) {
 
   const { open } = props;
   const [open2, setOpen2] = useState(false);
@@ -12,8 +12,8 @@ export default function CustomDialog({setOpen, hash, handleClose, ...props} : Cu
       if (open && (window.location.hash === hash || window.location.hash === "#villagerDialog")) {
         setOpen2(true);
       } else {
-        setOpen2(false);
         handleClose();
+        setOpen2(false);
       }
     };
     window.addEventListener("hashchange", onHashChange);
@@ -24,7 +24,6 @@ export default function CustomDialog({setOpen, hash, handleClose, ...props} : Cu
     if (open) {
       window.location.hash = hash;
     } else if (window.location.hash === hash || window.location.hash === "#villagerDialog") {
-      setOpen2(false);
       window.history.back();
     }
   }, [hash, open]);

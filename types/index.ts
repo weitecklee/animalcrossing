@@ -114,7 +114,6 @@ export interface PhotoStatsProperties {
 }
 
 export interface CustomDialogProps extends DialogProps {
-  setOpen: Dispatch<SetStateAction<boolean>>,
   hash: string,
   handleClose: () => void,
 }

@@ -64,7 +64,6 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
         setShowVillagerDialog(false);
       }}
       maxWidth={false}
-      setOpen={setShowVillagerDialog}
       hash="#villagerDialog"
     >
       <Collapse in={dialogReady} appear>

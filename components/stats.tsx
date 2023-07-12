@@ -176,7 +176,6 @@ export default function Stats({ villagersData, histories, durationData, speciesD
     </Typography>
     <CustomDialog
       open={showDurationDialog}
-      setOpen={setShowDurationDialog}
       hash="#durationDialog"
       handleClose={() => setShowDurationDialog(false)}
       maxWidth={false}
@@ -206,7 +205,6 @@ export default function Stats({ villagersData, histories, durationData, speciesD
     </CustomDialog>
     <CustomDialog
       open={showTraitDialog}
-      setOpen={setShowTraitDialog}
       hash="#traitDialog"
       keepMounted
       handleClose={() => setShowTraitDialog(false)}
@@ -226,7 +224,6 @@ export default function Stats({ villagersData, histories, durationData, speciesD
     </CustomDialog>
     <CustomDialog
       open={showPhotoDialog}
-      setOpen={setShowPhotoDialog}
       hash="#photoDialog"
       handleClose={() => setShowPhotoDialog(false)}
       maxWidth={false}
