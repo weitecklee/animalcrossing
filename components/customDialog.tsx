@@ -4,29 +4,33 @@ import { CustomDialogProps } from "../types";
 
 export default function CustomDialog({setOpen, hash, ...props} : CustomDialogProps) {
 
-  const [openCustom, setOpenCustom] = useState(props.open);
-  const originalOpen = props.open;
-  const originalSetOpen = setOpen;
+  const { open, onClose } = props;
+  const [open2, setOpen2] = useState(false);
 
   useEffect(() => {
     const onHashChange = () => {
-      setOpenCustom(window.location.hash === hash);
-      originalSetOpen(window.location.hash === hash);
+      if (open && (window.location.hash === hash || window.location.hash === "#villagerDialog")) {
+        setOpen2(true);
+      } else {
+        setOpen2(false);
+        onClose!({}, "escapeKeyDown");
+      }
     };
     window.addEventListener("hashchange", onHashChange);
     return () => window.removeEventListener("hashchange", onHashChange);
-  }, [originalSetOpen, hash]);
+  }, [hash, onClose, open, setOpen]);
 
   useEffect(() => {
-    if (originalOpen) {
+    if (open) {
       window.location.hash = hash;
-    } else if (window.location.hash === hash) {
+    } else if (window.location.hash === hash || window.location.hash === "#villagerDialog") {
+      setOpen(false);
       window.history.back();
     }
-  }, [originalOpen, hash]);
+  }, [hash, open, setOpen]);
 
   return <Dialog
     {...props}
-    open={openCustom}
+    open={open2}
   />
 }
