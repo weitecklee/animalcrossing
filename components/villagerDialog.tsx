@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Collapse, Grid, Link, Stack, Typography, useMediaQuery } from '@mui/material';
+import { Box, Collapse, Grid, Link, Stack, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
@@ -20,7 +20,6 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
   const smallScreen = useMediaQuery(theme.breakpoints.down('md'))
   const [imagesReady, setImagesReady] = useState(0);
   const [dialogReady, setDialogReady] = useState(true);
-  const [showLoading, setShowLoading] = useState(false);
   const previousVillager = useRef('');
 
   useEffect(() => {
@@ -31,13 +30,10 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
 
   useEffect(() => {
     if (showVillagerDialog) {
-      const timeoutID1 = setTimeout(() => {
-        setShowLoading(true);
-      }, 1000);
       const timeoutID2 = setTimeout(() => {
         setDialogReady(true);
       }, 3000);
-      timeouts.push(timeoutID1, timeoutID2);
+      timeouts.push(timeoutID2);
     }
   }, [showVillagerDialog]);
 
@@ -56,17 +52,6 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
   }
 
   return (<>
-    <Box
-      sx={{
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        display: showVillagerDialog && showLoading ? (dialogReady ? "none" : "" ) : "none",
-        zIndex: 9999,
-      }}
-    >
-      <CircularProgress size={64} />
-    </Box>
     <CustomDialog
       keepMounted
       open={showVillagerDialog}
@@ -76,7 +61,6 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
         }
         setImagesReady(0);
         setDialogReady(false);
-        setShowLoading(false);
         setShowVillagerDialog(false);
       }}
       maxWidth={false}
