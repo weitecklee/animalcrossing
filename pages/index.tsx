@@ -66,6 +66,8 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
   const [durationData, setDurationData] = useState<DurationProperties[]>([]);
   const [showVillagerDialog, setShowVillagerDialog] = useState(false);
   const [dialogVillager, setDialogVillager] = useState('');
+  const [timelineNameIndex, setTimelineNameIndex] = useState<Map<string, number>>(new Map());
+  const [timelineNameIndex3, setTimelineNameIndex3] = useState<Map<string, number>>(new Map());
 
   useEffect(() => {
     const tmpHistories: Map<string,HistoryProperties> = new Map();
@@ -75,6 +77,8 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
     const backgroundColor: string[] = [];
     const durationMap: Map<number, DurationProperties> = new Map();
     const durationData: number[] = [];
+    const nameIndex: Map<string, number> = new Map();
+    let i = 0;
 
     for (const mongoDatum of mongoData) {
       const tmpHist: HistoryProperties = {
@@ -108,6 +112,8 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
       timeData.push([tmpHist.startDateString, tmpHist.endDateString])
       backgroundColor.push('#' + villagersData.get(tmpHist.name)?.title_color!)
       durationData.push(tmpHist.duration);
+      nameIndex.set(tmpHist.name, i);
+      i++;
     }
 
     const tmpDurations = Array.from(durationMap.values());
@@ -116,12 +122,16 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
     const durationData2: number[] = [];
     const labels2: string[] = [];
     const colors2: string[] = [];
+    const nameIndex2: Map<string, number> = new Map();
+    i = 0;
 
     for (const duration of tmpDurations) {
       for (const villager of duration.villagers) {
         labels2.push(villager);
         durationData2.push(duration.duration);
         colors2.push('#' + villagersData.get(villager)?.title_color!);
+        nameIndex2.set(villager, i);
+        i++;
       }
     }
 
@@ -134,6 +144,8 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
     setTimelineData3(durationData2);
     setTimelineLabels3(labels2);
     setTimelineColors3(colors2);
+    setTimelineNameIndex(nameIndex);
+    setTimelineNameIndex3(nameIndex2);
   }, [mongoData])
 
   return (<>
@@ -161,6 +173,8 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
         timelineColors3={timelineColors3}
         setDialogVillager={setDialogVillager}
         setShowVillagerDialog={setShowVillagerDialog}
+        timelineNameIndex={timelineNameIndex}
+        timelineNameIndex3={timelineNameIndex3}
       />}
       {component === 'Stats' && <Stats
         villagersData={villagersData}

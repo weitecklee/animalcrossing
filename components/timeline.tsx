@@ -15,7 +15,7 @@ import {
 } from 'chart.js';
 import 'chartjs-adapter-date-fns';
 import Zoom from 'chartjs-plugin-zoom';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import Draggable from 'react-draggable';
 import { HistoryProperties, VillagerProperties2 } from '../types';
@@ -92,7 +92,8 @@ options2.plugins.zoom.limits = {
   y: { min: 'original', max: 'original', minRange: 20 },
 };
 
-export default function Timeline({ timelineData, timelineData2, villagersData, histories, timelineLabels, timelineColors, timelineData3, timelineLabels3, timelineColors3, setDialogVillager, setShowVillagerDialog }: {
+
+export default function Timeline({ timelineData, timelineData2, villagersData, histories, timelineLabels, timelineColors, timelineData3, timelineLabels3, timelineColors3, setDialogVillager, setShowVillagerDialog, timelineNameIndex, timelineNameIndex3 }: {
   timelineData: string[][],
   timelineData2: number[],
   villagersData: Map<string,VillagerProperties2>,
@@ -104,6 +105,8 @@ export default function Timeline({ timelineData, timelineData2, villagersData, h
   timelineColors3: string[],
   setDialogVillager: Dispatch<SetStateAction<string>>,
   setShowVillagerDialog: Dispatch<SetStateAction<boolean>>,
+  timelineNameIndex: Map<string, number>,
+  timelineNameIndex3: Map<string, number>,
 }) {
 
   const [timelineVillager, setTimelineVillager] = useState('');
@@ -116,6 +119,13 @@ export default function Timeline({ timelineData, timelineData2, villagersData, h
   const [barData, setBarData] = useState<string[][] | number[]>(timelineData);
   const [barLabels, setBarLabels] = useState(timelineLabels);
   const [barColors, setBarColors] = useState(timelineColors);
+  const [barBackground, setBarBackground] = useState<string[][] | number[]>([0]);
+  const lastBackgroundIndex = useRef(0);
+  const lastBackgroundIndex2 = useRef(0);
+  const lastBackgroundIndex3 = useRef(0);
+  const timelineBackground = useRef<string[][]>(Array(histories.size).fill([]));
+  const timelineBackground2 = useRef<number[]>(Array(histories.size).fill(0));
+  const timelineBackground3 = useRef<number[]>(Array(histories.size).fill(0));
 
   useEffect(() => {
     options.plugins.tooltip.external = ({ tooltip }) => {
@@ -168,6 +178,28 @@ export default function Timeline({ timelineData, timelineData2, villagersData, h
 
   }, [timelineMode, timelineData, timelineData2, timelineData3, timelineColors, timelineColors3, timelineLabels, timelineLabels3]);
 
+  useEffect(() => {
+    if (timelineVillager === '') {
+      return;
+    }
+    if (timelineMode === 0) {
+      timelineBackground.current[lastBackgroundIndex.current] = [];
+      lastBackgroundIndex.current = timelineNameIndex.get(timelineVillager)!;
+      timelineBackground.current[lastBackgroundIndex.current] = [options.scales.x.min, options.scales.x.max];
+      setBarBackground(timelineBackground.current);
+    } else if (timelineMode === 1) {
+      timelineBackground2.current[lastBackgroundIndex2.current] = 0;
+      lastBackgroundIndex2.current = timelineNameIndex.get(timelineVillager)!;
+      timelineBackground2.current[lastBackgroundIndex2.current] = options2.scales.x.max;
+      setBarBackground(timelineBackground2.current);
+    } else if (timelineMode === 2) {
+      timelineBackground3.current[lastBackgroundIndex3.current] = 0;
+      lastBackgroundIndex3.current = timelineNameIndex3.get(timelineVillager)!;
+      timelineBackground3.current[lastBackgroundIndex3.current] = options2.scales.x.max;
+      setBarBackground(timelineBackground3.current);
+    }
+  }, [timelineVillager, timelineMode, timelineNameIndex, timelineNameIndex3]);
+
   return <Box sx={{
     position: "relative",
     width: "100%",
@@ -196,7 +228,19 @@ export default function Timeline({ timelineData, timelineData2, villagersData, h
             label: 'Villagers',
             data: barData,
             backgroundColor: barColors,
-          }
+            grouped: false,
+          },
+          {
+            label: 'Background',
+            data: barBackground,
+            backgroundColor: 'rgba(0, 0, 0, .25)',
+            borderWidth: 0,
+            borderRadius: 0,
+            grouped: false,
+            barPercentage: 1,
+            categoryPercentage: 1,
+            animation: false,
+          },
         ]
       }}
       options={barOptions}
