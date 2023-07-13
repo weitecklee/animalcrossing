@@ -209,12 +209,12 @@ export default function Stats({ villagersData, histories, durationData, speciesD
       }}
     >
       <DialogContent>
-        {dialogTraitData.map((traitData) => (<>
+        {dialogTraitData.map((traitData) => (<Box key={traitData.trait}>
           <Typography>
             {traitData.trait}: {traitData.count}
           </Typography>
-          <IconGrid key={traitData.trait} traitData={traitData}/>
-        </>))}
+          <IconGrid traitData={traitData}/>
+        </Box>))}
       </DialogContent>
     </Dialog>
     <Dialog

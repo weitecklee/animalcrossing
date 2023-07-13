@@ -1,4 +1,6 @@
-import { Box, CircularProgress, Collapse, Dialog, Grid, Link, Stack, Typography, useMediaQuery } from '@mui/material';
+import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+import { Box, CircularProgress, Collapse, Dialog, Fab, Grid, Link, Stack, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import Image from 'next/image';
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
@@ -19,6 +21,16 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
   const [dialogReady, setDialogReady] = useState(true);
   const [showLoading, setShowLoading] = useState(false);
   const previousVillager = useRef('');
+
+  const handleClose = () => {
+    while (timeouts.length) {
+      clearTimeout(timeouts.pop());
+    }
+    setImagesReady(0);
+    setDialogReady(false);
+    setShowLoading(false);
+    setShowVillagerDialog(false);
+  };
 
   useEffect(() => {
     if (imagesReady === 3) {
@@ -67,15 +79,7 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
     <Dialog
       keepMounted
       open={showVillagerDialog}
-      onClose={() => {
-        while (timeouts.length) {
-          clearTimeout(timeouts.pop());
-        }
-        setImagesReady(0);
-        setDialogReady(false);
-        setShowLoading(false);
-        setShowVillagerDialog(false);
-      }}
+      onClose={handleClose}
       maxWidth={false}
     >
       <Collapse in={dialogReady} appear>
@@ -168,12 +172,34 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
                 underline="hover"
                 >
                 Nookipedia page
+                <OpenInNewRoundedIcon fontSize='inherit'/>
               </Link>
             </Typography>
           </Grid>
         </Grid>
       </Collapse>
     </Dialog>
+    <Box
+      display={smallScreen ? (showVillagerDialog ? "flex" : "none") : "none"}
+      position="fixed"
+      width="100%"
+      justifyContent="center"
+      bottom="1%"
+      zIndex={1301}
+    >
+      <Fab
+        size="small"
+        color="secondary"
+        sx={{
+          ':hover': {
+            bgcolor: "white"
+          },
+        }}
+        onClick={handleClose}
+      >
+        <CloseRoundedIcon />
+      </Fab>
+    </Box>
   </>
   )
 }
