@@ -1,10 +1,10 @@
 import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
-import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import { Box, CircularProgress, Collapse, Dialog, Fab, Grid, Link, Stack, Typography, useMediaQuery } from '@mui/material';
+import { Box, CircularProgress, Collapse, Grid, Link, Stack, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import Image from 'next/image';
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import { HistoryProperties, VillagerProperties2 } from '../types';
+import CustomDialog from './customDialog';
 
 const timeouts: NodeJS.Timeout[] = [];
 
@@ -76,11 +76,12 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
     >
       <CircularProgress size={64} />
     </Box>
-    <Dialog
+    <CustomDialog
       keepMounted
       open={showVillagerDialog}
       onClose={handleClose}
       maxWidth={false}
+      zIndex={1300}
     >
       <Collapse in={dialogReady} appear>
         <Grid
@@ -178,28 +179,7 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
           </Grid>
         </Grid>
       </Collapse>
-    </Dialog>
-    <Box
-      display={smallScreen ? (showVillagerDialog ? "flex" : "none") : "none"}
-      position="fixed"
-      width="100%"
-      justifyContent="center"
-      bottom="1%"
-      zIndex={1301}
-    >
-      <Fab
-        size="small"
-        color="secondary"
-        sx={{
-          ':hover': {
-            bgcolor: "white"
-          },
-        }}
-        onClick={handleClose}
-      >
-        <CloseRoundedIcon />
-      </Fab>
-    </Box>
+    </CustomDialog>
   </>
   )
 }
