@@ -23,7 +23,7 @@ export default function CustomDialog({zIndex, ...props}: CustomDialogProps) {
       justifyContent="center"
       left={0}
       bottom={8}
-      zIndex={zIndex + 1}
+      zIndex={zIndex + 2}
       onClick={() => onClose!({}, "escapeKeyDown")}
     >
       <Fab

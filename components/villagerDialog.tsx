@@ -73,7 +73,7 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
         left: 0,
         height: "100%",
         width: "100%",
-        zIndex: 9999,
+        zIndex: 1301,
         justifyContent: "center",
         alignItems: "center",
       }}
