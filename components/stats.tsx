@@ -4,6 +4,7 @@ import ReadMoreRoundedIcon from '@mui/icons-material/ReadMoreRounded';
 import Image from 'next/image';
 import { Dispatch, MouseEvent, SetStateAction, useState } from 'react';
 import { DurationProperties, HistoryProperties, PhotoStatsProperties, TraitProperties, VillagerProperties2 } from '../types';
+import CustomDialog from './customDialog';
 
 export default function Stats({ villagersData, histories, durationData, speciesData, personalityData, genderData, photoData, photoStats, currentResidents, setDialogVillager, setShowVillagerDialog } : {
   villagersData: Map<string,VillagerProperties2>,
@@ -171,14 +172,12 @@ export default function Stats({ villagersData, histories, durationData, speciesD
         <ReadMoreRoundedIcon fontSize="inherit" />
       </Link>
     </Typography>
-    <Dialog
+    <CustomDialog
       open={showDurationDialog}
       onClose={() => setShowDurationDialog(false)}
       maxWidth={false}
       keepMounted
-      sx={{
-        zIndex: 1200,
-      }}
+      zIndex={1200}
     >
       <DialogContent>
         <Typography variant="caption">
@@ -198,33 +197,29 @@ export default function Stats({ villagersData, histories, durationData, speciesD
           ))))}
         </List>
       </DialogContent>
-    </Dialog>
-    <Dialog
+    </CustomDialog>
+    <CustomDialog
       open={showTraitDialog}
       keepMounted
       onClose={() => setShowTraitDialog(false)}
       maxWidth={false}
-      sx={{
-        zIndex: 1200,
-      }}
+      zIndex={1200}
     >
       <DialogContent>
-        {dialogTraitData.map((traitData) => (<>
+        {dialogTraitData.map((traitData) => (<Box key={traitData.trait}>
           <Typography>
             {traitData.trait}: {traitData.count}
           </Typography>
-          <IconGrid key={traitData.trait} traitData={traitData}/>
-        </>))}
+          <IconGrid traitData={traitData}/>
+        </Box>))}
       </DialogContent>
-    </Dialog>
-    <Dialog
+    </CustomDialog>
+    <CustomDialog
       open={showPhotoDialog}
       onClose={() => setShowPhotoDialog(false)}
       maxWidth={false}
       keepMounted
-      sx={{
-        zIndex: 1200,
-      }}
+      zIndex={1200}
     >
       <DialogContent>
         <List>
@@ -241,7 +236,7 @@ export default function Stats({ villagersData, histories, durationData, speciesD
           ))))}
         </List>
       </DialogContent>
-    </Dialog>
+    </CustomDialog>
   </>
 
 }

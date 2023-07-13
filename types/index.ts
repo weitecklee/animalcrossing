@@ -1,3 +1,5 @@
+import { DialogProps } from "@mui/material";
+
 interface NameProperties {
   "name-USen": string,
   "name-EUen": string,
@@ -108,4 +110,8 @@ export interface DurationProperties extends TraitProperties {
 export interface PhotoStatsProperties {
   average: number,
   count: number,
+}
+
+export interface CustomDialogProps extends DialogProps {
+  zIndex: number,
 }

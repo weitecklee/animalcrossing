@@ -1,8 +1,10 @@
-import { Box, CircularProgress, Collapse, Dialog, Grid, Link, Stack, Typography, useMediaQuery } from '@mui/material';
+import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
+import { Box, CircularProgress, Collapse, Grid, Link, Stack, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import Image from 'next/image';
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import { HistoryProperties, VillagerProperties2 } from '../types';
+import CustomDialog from './customDialog';
 
 const timeouts: NodeJS.Timeout[] = [];
 
@@ -19,6 +21,16 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
   const [dialogReady, setDialogReady] = useState(true);
   const [showLoading, setShowLoading] = useState(false);
   const previousVillager = useRef('');
+
+  const handleClose = () => {
+    while (timeouts.length) {
+      clearTimeout(timeouts.pop());
+    }
+    setImagesReady(0);
+    setDialogReady(false);
+    setShowLoading(false);
+    setShowVillagerDialog(false);
+  };
 
   useEffect(() => {
     if (imagesReady === 3) {
@@ -55,28 +67,25 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
   return (<>
     <Box
       sx={{
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        display: showVillagerDialog && showLoading ? (dialogReady ? "none" : "" ) : "none",
-        zIndex: 9999,
+        display: showVillagerDialog && showLoading ? (dialogReady ? "none" : "flex" ) : "none",
+        position: "fixed",
+        top: 0,
+        left: 0,
+        height: "100%",
+        width: "100%",
+        zIndex: 1301,
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
-      <CircularProgress size={64} />
+      <CircularProgress size={64} color="secondary" />
     </Box>
-    <Dialog
+    <CustomDialog
       keepMounted
       open={showVillagerDialog}
-      onClose={() => {
-        while (timeouts.length) {
-          clearTimeout(timeouts.pop());
-        }
-        setImagesReady(0);
-        setDialogReady(false);
-        setShowLoading(false);
-        setShowVillagerDialog(false);
-      }}
+      onClose={handleClose}
       maxWidth={false}
+      zIndex={1300}
     >
       <Collapse in={dialogReady} appear>
         <Grid
@@ -168,12 +177,13 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
                 underline="hover"
                 >
                 Nookipedia page
+                <OpenInNewRoundedIcon fontSize='inherit'/>
               </Link>
             </Typography>
           </Grid>
         </Grid>
       </Collapse>
-    </Dialog>
+    </CustomDialog>
   </>
   )
 }
