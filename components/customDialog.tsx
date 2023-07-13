@@ -26,20 +26,18 @@ export default function CustomDialog({zIndex, ...props}: CustomDialogProps) {
       zIndex={zIndex + 1}
       onClick={() => onClose!({}, "escapeKeyDown")}
     >
-      <Box >
-        <Fab
-          size="small"
-          color="secondary"
-          sx={{
-            ':hover': {
-              bgcolor: "white"
-            },
-          }}
-          onClick={() => onClose!({}, "escapeKeyDown")}
-        >
-          <CloseRoundedIcon />
-        </Fab>
-      </Box>
+      <Fab
+        size="small"
+        color="secondary"
+        sx={{
+          ':hover': {
+            bgcolor: "white"
+          },
+        }}
+        onClick={() => onClose!({}, "escapeKeyDown")}
+      >
+        <CloseRoundedIcon />
+      </Fab>
     </Box>
   </>
 }

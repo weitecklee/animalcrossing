@@ -67,14 +67,18 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
   return (<>
     <Box
       sx={{
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        display: showVillagerDialog && showLoading ? (dialogReady ? "none" : "" ) : "none",
+        display: showVillagerDialog && showLoading ? (dialogReady ? "none" : "flex" ) : "none",
+        position: "fixed",
+        top: 0,
+        left: 0,
+        height: "100%",
+        width: "100%",
         zIndex: 9999,
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
-      <CircularProgress size={64} />
+      <CircularProgress size={64} color="secondary" />
     </Box>
     <CustomDialog
       keepMounted
