@@ -166,6 +166,10 @@ export default function Stats({ villagersData, histories, durationData, speciesD
     </Typography>
     <IconGrid traitData={photoStats2.shortestAfterReceiving} />
     <Typography>
+      Longest stay after receiving photo: {dayOrDays(photoStats2.longestAfterReceiving.duration - 1)}
+    </Typography>
+    <IconGrid traitData={photoStats2.longestAfterReceiving} />
+    <Typography>
       Longest stay without receiving photo: {photoStats2.longestWithoutReceiving.duration} days
     </Typography>
     <IconGrid traitData={photoStats2.longestWithoutReceiving} />

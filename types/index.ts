@@ -114,6 +114,7 @@ export interface PhotoStatsProperties {
 
 export interface PhotoStats2Properties {
   shortestAfterReceiving: DurationProperties,
+  longestAfterReceiving: DurationProperties,
   longestWithoutReceiving: DurationProperties,
 }
 

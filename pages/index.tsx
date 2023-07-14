@@ -80,6 +80,12 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
         villagers: [],
         duration: 10000,
       },
+      longestAfterReceiving: {
+        trait: '',
+        count: 0,
+        villagers: [],
+        duration: 0,
+      },
       longestWithoutReceiving: {
         trait: '',
         count: 0,
@@ -115,6 +121,12 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
           tmpPhotoStats2.shortestAfterReceiving.villagers = [mongoDatum.name];
         } else if (stayAfterReceiving === tmpPhotoStats2.shortestAfterReceiving.duration) {
           tmpPhotoStats2.shortestAfterReceiving.villagers.push(mongoDatum.name);
+        }
+        if (stayAfterReceiving > tmpPhotoStats2.longestAfterReceiving.duration) {
+          tmpPhotoStats2.longestAfterReceiving.duration = stayAfterReceiving;
+          tmpPhotoStats2.longestAfterReceiving.villagers = [mongoDatum.name];
+        } else if (stayAfterReceiving === tmpPhotoStats2.longestAfterReceiving.duration) {
+          tmpPhotoStats2.longestAfterReceiving.villagers.push(mongoDatum.name);
         }
       }
       tmpHist.endDateString = tmpHist.endDateDate.toLocaleDateString("fr-CA");
