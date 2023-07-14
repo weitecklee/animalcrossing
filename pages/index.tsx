@@ -227,6 +227,10 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
     setPhotoStats2(tmpPhotoStats2);
   }, [mongoData])
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [component]);
+
   return (<>
     <Head>
       <title>My Animal Crossing Island</title>
