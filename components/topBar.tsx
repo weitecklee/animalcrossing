@@ -52,7 +52,8 @@ export default function TopBar({ component, setComponent }: {
                   bgcolor: component === page ? 'success.main' : 'secondary.main',
                   ':hover': {
                     bgcolor: "success.main",
-                  }
+                  },
+                  fontFamily: 'Coustard',
                 }}
               >
                 {page}

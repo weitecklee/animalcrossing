@@ -290,6 +290,7 @@ export default function Timeline({ timelineData, timelineData2, villagersData, h
               ':hover': {
                 bgcolor: "white"
               },
+              fontFamily: 'Coustard',
             }}
           >
             Change view
