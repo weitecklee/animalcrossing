@@ -54,13 +54,6 @@ let theme = createTheme({
         }
       }
     },
-    MuiTypography: {
-      defaultProps: {
-        variantMapping: {
-          title: "h2",
-        }
-      }
-    },
     MuiChip: {
       styleOverrides: {
         label: {

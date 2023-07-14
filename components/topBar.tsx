@@ -1,5 +1,6 @@
 import MenuIcon from '@mui/icons-material/Menu';
-import { AppBar, Box, Button, IconButton, Menu, MenuItem, Slide, Toolbar, Typography, useScrollTrigger } from '@mui/material';
+import { AppBar, Box, Button, IconButton, Menu, MenuItem, Slide, Toolbar, Typography, useMediaQuery, useScrollTrigger } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import Image from 'next/image';
 import { Dispatch, MouseEvent, SetStateAction, useState } from 'react';
 import FavIcon from '../public/lasagnark8.png';
@@ -19,6 +20,8 @@ export default function TopBar({ component, setComponent }: {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const theme = useTheme();
+  const smallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (<>
     <Slide appear={false} direction="down" in={!useScrollTrigger()}>
@@ -72,9 +75,11 @@ export default function TopBar({ component, setComponent }: {
               height={45}
             />
           </IconButton>
-          <Typography variant="title" sx={{
-            flexGrow: 1,
-          }}>
+          <Typography
+            variant="title"
+            sx={{flexGrow: 1}}
+            component={smallScreen? "h4" : "h2"}
+          >
             My Animal Crossing Island
           </Typography>
           <Box sx={{display: {xs: 'none', md: 'flex'}}}>
@@ -87,7 +92,8 @@ export default function TopBar({ component, setComponent }: {
                   ml: 1,
                   ':hover': {
                     bgcolor: "success.main",
-                  }
+                  },
+                  fontFamily: 'Coustard',
                 }}
                 onClick={() => setComponent(page)}
               >

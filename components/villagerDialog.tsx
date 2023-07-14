@@ -16,7 +16,7 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
 }) {
 
   const theme = useTheme();
-  const smallScreen = useMediaQuery(theme.breakpoints.down('md'))
+  const mediumScreen = useMediaQuery(theme.breakpoints.down('md'))
   const [imagesReady, setImagesReady] = useState(0);
   const [dialogReady, setDialogReady] = useState(true);
   const [showLoading, setShowLoading] = useState(false);
@@ -99,7 +99,7 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
             <Stack direction="row" spacing={2}>
               <Box
                 position="relative"
-                height={smallScreen ? 192 : 384}
+                height={mediumScreen ? 192 : 384}
               >
                 <Image
                   src={villagerData.nh_details.image_url}
@@ -122,8 +122,8 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
                   src={villagerData.nh_details.icon_url}
                   alt={`${history.name} icon`}
                   title={history.name}
-                  width={smallScreen ? 64 : 128}
-                  height={smallScreen ? 64 : 128}
+                  width={mediumScreen ? 64 : 128}
+                  height={mediumScreen ? 64 : 128}
                   onLoadingComplete={() => {
                     setImagesReady((a) => a + 1)
                   }}
@@ -132,8 +132,8 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
                   src={villagerData.nh_details.photo_url}
                   alt={`${history.name} photo`}
                   title={history.name}
-                  width={smallScreen ? 128 : 256}
-                  height={smallScreen ? 128 : 256}
+                  width={mediumScreen ? 128 : 256}
+                  height={mediumScreen ? 128 : 256}
                   onLoadingComplete={() => {
                     setImagesReady((a) => a + 1)
                   }}

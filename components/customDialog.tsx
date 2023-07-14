@@ -7,7 +7,7 @@ export default function CustomDialog({zIndex, ...props}: CustomDialogProps) {
 
   const { open, onClose } = props;
   const theme = useTheme();
-  const smallScreen = useMediaQuery(theme.breakpoints.down('md'))
+  const mediumScreen = useMediaQuery(theme.breakpoints.down('md'))
 
   return <>
     <Dialog
@@ -17,7 +17,7 @@ export default function CustomDialog({zIndex, ...props}: CustomDialogProps) {
       }}
     />
     <Box
-      display={smallScreen ? (open ? "flex" : "none") : "none"}
+      display={mediumScreen ? (open ? "flex" : "none") : "none"}
       position="fixed"
       width="100%"
       justifyContent="center"

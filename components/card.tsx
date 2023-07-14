@@ -15,17 +15,17 @@ export default function HistoryCard({ history, villagerData, setShowVillagerDial
 
   const [expanded, setExpanded] = useState(false);
   const theme = useTheme();
-  const smallScreen = useMediaQuery(theme.breakpoints.down('md'))
+  const mediumScreen = useMediaQuery(theme.breakpoints.down('md'))
 
   useEffect(() => {
     setExpanded(expandAll);
   }, [expandAll])
 
   const Content = () => <>
-    <Typography variant={smallScreen ? 'subtitle2' : 'h6'}>
+    <Typography variant={mediumScreen ? 'subtitle2' : 'h6'}>
       {history.name}
     </Typography>
-    <Typography variant={smallScreen ? 'caption' : 'body1'}>
+    <Typography variant={mediumScreen ? 'caption' : 'body1'}>
       {history.startDateString}
       <br />
       {!history.currentResident ? history.endDateString : 'Present'}
@@ -37,7 +37,7 @@ export default function HistoryCard({ history, villagerData, setShowVillagerDial
         setDialogVillager(history.name);
         setShowVillagerDialog(true);
       }}
-      size={smallScreen ? "small" : "medium"}
+      size={mediumScreen ? "small" : "medium"}
       sx={{
         position: 'absolute',
         bottom:   '15px' ,
@@ -50,7 +50,7 @@ export default function HistoryCard({ history, villagerData, setShowVillagerDial
       onClick={() => {
         setExpanded(false);
       }}
-      size={smallScreen ? "small" : "medium"}
+      size={mediumScreen ? "small" : "medium"}
       sx={{
         position: 'absolute',
         top:   '0px' ,

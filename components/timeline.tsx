@@ -114,7 +114,7 @@ export default function Timeline({ timelineData, timelineData2, villagersData, h
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const shortScreen = useMediaQuery('(max-height:700px)')
   const theme = useTheme();
-  const smallScreen = useMediaQuery(theme.breakpoints.down('md'))
+  const mediumScreen = useMediaQuery(theme.breakpoints.down('md'))
   const [timelineMode, setTimelineMode] = useState(0);
   const [barData, setBarData] = useState<string[][] | number[]>(timelineData);
   const [barLabels, setBarLabels] = useState(timelineLabels);
@@ -151,8 +151,8 @@ export default function Timeline({ timelineData, timelineData2, villagersData, h
   }
 
   useEffect(() => {
-    setOpenSnackbar(smallScreen);
-  }, [smallScreen]);
+    setOpenSnackbar(mediumScreen);
+  }, [mediumScreen]);
 
   useEffect(() => {
     setDialogVillager(timelineVillager);
@@ -286,7 +286,7 @@ export default function Timeline({ timelineData, timelineData2, villagersData, h
               setTimelineMode((mode) => mode === 2 ? 0 : (mode + 1));
             }}
             sx={{
-              display: smallScreen ? "none" : "",
+              display: mediumScreen ? "none" : "",
               ':hover': {
                 bgcolor: "white"
               },
@@ -302,7 +302,7 @@ export default function Timeline({ timelineData, timelineData2, villagersData, h
               setTimelineMode((mode) => mode === 2 ? 0 : (mode + 1));
             }}
             sx={{
-              display: smallScreen ? "" : "none",
+              display: mediumScreen ? "" : "none",
               ':hover': {
                 bgcolor: "white"
               },

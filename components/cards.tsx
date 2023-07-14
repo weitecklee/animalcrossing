@@ -39,7 +39,8 @@ export default function Cards({villagersData, histories, setDialogVillager, setS
       bottom: "1%",
       ':hover': {
         bgcolor: "white"
-      }
+      },
+      fontFamily: 'Coustard',
     }}>
       <ListRoundedIcon sx={{mr: 1}} />
         {expandAll ? 'Collapse All' : 'Expand All'}

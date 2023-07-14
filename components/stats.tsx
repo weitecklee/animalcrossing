@@ -27,14 +27,14 @@ export default function Stats({ villagersData, histories, durationData, speciesD
   const [showDurationDialog, setShowDurationDialog] = useState(false);
   const [showPhotoDialog, setShowPhotoDialog] = useState(false);
   const theme = useTheme();
-  const smallScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const mediumScreen = useMediaQuery(theme.breakpoints.down('md'));
 
   const VillagerIcon = ({villager}: {villager: string}) => (
     <Image
       src={villagersData.get(villager)?.nh_details.icon_url!}
       alt={villager}
-      height={smallScreen ? 40 : 64}
-      width={smallScreen ? 40 : 64}
+      height={mediumScreen ? 40 : 64}
+      width={mediumScreen ? 40 : 64}
       title={villager}
       onClick={() => {
         setDialogVillager(villager);
