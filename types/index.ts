@@ -112,6 +112,11 @@ export interface PhotoStatsProperties {
   count: number,
 }
 
+export interface PhotoStats2Properties {
+  shortestAfterReceiving: DurationProperties,
+  longestWithoutReceiving: DurationProperties,
+}
+
 export interface CustomDialogProps extends DialogProps {
   zIndex: number,
 }

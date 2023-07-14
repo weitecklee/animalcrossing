@@ -1,12 +1,13 @@
-import { Box, Chip, Dialog, DialogContent, Divider, Grid, Link, List, ListItem, Typography, useMediaQuery } from '@mui/material';
+import { Box, Chip, DialogContent, Divider, Grid, Link, List, ListItem, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import ReadMoreRoundedIcon from '@mui/icons-material/ReadMoreRounded';
 import Image from 'next/image';
 import { Dispatch, MouseEvent, SetStateAction, useState } from 'react';
-import { DurationProperties, HistoryProperties, PhotoStatsProperties, TraitProperties, VillagerProperties2 } from '../types';
+import { DurationProperties, HistoryProperties, PhotoStats2Properties, PhotoStatsProperties, TraitProperties, VillagerProperties2 } from '../types';
 import CustomDialog from './customDialog';
+import { dayOrDays } from '../lib/functions';
 
-export default function Stats({ villagersData, histories, durationData, speciesData, personalityData, genderData, photoData, photoStats, currentResidents, setDialogVillager, setShowVillagerDialog } : {
+export default function Stats({ villagersData, histories, durationData, speciesData, personalityData, genderData, photoData, photoStats, photoStats2, currentResidents, setDialogVillager, setShowVillagerDialog } : {
   villagersData: Map<string,VillagerProperties2>,
   histories: Map<string,HistoryProperties>,
   durationData: DurationProperties[],
@@ -15,6 +16,7 @@ export default function Stats({ villagersData, histories, durationData, speciesD
   genderData: TraitProperties[],
   photoData: DurationProperties[],
   photoStats: PhotoStatsProperties,
+  photoStats2: PhotoStats2Properties,
   currentResidents: string[],
   setDialogVillager: Dispatch<SetStateAction<string>>,
   setShowVillagerDialog: Dispatch<SetStateAction<boolean>>,
@@ -92,12 +94,12 @@ export default function Stats({ villagersData, histories, durationData, speciesD
     <Typography>
       Average: {(Array.from(histories.values()).reduce((a, b) => a + b.duration, 0) / histories.size).toFixed(2)} days
       <br />
-      Longest: {durationData[0].duration} days
+      Longest: {(durationData[0].duration)} days
       <br />
     </Typography>
     <IconGrid traitData={durationData[0]} />
     <Typography>
-      Shortest: {durationData[durationData.length - 1].duration} days
+      Shortest: {dayOrDays(durationData[durationData.length - 1].duration)}
       <br />
     </Typography>
     <IconGrid traitData={durationData[durationData.length - 1]} />
@@ -159,6 +161,14 @@ export default function Stats({ villagersData, histories, durationData, speciesD
       Slowest: {photoData[photoData.length - 1].trait} days
     </Typography>
     <IconGrid traitData={photoData[photoData.length - 1]} />
+    <Typography>
+      Shortest stay after receving photo: {dayOrDays(photoStats2.shortestAfterReceiving.duration - 1)}
+    </Typography>
+    <IconGrid traitData={photoStats2.shortestAfterReceiving} />
+    <Typography>
+      Longest stay without receiving photo: {photoStats2.longestWithoutReceiving.duration} days
+    </Typography>
+    <IconGrid traitData={photoStats2.longestWithoutReceiving} />
     <Typography>
       <Link
         href="#"
