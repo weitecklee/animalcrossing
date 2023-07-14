@@ -60,6 +60,13 @@ let theme = createTheme({
           title: "h2",
         }
       }
+    },
+    MuiChip: {
+      styleOverrides: {
+        label: {
+          fontFamily: "Coustard",
+        }
+      }
     }
   }
 });
