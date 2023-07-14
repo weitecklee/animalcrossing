@@ -15,6 +15,7 @@ export default function IndexComponent() {
       </Box>
       &nbsp;island.
       <br/>
+      <br/>
       You can find the following pages and information:
       <br/>
       &emsp;&emsp;VILLAGERS: all the villagers that have been on my island
@@ -26,6 +27,7 @@ export default function IndexComponent() {
       &emsp;&emsp;MAP: a map of my island (coming soon!)
       <br/>
       &emsp;&emsp;ABOUT: info about the game and me
+      <br/>
       <br/>
       Enjoy your visit!
     </Typography>

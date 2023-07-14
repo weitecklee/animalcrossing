@@ -36,13 +36,13 @@ export default function TimelineTooltip({ villagerData, history, setShowVillager
 }) {
 
   const theme = useTheme();
-  const smallScreen = useMediaQuery(theme.breakpoints.down('md'))
+  const mediumScreen = useMediaQuery(theme.breakpoints.down('md'))
 
   return (
       <DraggablePaper>
         <OpenWithRoundedIcon
           id="dragHandle"
-          fontSize={smallScreen ? 'small' : 'medium'}
+          fontSize={mediumScreen ? 'small' : 'medium'}
           sx={{
             cursor: 'move',
             position: 'absolute',
@@ -53,8 +53,8 @@ export default function TimelineTooltip({ villagerData, history, setShowVillager
         <Image
           src={villagerData.nh_details.icon_url}
           alt={villagerData.name}
-          height={smallScreen ? 64 : 128}
-          width={smallScreen ? 64 : 128}
+          height={mediumScreen ? 64 : 128}
+          width={mediumScreen ? 64 : 128}
           title={villagerData.name}
         />
         <Box>
@@ -70,11 +70,11 @@ export default function TimelineTooltip({ villagerData, history, setShowVillager
               }}
             >
             </span>
-            <Typography display="inline" variant={smallScreen ? 'subtitle2' : 'h6'} >
+            <Typography display="inline" variant={mediumScreen ? 'subtitle2' : 'h6'} >
             &nbsp;&nbsp;{villagerData.name}
             </Typography>
           </Stack>
-          <Typography variant={smallScreen ? 'caption' : 'body1'}>
+          <Typography variant={mediumScreen ? 'caption' : 'body1'}>
             {history.startDateString}
             <br />
             {!history.currentResident ? history.endDateString : 'Present'}
@@ -86,7 +86,7 @@ export default function TimelineTooltip({ villagerData, history, setShowVillager
           onClick={() => {
             setShowVillagerDialog(true);
           }}
-          size={smallScreen ? "small" : "medium"}
+          size={mediumScreen ? "small" : "medium"}
           sx={{
             position: 'absolute',
             bottom: 0,

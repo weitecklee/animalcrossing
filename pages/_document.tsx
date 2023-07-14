@@ -11,7 +11,7 @@ export default function Document() {
         <meta name="theme-color" content="#ffffff" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;500;700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Coustard&family=Montserrat:wght@100;400;500;700&display=swap" rel="stylesheet" />
         <meta name="description" content="Showcase of my Animal Crossing: New Horizons island and its villagers" />
         <meta property="og:url" content="https://myanimalcrossingisland.vercel.app/" />
         <meta property="og:type" content="website" />

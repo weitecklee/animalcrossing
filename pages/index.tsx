@@ -9,7 +9,24 @@ import Stats from '../components/stats';
 import TopBar from '../components/topBar';
 import VillagerDialog from '../components/villagerDialog';
 import { villagersData } from '../lib/combinedData';
-import { DurationProperties, HistoryProperties, MongoProperties, PhotoStatsProperties, TraitProperties } from '../types';
+import { DurationProperties, HistoryProperties, MongoProperties, PhotoStats2Properties, PhotoStatsProperties, TraitProperties } from '../types';
+import { calculateDays } from '../lib/functions';
+
+declare module '@mui/material/styles' {
+  interface TypographyVariants {
+    title: React.CSSProperties;
+  }
+
+  interface TypographyVariantsOptions {
+    title?: React.CSSProperties;
+  }
+}
+
+declare module '@mui/material/Typography' {
+  interface TypographyPropsVariantOverrides {
+    title: true;
+  }
+}
 
 let theme = createTheme({
   palette: {
@@ -24,13 +41,23 @@ let theme = createTheme({
     }
   },
   typography: {
-    fontFamily: "Montserrat"
+    fontFamily: "Montserrat",
+    title: {
+      fontFamily: "Coustard", // Zilla Slab, Sanchez
+    }
   },
   components: {
     MuiLink: {
       styleOverrides: {
         root: {
           fontWeight: 500,
+        }
+      }
+    },
+    MuiChip: {
+      styleOverrides: {
+        label: {
+          fontFamily: "Coustard",
         }
       }
     }
@@ -68,9 +95,30 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
   const [dialogVillager, setDialogVillager] = useState('');
   const [timelineNameIndex, setTimelineNameIndex] = useState<Map<string, number>>(new Map());
   const [timelineNameIndex3, setTimelineNameIndex3] = useState<Map<string, number>>(new Map());
+  const [photoStats2, setPhotoStats2] = useState<PhotoStats2Properties>({} as PhotoStats2Properties);
 
   useEffect(() => {
     const tmpHistories: Map<string,HistoryProperties> = new Map();
+    const tmpPhotoStats2: PhotoStats2Properties = {
+      shortestAfterReceiving: {
+        trait: '',
+        count: 0,
+        villagers: [],
+        duration: 10000,
+      },
+      longestAfterReceiving: {
+        trait: '',
+        count: 0,
+        villagers: [],
+        duration: 0,
+      },
+      longestWithoutReceiving: {
+        trait: '',
+        count: 0,
+        villagers: [],
+        duration: 0,
+      },
+    }
 
     const labels: string[] = [];
     const timeData: string[][] = [];
@@ -93,9 +141,22 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
       }
       if (mongoDatum.photo) {
         tmpHist.photoDateDate = new Date(mongoDatum.photoDate);
+        const stayAfterReceiving = calculateDays(tmpHist.photoDateDate, tmpHist.endDateDate);
+        if (stayAfterReceiving < tmpPhotoStats2.shortestAfterReceiving.duration) {
+          tmpPhotoStats2.shortestAfterReceiving.duration = stayAfterReceiving;
+          tmpPhotoStats2.shortestAfterReceiving.villagers = [mongoDatum.name];
+        } else if (stayAfterReceiving === tmpPhotoStats2.shortestAfterReceiving.duration) {
+          tmpPhotoStats2.shortestAfterReceiving.villagers.push(mongoDatum.name);
+        }
+        if (stayAfterReceiving > tmpPhotoStats2.longestAfterReceiving.duration) {
+          tmpPhotoStats2.longestAfterReceiving.duration = stayAfterReceiving;
+          tmpPhotoStats2.longestAfterReceiving.villagers = [mongoDatum.name];
+        } else if (stayAfterReceiving === tmpPhotoStats2.longestAfterReceiving.duration) {
+          tmpPhotoStats2.longestAfterReceiving.villagers.push(mongoDatum.name);
+        }
       }
       tmpHist.endDateString = tmpHist.endDateDate.toLocaleDateString("fr-CA");
-      tmpHist.duration = Math.round((tmpHist.endDateDate.getTime() - tmpHist.startDateDate.getTime()) / (1000 * 3600 * 24)) + 1;
+      tmpHist.duration = calculateDays(tmpHist.startDateDate, tmpHist.endDateDate);
       if (!durationMap.has(tmpHist.duration)) {
         durationMap.set(tmpHist.duration, {
           trait: tmpHist.duration.toString(),
@@ -135,6 +196,23 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
       }
     }
 
+    let found = false;
+    for (const duration of tmpDurations) {
+      for (const villager of duration.villagers) {
+        if (!(tmpHistories.get(villager)!.photo)) {
+          tmpPhotoStats2.longestWithoutReceiving.duration = duration.duration;
+          tmpPhotoStats2.longestWithoutReceiving.villagers.push(villager);
+          found = true;
+        }
+      }
+      if (found) {
+        break;
+      }
+    }
+
+    tmpPhotoStats2.shortestAfterReceiving.trait = tmpPhotoStats2.shortestAfterReceiving.duration.toString();
+    tmpPhotoStats2.longestWithoutReceiving.trait = tmpPhotoStats2.longestWithoutReceiving.duration.toString();
+
     setHistories(tmpHistories);
     setTimelineData(timeData);
     setTimelineData2(durationData);
@@ -146,6 +224,7 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
     setTimelineColors3(colors2);
     setTimelineNameIndex(nameIndex);
     setTimelineNameIndex3(nameIndex2);
+    setPhotoStats2(tmpPhotoStats2);
   }, [mongoData])
 
   return (<>
@@ -185,6 +264,7 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
         genderData={genderData}
         photoData={photoData}
         photoStats={photoStats}
+        photoStats2={photoStats2}
         currentResidents={currentResidents}
         setDialogVillager={setDialogVillager}
         setShowVillagerDialog={setShowVillagerDialog}
@@ -258,7 +338,7 @@ export async function getStaticProps(): Promise<{
       mongoDatum.photo = true
       const photoDateDate = new Date(mongoDatum.photoDate);
       mongoDatum.photoDateString = photoDateDate.toLocaleDateString("fr-CA");
-      mongoDatum.daysToPhoto = Math.round((photoDateDate.getTime() - startDateDate.getTime()) / (1000 * 3600 * 24)) + 1;
+      mongoDatum.daysToPhoto = calculateDays(startDateDate, photoDateDate);
       photoStats.count++;
       photoStats.average += mongoDatum.daysToPhoto;
       if (!photoMap.has(mongoDatum.daysToPhoto)) {
@@ -272,6 +352,7 @@ export async function getStaticProps(): Promise<{
       const tmp = photoMap.get(mongoDatum.daysToPhoto)!;
       tmp.count++;
       tmp.villagers.push(mongoDatum.name);
+
     } else {
       mongoDatum.photo = false;
     }
