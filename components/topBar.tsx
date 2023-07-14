@@ -72,7 +72,9 @@ export default function TopBar({ component, setComponent }: {
               height={45}
             />
           </IconButton>
-          <Typography variant="h6" sx={{flexGrow: 1}}>
+          <Typography variant="title" sx={{
+            flexGrow: 1,
+          }}>
             My Animal Crossing Island
           </Typography>
           <Box sx={{display: {xs: 'none', md: 'flex'}}}>

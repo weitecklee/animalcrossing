@@ -12,6 +12,22 @@ import { villagersData } from '../lib/combinedData';
 import { DurationProperties, HistoryProperties, MongoProperties, PhotoStats2Properties, PhotoStatsProperties, TraitProperties } from '../types';
 import { calculateDays } from '../lib/functions';
 
+declare module '@mui/material/styles' {
+  interface TypographyVariants {
+    title: React.CSSProperties;
+  }
+
+  interface TypographyVariantsOptions {
+    title?: React.CSSProperties;
+  }
+}
+
+declare module '@mui/material/Typography' {
+  interface TypographyPropsVariantOverrides {
+    title: true;
+  }
+}
+
 let theme = createTheme({
   palette: {
     primary: {
@@ -25,13 +41,23 @@ let theme = createTheme({
     }
   },
   typography: {
-    fontFamily: "Montserrat"
+    fontFamily: "Montserrat",
+    title: {
+      fontFamily: "Coustard", // Zilla Slab, Sanchez
+    }
   },
   components: {
     MuiLink: {
       styleOverrides: {
         root: {
           fontWeight: 500,
+        }
+      }
+    },
+    MuiTypography: {
+      defaultProps: {
+        variantMapping: {
+          title: "h2",
         }
       }
     }
