@@ -16,7 +16,8 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
 }) {
 
   const theme = useTheme();
-  const mediumScreen = useMediaQuery(theme.breakpoints.down('md'))
+  const mediumScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const smallScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const [imagesReady, setImagesReady] = useState(0);
   const [dialogReady, setDialogReady] = useState(true);
   const [showLoading, setShowLoading] = useState(false);
@@ -86,6 +87,10 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
       onClose={handleClose}
       maxWidth={false}
       zIndex={1300}
+      PaperProps={{sx: smallScreen ? {
+        maxWidth: "100%",
+        mx: "16px",
+      } : {}}}
     >
       <Collapse in={dialogReady} appear>
         <Grid
