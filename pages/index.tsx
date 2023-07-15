@@ -142,11 +142,13 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
       if (mongoDatum.photo) {
         tmpHist.photoDateDate = new Date(mongoDatum.photoDate);
         const stayAfterReceiving = calculateDays(tmpHist.photoDateDate, tmpHist.endDateDate);
-        if (stayAfterReceiving < tmpPhotoStats2.shortestAfterReceiving.duration) {
-          tmpPhotoStats2.shortestAfterReceiving.duration = stayAfterReceiving;
-          tmpPhotoStats2.shortestAfterReceiving.villagers = [mongoDatum.name];
-        } else if (stayAfterReceiving === tmpPhotoStats2.shortestAfterReceiving.duration) {
-          tmpPhotoStats2.shortestAfterReceiving.villagers.push(mongoDatum.name);
+        if (!mongoDatum.currentResident) {
+          if (stayAfterReceiving < tmpPhotoStats2.shortestAfterReceiving.duration) {
+            tmpPhotoStats2.shortestAfterReceiving.duration = stayAfterReceiving;
+            tmpPhotoStats2.shortestAfterReceiving.villagers = [mongoDatum.name];
+          } else if (stayAfterReceiving === tmpPhotoStats2.shortestAfterReceiving.duration) {
+            tmpPhotoStats2.shortestAfterReceiving.villagers.push(mongoDatum.name);
+          }
         }
         if (stayAfterReceiving > tmpPhotoStats2.longestAfterReceiving.duration) {
           tmpPhotoStats2.longestAfterReceiving.duration = stayAfterReceiving;
