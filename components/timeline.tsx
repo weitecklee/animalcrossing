@@ -137,7 +137,7 @@ export default function Timeline({ timelineData, timelineData2, villagersData, h
     options2.plugins.tooltip.external = options.plugins.tooltip.external;
     options2.scales.x = {
       min: 0,
-      max: Math.max(... timelineData2),
+      max: Math.ceil(Math.max(... timelineData2) / 10 + .5) * 10,
     };
   }, [timelineData2]);
 

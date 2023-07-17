@@ -150,7 +150,7 @@ export default function Stats({ villagersData, histories, durationData, speciesD
       <Chip label="PHOTOS" />
     </Divider>
     <Typography>
-      Received: {photoStats.count}
+      Received: {photoStats.count} ({(photoStats.count / histories.size * 100).toFixed(2)}%)
       <br />
       Average time to receive: {photoStats.average.toFixed(2)} days
       <br />
