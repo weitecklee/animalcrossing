@@ -3,6 +3,10 @@ import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
 import Image from 'next/image';
 import AvatarPNG from '../public/avatar13.png';
 
+const BoldSpan = ({text}: {text: string}) => <Box component="span" sx={{fontFamily: 'Coustard'}}>
+  {text}
+</Box>
+
 export default function IndexComponent() {
   return <>
     <Typography>
@@ -18,15 +22,15 @@ export default function IndexComponent() {
       <br/>
       You can find the following pages and information:
       <br/>
-      &emsp;&emsp;VILLAGERS: all the villagers that have been on my island
+      &emsp;&emsp;<BoldSpan text={'Villagers'} />: all the villagers that have been on my island
       <br/>
-      &emsp;&emsp;TIMELINE: a timeline chart of the villagers
+      &emsp;&emsp;<BoldSpan text={'Timeline'} />: a timeline chart of the villagers
       <br/>
-      &emsp;&emsp;STATS: all sorts of fun stats
+      &emsp;&emsp;<BoldSpan text={'Stats'} />: all sorts of fun stats
       <br/>
-      &emsp;&emsp;MAP: a map of my island (coming soon!)
+      &emsp;&emsp;<BoldSpan text={'Map'} />: a map of my island (coming soon!)
       <br/>
-      &emsp;&emsp;ABOUT: info about the game and me
+      &emsp;&emsp;<BoldSpan text={'About'} />: info about the game and me
       <br/>
       <br/>
       Enjoy your visit!

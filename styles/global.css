@@ -7,3 +7,6 @@ body {
   background-color: #79d6c2 !important;
 }
 
+.MuiButtonBase-root {
+  text-transform: unset !important;
+}
