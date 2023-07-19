@@ -71,7 +71,7 @@ const options = {
   scales: {
     x: {
       type: 'time',
-      min: new Date('2020/03/26').valueOf() - 86400000,
+      min: new Date('2020/03/25').valueOf() - 86400000,
       max: new Date().valueOf() + 86400000,
       time: {
         minUnit: 'month',

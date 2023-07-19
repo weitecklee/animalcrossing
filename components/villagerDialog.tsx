@@ -147,7 +147,7 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
             </Stack>
           </Grid>
           <Grid item>
-            <Typography variant="h6">
+            <Typography variant="h6" fontFamily="Coustard">
               {history.name}&emsp;{villagerData.ja_name}
             </Typography>
             <Typography>

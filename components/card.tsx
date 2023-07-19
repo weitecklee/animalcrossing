@@ -22,7 +22,7 @@ export default function HistoryCard({ history, villagerData, setShowVillagerDial
   }, [expandAll])
 
   const Content = () => <>
-    <Typography variant={mediumScreen ? 'subtitle2' : 'h6'}>
+    <Typography variant={mediumScreen ? 'subtitle2' : 'h6'} fontFamily="Coustard">
       {history.name}
     </Typography>
     <Typography variant={mediumScreen ? 'caption' : 'body1'}>
