@@ -50,7 +50,7 @@ let theme = createTheme({
     MuiLink: {
       styleOverrides: {
         root: {
-          fontWeight: 500,
+          fontFamily: "Coustard",
         }
       }
     },

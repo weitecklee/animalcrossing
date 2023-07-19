@@ -43,7 +43,7 @@ export default function Cards({villagersData, histories, setDialogVillager, setS
       fontFamily: 'Coustard',
     }}>
       <ListRoundedIcon sx={{mr: 1}} />
-        {expandAll ? 'Collapse All' : 'Expand All'}
+        {expandAll ? 'Collapse all' : 'Expand all'}
     </Fab>
   </>
 
