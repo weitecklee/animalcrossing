@@ -89,7 +89,7 @@ export default function Stats({ villagersData, histories, durationData, speciesD
         )}
       </Grid>
     <Divider>
-      <Chip label="DURATION OF RESIDENCE" />
+      <Chip label="DURATION OF RESIDENCE" color="secondary" />
     </Divider>
     <Typography>
       Average: {(Array.from(histories.values()).reduce((a, b) => a + b.duration, 0) / histories.size).toFixed(2)} days
@@ -117,7 +117,7 @@ export default function Stats({ villagersData, histories, durationData, speciesD
       </Link>
     </Typography>
     <Divider>
-      <Chip label="SPECIES" />
+      <Chip label="SPECIES" color="secondary" />
     </Divider>
     <Typography>
       Most common: {speciesData[0].trait}
@@ -127,7 +127,7 @@ export default function Stats({ villagersData, histories, durationData, speciesD
       <BreakdownLink traitData={speciesData}/>
     </Typography>
     <Divider>
-      <Chip label="PERSONALITY" />
+      <Chip label="PERSONALITY" color="secondary" />
     </Divider>
     <Typography>
       Most common: {personalityData[0].trait}
@@ -137,7 +137,7 @@ export default function Stats({ villagersData, histories, durationData, speciesD
       <BreakdownLink traitData={personalityData}/>
     </Typography>
     <Divider>
-      <Chip label="GENDER" />
+      <Chip label="GENDER" color="secondary" />
     </Divider>
     <Typography>
       {genderData[0].trait}: {genderData[0].count}
@@ -147,7 +147,7 @@ export default function Stats({ villagersData, histories, durationData, speciesD
       <BreakdownLink traitData={genderData}/>
     </Typography>
     <Divider>
-      <Chip label="PHOTOS" />
+      <Chip label="PHOTOS" color="secondary" />
     </Divider>
     <Typography>
       Received: {photoStats.count} ({(photoStats.count / histories.size * 100).toFixed(2)}%)
@@ -222,7 +222,7 @@ export default function Stats({ villagersData, histories, durationData, speciesD
       <DialogContent>
         {dialogTraitData.map((traitData) => (<Box key={traitData.trait}>
           <Divider>
-            <Chip label={`${traitData.trait}: ${traitData.count}`} />
+            <Chip label={`${traitData.trait}: ${traitData.count}`} color="secondary" />
           </Divider>
           <IconGrid traitData={traitData}/>
         </Box>))}
