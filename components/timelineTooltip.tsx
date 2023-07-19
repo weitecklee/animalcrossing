@@ -70,8 +70,8 @@ export default function TimelineTooltip({ villagerData, history, setShowVillager
               }}
             >
             </span>
-            <Typography display="inline" variant={mediumScreen ? 'subtitle2' : 'h6'} >
-            &nbsp;&nbsp;{villagerData.name}
+            <Typography display="inline" variant={mediumScreen ? 'subtitle2' : 'h6'} fontFamily="Coustard">
+            &ensp;{villagerData.name}
             </Typography>
           </Stack>
           <Typography variant={mediumScreen ? 'caption' : 'body1'}>
