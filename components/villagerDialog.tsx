@@ -107,7 +107,7 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
                 height={mediumScreen ? 192 : 384}
               >
                 <Image
-                  src={villagerData.nh_details.image_url}
+                  src={villagerData.image_url}
                   alt={`${history.name} image`}
                   title={history.name}
                   width={256}
