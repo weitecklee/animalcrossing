@@ -1,4 +1,5 @@
-body {
+body,
+.MuiDialog-paper {
   background-color: #F5F7E1;
 }
 
