@@ -8,7 +8,7 @@ import CustomDialog from './customDialog';
 import IconGrid from './iconGrid';
 import VillagerIcon from './villagerIcon';
 
-export default function Stats({ villagersData, histories, durationData, speciesData, personalityData, genderData, photoData, photoStats, photoStats2, currentResidents, setDialogVillager, setShowVillagerDialog, contemporariesData } : {
+export default function Stats({ villagersData, histories, durationData, speciesData, personalityData, genderData, photoData, photoStats, photoStats2, currentResidents, setDialogVillager, setShowVillagerDialog, islandmatesData } : {
   villagersData: Map<string,VillagerProperties2>,
   histories: Map<string,HistoryProperties>,
   durationData: DurationProperties[],
@@ -21,14 +21,14 @@ export default function Stats({ villagersData, histories, durationData, speciesD
   currentResidents: string[],
   setDialogVillager: Dispatch<SetStateAction<string>>,
   setShowVillagerDialog: Dispatch<SetStateAction<boolean>>,
-  contemporariesData: DurationProperties[],
+  islandmatesData: DurationProperties[],
 }) {
 
   const [dialogTraitData, setDialogTraitData] = useState<TraitProperties[]>([]);
   const [showTraitDialog, setShowTraitDialog] = useState(false);
   const [showDurationDialog, setShowDurationDialog] = useState(false);
   const [showPhotoDialog, setShowPhotoDialog] = useState(false);
-  const [showContemporariesDialog, setShowContemporariesDialog] = useState(false);
+  const [showIslandmatesDialog, setShowIslandmatesDialog] = useState(false);
   const theme = useTheme();
   const mediumScreen = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -204,29 +204,29 @@ export default function Stats({ villagersData, histories, durationData, speciesD
     />
     <BreakdownLink onClick={() => {setShowPhotoDialog(true);}} />
     <Divider>
-      <Chip label="Contemporaries" color="secondary" />
+      <Chip label="Islandmates" color="secondary" />
     </Divider>
     <Typography>
-      Most contemporary villagers: {contemporariesData[0].trait}
+      Most islandmates: {islandmatesData[0].trait}
     </Typography>
     <IconGrid
-      traitData={contemporariesData[0]}
+      traitData={islandmatesData[0]}
       villagersData={villagersData}
       mediumScreen={mediumScreen}
       setDialogVillager={setDialogVillager}
       setShowVillagerDialog={setShowVillagerDialog}
     />
     <Typography>
-      Fewest contemporary villagers: {contemporariesData[contemporariesData.length - 1].trait}
+      Fewest islandmates: {islandmatesData[islandmatesData.length - 1].trait}
     </Typography>
     <IconGrid
-      traitData={contemporariesData[contemporariesData.length - 1]}
+      traitData={islandmatesData[islandmatesData.length - 1]}
       villagersData={villagersData}
       mediumScreen={mediumScreen}
       setDialogVillager={setDialogVillager}
       setShowVillagerDialog={setShowVillagerDialog}
       />
-    <BreakdownLink onClick={() => {setShowContemporariesDialog(true);}} />
+    <BreakdownLink onClick={() => {setShowIslandmatesDialog(true);}} />
     <CustomDialog
       open={showDurationDialog}
       onClose={() => setShowDurationDialog(false)}
@@ -311,16 +311,16 @@ export default function Stats({ villagersData, histories, durationData, speciesD
       </DialogContent>
     </CustomDialog>
     <CustomDialog
-      open={showContemporariesDialog}
-      onClose={() => setShowContemporariesDialog(false)}
+      open={showIslandmatesDialog}
+      onClose={() => setShowIslandmatesDialog(false)}
       maxWidth={false}
       keepMounted
       zIndex={1200}
     >
       <DialogContent>
         <List>
-          {contemporariesData.map((contemps) => (
-            contemps.villagers.map((villager) => (
+          {islandmatesData.map((islandmates) => (
+            islandmates.villagers.map((villager) => (
               <ListItem key={villager} disablePadding>
                 <Box display="flex" alignItems="center">
                   <VillagerIcon
@@ -331,7 +331,7 @@ export default function Stats({ villagersData, histories, durationData, speciesD
                     setShowVillagerDialog={setShowVillagerDialog}
                   />
                   <Typography>
-                    &nbsp;&nbsp;{contemps.trait} contemporaries
+                    &nbsp;&nbsp;{islandmates.trait} islandmates
                   </Typography>
                 </Box>
               </ListItem>

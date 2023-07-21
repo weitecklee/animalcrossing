@@ -180,10 +180,10 @@ export default function VillagerDialog({ histories, villagersData, dialogVillage
             </Typography>
             <br />
             <Typography>
-              {history.contemporaries.length} contemporaries:
+              {history.islandmates.length} islandmates:
             </Typography>
             <IconGrid
-              villagers={history.contemporaries}
+              villagers={history.islandmates}
               villagersData={villagersData}
               mediumScreen={mediumScreen}
               setDialogVillager={setDialogVillager}

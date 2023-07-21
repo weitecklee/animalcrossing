@@ -71,7 +71,7 @@ theme = responsiveFontSizes(theme, {
 
 const Timeline = dynamic(() => import('../components/timeline'), {ssr: false})
 
-export default function HomePage({ mongoData, speciesData, personalityData, genderData, photoData, photoStats, currentResidents, contemporariesData }: {
+export default function HomePage({ mongoData, speciesData, personalityData, genderData, photoData, photoStats, currentResidents, islandmatesData }: {
   mongoData: MongoProperties[],
   speciesData: TraitProperties[],
   personalityData: TraitProperties[],
@@ -79,7 +79,7 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
   photoData: DurationProperties[],
   photoStats: PhotoStatsProperties,
   currentResidents: string[],
-  contemporariesData: DurationProperties[],
+  islandmatesData: DurationProperties[],
 }) {
 
   const [histories, setHistories] = useState<Map<string,HistoryProperties>>(new Map());
@@ -275,7 +275,7 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
         currentResidents={currentResidents}
         setDialogVillager={setDialogVillager}
         setShowVillagerDialog={setShowVillagerDialog}
-        contemporariesData={contemporariesData}
+        islandmatesData={islandmatesData}
       />}
       {component === 'About' && <About />}
       <VillagerDialog
@@ -300,7 +300,7 @@ export async function getStaticProps(): Promise<{
     photoData: DurationProperties[],
     photoStats: PhotoStatsProperties,
     currentResidents: string[],
-    contemporariesData: TraitProperties[],
+    islandmatesData: TraitProperties[],
   };
 }> {
 
@@ -327,7 +327,7 @@ export async function getStaticProps(): Promise<{
   const personalityMap: Map<string, TraitProperties> = new Map();
   const genderMap: Map<string, TraitProperties> = new Map();
   const photoMap: Map<number, DurationProperties> = new Map();
-  const contemporariesMap: Map<number, DurationProperties> = new Map();
+  const islandmatesMap: Map<number, DurationProperties> = new Map();
   const photoStats: PhotoStatsProperties = {
     average: 0,
     count: 0,
@@ -402,15 +402,15 @@ export async function getStaticProps(): Promise<{
     const tmp3 = genderMap.get(gender)!;
     tmp3.count++;
     tmp3.villagers.push(mongoDatum.name);
-    if (!contemporariesMap.has(mongoDatum.contemporaries.length)) {
-      contemporariesMap.set(mongoDatum.contemporaries.length, {
-        trait: mongoDatum.contemporaries.length.toString(),
+    if (!islandmatesMap.has(mongoDatum.islandmates.length)) {
+      islandmatesMap.set(mongoDatum.islandmates.length, {
+        trait: mongoDatum.islandmates.length.toString(),
         count: 0,
         villagers: [],
-        duration: mongoDatum.contemporaries.length,
+        duration: mongoDatum.islandmates.length,
       });
     }
-    const tmp4 = contemporariesMap.get(mongoDatum.contemporaries.length)!;
+    const tmp4 = islandmatesMap.get(mongoDatum.islandmates.length)!;
     tmp4.count++;
     tmp4.villagers.push(mongoDatum.name);
   }
@@ -424,8 +424,8 @@ export async function getStaticProps(): Promise<{
   const photoData = Array.from(photoMap.values());
   photoData.sort((a, b) => a.duration - b.duration);
   photoStats.average /= photoStats.count;
-  const contemporariesData = Array.from(contemporariesMap.values());
-  contemporariesData.sort((a, b) => b.duration - a.duration);
+  const islandmatesData = Array.from(islandmatesMap.values());
+  islandmatesData.sort((a, b) => b.duration - a.duration);
 
   return {
     props: {
@@ -436,7 +436,7 @@ export async function getStaticProps(): Promise<{
       photoData,
       photoStats,
       currentResidents,
-      contemporariesData,
+      islandmatesData,
     }
   }
 }

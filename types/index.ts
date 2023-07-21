@@ -36,7 +36,7 @@ export interface MongoProperties {
   startDate: string,
   endDate: string,
   photoDate: string,
-  contemporaries: string[],
+  islandmates: string[],
   _id: string,
   currentResident: boolean,
   photo: boolean,
