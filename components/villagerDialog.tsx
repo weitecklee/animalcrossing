@@ -5,12 +5,15 @@ import Image from 'next/image';
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import { HistoryProperties, VillagerProperties2 } from '../types';
 import CustomDialog from './customDialog';
+import IconGrid from './iconGrid';
 
 const timeouts: NodeJS.Timeout[] = [];
 
-export default function VillagerDialog({ history, villagerData, showVillagerDialog, setShowVillagerDialog } : {
-  history: HistoryProperties,
-  villagerData: VillagerProperties2,
+export default function VillagerDialog({ histories, villagersData, dialogVillager, setDialogVillager, showVillagerDialog, setShowVillagerDialog } : {
+  histories: Map<string,HistoryProperties>,
+  villagersData: Map<string,VillagerProperties2>,
+  dialogVillager: string,
+  setDialogVillager: Dispatch<SetStateAction<string>>,
   showVillagerDialog: boolean,
   setShowVillagerDialog: Dispatch<SetStateAction<boolean>>,
 }) {
@@ -22,6 +25,8 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
   const [dialogReady, setDialogReady] = useState(true);
   const [showLoading, setShowLoading] = useState(false);
   const previousVillager = useRef('');
+  const history = histories.get(dialogVillager)!;
+  const villagerData = villagersData.get(dialogVillager)!;
 
   const handleClose = () => {
     while (timeouts.length) {
@@ -146,7 +151,7 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
               </Stack>
             </Stack>
           </Grid>
-          <Grid item>
+          <Grid item maxWidth={mediumScreen? 40 * 8 : 64 * 9 }>
             <Typography variant="h6" fontFamily="Coustard">
               {history.name}&emsp;{villagerData.ja_name}
             </Typography>
@@ -173,6 +178,17 @@ export default function VillagerDialog({ history, villagerData, showVillagerDial
               Duration of residence:&nbsp;
               {history.duration} days{history.currentResident && " and counting"}
             </Typography>
+            <br />
+            <Typography>
+              {history.contemporaries.length} contemporaries:
+            </Typography>
+            <IconGrid
+              villagers={history.contemporaries}
+              villagersData={villagersData}
+              mediumScreen={mediumScreen}
+              setDialogVillager={setDialogVillager}
+              setShowVillagerDialog={setShowVillagerDialog}
+            />
             <br />
             <Typography variant="body2">
               <Link

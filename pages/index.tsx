@@ -279,8 +279,10 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
       />}
       {component === 'About' && <About />}
       <VillagerDialog
-        history={histories.get(dialogVillager)!}
-        villagerData={villagersData.get(dialogVillager)!}
+        histories={histories}
+        villagersData={villagersData}
+        dialogVillager={dialogVillager}
+        setDialogVillager={setDialogVillager}
         showVillagerDialog={showVillagerDialog}
         setShowVillagerDialog={setShowVillagerDialog}
       />
