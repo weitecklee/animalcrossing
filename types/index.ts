@@ -36,13 +36,13 @@ export interface MongoProperties {
   startDate: string,
   endDate: string,
   photoDate: string,
+  contemporaries: string[],
   _id: string,
   currentResident: boolean,
   photo: boolean,
   startDateString: string,
   photoDateString: string,
   daysToPhoto: number,
-  contemporaries: string[],
 }
 
 export interface HistoryProperties extends MongoProperties {

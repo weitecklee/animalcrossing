@@ -27,6 +27,7 @@ export default function Stats({ villagersData, histories, durationData, speciesD
   const [showTraitDialog, setShowTraitDialog] = useState(false);
   const [showDurationDialog, setShowDurationDialog] = useState(false);
   const [showPhotoDialog, setShowPhotoDialog] = useState(false);
+  const [showContemporariesDialog, setShowContemporariesDialog] = useState(false);
   const theme = useTheme();
   const mediumScreen = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -59,14 +60,21 @@ export default function Stats({ villagersData, histories, durationData, speciesD
     </Grid>
   );
 
-  const BreakdownLink = ({traitData} : {traitData: TraitProperties[]}) => (
+  const BreakdownLink = ({traitData, onClick} : {
+    traitData?: TraitProperties[],
+    onClick?: () => void,
+  }) => (
     <Link
       href="#"
       underline="none"
       onClick={(event: MouseEvent<HTMLAnchorElement>) => {
         event.preventDefault();
-        setDialogTraitData(traitData);
-        setShowTraitDialog(true);
+        if (traitData) {
+          setDialogTraitData(traitData);
+          setShowTraitDialog(true);
+        } else {
+          onClick!();
+        }
       }}
     >
       Full breakdown
@@ -104,19 +112,7 @@ export default function Stats({ villagersData, histories, durationData, speciesD
       <br />
     </Typography>
     <IconGrid traitData={durationData[durationData.length - 1]} />
-    <Typography>
-      <Link
-        href="#"
-        underline="none"
-        onClick={(event: MouseEvent<HTMLAnchorElement>) => {
-          event.preventDefault();
-          setShowDurationDialog(true);
-        }}
-      >
-        Full breakdown
-        <ReadMoreRoundedIcon fontSize="inherit" />
-      </Link>
-    </Typography>
+    <BreakdownLink onClick={() => {setShowDurationDialog(true);}} />
     <Divider>
       <Chip label="Species" color="secondary" />
     </Divider>
@@ -174,19 +170,7 @@ export default function Stats({ villagersData, histories, durationData, speciesD
       Longest stay without receiving photo: {photoStats2.longestWithoutReceiving.duration} days
     </Typography>
     <IconGrid traitData={photoStats2.longestWithoutReceiving} />
-    <Typography>
-      <Link
-        href="#"
-        underline="none"
-        onClick={(event: MouseEvent<HTMLAnchorElement>) => {
-          event.preventDefault();
-          setShowPhotoDialog(true);
-        }}
-      >
-        Full breakdown
-        <ReadMoreRoundedIcon fontSize="inherit" />
-      </Link>
-    </Typography>
+    <BreakdownLink onClick={() => {setShowPhotoDialog(true);}} />
     <Divider>
       <Chip label="Contemporaries" color="secondary" />
     </Divider>
@@ -198,6 +182,7 @@ export default function Stats({ villagersData, histories, durationData, speciesD
       Fewest contemporary villagers: {contemporariesData[contemporariesData.length - 1].trait}
     </Typography>
     <IconGrid traitData={contemporariesData[contemporariesData.length - 1]} />
+    <BreakdownLink onClick={() => {setShowContemporariesDialog(true);}} />
     <CustomDialog
       open={showDurationDialog}
       onClose={() => setShowDurationDialog(false)}
@@ -256,6 +241,29 @@ export default function Stats({ villagersData, histories, durationData, speciesD
                   <VillagerIcon villager={villager} />
                   <Typography>
                     &nbsp;&nbsp;{photo.trait} days
+                  </Typography>
+                </Box>
+              </ListItem>
+          ))))}
+        </List>
+      </DialogContent>
+    </CustomDialog>
+    <CustomDialog
+      open={showContemporariesDialog}
+      onClose={() => setShowContemporariesDialog(false)}
+      maxWidth={false}
+      keepMounted
+      zIndex={1200}
+    >
+      <DialogContent>
+        <List>
+          {contemporariesData.map((contemps) => (
+            contemps.villagers.map((villager) => (
+              <ListItem key={villager} disablePadding>
+                <Box display="flex" alignItems="center">
+                  <VillagerIcon villager={villager} />
+                  <Typography>
+                    &nbsp;&nbsp;{contemps.trait} contemporaries
                   </Typography>
                 </Box>
               </ListItem>
