@@ -7,7 +7,7 @@ import { DurationProperties, HistoryProperties, PhotoStats2Properties, PhotoStat
 import CustomDialog from './customDialog';
 import { dayOrDays } from '../lib/functions';
 
-export default function Stats({ villagersData, histories, durationData, speciesData, personalityData, genderData, photoData, photoStats, photoStats2, currentResidents, setDialogVillager, setShowVillagerDialog } : {
+export default function Stats({ villagersData, histories, durationData, speciesData, personalityData, genderData, photoData, photoStats, photoStats2, currentResidents, setDialogVillager, setShowVillagerDialog, contemporariesData } : {
   villagersData: Map<string,VillagerProperties2>,
   histories: Map<string,HistoryProperties>,
   durationData: DurationProperties[],
@@ -20,6 +20,7 @@ export default function Stats({ villagersData, histories, durationData, speciesD
   currentResidents: string[],
   setDialogVillager: Dispatch<SetStateAction<string>>,
   setShowVillagerDialog: Dispatch<SetStateAction<boolean>>,
+  contemporariesData: DurationProperties[],
 }) {
 
   const [dialogTraitData, setDialogTraitData] = useState<TraitProperties[]>([]);
@@ -186,6 +187,17 @@ export default function Stats({ villagersData, histories, durationData, speciesD
         <ReadMoreRoundedIcon fontSize="inherit" />
       </Link>
     </Typography>
+    <Divider>
+      <Chip label="Contemporaries" color="secondary" />
+    </Divider>
+    <Typography>
+      Most contemporary villagers: {contemporariesData[0].trait}
+    </Typography>
+    <IconGrid traitData={contemporariesData[0]} />
+    <Typography>
+      Fewest contemporary villagers: {contemporariesData[contemporariesData.length - 1].trait}
+    </Typography>
+    <IconGrid traitData={contemporariesData[contemporariesData.length - 1]} />
     <CustomDialog
       open={showDurationDialog}
       onClose={() => setShowDurationDialog(false)}

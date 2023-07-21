@@ -42,6 +42,7 @@ export interface MongoProperties {
   startDateString: string,
   photoDateString: string,
   daysToPhoto: number,
+  contemporaries: string[],
 }
 
 export interface HistoryProperties extends MongoProperties {
