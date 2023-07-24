@@ -10,7 +10,7 @@ export default function IconGrid({ traitData, villagers, villagersData, mediumSc
   mediumScreen: boolean,
   setDialogVillager: Dispatch<SetStateAction<string>>,
   setShowVillagerDialog: Dispatch<SetStateAction<boolean>>,
-  customOnClick?: Dispatch<SetStateAction<boolean>>,
+  customOnClick?: () => void,
 }) {
 
   if (!!traitData) {

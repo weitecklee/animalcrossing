@@ -10,7 +10,7 @@ export default function VillagerIcon({ villager, villagersData, mediumScreen, se
   mediumScreen: boolean,
   setDialogVillager: Dispatch<SetStateAction<string>>,
   setShowVillagerDialog: Dispatch<SetStateAction<boolean>>,
-  customOnClick?: Dispatch<SetStateAction<boolean>>,
+  customOnClick?: () => void,
 }) {
 
   const theme = useTheme();
@@ -24,10 +24,9 @@ export default function VillagerIcon({ villager, villagersData, mediumScreen, se
       title={villager}
       onClick={() => {
         if (customOnClick) {
-          customOnClick(false);
+          customOnClick();
           setTimeout(() => {
             setDialogVillager(villager);
-            customOnClick(true);
           }, theme.transitions.duration.standard);
         } else {
           setDialogVillager(villager);

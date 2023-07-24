@@ -24,7 +24,6 @@ export default function VillagerDialog({ histories, villagersData, dialogVillage
   const [imagesReady, setImagesReady] = useState(0);
   const [dialogReady, setDialogReady] = useState(true);
   const [showLoading, setShowLoading] = useState(false);
-  const [fadeIn, setFadeIn] = useState(true);
   const previousVillager = useRef('');
   const history = histories.get(dialogVillager)!;
   const villagerData = villagersData.get(dialogVillager)!;
@@ -36,6 +35,10 @@ export default function VillagerDialog({ histories, villagersData, dialogVillage
     setImagesReady(0);
     setDialogReady(false);
     setShowLoading(false);
+  };
+
+  const handleClose2 = () => {
+    handleClose();
     setShowVillagerDialog(false);
   };
 
@@ -91,7 +94,7 @@ export default function VillagerDialog({ histories, villagersData, dialogVillage
     <CustomDialog
       keepMounted
       open={showVillagerDialog}
-      onClose={handleClose}
+      onClose={handleClose2}
       maxWidth={false}
       zIndex={1300}
       PaperProps={{sx: smallScreen ? {
@@ -190,7 +193,7 @@ export default function VillagerDialog({ histories, villagersData, dialogVillage
               mediumScreen={mediumScreen}
               setDialogVillager={setDialogVillager}
               setShowVillagerDialog={setShowVillagerDialog}
-              customOnClick={setDialogReady}
+              customOnClick={handleClose}
             />
             <br />
             <Typography variant="body2">
