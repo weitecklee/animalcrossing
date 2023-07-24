@@ -24,6 +24,7 @@ export default function VillagerDialog({ histories, villagersData, dialogVillage
   const [imagesReady, setImagesReady] = useState(0);
   const [dialogReady, setDialogReady] = useState(true);
   const [showLoading, setShowLoading] = useState(false);
+  const [fadeIn, setFadeIn] = useState(true);
   const previousVillager = useRef('');
   const history = histories.get(dialogVillager)!;
   const villagerData = villagersData.get(dialogVillager)!;
@@ -51,6 +52,7 @@ export default function VillagerDialog({ histories, villagersData, dialogVillage
       }, 1000);
       const timeoutID2 = setTimeout(() => {
         setDialogReady(true);
+        setShowLoading(false);
       }, 3000);
       timeouts.push(timeoutID1, timeoutID2);
     }
@@ -188,6 +190,7 @@ export default function VillagerDialog({ histories, villagersData, dialogVillage
               mediumScreen={mediumScreen}
               setDialogVillager={setDialogVillager}
               setShowVillagerDialog={setShowVillagerDialog}
+              customOnClick={setDialogReady}
             />
             <br />
             <Typography variant="body2">
