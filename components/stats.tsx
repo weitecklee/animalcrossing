@@ -8,7 +8,7 @@ import CustomDialog from './customDialog';
 import IconGrid from './iconGrid';
 import VillagerIcon from './villagerIcon';
 
-export default function Stats({ villagersData, histories, durationData, speciesData, personalityData, genderData, photoData, photoStats, photoStats2, currentResidents, setDialogVillager, setShowVillagerDialog, islandmatesData } : {
+export default function Stats({ villagersData, histories, durationData, speciesData, personalityData, genderData, photoData, photoStats, photoStats2, currentResidents, setDialogVillager, setShowVillagerDialog, islandmatesData, houseData } : {
   villagersData: Map<string,VillagerProperties2>,
   histories: Map<string,HistoryProperties>,
   durationData: DurationProperties[],
@@ -22,6 +22,7 @@ export default function Stats({ villagersData, histories, durationData, speciesD
   setDialogVillager: Dispatch<SetStateAction<string>>,
   setShowVillagerDialog: Dispatch<SetStateAction<boolean>>,
   islandmatesData: DurationProperties[],
+  houseData: TraitProperties[],
 }) {
 
   const [dialogTraitData, setDialogTraitData] = useState<TraitProperties[]>([]);
@@ -225,8 +226,34 @@ export default function Stats({ villagersData, histories, durationData, speciesD
       mediumScreen={mediumScreen}
       setDialogVillager={setDialogVillager}
       setShowVillagerDialog={setShowVillagerDialog}
-      />
+    />
     <BreakdownLink onClick={() => {setShowIslandmatesDialog(true);}} />
+    <Divider>
+      <Chip label="Houses" color="secondary" />
+    </Divider>
+    <Typography>
+      House with most residents: {houseData[0].trait}
+    </Typography>
+    <IconGrid
+      traitData={houseData[0]}
+      villagersData={villagersData}
+      mediumScreen={mediumScreen}
+      setDialogVillager={setDialogVillager}
+      setShowVillagerDialog={setShowVillagerDialog}
+    />
+    <Typography>
+      House with fewest residents: {houseData[houseData.length - 1].trait}
+    </Typography>
+    <IconGrid
+      traitData={houseData[houseData.length - 1]}
+      villagersData={villagersData}
+      mediumScreen={mediumScreen}
+      setDialogVillager={setDialogVillager}
+      setShowVillagerDialog={setShowVillagerDialog}
+    />
+    <Typography>
+      <BreakdownLink traitData={houseData}/>
+    </Typography>
     <CustomDialog
       open={showDurationDialog}
       onClose={() => setShowDurationDialog(false)}

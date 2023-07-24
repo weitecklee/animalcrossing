@@ -71,7 +71,7 @@ theme = responsiveFontSizes(theme, {
 
 const Timeline = dynamic(() => import('../components/timeline'), {ssr: false})
 
-export default function HomePage({ mongoData, speciesData, personalityData, genderData, photoData, photoStats, currentResidents, islandmatesData }: {
+export default function HomePage({ mongoData, speciesData, personalityData, genderData, photoData, photoStats, currentResidents, islandmatesData, houseData }: {
   mongoData: MongoProperties[],
   speciesData: TraitProperties[],
   personalityData: TraitProperties[],
@@ -80,6 +80,7 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
   photoStats: PhotoStatsProperties,
   currentResidents: string[],
   islandmatesData: DurationProperties[],
+  houseData: TraitProperties[],
 }) {
 
   const [histories, setHistories] = useState<Map<string,HistoryProperties>>(new Map());
@@ -276,6 +277,7 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
         setDialogVillager={setDialogVillager}
         setShowVillagerDialog={setShowVillagerDialog}
         islandmatesData={islandmatesData}
+        houseData={houseData}
       />}
       {component === 'About' && <About />}
       <VillagerDialog
@@ -301,6 +303,7 @@ export async function getStaticProps(): Promise<{
     photoStats: PhotoStatsProperties,
     currentResidents: string[],
     islandmatesData: TraitProperties[],
+    houseData: TraitProperties[],
   };
 }> {
 
@@ -333,6 +336,7 @@ export async function getStaticProps(): Promise<{
     count: 0,
   };
   const currentResidents: string[] = [];
+  const houseMap: Map<number, TraitProperties> = new Map();
 
   for (const mongoDatum of mongoData) {
     const startDateDate = new Date(mongoDatum.startDate);
@@ -413,6 +417,16 @@ export async function getStaticProps(): Promise<{
     const tmp4 = islandmatesMap.get(mongoDatum.islandmates.length)!;
     tmp4.count++;
     tmp4.villagers.push(mongoDatum.name);
+    if (!houseMap.has(mongoDatum.houseNumber)) {
+      houseMap.set(mongoDatum.houseNumber, {
+        trait: "House " + mongoDatum.houseNumber.toString(),
+        count: 0,
+        villagers: [],
+      })
+    }
+    const tmp5 = houseMap.get(mongoDatum.houseNumber)!;
+    tmp5.count++;
+    tmp5.villagers.push(mongoDatum.name);
   }
 
   const speciesData = Array.from(speciesMap.values());
@@ -426,6 +440,8 @@ export async function getStaticProps(): Promise<{
   photoStats.average /= photoStats.count;
   const islandmatesData = Array.from(islandmatesMap.values());
   islandmatesData.sort((a, b) => b.duration - a.duration);
+  const houseData = Array.from(houseMap.values());
+  houseData.sort((a, b) => b.count - a.count);
 
   return {
     props: {
@@ -437,6 +453,7 @@ export async function getStaticProps(): Promise<{
       photoStats,
       currentResidents,
       islandmatesData,
+      houseData,
     }
   }
 }

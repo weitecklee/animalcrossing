@@ -183,6 +183,9 @@ export default function VillagerDialog({ histories, villagersData, dialogVillage
               Duration of residence:&nbsp;
               {history.duration} days{history.currentResident && " and counting"}
             </Typography>
+            <Typography>
+              House number: {history.houseNumber}
+            </Typography>
             <br />
             <Typography>
               {history.islandmates.length} islandmates:
