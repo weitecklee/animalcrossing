@@ -3,14 +3,13 @@ import { Dispatch, SetStateAction } from 'react';
 import { TraitProperties, VillagerProperties2 } from '../types';
 import VillagerIcon from './villagerIcon';
 
-export default function IconGrid({ traitData, villagers, villagersData, mediumScreen, setDialogVillager, setShowVillagerDialog, customOnClick } : {
+export default function IconGrid({ traitData, villagers, villagersData, mediumScreen, setDialogVillager, setShowVillagerDialog } : {
   traitData?: TraitProperties,
   villagers?: string[],
   villagersData: Map<string,VillagerProperties2>,
   mediumScreen: boolean,
   setDialogVillager: Dispatch<SetStateAction<string>>,
   setShowVillagerDialog: Dispatch<SetStateAction<boolean>>,
-  customOnClick?: () => void,
 }) {
 
   if (!!traitData) {
@@ -26,7 +25,6 @@ export default function IconGrid({ traitData, villagers, villagersData, mediumSc
               mediumScreen={mediumScreen}
               setDialogVillager={setDialogVillager}
               setShowVillagerDialog={setShowVillagerDialog}
-              customOnClick={customOnClick}
             />
           </Grid>
         )}
@@ -45,7 +43,6 @@ export default function IconGrid({ traitData, villagers, villagersData, mediumSc
             mediumScreen={mediumScreen}
             setDialogVillager={setDialogVillager}
             setShowVillagerDialog={setShowVillagerDialog}
-            customOnClick={customOnClick}
           />
         </Grid>
       )}
