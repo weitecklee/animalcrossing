@@ -1,6 +1,5 @@
-import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import { Card, CardActionArea, CardMedia, IconButton, Stack, Typography, useMediaQuery } from '@mui/material';
+import { Card, CardMedia, IconButton, Stack, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { HistoryProperties, VillagerProperties2 } from '../types';
