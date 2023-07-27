@@ -1,15 +1,15 @@
 import ListRoundedIcon from '@mui/icons-material/ListRounded';
 import { Box, Fab, Grid } from '@mui/material';
-import { Dispatch, SetStateAction, useState } from 'react';
-import { HistoryProperties, VillagerProperties2 } from '../types';
+import { useContext, useState } from 'react';
+import { DataContext } from '../pages';
 import HistoryCard from './card';
 
-export default function Cards({villagersData, histories, setDialogVillager, setShowVillagerDialog }:{
-  villagersData: Map<string, VillagerProperties2>,
-  histories: Map<string,HistoryProperties>,
-  setDialogVillager: Dispatch<SetStateAction<string>>,
-  setShowVillagerDialog: Dispatch<SetStateAction<boolean>>,
-}) {
+export default function Cards() {
+
+  const {
+    histories,
+    villagersData,
+  } = useContext(DataContext);
 
   const historiesArray = Array.from(histories.values());
   const [expandAll, setExpandAll] = useState(false);
@@ -24,8 +24,6 @@ export default function Cards({villagersData, histories, setDialogVillager, setS
           <HistoryCard
             history={history}
             villagerData={villagersData.get(history.name)!}
-            setShowVillagerDialog={setShowVillagerDialog}
-            setDialogVillager={setDialogVillager}
             expandAll={expandAll}
           />
         </Grid>

@@ -124,21 +124,21 @@ export interface CustomDialogProps extends DialogProps {
   zIndex: number,
 }
 
-export interface DataContextProperties {
+export interface StaticDataProperties {
   currentResidents: string[],
-  dialogVillager: string,
-  durationData: DurationProperties[],
   genderData: TraitProperties[],
-  histories: Map<string,HistoryProperties>,
-  islandmatesData: DurationProperties[],
+  islandmatesData: TraitProperties[],
+  mongoData: MongoProperties[],
   personalityData: TraitProperties[],
   photoData: DurationProperties[],
   photoStats: PhotoStatsProperties,
-  photoStats2: PhotoStats2Properties,
-  setDialogVillager: Dispatch<SetStateAction<string>>,
-  setShowVillagerDialog: Dispatch<SetStateAction<boolean>>,
-  showVillagerDialog: boolean,
   speciesData: TraitProperties[],
+}
+
+export interface PreparedDataProperties {
+  durationData: DurationProperties[],
+  histories: Map<string,HistoryProperties>,
+  photoStats2: PhotoStats2Properties,
   timelineColors: string[],
   timelineColors3: string[],
   timelineData: string[][],
@@ -148,5 +148,17 @@ export interface DataContextProperties {
   timelineLabels3: string[],
   timelineNameIndex: Map<string, number>,
   timelineNameIndex3: Map<string, number>,
+}
+
+export interface DataContextProperties extends PreparedDataProperties {
+  currentResidents: string[],
+  genderData: TraitProperties[],
+  islandmatesData: TraitProperties[],
+  personalityData: TraitProperties[],
+  photoData: DurationProperties[],
+  photoStats: PhotoStatsProperties,
+  setDialogVillager: Dispatch<SetStateAction<string>>,
+  setShowVillagerDialog: Dispatch<SetStateAction<boolean>>,
+  speciesData: TraitProperties[],
   villagersData: Map<string,VillagerProperties2>,
 }

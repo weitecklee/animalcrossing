@@ -1,19 +1,21 @@
-
 import { useTheme } from '@mui/material/styles';
 import Image from 'next/image';
-import { Dispatch, SetStateAction } from 'react';
-import { VillagerProperties2 } from '../types';
+import { useContext } from 'react';
+import { DataContext } from '../pages';
 
-export default function VillagerIcon({ villager, villagersData, mediumScreen, setDialogVillager, setShowVillagerDialog, customOnClick } : {
+export default function VillagerIcon({ villager, mediumScreen, customOnClick } : {
   villager: string,
-  villagersData: Map<string,VillagerProperties2>,
   mediumScreen: boolean,
-  setDialogVillager: Dispatch<SetStateAction<string>>,
-  setShowVillagerDialog: Dispatch<SetStateAction<boolean>>,
   customOnClick?: () => void,
 }) {
 
   const theme = useTheme();
+
+  const {
+    setDialogVillager,
+    setShowVillagerDialog,
+    villagersData,
+  } = useContext(DataContext);
 
   return (
     <Image

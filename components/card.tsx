@@ -2,16 +2,20 @@ import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { Card, CardActionArea, CardMedia, IconButton, Stack, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { DataContext } from '../pages';
 import { HistoryProperties, VillagerProperties2 } from '../types';
 
-export default function HistoryCard({ history, villagerData, setShowVillagerDialog, setDialogVillager, expandAll }: {
+export default function HistoryCard({ history, villagerData, expandAll }: {
   history: HistoryProperties,
   villagerData: VillagerProperties2,
-  setShowVillagerDialog: Dispatch<SetStateAction<boolean>>,
-  setDialogVillager: Dispatch<SetStateAction<string>>,
   expandAll: boolean},
   ) {
+
+  const {
+    setDialogVillager,
+    setShowVillagerDialog,
+  } = useContext(DataContext);
 
   const [expanded, setExpanded] = useState(false);
   const theme = useTheme();
