@@ -1,13 +1,13 @@
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import { Box, Dialog, Fab, useMediaQuery } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+import { Box, Dialog, Fab } from '@mui/material';
+import { useContext } from 'react';
+import { ScreenContext } from '../pages';
 import { CustomDialogProps } from '../types';
 
 export default function CustomDialog({zIndex, ...props}: CustomDialogProps) {
 
   const { open, onClose } = props;
-  const theme = useTheme();
-  const mediumScreen = useMediaQuery(theme.breakpoints.down('md'))
+  const mediumScreen = useContext(ScreenContext);
 
   return <>
     <Dialog

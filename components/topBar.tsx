@@ -1,15 +1,15 @@
 import MenuIcon from '@mui/icons-material/Menu';
-import { AppBar, Box, Button, IconButton, Menu, MenuItem, Slide, Toolbar, Typography, useMediaQuery, useScrollTrigger } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+import { AppBar, Box, Button, IconButton, Menu, MenuItem, Slide, Toolbar, Typography, useScrollTrigger } from '@mui/material';
 import Image from 'next/image';
 import { Dispatch, MouseEvent, SetStateAction, useState } from 'react';
 import FavIcon from '../public/lasagnark8.png';
 
 const pages = ['Villagers', 'Timeline', 'Stats', 'About'];
 
-export default function TopBar({ component, setComponent }: {
+export default function TopBar({ component, setComponent, smallScreen }: {
   component: string,
   setComponent: Dispatch<SetStateAction<string>>,
+  smallScreen: boolean,
 }) {
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -20,8 +20,6 @@ export default function TopBar({ component, setComponent }: {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const theme = useTheme();
-  const smallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (<>
     <Slide appear={false} direction="down" in={!useScrollTrigger()}>

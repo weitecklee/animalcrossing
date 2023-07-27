@@ -1,4 +1,5 @@
 import { DialogProps } from "@mui/material";
+import { Dispatch, SetStateAction } from 'react';
 
 interface NameProperties {
   "name-USen": string,
@@ -121,4 +122,43 @@ export interface PhotoStats2Properties {
 
 export interface CustomDialogProps extends DialogProps {
   zIndex: number,
+}
+
+export interface StaticDataProperties {
+  currentResidents: string[],
+  genderData: TraitProperties[],
+  islandmatesData: TraitProperties[],
+  mongoData: MongoProperties[],
+  personalityData: TraitProperties[],
+  photoData: DurationProperties[],
+  photoStats: PhotoStatsProperties,
+  speciesData: TraitProperties[],
+}
+
+export interface PreparedDataProperties {
+  durationData: DurationProperties[],
+  histories: Map<string,HistoryProperties>,
+  photoStats2: PhotoStats2Properties,
+  timelineColors: string[],
+  timelineColors3: string[],
+  timelineData: string[][],
+  timelineData2: number[],
+  timelineData3: number[],
+  timelineLabels: string[],
+  timelineLabels3: string[],
+  timelineNameIndex: Map<string, number>,
+  timelineNameIndex3: Map<string, number>,
+}
+
+export interface DataContextProperties extends PreparedDataProperties {
+  currentResidents: string[],
+  genderData: TraitProperties[],
+  islandmatesData: TraitProperties[],
+  personalityData: TraitProperties[],
+  photoData: DurationProperties[],
+  photoStats: PhotoStatsProperties,
+  setDialogVillager: Dispatch<SetStateAction<string>>,
+  setShowVillagerDialog: Dispatch<SetStateAction<boolean>>,
+  speciesData: TraitProperties[],
+  villagersData: Map<string,VillagerProperties2>,
 }

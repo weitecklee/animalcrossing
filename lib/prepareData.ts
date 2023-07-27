@@ -1,21 +1,8 @@
 import { villagersData } from '../lib/combinedData';
 import { calculateDays } from '../lib/functions';
-import { DurationProperties, HistoryProperties, MongoProperties, PhotoStats2Properties } from '../types';
+import { DurationProperties, HistoryProperties, MongoProperties, PhotoStats2Properties, PreparedDataProperties } from '../types';
 
-export default function prepareData(mongoData: MongoProperties[]): {
-  durationData: DurationProperties[],
-  histories: Map<string,HistoryProperties>,
-  photoStats2: PhotoStats2Properties,
-  timelineColors: string[],
-  timelineColors3: string[],
-  timelineData: string[][],
-  timelineData2: number[],
-  timelineData3: number[],
-  timelineLabels: string[],
-  timelineLabels3: string[],
-  timelineNameIndex: Map<string, number>,
-  timelineNameIndex3: Map<string, number>,
-} {
+export default function prepareData(mongoData: MongoProperties[]): PreparedDataProperties {
 
   const histories: Map<string,HistoryProperties> = new Map();
   const photoStats2: PhotoStats2Properties = {

@@ -1,7 +1,6 @@
 import OpenWithRoundedIcon from '@mui/icons-material/OpenWithRounded';
 import ViewTimelineRoundedIcon from '@mui/icons-material/ViewTimelineRounded';
 import { Alert, Badge, Box, Button, Snackbar, useMediaQuery } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
 import {
   BarElement,
   CategoryScale,
@@ -15,10 +14,10 @@ import {
 } from 'chart.js';
 import 'chartjs-adapter-date-fns';
 import Zoom from 'chartjs-plugin-zoom';
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import Draggable from 'react-draggable';
-import { HistoryProperties, VillagerProperties2 } from '../types';
+import { DataContext, ScreenContext } from '../pages';
 import TimelineTooltip from './timelineTooltip';
 
 ChartJS.register(
@@ -93,28 +92,29 @@ options2.plugins.zoom.limits = {
 };
 
 
-export default function Timeline({ timelineData, timelineData2, villagersData, histories, timelineLabels, timelineColors, timelineData3, timelineLabels3, timelineColors3, setDialogVillager, setShowVillagerDialog, timelineNameIndex, timelineNameIndex3 }: {
-  timelineData: string[][],
-  timelineData2: number[],
-  villagersData: Map<string,VillagerProperties2>,
-  histories: Map<string,HistoryProperties> ,
-  timelineLabels: string[],
-  timelineColors: string[],
-  timelineData3: number[],
-  timelineLabels3: string[],
-  timelineColors3: string[],
-  setDialogVillager: Dispatch<SetStateAction<string>>,
-  setShowVillagerDialog: Dispatch<SetStateAction<boolean>>,
-  timelineNameIndex: Map<string, number>,
-  timelineNameIndex3: Map<string, number>,
-}) {
+export default function Timeline() {
+
+  const {
+    histories,
+    setDialogVillager,
+    setShowVillagerDialog,
+    timelineColors,
+    timelineColors3,
+    timelineData,
+    timelineData2,
+    timelineData3,
+    timelineLabels,
+    timelineLabels3,
+    timelineNameIndex,
+    timelineNameIndex3,
+    villagersData,
+  } = useContext(DataContext);
+  const mediumScreen = useContext(ScreenContext);
 
   const [timelineVillager, setTimelineVillager] = useState('');
   const [showTooltip, setShowTooltip] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState(false);
-  const shortScreen = useMediaQuery('(max-height:700px)')
-  const theme = useTheme();
-  const mediumScreen = useMediaQuery(theme.breakpoints.down('md'))
+  const shortScreen = useMediaQuery('(max-height:700px)', { noSsr: true });
   const [timelineMode, setTimelineMode] = useState(0);
   const [barData, setBarData] = useState<string[][] | number[]>(timelineData);
   const [barLabels, setBarLabels] = useState(timelineLabels);

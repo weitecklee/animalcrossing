@@ -1,11 +1,11 @@
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import OpenWithRoundedIcon from '@mui/icons-material/OpenWithRounded';
-import { Box, IconButton, Stack, Typography, useMediaQuery } from '@mui/material';
+import { Box, IconButton, Stack, Typography } from '@mui/material';
 import Paper, { PaperProps } from '@mui/material/Paper';
-import { useTheme } from '@mui/material/styles';
 import Image from 'next/image';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useContext } from 'react';
 import Draggable from 'react-draggable';
+import { ScreenContext } from '../pages';
 import { HistoryProperties, VillagerProperties2 } from '../types';
 
 function DraggablePaper(props: PaperProps) {
@@ -35,8 +35,7 @@ export default function TimelineTooltip({ villagerData, history, setShowVillager
   setShowVillagerDialog: Dispatch<SetStateAction<boolean>>,
 }) {
 
-  const theme = useTheme();
-  const mediumScreen = useMediaQuery(theme.breakpoints.down('md'))
+  const mediumScreen = useContext(ScreenContext);
 
   return (
       <DraggablePaper>
