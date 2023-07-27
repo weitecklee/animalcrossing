@@ -1,11 +1,10 @@
 import { useTheme } from '@mui/material/styles';
 import Image from 'next/image';
 import { useContext } from 'react';
-import { DataContext } from '../pages';
+import { DataContext, ScreenContext } from '../pages';
 
-export default function VillagerIcon({ villager, mediumScreen, customOnClick } : {
+export default function VillagerIcon({ villager, customOnClick } : {
   villager: string,
-  mediumScreen: boolean,
   customOnClick?: () => void,
 }) {
 
@@ -16,6 +15,7 @@ export default function VillagerIcon({ villager, mediumScreen, customOnClick } :
     setShowVillagerDialog,
     villagersData,
   } = useContext(DataContext);
+  const mediumScreen = useContext(ScreenContext);
 
   return (
     <Image

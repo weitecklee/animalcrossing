@@ -1,4 +1,4 @@
-import { Box, BoxProps, Fade, FadeProps } from '@mui/material';
+import { Box, BoxProps, Fade, FadeProps, useMediaQuery } from '@mui/material';
 import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
@@ -99,6 +99,7 @@ const CustomBox = forwardRef((props: BoxProps, ref) => (
 CustomBox.displayName = 'CustomBox';
 
 export const DataContext = createContext({} as DataContextProperties);
+export const ScreenContext = createContext(false);
 
 export default function HomePage({ mongoData, speciesData, personalityData, genderData, photoData, photoStats, currentResidents, islandmatesData }: StaticDataProperties) {
 
@@ -107,6 +108,8 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
   const [dialogVillager, setDialogVillager] = useState('');
   const [preparedData, setPreparedData] = useState({} as PreparedDataProperties);
   const [allReady, setAllReady] = useState(false);
+  const mediumScreen = useMediaQuery(theme.breakpoints.down('md'), { noSsr: true });
+  const smallScreen = useMediaQuery(theme.breakpoints.down('sm'), { noSsr: true });
 
   useEffect(() => {
     const {
@@ -168,63 +171,70 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
         speciesData,
         villagersData
       }}>
-        <TopBar component={component} setComponent={setComponent} />
-        {allReady && <>
-          <CustomFade
-            in={component === 'Index'}
-            style={{
-              transitionDelay: (component === 'Index' ? fadeTimeout.exit : 0) + 'ms',
-            }}
-          >
-            <CustomBox>
-              <IndexComponent />
-            </CustomBox>
-          </CustomFade>
-          <CustomFade
-            in={component === 'Villagers'}
-            style={{
-              transitionDelay: (component === 'Villagers' ? fadeTimeout.exit : 0) + 'ms',
-            }}
-          >
-            <CustomBox>
-              <Cards />
-            </CustomBox>
-          </CustomFade>
-          <CustomFade
-            in={component === 'Timeline'}
-            style={{
-              transitionDelay: (component === 'Timeline' ? fadeTimeout.exit : 0) + 'ms',
-            }}
-          >
-            <CustomBox>
-              <Timeline />
-            </CustomBox>
-          </CustomFade>
-          <CustomFade
-            in={component === 'Stats'}
-            style={{
-              transitionDelay: (component === 'Stats' ? fadeTimeout.exit : 0) + 'ms',
-            }}
-          >
-            <CustomBox>
-              <Stats />
-            </CustomBox>
-          </CustomFade>
-          <CustomFade
-            in={component === 'About'}
-            style={{
-              transitionDelay: (component === 'About' ? fadeTimeout.exit : 0) + 'ms',
-            }}
-          >
-            <CustomBox>
-              <About />
-            </CustomBox>
-          </CustomFade>
-          <VillagerDialog
-            dialogVillager={dialogVillager}
-            showVillagerDialog={showVillagerDialog}
+        <ScreenContext.Provider value={mediumScreen}>
+          <TopBar
+            component={component}
+            setComponent={setComponent}
+            smallScreen={smallScreen}
           />
-        </>}
+          {allReady && <>
+            <CustomFade
+              in={component === 'Index'}
+              style={{
+                transitionDelay: (component === 'Index' ? fadeTimeout.exit : 0) + 'ms',
+              }}
+            >
+              <CustomBox>
+                <IndexComponent />
+              </CustomBox>
+            </CustomFade>
+            <CustomFade
+              in={component === 'Villagers'}
+              style={{
+                transitionDelay: (component === 'Villagers' ? fadeTimeout.exit : 0) + 'ms',
+              }}
+            >
+              <CustomBox>
+                <Cards />
+              </CustomBox>
+            </CustomFade>
+            <CustomFade
+              in={component === 'Timeline'}
+              style={{
+                transitionDelay: (component === 'Timeline' ? fadeTimeout.exit : 0) + 'ms',
+              }}
+            >
+              <CustomBox>
+                <Timeline />
+              </CustomBox>
+            </CustomFade>
+            <CustomFade
+              in={component === 'Stats'}
+              style={{
+                transitionDelay: (component === 'Stats' ? fadeTimeout.exit : 0) + 'ms',
+              }}
+            >
+              <CustomBox>
+                <Stats />
+              </CustomBox>
+            </CustomFade>
+            <CustomFade
+              in={component === 'About'}
+              style={{
+                transitionDelay: (component === 'About' ? fadeTimeout.exit : 0) + 'ms',
+              }}
+            >
+              <CustomBox>
+                <About />
+              </CustomBox>
+            </CustomFade>
+            <VillagerDialog
+              dialogVillager={dialogVillager}
+              showVillagerDialog={showVillagerDialog}
+              smallScreen={smallScreen}
+            />
+          </>}
+        </ScreenContext.Provider>
       </DataContext.Provider>
     </ThemeProvider>
   </>)

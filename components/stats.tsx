@@ -1,6 +1,5 @@
 import ReadMoreRoundedIcon from '@mui/icons-material/ReadMoreRounded';
-import { Box, Chip, DialogContent, Divider, Grid, Link, List, ListItem, Typography, useMediaQuery } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+import { Box, Chip, DialogContent, Divider, Grid, Link, List, ListItem, Typography } from '@mui/material';
 import { MouseEvent, useContext, useState } from 'react';
 import { dayOrDays } from '../lib/functions';
 import { DataContext } from '../pages';
@@ -29,8 +28,6 @@ export default function Stats() {
   const [showDurationDialog, setShowDurationDialog] = useState(false);
   const [showPhotoDialog, setShowPhotoDialog] = useState(false);
   const [showIslandmatesDialog, setShowIslandmatesDialog] = useState(false);
-  const theme = useTheme();
-  const mediumScreen = useMediaQuery(theme.breakpoints.down('md'));
 
   const BreakdownLink = ({traitData, onClick} : {
     traitData?: TraitProperties[],
@@ -67,7 +64,6 @@ export default function Stats() {
           >
             <VillagerIcon
               villager={villager}
-              mediumScreen={mediumScreen}
             />
           </Grid>
         )}
@@ -83,7 +79,6 @@ export default function Stats() {
     </Typography>
     <IconGrid
       traitData={durationData[0]}
-      mediumScreen={mediumScreen}
     />
     <Typography>
       Shortest: {dayOrDays(durationData[durationData.length - 1].duration)}
@@ -91,7 +86,6 @@ export default function Stats() {
     </Typography>
     <IconGrid
       traitData={durationData[durationData.length - 1]}
-      mediumScreen={mediumScreen}
     />
     <BreakdownLink onClick={() => {setShowDurationDialog(true);}} />
     <Divider>
@@ -102,7 +96,6 @@ export default function Stats() {
     </Typography>
     <IconGrid
       traitData={speciesData[0]}
-      mediumScreen={mediumScreen}
     />
     <Typography>
       <BreakdownLink traitData={speciesData}/>
@@ -115,7 +108,6 @@ export default function Stats() {
     </Typography>
     <IconGrid
       traitData={personalityData[0]}
-      mediumScreen={mediumScreen}
     />
     <Typography>
       <BreakdownLink traitData={personalityData}/>
@@ -142,35 +134,30 @@ export default function Stats() {
     </Typography>
     <IconGrid
       traitData={photoData[0]}
-      mediumScreen={mediumScreen}
     />
     <Typography>
       Slowest: {photoData[photoData.length - 1].trait} days
     </Typography>
     <IconGrid
       traitData={photoData[photoData.length - 1]}
-      mediumScreen={mediumScreen}
     />
     <Typography>
       Shortest stay after receving photo: {dayOrDays(photoStats2.shortestAfterReceiving.duration - 1)}
     </Typography>
     <IconGrid
       traitData={photoStats2.shortestAfterReceiving}
-      mediumScreen={mediumScreen}
     />
     <Typography>
       Longest stay after receiving photo: {dayOrDays(photoStats2.longestAfterReceiving.duration - 1)}
     </Typography>
     <IconGrid
       traitData={photoStats2.longestAfterReceiving}
-      mediumScreen={mediumScreen}
     />
     <Typography>
       Longest stay without receiving photo: {photoStats2.longestWithoutReceiving.duration} days
     </Typography>
     <IconGrid
       traitData={photoStats2.longestWithoutReceiving}
-      mediumScreen={mediumScreen}
     />
     <BreakdownLink onClick={() => {setShowPhotoDialog(true);}} />
     <Divider>
@@ -181,14 +168,12 @@ export default function Stats() {
     </Typography>
     <IconGrid
       traitData={islandmatesData[0]}
-      mediumScreen={mediumScreen}
     />
     <Typography>
       Fewest islandmates: {islandmatesData[islandmatesData.length - 1].trait}
     </Typography>
     <IconGrid
       traitData={islandmatesData[islandmatesData.length - 1]}
-      mediumScreen={mediumScreen}
       />
     <BreakdownLink onClick={() => {setShowIslandmatesDialog(true);}} />
     <CustomDialog
@@ -209,7 +194,6 @@ export default function Stats() {
                 <Box display="flex" alignItems="center">
                   <VillagerIcon
                     villager={villager}
-                    mediumScreen={mediumScreen}
                   />
                   <Typography>
                     &nbsp;&nbsp;{duration.trait} days{histories.get(villager)?.currentResident ? "*" : ""}
@@ -234,7 +218,6 @@ export default function Stats() {
           </Divider>
           <IconGrid
             traitData={traitData}
-            mediumScreen={mediumScreen}
           />
         </Box>))}
       </DialogContent>
@@ -254,7 +237,6 @@ export default function Stats() {
                 <Box display="flex" alignItems="center">
                   <VillagerIcon
                     villager={villager}
-                    mediumScreen={mediumScreen}
                   />
                   <Typography>
                     &nbsp;&nbsp;{photo.trait} days
@@ -280,7 +262,6 @@ export default function Stats() {
                 <Box display="flex" alignItems="center">
                   <VillagerIcon
                     villager={villager}
-                    mediumScreen={mediumScreen}
                   />
                   <Typography>
                     &nbsp;&nbsp;{islandmates.trait} islandmates

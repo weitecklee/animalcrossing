@@ -1,7 +1,6 @@
 import OpenWithRoundedIcon from '@mui/icons-material/OpenWithRounded';
 import ViewTimelineRoundedIcon from '@mui/icons-material/ViewTimelineRounded';
 import { Alert, Badge, Box, Button, Snackbar, useMediaQuery } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
 import {
   BarElement,
   CategoryScale,
@@ -18,7 +17,7 @@ import Zoom from 'chartjs-plugin-zoom';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import Draggable from 'react-draggable';
-import { DataContext } from '../pages';
+import { DataContext, ScreenContext } from '../pages';
 import TimelineTooltip from './timelineTooltip';
 
 ChartJS.register(
@@ -110,13 +109,12 @@ export default function Timeline() {
     timelineNameIndex3,
     villagersData,
   } = useContext(DataContext);
+  const mediumScreen = useContext(ScreenContext);
 
   const [timelineVillager, setTimelineVillager] = useState('');
   const [showTooltip, setShowTooltip] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState(false);
-  const shortScreen = useMediaQuery('(max-height:700px)')
-  const theme = useTheme();
-  const mediumScreen = useMediaQuery(theme.breakpoints.down('md'))
+  const shortScreen = useMediaQuery('(max-height:700px)', { noSsr: true });
   const [timelineMode, setTimelineMode] = useState(0);
   const [barData, setBarData] = useState<string[][] | number[]>(timelineData);
   const [barLabels, setBarLabels] = useState(timelineLabels);

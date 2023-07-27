@@ -1,17 +1,17 @@
 import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
-import { Box, CircularProgress, Collapse, Grid, Link, Stack, Typography, useMediaQuery } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+import { Box, CircularProgress, Collapse, Grid, Link, Stack, Typography } from '@mui/material';
 import Image from 'next/image';
 import { useContext, useEffect, useRef, useState } from 'react';
-import { DataContext } from '../pages';
+import { DataContext, ScreenContext } from '../pages';
 import CustomDialog from './customDialog';
 import IconGrid from './iconGrid';
 
 const timeouts: NodeJS.Timeout[] = [];
 
-export default function VillagerDialog({ dialogVillager, showVillagerDialog } : {
+export default function VillagerDialog({ dialogVillager, showVillagerDialog, smallScreen } : {
   dialogVillager: string,
   showVillagerDialog: boolean,
+  smallScreen: boolean,
 }) {
 
   const {
@@ -19,10 +19,8 @@ export default function VillagerDialog({ dialogVillager, showVillagerDialog } : 
     setShowVillagerDialog,
     villagersData,
   } = useContext(DataContext);
+  const mediumScreen = useContext(ScreenContext);
 
-  const theme = useTheme();
-  const mediumScreen = useMediaQuery(theme.breakpoints.down('md'));
-  const smallScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const [imagesReady, setImagesReady] = useState(0);
   const [dialogReady, setDialogReady] = useState(true);
   const [showLoading, setShowLoading] = useState(false);
@@ -191,7 +189,6 @@ export default function VillagerDialog({ dialogVillager, showVillagerDialog } : 
             </Typography>
             <IconGrid
               villagers={history.islandmates}
-              mediumScreen={mediumScreen}
               customOnClick={handleClose}
             />
             <br />

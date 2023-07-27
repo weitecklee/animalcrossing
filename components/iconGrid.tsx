@@ -2,10 +2,9 @@ import { Grid } from '@mui/material';
 import { TraitProperties } from '../types';
 import VillagerIcon from './villagerIcon';
 
-export default function IconGrid({ traitData, villagers, mediumScreen, customOnClick } : {
+export default function IconGrid({ traitData, villagers, customOnClick } : {
   traitData?: TraitProperties,
   villagers?: string[],
-  mediumScreen: boolean,
   customOnClick?: () => void,
 }) {
 
@@ -18,7 +17,6 @@ export default function IconGrid({ traitData, villagers, mediumScreen, customOnC
           >
             <VillagerIcon
               villager={villager}
-              mediumScreen={mediumScreen}
               customOnClick={customOnClick}
             />
           </Grid>
@@ -34,7 +32,6 @@ export default function IconGrid({ traitData, villagers, mediumScreen, customOnC
         >
           <VillagerIcon
             villager={villager}
-            mediumScreen={mediumScreen}
             customOnClick={customOnClick}
           />
         </Grid>
