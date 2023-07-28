@@ -1,5 +1,6 @@
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import ReadMoreRoundedIcon from '@mui/icons-material/ReadMoreRounded';
-import { Box, Chip, DialogContent, Divider, Grid, Link, List, ListItem, Typography } from '@mui/material';
+import { Box, Chip, ClickAwayListener, DialogContent, Divider, Grid, Link, List, ListItem, Tooltip, Typography } from '@mui/material';
 import { MouseEvent, useContext, useState } from 'react';
 import { dayOrDays } from '../lib/functions';
 import { DataContext } from '../pages';
@@ -28,6 +29,7 @@ export default function Stats() {
   const [showDurationDialog, setShowDurationDialog] = useState(false);
   const [showPhotoDialog, setShowPhotoDialog] = useState(false);
   const [showIslandmatesDialog, setShowIslandmatesDialog] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false);
 
   const BreakdownLink = ({traitData, onClick} : {
     traitData?: TraitProperties[],
@@ -123,7 +125,25 @@ export default function Stats() {
       <BreakdownLink traitData={genderData}/>
     </Typography>
     <Divider>
-      <Chip label="Photos" color="secondary" />
+      <Chip
+        label="Photos"
+        color="secondary"
+        deleteIcon={
+          <Tooltip
+            title={
+              <ClickAwayListener onClickAway={() => {setShowTooltip(false);}}>
+                <Typography>
+                  You can interact with villagers to raise your friendship level with them, usually by talking to them, giving them gifts, or completing tasks for them. Once this friendship level is high enough, villagers may randomly give you their photo. The full breakdown shows the wide range of time it can take to receive photos, even though I try to interact with each of the villagers at least once every day. (And then there are those who never gave me their photos even after over half a year...)
+                </Typography>
+              </ClickAwayListener>
+            }
+            open={showTooltip}
+          >
+            <InfoOutlinedIcon />
+          </Tooltip>
+        }
+        onDelete={() => {setShowTooltip((a) => !a)}}
+      />
     </Divider>
     <Typography>
       Received: {photoStats.count} ({(photoStats.count / histories.size * 100).toFixed(2)}%)
