@@ -4,6 +4,7 @@ import { Card, CardActionArea, CardMedia, IconButton, Stack, Typography } from '
 import { useContext, useEffect, useState } from 'react';
 import { DataContext, ScreenContext } from '../pages';
 import { HistoryProperties, VillagerProperties2 } from '../types';
+import { dayOrDays } from '../lib/functions';
 
 export default function HistoryCard({ history, villagerData, expandAll }: {
   history: HistoryProperties,
@@ -32,7 +33,7 @@ export default function HistoryCard({ history, villagerData, expandAll }: {
       <br />
       {!history.currentResident ? history.endDateString : 'Present'}
       <br />
-      {history.duration} days
+      {dayOrDays(history.duration)}
     </Typography>
     <IconButton
       onClick={() => {

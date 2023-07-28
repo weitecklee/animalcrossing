@@ -11,3 +11,8 @@ body,
 .MuiButtonBase-root {
   text-transform: unset !important;
 }
+
+.MuiTooltip-tooltip {
+  background-color: #79d6c2 !important;
+  color: rgba(0, 0, 0, .87) !important;
+}

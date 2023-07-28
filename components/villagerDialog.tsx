@@ -5,6 +5,7 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import { DataContext, ScreenContext } from '../pages';
 import CustomDialog from './customDialog';
 import IconGrid from './iconGrid';
+import { dayOrDays } from '../lib/functions';
 
 const timeouts: NodeJS.Timeout[] = [];
 
@@ -181,7 +182,7 @@ export default function VillagerDialog({ dialogVillager, showVillagerDialog, sma
                 </Typography>}
             <Typography>
               Duration of residence:&nbsp;
-              {history.duration} days{history.currentResident && " and counting"}
+              {dayOrDays(history.duration)}{history.currentResident && " and counting"}
             </Typography>
             <br />
             <Typography>
