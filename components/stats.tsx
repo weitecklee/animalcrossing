@@ -194,9 +194,6 @@ export default function Stats() {
       zIndex={1200}
     >
       <DialogContent>
-        <Typography variant="caption">
-          * = Current Resident
-        </Typography>
         <List>
           {durationData.map((duration) => (
             duration.villagers.map((villager) => (
@@ -206,7 +203,7 @@ export default function Stats() {
                     villager={villager}
                   />
                   <Typography>
-                    &nbsp;&nbsp;{duration.trait} days{histories.get(villager)?.currentResident ? "*" : ""}
+                    &nbsp;&nbsp;{duration.trait} days
                   </Typography>
                 </Box>
               </ListItem>
