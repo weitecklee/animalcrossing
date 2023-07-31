@@ -164,5 +164,5 @@ export interface DataContextProperties extends PreparedDataProperties {
 }
 
 export interface CustomFadeProps extends FadeProps {
-  active?: boolean,
+  active: boolean,
 }

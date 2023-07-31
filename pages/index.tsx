@@ -1,4 +1,4 @@
-import { Box, BoxProps, Fade, FadeProps, useMediaQuery } from '@mui/material';
+import { Box, BoxProps, Fade, useMediaQuery } from '@mui/material';
 import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
@@ -205,9 +205,7 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
 export async function getStaticProps(): Promise<{
   props: StaticDataProperties;
 }> {
-
   const staticData = await getData();
-
   return {
     props: staticData,
   }
