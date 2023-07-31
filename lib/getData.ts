@@ -43,6 +43,8 @@ export default async function getData(): Promise<{
   };
   const currentResidents: string[] = [];
 
+  mongoData.sort((a, b) => a.startDate < b.startDate ? -1 : 1);
+
   for (const mongoDatum of mongoData) {
     const startDateDate = new Date(mongoDatum.startDate);
     if (!mongoDatum.endDate) {
