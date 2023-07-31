@@ -116,35 +116,8 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
   const smallScreen = useMediaQuery(theme.breakpoints.down('sm'), { noSsr: true });
 
   useEffect(() => {
-    const {
-      durationData,
-      histories,
-      photoStats2,
-      timelineColors,
-      timelineColors3,
-      timelineData,
-      timelineData2,
-      timelineData3,
-      timelineLabels,
-      timelineLabels3,
-      timelineNameIndex,
-      timelineNameIndex3,
-    } = prepareData(mongoData);
-
-    setPreparedData({
-      durationData,
-      histories,
-      photoStats2,
-      timelineColors,
-      timelineColors3,
-      timelineData,
-      timelineData2,
-      timelineData3,
-      timelineLabels,
-      timelineLabels3,
-      timelineNameIndex,
-      timelineNameIndex3,
-    });
+    const preppedData = prepareData(mongoData);
+    setPreparedData(preppedData);
   }, [mongoData]);
 
   useEffect(() => {
@@ -233,28 +206,10 @@ export async function getStaticProps(): Promise<{
   props: StaticDataProperties;
 }> {
 
-  const {
-    mongoData,
-    speciesData,
-    personalityData,
-    genderData,
-    photoData,
-    photoStats,
-    currentResidents,
-    islandmatesData,
-  } = await getData();
+  const staticData = await getData();
 
   return {
-    props: {
-      mongoData,
-      speciesData,
-      personalityData,
-      genderData,
-      photoData,
-      photoStats,
-      currentResidents,
-      islandmatesData,
-    }
+    props: staticData,
   }
 }
 
