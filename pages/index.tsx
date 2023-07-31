@@ -1,4 +1,4 @@
-import { Box, BoxProps, Fade, FadeProps, useMediaQuery } from '@mui/material';
+import { Box, BoxProps, Fade, useMediaQuery } from '@mui/material';
 import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
@@ -12,7 +12,7 @@ import VillagerDialog from '../components/villagerDialog';
 import { villagersData } from '../lib/combinedData';
 import getData from '../lib/getData';
 import prepareData from '../lib/prepareData';
-import { DataContextProperties, PreparedDataProperties, StaticDataProperties } from '../types';
+import { CustomFadeProps, DataContextProperties, PreparedDataProperties, StaticDataProperties } from '../types';
 
 declare module '@mui/material/styles' {
   interface TypographyVariants {
@@ -79,9 +79,13 @@ const fadeTimeout = {
   exit: 500,
 };
 
-const CustomFade = ({...props}: FadeProps) => (
+const CustomFade = ({active, ...props}: CustomFadeProps) => (
   <Fade
     {...props}
+    in={active}
+    style={{
+      transitionDelay: (active ? fadeTimeout.exit : 0) + 'ms',
+    }}
     unmountOnExit
     appear
     timeout={fadeTimeout}
@@ -112,35 +116,8 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
   const smallScreen = useMediaQuery(theme.breakpoints.down('sm'), { noSsr: true });
 
   useEffect(() => {
-    const {
-      durationData,
-      histories,
-      photoStats2,
-      timelineColors,
-      timelineColors3,
-      timelineData,
-      timelineData2,
-      timelineData3,
-      timelineLabels,
-      timelineLabels3,
-      timelineNameIndex,
-      timelineNameIndex3,
-    } = prepareData(mongoData);
-
-    setPreparedData({
-      durationData,
-      histories,
-      photoStats2,
-      timelineColors,
-      timelineColors3,
-      timelineData,
-      timelineData2,
-      timelineData3,
-      timelineLabels,
-      timelineLabels3,
-      timelineNameIndex,
-      timelineNameIndex3,
-    });
+    const preppedData = prepareData(mongoData);
+    setPreparedData(preppedData);
   }, [mongoData]);
 
   useEffect(() => {
@@ -179,50 +156,35 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
           />
           {allReady && <>
             <CustomFade
-              in={component === 'Index'}
-              style={{
-                transitionDelay: (component === 'Index' ? fadeTimeout.exit : 0) + 'ms',
-              }}
+              active={component === 'Index'}
             >
               <CustomBox>
                 <IndexComponent />
               </CustomBox>
             </CustomFade>
             <CustomFade
-              in={component === 'Villagers'}
-              style={{
-                transitionDelay: (component === 'Villagers' ? fadeTimeout.exit : 0) + 'ms',
-              }}
+              active={component === 'Villagers'}
             >
               <CustomBox>
                 <Cards />
               </CustomBox>
             </CustomFade>
             <CustomFade
-              in={component === 'Timeline'}
-              style={{
-                transitionDelay: (component === 'Timeline' ? fadeTimeout.exit : 0) + 'ms',
-              }}
+              active={component === 'Timeline'}
             >
               <CustomBox>
                 <Timeline />
               </CustomBox>
             </CustomFade>
             <CustomFade
-              in={component === 'Stats'}
-              style={{
-                transitionDelay: (component === 'Stats' ? fadeTimeout.exit : 0) + 'ms',
-              }}
+              active={component === 'Stats'}
             >
               <CustomBox>
                 <Stats />
               </CustomBox>
             </CustomFade>
             <CustomFade
-              in={component === 'About'}
-              style={{
-                transitionDelay: (component === 'About' ? fadeTimeout.exit : 0) + 'ms',
-              }}
+              active={component === 'About'}
             >
               <CustomBox>
                 <About />
@@ -243,29 +205,9 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
 export async function getStaticProps(): Promise<{
   props: StaticDataProperties;
 }> {
-
-  const {
-    mongoData,
-    speciesData,
-    personalityData,
-    genderData,
-    photoData,
-    photoStats,
-    currentResidents,
-    islandmatesData,
-  } = await getData();
-
+  const staticData = await getData();
   return {
-    props: {
-      mongoData,
-      speciesData,
-      personalityData,
-      genderData,
-      photoData,
-      photoStats,
-      currentResidents,
-      islandmatesData,
-    }
+    props: staticData,
   }
 }
 

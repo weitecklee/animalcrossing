@@ -1,4 +1,4 @@
-import { DialogProps } from "@mui/material";
+import { DialogProps, FadeProps } from "@mui/material";
 import { Dispatch, SetStateAction } from 'react';
 
 interface NameProperties {
@@ -161,4 +161,8 @@ export interface DataContextProperties extends PreparedDataProperties {
   setShowVillagerDialog: Dispatch<SetStateAction<boolean>>,
   speciesData: TraitProperties[],
   villagersData: Map<string,VillagerProperties2>,
+}
+
+export interface CustomFadeProps extends FadeProps {
+  active: boolean,
 }
