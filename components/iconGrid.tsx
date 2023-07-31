@@ -10,7 +10,7 @@ export default function IconGrid({ traitData, villagers, customOnClick } : {
 
   if (!!traitData) {
     return (
-      <Grid container>
+      <Grid container spacing={0.5}>
         {traitData.villagers.map((villager) =>
           <Grid key={villager}
             item
@@ -25,7 +25,7 @@ export default function IconGrid({ traitData, villagers, customOnClick } : {
     )
   }
   return (
-    <Grid container>
+    <Grid container spacing={0.5}>
       {villagers!.map((villager) =>
         <Grid key={villager}
           item

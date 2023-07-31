@@ -57,19 +57,9 @@ export default function Stats() {
     <Typography>
       Number of Villagers: {histories.size}
       <br />
-      Current villagers:
+      Current residents:
     </Typography>
-      <Grid container>
-        {currentResidents.map((villager) =>
-          <Grid key={villager}
-            item
-          >
-            <VillagerIcon
-              villager={villager}
-            />
-          </Grid>
-        )}
-      </Grid>
+    <IconGrid villagers={currentResidents} />
     <Divider>
       <Chip label="Duration of Residence" color="secondary" />
     </Divider>
