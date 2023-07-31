@@ -1,6 +1,6 @@
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import ReadMoreRoundedIcon from '@mui/icons-material/ReadMoreRounded';
-import { Box, Chip, ClickAwayListener, DialogContent, Divider, Grid, Link, List, ListItem, Tooltip, Typography } from '@mui/material';
+import { Box, Chip, ClickAwayListener, DialogContent, Divider, Grid, Link, List, ListItem, Stack, Tooltip, Typography } from '@mui/material';
 import { MouseEvent, useContext, useState } from 'react';
 import { dayOrDays } from '../lib/functions';
 import { DataContext } from '../pages';
@@ -250,21 +250,28 @@ export default function Stats() {
       zIndex={1200}
     >
       <DialogContent>
-        <List>
-          {photoData.map((photo) => (
-            photo.villagers.map((villager) => (
-              <ListItem key={villager} disablePadding>
-                <Box display="flex" alignItems="center">
-                  <VillagerIcon
-                    villager={villager}
-                  />
-                  <Typography>
-                    &nbsp;&nbsp;{photo.trait} days
-                  </Typography>
-                </Box>
-              </ListItem>
-          ))))}
-        </List>
+        <Stack sx={{
+          alignItems: "center"
+        }}>
+        <Divider>
+          <Chip label="Time to receive (stay after receiving)" color="secondary" />
+        </Divider>
+          <List>
+            {photoData.map((photo) => (
+              photo.villagers.map((villager) => (
+                <ListItem key={villager} disablePadding>
+                  <Box display="flex" alignItems="center">
+                    <VillagerIcon
+                      villager={villager}
+                    />
+                    <Typography>
+                      &nbsp;&nbsp;{photo.trait} days ({dayOrDays(histories.get(villager)!.duration - photo.duration)})
+                    </Typography>
+                  </Box>
+                </ListItem>
+            ))))}
+          </List>
+        </Stack>
       </DialogContent>
     </CustomDialog>
     <CustomDialog
