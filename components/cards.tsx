@@ -1,9 +1,10 @@
 import ListRoundedIcon from '@mui/icons-material/ListRounded';
-import { Box, Fab, Grid, Badge, Typography } from '@mui/material';
+import { Box, Fab, Grid, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import { useContext, useState } from 'react';
 import { DataContext } from '../pages';
 import HistoryCard from './card';
-import { useTheme } from '@mui/material/styles';
+import CRBadge from './crBadge';
 
 export default function Cards() {
 
@@ -23,19 +24,13 @@ export default function Cards() {
           item
           key={history.name}
         >
-        <Badge
-          invisible={!history.currentResident}
-          badgeContent="CR"
-          color="secondary"
-          overlap="circular"
-          anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-        >
+        <CRBadge invisible={!history.currentResident}>
           <HistoryCard
             history={history}
             villagerData={villagersData.get(history.name)!}
             expandAll={expandAll}
           />
-          </Badge>
+        </CRBadge>
         </Grid>
       )}
     </Grid>
@@ -48,6 +43,7 @@ export default function Cards() {
             py: .5,
             px: 1,
             borderRadius: Number.MAX_SAFE_INTEGER,
+            border: "1px solid black",
           }}
         >
           CR

@@ -2,7 +2,7 @@ import { useTheme } from '@mui/material/styles';
 import Image from 'next/image';
 import { useContext } from 'react';
 import { DataContext, ScreenContext } from '../pages';
-import { Badge } from '@mui/material';
+import CRBadge from './crBadge';
 
 export default function VillagerIcon({ villager, customOnClick } : {
   villager: string,
@@ -20,13 +20,7 @@ export default function VillagerIcon({ villager, customOnClick } : {
   const mediumScreen = useContext(ScreenContext);
 
   return (
-    <Badge
-      invisible={!histories.get(villager)!.currentResident}
-      badgeContent="CR"
-      color="secondary"
-      overlap="circular"
-      anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-    >
+    <CRBadge invisible={!histories.get(villager)!.currentResident}>
       <Image
         src={villagersData.get(villager)!.nh_details.icon_url}
         alt={villager}
@@ -48,7 +42,7 @@ export default function VillagerIcon({ villager, customOnClick } : {
           cursor: 'pointer',
         }}
       />
-    </Badge>
+    </CRBadge>
   );
 
 }
