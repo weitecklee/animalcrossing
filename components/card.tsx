@@ -1,10 +1,11 @@
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import { Badge, Card, CardActionArea, CardMedia, IconButton, Stack, Typography } from '@mui/material';
+import { Card, CardActionArea, CardMedia, IconButton, Stack, Typography } from '@mui/material';
 import { useContext, useEffect, useState } from 'react';
 import { DataContext, ScreenContext } from '../pages';
 import { HistoryProperties, VillagerProperties2 } from '../types';
 import { dayOrDays } from '../lib/functions';
+import CRBadge from './crBadge';
 
 export default function HistoryCard({ history, villagerData, expandAll }: {
   history: HistoryProperties,
@@ -65,36 +66,39 @@ export default function HistoryCard({ history, villagerData, expandAll }: {
   </>
 
   return (
-    <Card sx={{position: 'relative'}}>
-      <CardActionArea onClick={() => setExpanded((a)=>!a)}>
-        <CardMedia
-          image={villagerData.nh_details.photo_url}
-          sx={{ width: {
-            xs: 100,
-            md: 150,
-          }, height: {
-            xs: 100,
-            md: 150,
-          } }}
-        >
-        </CardMedia>
-      </CardActionArea>
-      <Stack
-        height="100%"
-        width="100%"
-        bgcolor='rgba(255, 255, 255, .8)'
-        justifyContent="flex-start"
-        alignItems="flex-start"
-        padding={1}
-        sx={{
-          display: expanded ? 'flex' : 'none',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-        }}
-      >
-        <Content />
-      </Stack>
-    </Card>
+    <CRBadge invisible={!history.currentResident} sx={{zIndex: 1}}>
+      <Card sx={{position: 'relative'}}>
+        <CardActionArea onClick={() => setExpanded((a)=>!a)}>
+          <CardMedia
+            image={villagerData.nh_details.photo_url}
+            sx={{ width: {
+              xs: 100,
+              md: 150,
+            }, height: {
+              xs: 100,
+              md: 150,
+            } }}
+          >
+          </CardMedia>
+        </CardActionArea>
+        <Stack
+          height="100%"
+          width="100%"
+          bgcolor='rgba(255, 255, 255, .8)'
+          justifyContent="flex-start"
+          alignItems="flex-start"
+          padding={1}
+          sx={{
+            display: expanded ? 'flex' : 'none',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            zIndex: 2,
+          }}
+          >
+          <Content />
+        </Stack>
+      </Card>
+    </CRBadge>
   );
 }

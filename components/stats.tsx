@@ -74,7 +74,6 @@ export default function Stats() {
     />
     <Typography>
       Shortest: {dayOrDays(durationData[durationData.length - 1].duration)}
-      <br />
     </Typography>
     <IconGrid
       traitData={durationData[durationData.length - 1]}
