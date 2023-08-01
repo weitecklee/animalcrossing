@@ -1,6 +1,6 @@
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import { Card, CardActionArea, CardMedia, IconButton, Stack, Typography } from '@mui/material';
+import { Badge, Card, CardActionArea, CardMedia, IconButton, Stack, Typography } from '@mui/material';
 import { useContext, useEffect, useState } from 'react';
 import { DataContext, ScreenContext } from '../pages';
 import { HistoryProperties, VillagerProperties2 } from '../types';
@@ -65,7 +65,7 @@ export default function HistoryCard({ history, villagerData, expandAll }: {
   </>
 
   return (
-    <Card variant="outlined" sx={{position: 'relative'}}>
+    <Card sx={{position: 'relative'}}>
       <CardActionArea onClick={() => setExpanded((a)=>!a)}>
         <CardMedia
           image={villagerData.nh_details.photo_url}

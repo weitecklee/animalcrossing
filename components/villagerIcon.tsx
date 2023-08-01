@@ -25,6 +25,7 @@ export default function VillagerIcon({ villager, customOnClick } : {
       badgeContent="CR"
       color="secondary"
       overlap="circular"
+      anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
     >
       <Image
         src={villagersData.get(villager)!.nh_details.icon_url}
