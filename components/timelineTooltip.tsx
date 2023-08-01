@@ -7,6 +7,7 @@ import { Dispatch, SetStateAction, useContext } from 'react';
 import Draggable from 'react-draggable';
 import { ScreenContext } from '../pages';
 import { HistoryProperties, VillagerProperties2 } from '../types';
+import CRBadge from './crBadge';
 
 function DraggablePaper(props: PaperProps) {
   return (
@@ -49,13 +50,15 @@ export default function TimelineTooltip({ villagerData, history, setShowVillager
             left: '1%',
           }}
         />
-        <Image
-          src={villagerData.nh_details.icon_url}
-          alt={villagerData.name}
-          height={mediumScreen ? 64 : 128}
-          width={mediumScreen ? 64 : 128}
-          title={villagerData.name}
-        />
+        <CRBadge invisible={!history.currentResident}>
+          <Image
+            src={villagerData.nh_details.icon_url}
+            alt={villagerData.name}
+            height={mediumScreen ? 64 : 128}
+            width={mediumScreen ? 64 : 128}
+            title={villagerData.name}
+          />
+        </CRBadge>
         <Box>
           <Stack direction="row" alignItems="center">
             <span
@@ -65,7 +68,7 @@ export default function TimelineTooltip({ villagerData, history, setShowVillager
                 width: '20px',
                 backgroundColor: '#' + villagerData.title_color,
                 border: '1px solid black',
-                borderRadius: 50
+                borderRadius: Number.MAX_SAFE_INTEGER,
               }}
             >
             </span>
