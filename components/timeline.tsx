@@ -40,7 +40,7 @@ const options = {
       borderWidth: 1,
       borderSkipped: false,
       borderColor: '#000',
-      borderRadius: Number.MAX_VALUE,
+      borderRadius: Number.MAX_SAFE_INTEGER,
     },
   },
   plugins: {

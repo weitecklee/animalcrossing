@@ -65,7 +65,7 @@ export default function TimelineTooltip({ villagerData, history, setShowVillager
                 width: '20px',
                 backgroundColor: '#' + villagerData.title_color,
                 border: '1px solid black',
-                borderRadius: Number.MAX_VALUE,
+                borderRadius: Number.MAX_SAFE_INTEGER,
               }}
             >
             </span>
