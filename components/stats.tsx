@@ -1,6 +1,7 @@
+import { ArrowBackRounded, ArrowForwardRounded } from '@mui/icons-material';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import ReadMoreRoundedIcon from '@mui/icons-material/ReadMoreRounded';
-import { Box, Chip, ClickAwayListener, DialogContent, Divider, Grid, Link, List, ListItem, Stack, Tooltip, Typography } from '@mui/material';
+import { Box, Chip, ClickAwayListener, DialogContent, Divider, Fab, Link, List, ListItem, Stack, Tooltip, Typography } from '@mui/material';
 import { MouseEvent, useContext, useState } from 'react';
 import { dayOrDays } from '../lib/functions';
 import { DataContext } from '../pages';
@@ -9,7 +10,7 @@ import CustomDialog from './customDialog';
 import IconGrid from './iconGrid';
 import VillagerIcon from './villagerIcon';
 
-export default function Stats() {
+export default function Stats({smallScreen} : {smallScreen: boolean}) {
 
   const {
     currentResidents,
@@ -31,6 +32,57 @@ export default function Stats() {
   const [showPhotoDialog, setShowPhotoDialog] = useState(false);
   const [showIslandmatesDialog, setShowIslandmatesDialog] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
+  const [photoDialogTab, setPhotoDialogTab] = useState(true);
+
+  const PhotoDialogContent = (
+    <Stack sx={{
+      alignItems: "center"
+    }}>
+      <Divider>
+        <Chip label="Time to receive (stay after receiving)" color="secondary" />
+      </Divider>
+      <List>
+        {photoData.map((photo) => (
+          photo.villagers.map((villager) => (
+            <ListItem key={villager} disablePadding>
+              <Box display="flex" alignItems="center">
+                <VillagerIcon
+                  villager={villager}
+                />
+                <Typography>
+                  &nbsp;&nbsp;{photo.trait} days ({dayOrDays(histories.get(villager)!.duration - photo.duration)})
+                </Typography>
+              </Box>
+            </ListItem>
+        ))))}
+      </List>
+    </Stack>
+  );
+
+  const PhotoDialogContent2 = (
+    <Stack sx={{
+      alignItems: "center"
+    }}>
+      <Divider>
+        <Chip label="Stay without receiving" color="secondary" />
+      </Divider>
+      <List>
+        {noPhotoData.map((noPhoto) => (
+          noPhoto.villagers.map((villager) => (
+            <ListItem key={villager} disablePadding>
+              <Box display="flex" alignItems="center">
+                <VillagerIcon
+                  villager={villager}
+                />
+                <Typography>
+                  &nbsp;&nbsp;{dayOrDays(noPhoto.duration)}
+                </Typography>
+              </Box>
+            </ListItem>
+        ))))}
+      </List>
+    </Stack>
+  );
 
   const BreakdownLink = ({traitData, onClick} : {
     traitData?: TraitProperties[],
@@ -230,7 +282,7 @@ export default function Stats() {
       </DialogContent>
     </CustomDialog>
     <CustomDialog
-      open={showPhotoDialog}
+      open={!smallScreen && showPhotoDialog}
       onClose={() => setShowPhotoDialog(false)}
       maxWidth={false}
       keepMounted
@@ -238,53 +290,54 @@ export default function Stats() {
     >
       <DialogContent>
         <Stack direction="row" spacing={2}>
-          <Stack sx={{
-            alignItems: "center"
-          }}>
-            <Divider>
-              <Chip label="Time to receive (stay after receiving)" color="secondary" />
-            </Divider>
-            <List>
-              {photoData.map((photo) => (
-                photo.villagers.map((villager) => (
-                  <ListItem key={villager} disablePadding>
-                    <Box display="flex" alignItems="center">
-                      <VillagerIcon
-                        villager={villager}
-                      />
-                      <Typography>
-                        &nbsp;&nbsp;{photo.trait} days ({dayOrDays(histories.get(villager)!.duration - photo.duration)})
-                      </Typography>
-                    </Box>
-                  </ListItem>
-              ))))}
-            </List>
-          </Stack>
+          {PhotoDialogContent}
           <Divider orientation='vertical' flexItem/>
-          <Stack sx={{
-            alignItems: "center"
-          }}>
-            <Divider>
-              <Chip label="Stay without receiving" color="secondary" />
-            </Divider>
-            <List>
-              {noPhotoData.map((noPhoto) => (
-                noPhoto.villagers.map((villager) => (
-                  <ListItem key={villager} disablePadding>
-                    <Box display="flex" alignItems="center">
-                      <VillagerIcon
-                        villager={villager}
-                      />
-                      <Typography>
-                        &nbsp;&nbsp;{dayOrDays(noPhoto.duration)}
-                      </Typography>
-                    </Box>
-                  </ListItem>
-              ))))}
-            </List>
-          </Stack>
+          {PhotoDialogContent2}
         </Stack>
       </DialogContent>
+    </CustomDialog>
+    <CustomDialog
+      open={smallScreen && showPhotoDialog}
+      onClose={() => setShowPhotoDialog(false)}
+      maxWidth={false}
+      keepMounted
+      zIndex={1200}
+    >
+      <DialogContent>
+        {photoDialogTab ? PhotoDialogContent : PhotoDialogContent2}
+      </DialogContent>
+        <Fab
+          size="small"
+          color="secondary"
+          sx={{
+            display: photoDialogTab ? "none" : "flex",
+            ':hover': {
+              bgcolor: "white"
+            },
+            position: "fixed",
+            top: "50%",
+            left: 8,
+          }}
+          onClick={() => {setPhotoDialogTab(true);}}
+        >
+          <ArrowBackRounded />
+        </Fab>
+        <Fab
+          size="small"
+          color="secondary"
+          sx={{
+            display: photoDialogTab ? "flex" : "none",
+            ':hover': {
+              bgcolor: "white"
+            },
+            position: "fixed",
+            top: "50%",
+            right: 8,
+          }}
+          onClick={() => {setPhotoDialogTab(false);}}
+        >
+          <ArrowForwardRounded />
+        </Fab>
     </CustomDialog>
     <CustomDialog
       open={showIslandmatesDialog}

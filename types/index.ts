@@ -1,4 +1,4 @@
-import { DialogProps, Duration, FadeProps } from "@mui/material";
+import { DialogProps, FadeProps } from "@mui/material";
 import { Dispatch, SetStateAction } from 'react';
 
 interface NameProperties {
