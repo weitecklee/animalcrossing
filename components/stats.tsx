@@ -17,6 +17,7 @@ export default function Stats() {
     genderData,
     histories,
     islandmatesData,
+    noPhotoData,
     personalityData,
     photoData,
     photoStats,
@@ -236,27 +237,52 @@ export default function Stats() {
       zIndex={1200}
     >
       <DialogContent>
-        <Stack sx={{
-          alignItems: "center"
-        }}>
-        <Divider>
-          <Chip label="Time to receive (stay after receiving)" color="secondary" />
-        </Divider>
-          <List>
-            {photoData.map((photo) => (
-              photo.villagers.map((villager) => (
-                <ListItem key={villager} disablePadding>
-                  <Box display="flex" alignItems="center">
-                    <VillagerIcon
-                      villager={villager}
-                    />
-                    <Typography>
-                      &nbsp;&nbsp;{photo.trait} days ({dayOrDays(histories.get(villager)!.duration - photo.duration)})
-                    </Typography>
-                  </Box>
-                </ListItem>
-            ))))}
-          </List>
+        <Stack direction="row" spacing={2}>
+          <Stack sx={{
+            alignItems: "center"
+          }}>
+            <Divider>
+              <Chip label="Time to receive (stay after receiving)" color="secondary" />
+            </Divider>
+            <List>
+              {photoData.map((photo) => (
+                photo.villagers.map((villager) => (
+                  <ListItem key={villager} disablePadding>
+                    <Box display="flex" alignItems="center">
+                      <VillagerIcon
+                        villager={villager}
+                      />
+                      <Typography>
+                        &nbsp;&nbsp;{photo.trait} days ({dayOrDays(histories.get(villager)!.duration - photo.duration)})
+                      </Typography>
+                    </Box>
+                  </ListItem>
+              ))))}
+            </List>
+          </Stack>
+          <Divider orientation='vertical' flexItem/>
+          <Stack sx={{
+            alignItems: "center"
+          }}>
+            <Divider>
+              <Chip label="Stay without receiving" color="secondary" />
+            </Divider>
+            <List>
+              {noPhotoData.map((noPhoto) => (
+                noPhoto.villagers.map((villager) => (
+                  <ListItem key={villager} disablePadding>
+                    <Box display="flex" alignItems="center">
+                      <VillagerIcon
+                        villager={villager}
+                      />
+                      <Typography>
+                        &nbsp;&nbsp;{dayOrDays(noPhoto.duration)}
+                      </Typography>
+                    </Box>
+                  </ListItem>
+              ))))}
+            </List>
+          </Stack>
         </Stack>
       </DialogContent>
     </CustomDialog>

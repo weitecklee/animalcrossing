@@ -1,4 +1,4 @@
-import { DialogProps, FadeProps } from "@mui/material";
+import { DialogProps, Duration, FadeProps } from "@mui/material";
 import { Dispatch, SetStateAction } from 'react';
 
 interface NameProperties {
@@ -138,6 +138,7 @@ export interface StaticDataProperties {
 export interface PreparedDataProperties {
   durationData: DurationProperties[],
   histories: Map<string,HistoryProperties>,
+  noPhotoData: DurationProperties[],
   photoStats2: PhotoStats2Properties,
   timelineColors: string[],
   timelineColors3: string[],
