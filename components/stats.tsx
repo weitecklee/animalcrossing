@@ -1,11 +1,12 @@
 import { ArrowBackRounded, ArrowForwardRounded } from '@mui/icons-material';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import ReadMoreRoundedIcon from '@mui/icons-material/ReadMoreRounded';
-import { Box, Chip, ClickAwayListener, DialogContent, Divider, Fab, Link, List, ListItem, Collapse, Stack, Tooltip, Typography } from '@mui/material';
+import { Box, Chip, ClickAwayListener, Collapse, DialogContent, Divider, Fab, Link, List, ListItem, Stack, Tooltip, Typography } from '@mui/material';
 import { MouseEvent, useContext, useState } from 'react';
 import { dayOrDays } from '../lib/functions';
 import { DataContext } from '../pages';
 import { TraitProperties } from '../types';
+import CRIcon from './crIcon';
 import CustomDialog from './customDialog';
 import IconGrid from './iconGrid';
 import VillagerIcon from './villagerIcon';
@@ -111,7 +112,8 @@ export default function Stats({smallScreen} : {smallScreen: boolean}) {
     <Typography>
       Number of Villagers: {histories.size}
       <br />
-      Current residents:
+      <CRIcon />
+      &nbsp;Current residents:
     </Typography>
     <IconGrid villagers={currentResidents} />
     <Divider>
