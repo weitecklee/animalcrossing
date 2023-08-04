@@ -32,6 +32,7 @@ export default function prepareData(mongoData: MongoProperties[]): PreparedDataP
   const durationMap: Map<number, DurationProperties> = new Map();
   const timelineData2: number[] = [];
   const timelineNameIndex: Map<string, number> = new Map();
+  const noPhotoMap: Map<number, DurationProperties> = new Map();
   let i = 0;
 
   for (const mongoDatum of mongoData) {
@@ -45,6 +46,8 @@ export default function prepareData(mongoData: MongoProperties[]): PreparedDataP
     } else {
       tmpHist.endDateDate = new Date(mongoDatum.endDate);
     }
+    tmpHist.endDateString = tmpHist.endDateDate.toLocaleDateString("fr-CA");
+    tmpHist.duration = calculateDays(tmpHist.startDateDate, tmpHist.endDateDate);
     if (mongoDatum.photo) {
       tmpHist.photoDateDate = new Date(mongoDatum.photoDate);
       const stayAfterReceiving = calculateDays(tmpHist.photoDateDate, tmpHist.endDateDate);
@@ -62,9 +65,19 @@ export default function prepareData(mongoData: MongoProperties[]): PreparedDataP
       } else if (stayAfterReceiving === photoStats2.longestAfterReceiving.duration) {
         photoStats2.longestAfterReceiving.villagers.push(mongoDatum.name);
       }
+    } else {
+      if (!noPhotoMap.has(tmpHist.duration)) {
+        noPhotoMap.set(tmpHist.duration, {
+          trait: tmpHist.duration.toString(),
+          count: 0,
+          villagers: [],
+          duration: tmpHist.duration,
+        });
+      }
+      const tmp = noPhotoMap.get(tmpHist.duration)!;
+      tmp.count++;
+      tmp.villagers.push(tmpHist.name);
     }
-    tmpHist.endDateString = tmpHist.endDateDate.toLocaleDateString("fr-CA");
-    tmpHist.duration = calculateDays(tmpHist.startDateDate, tmpHist.endDateDate);
     if (!durationMap.has(tmpHist.duration)) {
       durationMap.set(tmpHist.duration, {
         trait: tmpHist.duration.toString(),
@@ -104,26 +117,17 @@ export default function prepareData(mongoData: MongoProperties[]): PreparedDataP
     }
   }
 
-  let found = false;
-  for (const duration of durationData) {
-    for (const villager of duration.villagers) {
-      if (!(histories.get(villager)!.photo)) {
-        photoStats2.longestWithoutReceiving.duration = duration.duration;
-        photoStats2.longestWithoutReceiving.villagers.push(villager);
-        found = true;
-      }
-    }
-    if (found) {
-      break;
-    }
-  }
+  const noPhotoData = Array.from(noPhotoMap.values());
+  noPhotoData.sort((a, b) => b.duration - a.duration);
 
+  photoStats2.longestWithoutReceiving = noPhotoData[0];
+  photoStats2.longestAfterReceiving.trait = photoStats2.longestAfterReceiving.duration.toString();
   photoStats2.shortestAfterReceiving.trait = photoStats2.shortestAfterReceiving.duration.toString();
-  photoStats2.longestWithoutReceiving.trait = photoStats2.longestWithoutReceiving.duration.toString();
 
   return {
     durationData,
     histories,
+    noPhotoData,
     photoStats2,
     timelineColors,
     timelineColors3,

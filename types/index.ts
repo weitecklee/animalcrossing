@@ -138,6 +138,7 @@ export interface StaticDataProperties {
 export interface PreparedDataProperties {
   durationData: DurationProperties[],
   histories: Map<string,HistoryProperties>,
+  noPhotoData: DurationProperties[],
   photoStats2: PhotoStats2Properties,
   timelineColors: string[],
   timelineColors3: string[],

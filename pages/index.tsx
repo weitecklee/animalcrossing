@@ -180,7 +180,7 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
               active={component === 'Stats'}
             >
               <CustomBox>
-                <Stats />
+                <Stats smallScreen={smallScreen} />
               </CustomBox>
             </CustomFade>
             <CustomFade
