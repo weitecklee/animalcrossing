@@ -1,7 +1,7 @@
 import { ArrowBackRounded, ArrowForwardRounded } from '@mui/icons-material';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import ReadMoreRoundedIcon from '@mui/icons-material/ReadMoreRounded';
-import { Box, Chip, ClickAwayListener, DialogContent, Divider, Fab, Link, List, ListItem, Stack, Tooltip, Typography } from '@mui/material';
+import { Box, Chip, ClickAwayListener, DialogContent, Divider, Fab, Link, List, ListItem, Collapse, Stack, Tooltip, Typography } from '@mui/material';
 import { MouseEvent, useContext, useState } from 'react';
 import { dayOrDays } from '../lib/functions';
 import { DataContext } from '../pages';
@@ -33,6 +33,7 @@ export default function Stats({smallScreen} : {smallScreen: boolean}) {
   const [showIslandmatesDialog, setShowIslandmatesDialog] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
   const [photoDialogTab, setPhotoDialogTab] = useState(true);
+  const [showPhotoCollapse, setShowPhotoCollapse] = useState(false);
 
   const PhotoDialogContent = (
     <Stack sx={{
@@ -221,7 +222,7 @@ export default function Stats({smallScreen} : {smallScreen: boolean}) {
     <IconGrid
       traitData={photoStats2.longestWithoutReceiving}
     />
-    <BreakdownLink onClick={() => {setShowPhotoDialog(true);}} />
+    <BreakdownLink onClick={() => {setShowPhotoDialog(true); setShowPhotoCollapse(true);}} />
     <Divider>
       <Chip label="Islandmates" color="secondary" />
     </Divider>
@@ -303,41 +304,50 @@ export default function Stats({smallScreen} : {smallScreen: boolean}) {
       keepMounted
       zIndex={1200}
     >
-      <DialogContent>
-        {photoDialogTab ? PhotoDialogContent : PhotoDialogContent2}
-      </DialogContent>
-        <Fab
-          size="small"
-          color="secondary"
-          sx={{
-            display: photoDialogTab ? "none" : "flex",
-            ':hover': {
-              bgcolor: "white"
-            },
-            position: "fixed",
-            top: "50%",
-            left: 8,
-          }}
-          onClick={() => {setPhotoDialogTab(true);}}
-        >
-          <ArrowBackRounded />
-        </Fab>
-        <Fab
-          size="small"
-          color="secondary"
-          sx={{
-            display: photoDialogTab ? "flex" : "none",
-            ':hover': {
-              bgcolor: "white"
-            },
-            position: "fixed",
-            top: "50%",
-            right: 8,
-          }}
-          onClick={() => {setPhotoDialogTab(false);}}
-        >
-          <ArrowForwardRounded />
-        </Fab>
+      <Collapse
+        in={showPhotoCollapse}
+        orientation="horizontal"
+        onExited={() => {
+          setPhotoDialogTab((a) => !a);
+          setShowPhotoCollapse(true);
+        }}
+      >
+        <DialogContent>
+          {photoDialogTab ? PhotoDialogContent : PhotoDialogContent2}
+        </DialogContent>
+      </Collapse>
+      <Fab
+        size="small"
+        color="secondary"
+        sx={{
+          display: photoDialogTab ? "none" : "flex",
+          ':hover': {
+            bgcolor: "white"
+          },
+          position: "fixed",
+          top: "50%",
+          left: 8,
+        }}
+        onClick={() => setShowPhotoCollapse(false)}
+      >
+        <ArrowBackRounded />
+      </Fab>
+      <Fab
+        size="small"
+        color="secondary"
+        sx={{
+          display: photoDialogTab ? "flex" : "none",
+          ':hover': {
+            bgcolor: "white"
+          },
+          position: "fixed",
+          top: "50%",
+          right: 8,
+        }}
+        onClick={() => setShowPhotoCollapse(false)}
+      >
+        <ArrowForwardRounded />
+      </Fab>
     </CustomDialog>
     <CustomDialog
       open={showIslandmatesDialog}
