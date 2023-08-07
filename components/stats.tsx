@@ -1,7 +1,7 @@
 import { ArrowBackRounded, ArrowForwardRounded } from '@mui/icons-material';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import { Box, Chip, ClickAwayListener, Collapse, DialogContent, Divider, Fab, Link, List, ListItem, Stack, Tooltip, Typography } from '@mui/material';
-import { MouseEvent, useContext, useState } from 'react';
+import { Box, Button, Chip, ClickAwayListener, Collapse, DialogContent, Divider, Fab, List, ListItem, Stack, Tooltip, Typography } from '@mui/material';
+import { useContext, useState } from 'react';
 import { dayOrDays } from '../lib/functions';
 import { DataContext } from '../pages';
 import { TraitProperties } from '../types';
@@ -89,11 +89,10 @@ export default function Stats({smallScreen} : {smallScreen: boolean}) {
     traitData?: TraitProperties[],
     onClick?: () => void,
   }) => (
-    <Link
-      href="#"
-      underline="none"
-      onClick={(event: MouseEvent<HTMLAnchorElement>) => {
-        event.preventDefault();
+    <Button
+      size="small"
+      sx={{fontSize: "1rem"}}
+      onClick={() => {
         if (traitData) {
           setDialogTraitData(traitData);
           setShowTraitDialog(true);
@@ -103,7 +102,7 @@ export default function Stats({smallScreen} : {smallScreen: boolean}) {
       }}
     >
       Full breakdown
-    </Link>
+    </Button>
   );
 
   return <>
