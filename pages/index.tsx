@@ -97,7 +97,7 @@ const CustomBox = forwardRef((props: BoxProps, ref) => (
     {...props}
     ref={ref}
     position='absolute'
-    width='calc(100% - 16px)'
+    width='calc(100vw - 30px)'
   />
 ));
 CustomBox.displayName = 'CustomBox';

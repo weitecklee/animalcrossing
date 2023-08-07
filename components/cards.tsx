@@ -30,7 +30,7 @@ export default function Cards() {
         </Grid>
       )}
     </Grid>
-    <Box height={56} paddingTop={2}>
+    <Box height={100} paddingTop={2}>
       <Typography>
         <CRIcon />
         &nbsp;Current Resident
@@ -38,7 +38,7 @@ export default function Cards() {
     </Box>
     <Fab variant="extended" onClick={()=> setExpandAll((a)=> !a)} color="secondary" sx={{
       position: "fixed",
-      right: "1%",
+      left: "1%",
       bottom: "1%",
       ':hover': {
         bgcolor: "white"
