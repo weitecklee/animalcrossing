@@ -1,6 +1,5 @@
 import { ArrowBackRounded, ArrowForwardRounded } from '@mui/icons-material';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import ReadMoreRoundedIcon from '@mui/icons-material/ReadMoreRounded';
 import { Box, Chip, ClickAwayListener, Collapse, DialogContent, Divider, Fab, Link, List, ListItem, Stack, Tooltip, Typography } from '@mui/material';
 import { MouseEvent, useContext, useState } from 'react';
 import { dayOrDays } from '../lib/functions';
@@ -104,7 +103,6 @@ export default function Stats({smallScreen} : {smallScreen: boolean}) {
       }}
     >
       Full breakdown
-        <ReadMoreRoundedIcon fontSize="inherit" />
     </Link>
   );
 
