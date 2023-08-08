@@ -4,7 +4,7 @@ import { ScreenContext } from '../pages';
 
 export default function CRBadge({...props}: BadgeProps) {
 
-  const mediumScreen = useContext(ScreenContext);
+  const { mediumScreen } = useContext(ScreenContext);
 
   return (
     <Badge

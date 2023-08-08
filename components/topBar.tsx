@@ -1,15 +1,15 @@
 import MenuIcon from '@mui/icons-material/Menu';
 import { AppBar, Box, Button, IconButton, Menu, MenuItem, Slide, Toolbar, Typography, useScrollTrigger } from '@mui/material';
 import Image from 'next/image';
-import { Dispatch, ElementType, MouseEvent, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, ElementType, MouseEvent, SetStateAction, useContext, useEffect, useState } from 'react';
+import { ScreenContext } from '../pages';
 import FavIcon from '../public/lasagnark8.png';
 
 const pages = ['Villagers', 'Timeline', 'Stats', 'About'];
 
-export default function TopBar({ component, setComponent, smallScreen }: {
+export default function TopBar({ component, setComponent }: {
   component: string,
   setComponent: Dispatch<SetStateAction<string>>,
-  smallScreen: boolean,
 }) {
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -20,6 +20,8 @@ export default function TopBar({ component, setComponent, smallScreen }: {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const { smallScreen } = useContext(ScreenContext);
 
   const [titleComponent, setTitleComponent] = useState<ElementType<any>>('h2');
   useEffect(() => {

@@ -3,14 +3,14 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { Box, Button, Chip, ClickAwayListener, Collapse, DialogContent, Divider, Fab, List, ListItem, Stack, Tooltip, Typography } from '@mui/material';
 import { useContext, useState } from 'react';
 import { dayOrDays } from '../lib/functions';
-import { DataContext } from '../pages';
+import { DataContext, ScreenContext } from '../pages';
 import { TraitProperties } from '../types';
 import CRIcon from './crIcon';
 import CustomDialog from './customDialog';
 import IconGrid from './iconGrid';
 import VillagerIcon from './villagerIcon';
 
-export default function Stats({smallScreen} : {smallScreen: boolean}) {
+export default function Stats() {
 
   const {
     currentResidents,
@@ -25,6 +25,7 @@ export default function Stats({smallScreen} : {smallScreen: boolean}) {
     photoStats2,
     speciesData,
   } = useContext(DataContext);
+  const { smallScreen } = useContext(ScreenContext);
 
   const [dialogTraitData, setDialogTraitData] = useState<TraitProperties[]>([]);
   const [showTraitDialog, setShowTraitDialog] = useState(false);

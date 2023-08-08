@@ -109,7 +109,7 @@ export default function Timeline() {
     timelineNameIndex3,
     villagersData,
   } = useContext(DataContext);
-  const mediumScreen = useContext(ScreenContext);
+  const { mediumScreen } = useContext(ScreenContext);
 
   const [timelineVillager, setTimelineVillager] = useState('');
   const [showTooltip, setShowTooltip] = useState(false);
