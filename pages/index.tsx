@@ -74,9 +74,9 @@ theme = responsiveFontSizes(theme, {
 const Timeline = dynamic(() => import('../components/timeline'), {ssr: false})
 
 const fadeTimeout = {
-  appear: 500,
-  enter: 500,
-  exit: 500,
+  appear: theme.transitions.duration.standard,
+  enter: theme.transitions.duration.standard,
+  exit: theme.transitions.duration.standard,
 };
 
 const CustomFade = ({active, ...props}: CustomFadeProps) => (
