@@ -81,11 +81,13 @@ export default function TopBar({ component, setComponent, smallScreen }: {
           </IconButton>
           <Typography
             variant="title"
-            sx={{flexGrow: 1}}
+            sx={{cursor: "pointer"}}
+            onClick={() => {setComponent("Index");}}
             component={titleComponent}
           >
             My Animal Crossing Island
           </Typography>
+          <Box sx={{flexGrow: 1}}/>
           <Box sx={{display: {xs: 'none', md: 'flex'}}}>
             {pages.map((page) => (
               <Button
