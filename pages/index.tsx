@@ -74,9 +74,9 @@ theme = responsiveFontSizes(theme, {
 const Timeline = dynamic(() => import('../components/timeline'), {ssr: false})
 
 const fadeTimeout = {
-  appear: 500,
-  enter: 500,
-  exit: 500,
+  appear: theme.transitions.duration.standard,
+  enter: theme.transitions.duration.standard,
+  exit: theme.transitions.duration.standard,
 };
 
 const CustomFade = ({active, ...props}: CustomFadeProps) => (
@@ -97,7 +97,6 @@ const CustomBox = forwardRef((props: BoxProps, ref) => (
     {...props}
     ref={ref}
     position='absolute'
-    width='calc(100vw - 30px)'
   />
 ));
 CustomBox.displayName = 'CustomBox';
@@ -172,14 +171,14 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
             <CustomFade
               active={component === 'Timeline'}
             >
-              <CustomBox>
+              <CustomBox width='calc(100vw - 16px)'>
                 <Timeline />
               </CustomBox>
             </CustomFade>
             <CustomFade
               active={component === 'Stats'}
             >
-              <CustomBox>
+              <CustomBox width='calc(100vw - 30px)'>
                 <Stats smallScreen={smallScreen} />
               </CustomBox>
             </CustomFade>
