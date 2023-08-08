@@ -5,7 +5,7 @@ import { ScreenContext } from '../pages';
 
 export default function CRIcon() {
 
-  const mediumScreen = useContext(ScreenContext);
+  const { mediumScreen } = useContext(ScreenContext);
   const theme = useTheme();
 
   if (mediumScreen) {

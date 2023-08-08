@@ -17,7 +17,7 @@ export default function HistoryCard({ history, villagerData, expandAll }: {
     setDialogVillager,
     setShowVillagerDialog,
   } = useContext(DataContext);
-  const mediumScreen = useContext(ScreenContext);
+  const { mediumScreen } = useContext(ScreenContext);
 
   const [expanded, setExpanded] = useState(false);
 

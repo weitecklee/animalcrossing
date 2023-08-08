@@ -7,7 +7,7 @@ import { CustomDialogProps } from '../types';
 export default function CustomDialog({zIndex, ...props}: CustomDialogProps) {
 
   const { open, onClose } = props;
-  const mediumScreen = useContext(ScreenContext);
+  const { mediumScreen, smallScreen } = useContext(ScreenContext);
 
   return <>
     <Dialog
@@ -15,6 +15,10 @@ export default function CustomDialog({zIndex, ...props}: CustomDialogProps) {
       sx={{
         zIndex,
       }}
+      PaperProps={{sx: smallScreen ? {
+        maxWidth: "100%",
+        mx: "16px",
+      } : {}}}
     />
     <Box
       display={mediumScreen ? (open ? "flex" : "none") : "none"}

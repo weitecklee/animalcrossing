@@ -17,7 +17,7 @@ export default function VillagerIcon({ villager, customOnClick } : {
     setShowVillagerDialog,
     villagersData,
   } = useContext(DataContext);
-  const mediumScreen = useContext(ScreenContext);
+  const { mediumScreen } = useContext(ScreenContext);
 
   return (
     <CRBadge invisible={!histories.get(villager)!.currentResident}>

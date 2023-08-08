@@ -36,7 +36,7 @@ export default function TimelineTooltip({ villagerData, history, setShowVillager
   setShowVillagerDialog: Dispatch<SetStateAction<boolean>>,
 }) {
 
-  const mediumScreen = useContext(ScreenContext);
+  const { mediumScreen } = useContext(ScreenContext);
 
   return (
       <DraggablePaper>

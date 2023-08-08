@@ -9,10 +9,9 @@ import { dayOrDays } from '../lib/functions';
 
 const timeouts: NodeJS.Timeout[] = [];
 
-export default function VillagerDialog({ dialogVillager, showVillagerDialog, smallScreen } : {
+export default function VillagerDialog({ dialogVillager, showVillagerDialog } : {
   dialogVillager: string,
   showVillagerDialog: boolean,
-  smallScreen: boolean,
 }) {
 
   const {
@@ -20,7 +19,7 @@ export default function VillagerDialog({ dialogVillager, showVillagerDialog, sma
     setShowVillagerDialog,
     villagersData,
   } = useContext(DataContext);
-  const mediumScreen = useContext(ScreenContext);
+  const { mediumScreen } = useContext(ScreenContext);
 
   const [imagesReady, setImagesReady] = useState(0);
   const [dialogReady, setDialogReady] = useState(true);
@@ -98,10 +97,6 @@ export default function VillagerDialog({ dialogVillager, showVillagerDialog, sma
       onClose={handleClose2}
       maxWidth={false}
       zIndex={1300}
-      PaperProps={{sx: smallScreen ? {
-        maxWidth: "100%",
-        mx: "16px",
-      } : {}}}
     >
       <Collapse in={dialogReady} appear>
         <Grid

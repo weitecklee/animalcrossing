@@ -102,7 +102,10 @@ const CustomBox = forwardRef((props: BoxProps, ref) => (
 CustomBox.displayName = 'CustomBox';
 
 export const DataContext = createContext({} as DataContextProperties);
-export const ScreenContext = createContext(false);
+export const ScreenContext = createContext({
+  mediumScreen: false,
+  smallScreen: false,
+});
 
 export default function HomePage({ mongoData, speciesData, personalityData, genderData, photoData, photoStats, currentResidents, islandmatesData }: StaticDataProperties) {
 
@@ -147,11 +150,10 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
         speciesData,
         villagersData
       }}>
-        <ScreenContext.Provider value={mediumScreen}>
+        <ScreenContext.Provider value={{mediumScreen, smallScreen}}>
           <TopBar
             component={component}
             setComponent={setComponent}
-            smallScreen={smallScreen}
           />
           {allReady && <>
             <CustomFade
@@ -179,7 +181,7 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
               active={component === 'Stats'}
             >
               <CustomBox width='calc(100vw - 30px)'>
-                <Stats smallScreen={smallScreen} />
+                <Stats/>
               </CustomBox>
             </CustomFade>
             <CustomFade
@@ -192,7 +194,6 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
             <VillagerDialog
               dialogVillager={dialogVillager}
               showVillagerDialog={showVillagerDialog}
-              smallScreen={smallScreen}
             />
           </>}
         </ScreenContext.Provider>
