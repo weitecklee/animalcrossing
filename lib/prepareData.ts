@@ -42,6 +42,7 @@ export default function prepareData(mongoData: MongoProperties[]): PreparedDataP
     tmpHist.startDateDate = new Date(mongoDatum.startDate);
     if (!mongoDatum.endDate) {
       tmpHist.endDateDate = new Date();
+      tmpHist.endDateDate.setDate(tmpHist.endDateDate.getDate() + 30);
       tmpHist.endDateDate.setHours(0, 0, 0);
     } else {
       tmpHist.endDateDate = new Date(mongoDatum.endDate);
