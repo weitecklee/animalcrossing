@@ -36,13 +36,13 @@ export default function TimelineTooltip({ villagerData, history, setShowVillager
   setShowVillagerDialog: Dispatch<SetStateAction<boolean>>,
 }) {
 
-  const { mediumScreen } = useContext(ScreenContext);
+  const { smallScreen } = useContext(ScreenContext);
 
   return (
       <DraggablePaper>
         <OpenWithRoundedIcon
           id="dragHandle"
-          fontSize={mediumScreen ? 'small' : 'medium'}
+          fontSize={smallScreen ? 'small' : 'medium'}
           sx={{
             cursor: 'move',
             position: 'absolute',
@@ -54,8 +54,8 @@ export default function TimelineTooltip({ villagerData, history, setShowVillager
           <Image
             src={villagerData.nh_details.icon_url}
             alt={villagerData.name}
-            height={mediumScreen ? 64 : 128}
-            width={mediumScreen ? 64 : 128}
+            height={smallScreen ? 64 : 128}
+            width={smallScreen ? 64 : 128}
             title={villagerData.name}
           />
         </CRBadge>
@@ -72,11 +72,11 @@ export default function TimelineTooltip({ villagerData, history, setShowVillager
               }}
             >
             </span>
-            <Typography display="inline" variant={mediumScreen ? 'subtitle2' : 'h6'} fontFamily="Coustard">
+            <Typography display="inline" variant={smallScreen ? 'subtitle2' : 'h6'} fontFamily="Coustard">
             &ensp;{villagerData.name}
             </Typography>
           </Stack>
-          <Typography variant={mediumScreen ? 'caption' : 'body1'}>
+          <Typography variant={smallScreen ? 'caption' : 'body1'}>
             {history.startDateString}
             <br />
             {!history.currentResident ? history.endDateString : 'Present'}
@@ -88,7 +88,7 @@ export default function TimelineTooltip({ villagerData, history, setShowVillager
           onClick={() => {
             setShowVillagerDialog(true);
           }}
-          size={mediumScreen ? "small" : "medium"}
+          size={smallScreen ? "small" : "medium"}
           sx={{
             position: 'absolute',
             bottom: 0,
