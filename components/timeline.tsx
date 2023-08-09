@@ -91,7 +91,6 @@ options2.plugins.zoom.limits = {
   y: { min: 'original', max: 'original', minRange: 20 },
 };
 
-
 export default function Timeline() {
 
   const {
@@ -109,7 +108,7 @@ export default function Timeline() {
     timelineNameIndex3,
     villagersData,
   } = useContext(DataContext);
-  const { mediumScreen } = useContext(ScreenContext);
+  const { smallScreen } = useContext(ScreenContext);
 
   const [timelineVillager, setTimelineVillager] = useState('');
   const [showTooltip, setShowTooltip] = useState(false);
@@ -151,8 +150,8 @@ export default function Timeline() {
   }
 
   useEffect(() => {
-    setOpenSnackbar(mediumScreen);
-  }, [mediumScreen]);
+    setOpenSnackbar(smallScreen);
+  }, [smallScreen]);
 
   useEffect(() => {
     setDialogVillager(timelineVillager);
@@ -286,14 +285,14 @@ export default function Timeline() {
               setTimelineMode((mode) => mode === 2 ? 0 : (mode + 1));
             }}
             sx={{
-              display: mediumScreen ? "none" : "",
+              display: smallScreen ? "none" : "",
               ':hover': {
                 bgcolor: "white"
               },
               fontFamily: 'Coustard',
             }}
           >
-            Change view
+            {timelineMode === 0 ? "Timeline view" : timelineMode === 1 ? "Lined-up view" : "Sorted view"}
           </Button>
           <Button
             id="changeViewButton"
@@ -303,7 +302,7 @@ export default function Timeline() {
               setTimelineMode((mode) => mode === 2 ? 0 : (mode + 1));
             }}
             sx={{
-              display: mediumScreen ? "" : "none",
+              display: smallScreen ? "" : "none",
               ':hover': {
                 bgcolor: "white"
               },
