@@ -285,6 +285,7 @@ export default function Timeline() {
               setTimelineMode((mode) => mode === 2 ? 0 : (mode + 1));
             }}
             sx={{
+              boxShadow: 5,
               display: smallScreen ? "none" : "",
               ':hover': {
                 bgcolor: "white"
@@ -302,6 +303,7 @@ export default function Timeline() {
               setTimelineMode((mode) => mode === 2 ? 0 : (mode + 1));
             }}
             sx={{
+              boxShadow: 5,
               display: smallScreen ? "" : "none",
               ':hover': {
                 bgcolor: "white"
