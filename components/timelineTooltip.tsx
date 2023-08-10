@@ -17,7 +17,7 @@ function DraggablePaper(props: PaperProps) {
     >
       <Paper
         {...props}
-        elevation={2}
+        elevation={5}
         sx={{
           position: 'absolute',
           top: '50%',
