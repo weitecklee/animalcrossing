@@ -42,13 +42,15 @@ export default function prepareData(mongoData: MongoProperties[]): PreparedDataP
     tmpHist.startDateDate = new Date(mongoDatum.startDate);
     if (!mongoDatum.endDate) {
       tmpHist.endDateDate = new Date();
+      tmpHist.endDateDate.setHours(0, 0, 0);
+      tmpHist.duration = calculateDays(tmpHist.startDateDate, tmpHist.endDateDate);
       tmpHist.endDateDate.setDate(tmpHist.endDateDate.getDate() + 30);
       tmpHist.endDateDate.setHours(0, 0, 0);
     } else {
       tmpHist.endDateDate = new Date(mongoDatum.endDate);
+      tmpHist.duration = calculateDays(tmpHist.startDateDate, tmpHist.endDateDate);
     }
     tmpHist.endDateString = tmpHist.endDateDate.toLocaleDateString("fr-CA");
-    tmpHist.duration = calculateDays(tmpHist.startDateDate, tmpHist.endDateDate);
     if (mongoDatum.photo) {
       tmpHist.photoDateDate = new Date(mongoDatum.photoDate);
       const stayAfterReceiving = calculateDays(tmpHist.photoDateDate, tmpHist.endDateDate);
