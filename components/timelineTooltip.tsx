@@ -1,4 +1,4 @@
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
 import OpenWithRoundedIcon from '@mui/icons-material/OpenWithRounded';
 import { Box, IconButton, Stack, Typography } from '@mui/material';
 import Paper, { PaperProps } from '@mui/material/Paper';
@@ -95,7 +95,7 @@ export default function TimelineTooltip({ villagerData, history, setShowVillager
             right: 0,
           }}
         >
-          <InfoOutlinedIcon fontSize="inherit" />
+          <MoreHorizRoundedIcon fontSize="inherit" />
         </IconButton>
       </DraggablePaper>
   )
