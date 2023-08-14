@@ -18,6 +18,7 @@ export default function CRIcon() {
         height: '10px',
         width: '10px',
         display: 'inline-block',
+        verticalAlign: 'middle',
       }}
     />
   }
@@ -31,6 +32,7 @@ export default function CRIcon() {
       borderRadius: Number.MAX_SAFE_INTEGER,
       border: "1px solid black",
       display: 'inline-block',
+      verticalAlign: 'middle',
     }}
   >
     CR

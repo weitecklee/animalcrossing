@@ -2,10 +2,11 @@ import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
 import { Box, CircularProgress, Collapse, Grid, Link, Stack, Typography } from '@mui/material';
 import Image from 'next/image';
 import { useContext, useEffect, useRef, useState } from 'react';
+import { dayOrDays } from '../lib/functions';
 import { DataContext, ScreenContext } from '../pages';
+import CRIcon from './crIcon';
 import CustomDialog from './customDialog';
 import IconGrid from './iconGrid';
-import { dayOrDays } from '../lib/functions';
 
 const timeouts: NodeJS.Timeout[] = [];
 
@@ -153,9 +154,14 @@ export default function VillagerDialog({ dialogVillager, showVillagerDialog } : 
             </Stack>
           </Grid>
           <Grid item maxWidth={mediumScreen? 40 * 8 : 64 * 9 }>
-            <Typography variant="h6" fontFamily="Coustard">
-              {history.name}&emsp;{villagerData.ja_name}
-            </Typography>
+            <Stack direction="row" spacing={1}>
+              <Typography variant="h6" fontFamily="Coustard">
+                {history.name}&ensp;{villagerData.ja_name}
+              </Typography>
+              {history.currentResident ? <Typography>
+                <CRIcon />
+              </Typography> : ''}
+            </Stack>
             <Typography>
               {villagerData.personality} {villagerData.gender} {villagerData.species}
               <br />
