@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { useContext } from 'react';
 import { ScreenContext } from '../pages';
@@ -35,7 +35,9 @@ export default function CRIcon() {
       verticalAlign: 'middle',
     }}
   >
-    CR
+    <Typography component="span">
+      CR
+    </Typography>
   </Box>
 
 }
