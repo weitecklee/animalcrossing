@@ -1,4 +1,4 @@
-import { Box, BoxProps, Fade, useMediaQuery } from '@mui/material';
+import { Container, ContainerProps, Fade, useMediaQuery } from '@mui/material';
 import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
@@ -79,6 +79,8 @@ const fadeTimeout = {
   exit: theme.transitions.duration.standard,
 };
 
+const maxWidth = 1400;
+
 const CustomFade = ({active, ...props}: CustomFadeProps) => (
   <Fade
     {...props}
@@ -92,14 +94,14 @@ const CustomFade = ({active, ...props}: CustomFadeProps) => (
   />
 );
 
-const CustomBox = forwardRef((props: BoxProps, ref) => (
-  <Box
-    {...props}
-    ref={ref}
-    position='absolute'
-  />
-));
-CustomBox.displayName = 'CustomBox';
+// const CustomContainer = forwardRef((props: ContainerProps, ref) => (
+//   <Container
+//     {...props}
+//     maxWidth="xl"
+//     ref={ref}
+//   />
+// ));
+// CustomContainer.displayName = 'CustomContainer';
 
 export const DataContext = createContext({} as DataContextProperties);
 export const ScreenContext = createContext({
@@ -159,37 +161,37 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
             <CustomFade
               active={component === 'Index'}
             >
-              <CustomBox>
+              <Container maxWidth="xl">
                 <IndexComponent />
-              </CustomBox>
+              </Container>
             </CustomFade>
             <CustomFade
               active={component === 'Villagers'}
             >
-              <CustomBox>
+              <Container maxWidth="xl">
                 <Cards />
-              </CustomBox>
+              </Container>
             </CustomFade>
             <CustomFade
               active={component === 'Timeline'}
             >
-              <CustomBox width='calc(100vw - 16px)'>
+              <Container maxWidth="xl">
                 <Timeline />
-              </CustomBox>
+              </Container>
             </CustomFade>
             <CustomFade
               active={component === 'Stats'}
             >
-              <CustomBox width='calc(100vw - 30px)'>
+              <Container maxWidth="xl">
                 <Stats/>
-              </CustomBox>
+              </Container>
             </CustomFade>
             <CustomFade
               active={component === 'About'}
             >
-              <CustomBox>
+              <Container maxWidth="xl">
                 <About />
-              </CustomBox>
+              </Container>
             </CustomFade>
             <VillagerDialog
               dialogVillager={dialogVillager}
