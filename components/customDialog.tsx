@@ -12,6 +12,7 @@ export default function CustomDialog({zIndex, ...props}: CustomDialogProps) {
   return <>
     <Dialog
       {...props}
+      maxWidth="xl"
       sx={{
         zIndex,
       }}
