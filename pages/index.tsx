@@ -1,8 +1,8 @@
-import { Container, ContainerProps, Fade, useMediaQuery } from '@mui/material';
+import { Container, Fade, useMediaQuery } from '@mui/material';
 import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import { createContext, forwardRef, useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import About from '../components/about';
 import Cards from '../components/cards';
 import IndexComponent from '../components/indexComponent';
@@ -79,8 +79,6 @@ const fadeTimeout = {
   exit: theme.transitions.duration.standard,
 };
 
-const maxWidth = 1400;
-
 const CustomFade = ({active, ...props}: CustomFadeProps) => (
   <Fade
     {...props}
@@ -93,15 +91,6 @@ const CustomFade = ({active, ...props}: CustomFadeProps) => (
     timeout={fadeTimeout}
   />
 );
-
-// const CustomContainer = forwardRef((props: ContainerProps, ref) => (
-//   <Container
-//     {...props}
-//     maxWidth="xl"
-//     ref={ref}
-//   />
-// ));
-// CustomContainer.displayName = 'CustomContainer';
 
 export const DataContext = createContext({} as DataContextProperties);
 export const ScreenContext = createContext({
