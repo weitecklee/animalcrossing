@@ -36,7 +36,7 @@ export default function Cards() {
 
   return <>
     <Legend mediumScreen={mediumScreen} />
-    <Grid container spacing={2} py={2}>
+    <Grid container spacing={2} py={2} justifyContent='center'>
       {historiesArray.map((history) =>
         <Grid
           item
