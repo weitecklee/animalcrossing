@@ -2,7 +2,7 @@ import AccessTimeRoundedIcon from '@mui/icons-material/AccessTimeRounded';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
 import CameraAltRoundedIcon from '@mui/icons-material/CameraAltRounded';
-import { Grid, Typography } from '@mui/material';
+import { Stack, Grid, Typography } from '@mui/material';
 import { useContext } from 'react';
 import { DataContext, ScreenContext } from '../pages';
 import HistoryCard from './card';
@@ -10,10 +10,13 @@ import CRIcon from './crIcon';
 
 function Legend({mediumScreen}: {mediumScreen: boolean}) {
   return <>
-    <Typography variant={mediumScreen ? 'caption' : 'body1'}>
+    <Stack direction="row" alignItems="center">
       <CRIcon />
-      &ensp;Current Resident
-      <br />
+      <Typography variant={mediumScreen ? 'caption' : 'body1'} component='span'>
+          &ensp;Current Resident
+      </Typography>
+    </Stack>
+    <Typography variant={mediumScreen ? 'caption' : 'body1'}>
       <ArrowForwardRoundedIcon fontSize='inherit' sx={{verticalAlign: 'middle'}} />&ensp;Move-in date
       <br />
       <CameraAltRoundedIcon fontSize='inherit' sx={{verticalAlign: 'middle'}} />&ensp;Photo reception date
