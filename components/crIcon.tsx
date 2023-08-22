@@ -28,14 +28,13 @@ export default function CRIcon() {
     component="span"
     sx={{
       px: 1,
-      mb: .5,
       borderRadius: Number.MAX_SAFE_INTEGER,
       border: "1px solid black",
       display: 'inline-block',
       verticalAlign: 'middle',
     }}
   >
-    <Typography component="span">
+    <Typography component="span" variant="body2">
       CR
     </Typography>
   </Box>
