@@ -30,8 +30,8 @@ export default function CRIcon() {
       px: 1,
       borderRadius: Number.MAX_SAFE_INTEGER,
       border: "1px solid black",
-      display: 'inline-block',
-      verticalAlign: 'middle',
+      display: 'flex',
+      alignItems: 'center',
     }}
   >
     <Typography component="span" variant="body2">
