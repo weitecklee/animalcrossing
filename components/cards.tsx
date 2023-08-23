@@ -15,7 +15,7 @@ function Legend({mediumScreen}: {mediumScreen: boolean}) {
     <Stack direction="row" alignItems="center">
       <CRIcon />
       <Typography variant={mediumScreen ? 'caption' : 'body1'} component='span'>
-          &ensp;Current Resident
+        &ensp;Current Resident
       </Typography>
     </Stack>
     <Typography variant={mediumScreen ? 'caption' : 'body1'}>
@@ -74,11 +74,14 @@ export default function Cards() {
     </Grid>
     <Legend mediumScreen={mediumScreen} />
     <Fade in={showScroll}>
-      <Box position='absolute' right='25px'>
+      <Box position='absolute' right='40px'>
         <Stack
           spacing={2}
           position="fixed"
           top="50%"
+          sx={{
+            transform: 'translateY(-50%)'
+          }}
         >
           <Fab
             size="small"
