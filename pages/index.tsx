@@ -1,8 +1,8 @@
-import { Container, Fade, useMediaQuery } from '@mui/material';
+import { Box, BoxProps, Container, CssBaseline, Fade, useMediaQuery } from '@mui/material';
 import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import { createContext, useEffect, useState } from 'react';
+import { createContext, forwardRef, useEffect, useState } from 'react';
 import About from '../components/about';
 import Cards from '../components/cards';
 import IndexComponent from '../components/indexComponent';
@@ -101,6 +101,22 @@ const CustomFade = ({active, ...props}: CustomFadeProps) => (
   />
 );
 
+const CustomBox = forwardRef((props: BoxProps, ref) => {
+  const { children, ...props2} = props;
+  return <Box
+      {...props2}
+      width='100vw'
+      pt={1}
+      ref={ref}
+      position='absolute'
+    >
+      <Container maxWidth='xl'>
+        {children}
+      </Container>
+    </Box>
+});
+CustomBox.displayName = 'CustomBox';
+
 export const DataContext = createContext({} as DataContextProperties);
 export const ScreenContext = createContext({
   mediumScreen: false,
@@ -155,47 +171,47 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
             component={component}
             setComponent={setComponent}
           />
-          {allReady && <>
+          {allReady && <CssBaseline>
             <CustomFade
               active={component === 'Index'}
             >
-              <Container maxWidth="xl">
+              <CustomBox>
                 <IndexComponent />
-              </Container>
+              </CustomBox>
             </CustomFade>
             <CustomFade
               active={component === 'Villagers'}
             >
-              <Container maxWidth="xl">
+              <CustomBox>
                 <Cards />
-              </Container>
+              </CustomBox>
             </CustomFade>
             <CustomFade
               active={component === 'Timeline'}
             >
-              <Container maxWidth="xl">
+              <CustomBox>
                 <Timeline />
-              </Container>
+              </CustomBox>
             </CustomFade>
             <CustomFade
               active={component === 'Stats'}
             >
-              <Container maxWidth="xl">
+              <CustomBox>
                 <Stats/>
-              </Container>
+              </CustomBox>
             </CustomFade>
             <CustomFade
               active={component === 'About'}
             >
-              <Container maxWidth="xl">
+              <CustomBox>
                 <About />
-              </Container>
+              </CustomBox>
             </CustomFade>
             <VillagerDialog
               dialogVillager={dialogVillager}
               showVillagerDialog={showVillagerDialog}
             />
-          </>}
+          </CssBaseline>}
         </ScreenContext.Provider>
       </DataContext.Provider>
     </ThemeProvider>

@@ -109,10 +109,13 @@ export default function Stats() {
   return <>
     <Typography>
       Number of Villagers: {histories.size}
-      <br />
-      <CRIcon />
-      &nbsp;Current residents:
     </Typography>
+    <Stack direction="row" alignItems="center">
+      <CRIcon />
+      <Typography component='span'>
+        &ensp;Current Residents:
+      </Typography>
+    </Stack>
     <IconGrid villagers={currentResidents} />
     <Divider>
       <Chip label="Duration of Residence" color="secondary" />
