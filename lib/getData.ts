@@ -56,7 +56,7 @@ export default async function getData(): Promise<{
     if (mongoDatum.photoDate) {
       mongoDatum.photo = true
       const photoDateDate = new Date(mongoDatum.photoDate);
-      mongoDatum.photoDateString = photoDateDate.toLocaleDateString("fr-CA");
+      mongoDatum.photoDateString = photoDateDate.toLocaleDateString("en-ZA");
       mongoDatum.daysToPhoto = calculateDays(startDateDate, photoDateDate);
       photoStats.count++;
       photoStats.average += mongoDatum.daysToPhoto;
@@ -75,7 +75,7 @@ export default async function getData(): Promise<{
     } else {
       mongoDatum.photo = false;
     }
-    mongoDatum.startDateString = startDateDate.toLocaleDateString("fr-CA");
+    mongoDatum.startDateString = startDateDate.toLocaleDateString("en-ZA");
     const species = villagersData.get(mongoDatum.name)!.species;
     if (!speciesMap.has(species)) {
       speciesMap.set(species, {

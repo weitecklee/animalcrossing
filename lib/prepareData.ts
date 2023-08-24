@@ -27,7 +27,7 @@ export default function prepareData(mongoData: MongoProperties[]): PreparedDataP
   }
 
   const timelineLabels: string[] = [];
-  const timelineData: string[][] = [];
+  const timelineData: number[][] = [];
   const timelineColors: string[] = [];
   const durationMap: Map<number, DurationProperties> = new Map();
   const timelineData2: number[] = [];
@@ -50,7 +50,7 @@ export default function prepareData(mongoData: MongoProperties[]): PreparedDataP
       tmpHist.endDateDate = new Date(mongoDatum.endDate);
       tmpHist.duration = calculateDays(tmpHist.startDateDate, tmpHist.endDateDate);
     }
-    tmpHist.endDateString = tmpHist.endDateDate.toLocaleDateString("fr-CA");
+    tmpHist.endDateString = tmpHist.endDateDate.toLocaleDateString("en-ZA");
     if (mongoDatum.photo) {
       tmpHist.photoDateDate = new Date(mongoDatum.photoDate);
       const stayAfterReceiving = calculateDays(tmpHist.photoDateDate, tmpHist.endDateDate);
@@ -94,7 +94,7 @@ export default function prepareData(mongoData: MongoProperties[]): PreparedDataP
     tmpDuration.villagers.push(tmpHist.name);
     histories.set(tmpHist.name, tmpHist);
     timelineLabels.push(mongoDatum.name);
-    timelineData.push([tmpHist.startDateString, tmpHist.endDateString])
+    timelineData.push([tmpHist.startDateDate.valueOf(), tmpHist.endDateDate.valueOf()])
     timelineColors.push('#' + villagersData.get(tmpHist.name)?.title_color!)
     timelineData2.push(tmpHist.duration);
     timelineNameIndex.set(tmpHist.name, i);
