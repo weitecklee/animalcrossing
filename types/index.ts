@@ -142,7 +142,7 @@ export interface PreparedDataProperties {
   photoStats2: PhotoStats2Properties,
   timelineColors: string[],
   timelineColors3: string[],
-  timelineData: string[][],
+  timelineData: number[][],
   timelineData2: number[],
   timelineData3: number[],
   timelineLabels: string[],

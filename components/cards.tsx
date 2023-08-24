@@ -9,6 +9,7 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import { DataContext, ScreenContext } from '../pages';
 import HistoryCard from './card';
 import CRIcon from './crIcon';
+import IconWithText from './iconWithText';
 
 function Legend({mediumScreen}: {mediumScreen: boolean}) {
   return <>
@@ -18,15 +19,26 @@ function Legend({mediumScreen}: {mediumScreen: boolean}) {
         &ensp;Current Resident
       </Typography>
     </Stack>
-    <Typography variant={mediumScreen ? 'caption' : 'body1'}>
-      <ArrowForwardRoundedIcon fontSize='inherit' sx={{verticalAlign: 'middle'}} />&ensp;Move-in date
-      <br />
-      <CameraAltRoundedIcon fontSize='inherit' sx={{verticalAlign: 'middle'}} />&ensp;Photo reception date
-      <br />
-      <ArrowBackRoundedIcon fontSize='inherit' sx={{verticalAlign: 'middle'}} />&ensp;Move-out date
-      <br />
-      <AccessTimeRoundedIcon fontSize='inherit' sx={{verticalAlign: 'middle'}} />&ensp;Duration of residence
-    </Typography>
+    <IconWithText
+      Icon={ArrowForwardRoundedIcon}
+      text={'Move-in date'}
+      screenBoolean={mediumScreen}
+    />
+    <IconWithText
+      Icon={CameraAltRoundedIcon}
+      text={'Photo reception date'}
+      screenBoolean={mediumScreen}
+    />
+    <IconWithText
+      Icon={ArrowBackRoundedIcon}
+      text={'Move-out date'}
+      screenBoolean={mediumScreen}
+    />
+    <IconWithText
+      Icon={AccessTimeRoundedIcon}
+      text={'Duration of residence'}
+      screenBoolean={mediumScreen}
+    />
   </>
 }
 

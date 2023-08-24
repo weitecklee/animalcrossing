@@ -115,14 +115,14 @@ export default function Timeline() {
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const shortScreen = useMediaQuery('(max-height:700px)', { noSsr: true });
   const [timelineMode, setTimelineMode] = useState(0);
-  const [barData, setBarData] = useState<string[][] | number[]>(timelineData);
+  const [barData, setBarData] = useState<number[][] | number[]>(timelineData);
   const [barLabels, setBarLabels] = useState(timelineLabels);
   const [barColors, setBarColors] = useState(timelineColors);
-  const [barBackground, setBarBackground] = useState<string[][] | number[]>([0]);
+  const [barBackground, setBarBackground] = useState<number[][] | number[]>([0]);
   const lastBackgroundIndex = useRef(0);
   const lastBackgroundIndex2 = useRef(0);
   const lastBackgroundIndex3 = useRef(0);
-  const timelineBackground = useRef<string[][]>(Array(histories.size).fill([]));
+  const timelineBackground = useRef<number[][]>(Array(histories.size).fill([]));
   const timelineBackground2 = useRef<number[]>(Array(histories.size).fill(0));
   const timelineBackground3 = useRef<number[]>(Array(histories.size).fill(0));
 

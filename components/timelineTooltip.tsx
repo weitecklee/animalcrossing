@@ -1,3 +1,6 @@
+import AccessTimeRoundedIcon from '@mui/icons-material/AccessTimeRounded';
+import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
+import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
 import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
 import OpenWithRoundedIcon from '@mui/icons-material/OpenWithRounded';
 import { Box, IconButton, Stack, Typography } from '@mui/material';
@@ -8,6 +11,8 @@ import Draggable from 'react-draggable';
 import { ScreenContext } from '../pages';
 import { HistoryProperties, VillagerProperties2 } from '../types';
 import CRBadge from './crBadge';
+import IconWithText from './iconWithText';
+import { dayOrDays } from '../lib/functions';
 
 function DraggablePaper(props: PaperProps) {
   return (
@@ -76,13 +81,22 @@ export default function TimelineTooltip({ villagerData, history, setShowVillager
             &ensp;{villagerData.name}
             </Typography>
           </Stack>
-          <Typography variant={smallScreen ? 'caption' : 'body1'}>
-            {history.startDateString}
-            <br />
-            {!history.currentResident ? history.endDateString : 'Present'}
-            <br />
-            {history.duration} days
-          </Typography>
+          <IconWithText
+            Icon={ArrowForwardRoundedIcon}
+            text={history.startDateString}
+            screenBoolean={smallScreen}
+          />
+          {!history.currentResident ?
+            <IconWithText
+              Icon={ArrowBackRoundedIcon}
+              text={history.endDateString}
+              screenBoolean={smallScreen}
+            /> : ''}
+          <IconWithText
+            Icon={AccessTimeRoundedIcon}
+            text={dayOrDays(history.duration)}
+            screenBoolean={smallScreen}
+          />
         </Box>
         <IconButton
           onClick={() => {
