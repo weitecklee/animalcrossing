@@ -2,7 +2,7 @@ import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
 import { Box, CircularProgress, Collapse, Grid, Link, Stack, Typography } from '@mui/material';
 import Image from 'next/image';
 import { useContext, useEffect, useRef, useState } from 'react';
-import { dayOrDays } from '../lib/functions';
+import { dateFormatter, dayOrDays } from '../lib/functions';
 import { DataContext, ScreenContext } from '../pages';
 import CRIcon from './crIcon';
 import CustomDialog from './customDialog';
@@ -169,15 +169,15 @@ export default function VillagerDialog({ dialogVillager, showVillagerDialog } : 
               <br />
               Catchphrase: <Box component="span" sx={{fontStyle: 'italic'}}>&quot;{villagerData.nh_details.catchphrase}&quot;</Box>
               <br /><br />
-              Moved in on {history.startDateString}
+              Moved in on {dateFormatter(history.startDateDate)}
             </Typography>
               {history.photo ? <Typography>
-                Photo received on {history.photoDateString}
+                Photo received on {dateFormatter(history.photoDateDate)}
                 <br />
                 Time to receive: {history.daysToPhoto} days
                 </Typography> : ""}
               {history.currentResident ? "" : <Typography>
-                Moved out on {history.endDateString}
+                Moved out on {dateFormatter(history.endDateDate)}
                 </Typography>}
             <Typography>
               Duration of residence:&nbsp;

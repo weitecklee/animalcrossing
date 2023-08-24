@@ -9,3 +9,13 @@ export function dayOrDays(duration: number | string): string {
   }
   return duration2 + ' day' + (duration2 === 1 ? '' : 's');
 }
+
+const dateFormat = new Intl.DateTimeFormat('en-US', {
+  month: 'long',
+  day: 'numeric',
+  year: 'numeric',
+});
+
+export function dateFormatter(date: Date): string {
+  return dateFormat.format(date);
+}
