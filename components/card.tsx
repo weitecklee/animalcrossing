@@ -10,6 +10,7 @@ import { dayOrDays } from '../lib/functions';
 import { DataContext, ScreenContext } from '../pages';
 import { HistoryProperties, VillagerProperties2 } from '../types';
 import CRIcon from './crIcon';
+import IconWithText from './iconWithText';
 
 export default function HistoryCard({ history, villagerData }: {
   history: HistoryProperties,
@@ -48,22 +49,28 @@ export default function HistoryCard({ history, villagerData }: {
             </Typography>
             {history.currentResident ? <CRIcon /> : ''}
           </Stack>
-          <Typography variant={mediumScreen ? 'caption' : 'body1'} display="block">
-            <ArrowForwardRoundedIcon fontSize='inherit' sx={{verticalAlign: 'middle'}} />
-            &ensp;{history.startDateString}
-          </Typography>
-          {history.photo ? <Typography variant={mediumScreen ? 'caption' : 'body1'} display="block">
-              <CameraAltRoundedIcon fontSize='inherit' sx={{verticalAlign: 'middle'}} />
-              &ensp;{history.photoDateString}
-          </Typography> : ''}
-          {!history.currentResident ? <Typography variant={mediumScreen ? 'caption' : 'body1'} display="block">
-          <ArrowBackRoundedIcon fontSize='inherit' sx={{verticalAlign: 'middle'}} />
-            &ensp;{history.endDateString}
-          </Typography> : ''}
-          <Typography variant={mediumScreen ? 'caption' : 'body1'} display="block">
-            <AccessTimeRoundedIcon fontSize='inherit' sx={{verticalAlign: 'middle'}} />
-            &ensp;{dayOrDays(history.duration)}
-          </Typography>
+          <IconWithText
+            Icon={ArrowForwardRoundedIcon}
+            text={history.startDateString}
+            screenBoolean={mediumScreen}
+          />
+          {history.photo ?
+            <IconWithText
+              Icon={CameraAltRoundedIcon}
+              text={history.photoDateString}
+              screenBoolean={mediumScreen}
+            /> : ''}
+          {!history.currentResident ?
+            <IconWithText
+              Icon={ArrowBackRoundedIcon}
+              text={history.endDateString}
+              screenBoolean={mediumScreen}
+            /> : ''}
+          <IconWithText
+            Icon={AccessTimeRoundedIcon}
+            text={dayOrDays(history.duration)}
+            screenBoolean={mediumScreen}
+          />
           <IconButton
             onClick={() => {
               setDialogVillager(history.name);
