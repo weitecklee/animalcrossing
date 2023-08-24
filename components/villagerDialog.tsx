@@ -154,13 +154,11 @@ export default function VillagerDialog({ dialogVillager, showVillagerDialog } : 
             </Stack>
           </Grid>
           <Grid item maxWidth={mediumScreen? 40 * 8 : 64 * 9 }>
-            <Stack direction="row" spacing={1}>
+            <Stack direction="row" alignItems="center">
               <Typography variant="h6" fontFamily="Coustard">
-                {history.name}&ensp;{villagerData.ja_name}
+                {history.name}&ensp;{villagerData.ja_name}&ensp;
               </Typography>
-              {history.currentResident ? <Typography>
-                <CRIcon />
-              </Typography> : ''}
+              {history.currentResident ? <CRIcon /> : ''}
             </Stack>
             <Typography>
               {villagerData.personality} {villagerData.gender} {villagerData.species}
