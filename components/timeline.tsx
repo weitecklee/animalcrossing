@@ -1,6 +1,6 @@
 import OpenWithRoundedIcon from '@mui/icons-material/OpenWithRounded';
 import ViewTimelineRoundedIcon from '@mui/icons-material/ViewTimelineRounded';
-import { Alert, Badge, Box, Button, Snackbar, useMediaQuery } from '@mui/material';
+import { Alert, Badge, Box, Button, Snackbar } from '@mui/material';
 import {
   BarElement,
   CategoryScale,
@@ -113,7 +113,6 @@ export default function Timeline() {
   const [timelineVillager, setTimelineVillager] = useState('');
   const [showTooltip, setShowTooltip] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState(false);
-  const shortScreen = useMediaQuery('(max-height:700px)', { noSsr: true });
   const [timelineMode, setTimelineMode] = useState(0);
   const [barData, setBarData] = useState<number[][] | number[]>(timelineData);
   const [barLabels, setBarLabels] = useState(timelineLabels);
@@ -202,7 +201,7 @@ export default function Timeline() {
   return <Box sx={{
     position: "relative",
     width: "100%",
-    height: shortScreen ? "80vh" : "90vh",
+    height: "calc(100vh - 80px)",
   }}>
     <Snackbar
       open={openSnackbar}
