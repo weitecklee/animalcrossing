@@ -86,13 +86,13 @@ export default function Cards() {
     </Grid>
     <Legend mediumScreen={mediumScreen} />
     <Fade in={showScroll}>
-      <Box position='absolute' right='40px'>
+      <Box position='absolute' right='8px'>
         <Stack
           spacing={2}
           position="fixed"
           top="50%"
           sx={{
-            transform: 'translateY(-50%)'
+            transform: 'translate(-100%, -50%)'
           }}
         >
           <Fab
