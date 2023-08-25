@@ -106,7 +106,7 @@ const CustomBox = forwardRef((props: BoxProps, ref) => {
   return <Box
       {...props2}
       width='100vw'
-      height='calc(100vh - 64px)'
+      height='calc(100% - 64px)'
       pt={1}
       ref={ref}
       position='absolute'
