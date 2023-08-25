@@ -2,10 +2,8 @@ import AccessTimeRoundedIcon from '@mui/icons-material/AccessTimeRounded';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
 import CameraAltRoundedIcon from '@mui/icons-material/CameraAltRounded';
-import KeyboardDoubleArrowDownRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowDownRounded';
-import KeyboardDoubleArrowUpRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowUpRounded';
-import { Box, Fab, Fade, Grid, Stack, Typography } from '@mui/material';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { Box, Grid, Stack, Typography } from '@mui/material';
+import { useContext } from 'react';
 import { DataContext, ScreenContext } from '../pages';
 import HistoryCard from './card';
 import CRIcon from './crIcon';
@@ -51,23 +49,6 @@ export default function Cards() {
 
   const historiesArray = Array.from(histories.values());
 
-  const [showScroll, setShowScroll] = useState(false);
-  const timeoutID = useRef<NodeJS.Timeout>();
-  const handleScroll = () => {
-    setShowScroll(true);
-    clearTimeout(timeoutID.current);
-    timeoutID.current = setTimeout(() => {
-      setShowScroll(false);
-    }, 2000);
-  }
-
-  useEffect(() => {
-    document.addEventListener('scroll', handleScroll)
-    return () => {
-      document.removeEventListener('scroll', handleScroll);
-    }
-  }, []);
-
   return <Box position='relative'>
     <Legend mediumScreen={mediumScreen} />
     <Grid container spacing={2} py={2} justifyContent='center'>
@@ -85,46 +66,5 @@ export default function Cards() {
       )}
     </Grid>
     <Legend mediumScreen={mediumScreen} />
-    <Fade in={showScroll}>
-      <Box position='absolute' right='40px'>
-        <Stack
-          spacing={2}
-          position="fixed"
-          top="50%"
-          sx={{
-            transform: 'translateY(-50%)'
-          }}
-        >
-          <Fab
-            size="small"
-            color="secondary"
-            sx={{
-              ':hover': {
-                bgcolor: "white"
-              },
-            }}
-            onClick={() => {
-              window.scrollTo({top: 0, behavior: 'smooth'});
-            }}
-          >
-            <KeyboardDoubleArrowUpRoundedIcon />
-          </Fab>
-          <Fab
-            size="small"
-            color="secondary"
-            sx={{
-              ':hover': {
-                bgcolor: "white"
-              },
-            }}
-            onClick={() => {
-              window.scrollTo({top: document.documentElement.scrollHeight, behavior: 'smooth'});
-            }}
-          >
-            <KeyboardDoubleArrowDownRoundedIcon />
-          </Fab>
-        </Stack>
-      </Box>
-    </Fade>
   </Box>
 }
