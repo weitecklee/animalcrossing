@@ -202,7 +202,7 @@ export default function Timeline() {
   return <Box sx={{
     position: "relative",
     width: "100%",
-    height: shortScreen ? "80vh" : "90vh",
+    height: "100%",
   }}>
     <Snackbar
       open={openSnackbar}
