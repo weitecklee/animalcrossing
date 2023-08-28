@@ -112,7 +112,7 @@ const CustomBox = forwardRef((props: BoxProps, ref) => {
       position='absolute'
       overflow='auto'
     >
-      <Container maxWidth='xl'>
+      <Container maxWidth='xl' sx={{height: "100%"}}>
         {children}
       </Container>
     </Box>
