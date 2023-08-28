@@ -1,4 +1,4 @@
-import { DialogProps, FadeProps } from "@mui/material";
+import { BoxProps, DialogProps, FadeProps } from "@mui/material";
 import { Dispatch, SetStateAction } from 'react';
 
 interface NameProperties {
@@ -166,4 +166,8 @@ export interface DataContextProperties extends PreparedDataProperties {
 
 export interface CustomFadeProps extends FadeProps {
   active: boolean,
+}
+
+export interface CustomBoxProps extends BoxProps {
+  smallScreen: boolean,
 }

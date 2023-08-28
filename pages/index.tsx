@@ -12,7 +12,7 @@ import VillagerDialog from '../components/villagerDialog';
 import { villagersData } from '../lib/combinedData';
 import getData from '../lib/getData';
 import prepareData from '../lib/prepareData';
-import { CustomFadeProps, DataContextProperties, PreparedDataProperties, StaticDataProperties } from '../types';
+import { CustomBoxProps, CustomFadeProps, DataContextProperties, PreparedDataProperties, StaticDataProperties } from '../types';
 
 declare module '@mui/material/styles' {
   interface TypographyVariants {
@@ -101,12 +101,12 @@ const CustomFade = ({active, ...props}: CustomFadeProps) => (
   />
 );
 
-const CustomBox = forwardRef((props: BoxProps, ref) => {
-  const { children, ...props2} = props;
+const CustomBox = forwardRef((props: CustomBoxProps, ref) => {
+  const { children, smallScreen, ...props2} = props;
   return <Box
       {...props2}
       width='100vw'
-      height='calc(100% - 64px)'
+      height={smallScreen ? 'calc(100% - 56px)' : 'calc(100% - 64px)'}
       pt={1}
       ref={ref}
       position='absolute'
@@ -177,35 +177,35 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
             <CustomFade
               active={component === 'Index'}
             >
-              <CustomBox>
+              <CustomBox smallScreen={smallScreen}>
                 <IndexComponent />
               </CustomBox>
             </CustomFade>
             <CustomFade
               active={component === 'Villagers'}
             >
-              <CustomBox>
+              <CustomBox smallScreen={smallScreen}>
                 <Cards />
               </CustomBox>
             </CustomFade>
             <CustomFade
               active={component === 'Timeline'}
             >
-              <CustomBox>
+              <CustomBox smallScreen={smallScreen}>
                 <Timeline />
               </CustomBox>
             </CustomFade>
             <CustomFade
               active={component === 'Stats'}
             >
-              <CustomBox>
+              <CustomBox smallScreen={smallScreen}>
                 <Stats/>
               </CustomBox>
             </CustomFade>
             <CustomFade
               active={component === 'About'}
             >
-              <CustomBox>
+              <CustomBox smallScreen={smallScreen}>
                 <About />
               </CustomBox>
             </CustomFade>
