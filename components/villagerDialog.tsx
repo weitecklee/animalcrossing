@@ -57,7 +57,7 @@ export default function VillagerDialog({ dialogVillager, showVillagerDialog } : 
       maxWidth={false}
       zIndex={1300}
     >
-      <Collapse in={showCollapse} appear>
+      <Collapse in={showCollapse} appear unmountOnExit>
         <Grid
           container
           alignItems='center'
