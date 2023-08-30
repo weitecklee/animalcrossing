@@ -1,11 +1,11 @@
 import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
-import { Box, Collapse, Grid, Link, Skeleton, Stack, Typography, useTheme } from '@mui/material';
-import Image from 'next/image';
-import { Suspense, useContext, useEffect, useState } from 'react';
+import { Box, Collapse, Grid, Link, Stack, Typography } from '@mui/material';
+import { useContext, useEffect, useState } from 'react';
 import { dateFormatter, dayOrDays } from '../lib/functions';
 import { DataContext, ScreenContext } from '../pages';
 import CRIcon from './crIcon';
 import CustomDialog from './customDialog';
+import CustomImage from './customImage';
 import IconGrid from './iconGrid';
 
 export default function VillagerDialog({ dialogVillager, showVillagerDialog } : {
@@ -19,7 +19,6 @@ export default function VillagerDialog({ dialogVillager, showVillagerDialog } : 
     villagersData,
   } = useContext(DataContext);
   const { mediumScreen } = useContext(ScreenContext);
-  const theme = useTheme();
 
   const history = histories.get(dialogVillager)!;
   const villagerData = villagersData.get(dialogVillager)!;
@@ -28,13 +27,9 @@ export default function VillagerDialog({ dialogVillager, showVillagerDialog } : 
 
   const handleClose = () => {
     setShowCollapse(false);
-    setTimeout(() => {
-      setShowCollapse(true);
-    }, theme.transitions.duration.standard);
   };
 
   const handleClose2 = () => {
-    handleClose();
     setShowVillagerDialog(false);
   };
 
@@ -57,7 +52,12 @@ export default function VillagerDialog({ dialogVillager, showVillagerDialog } : 
       maxWidth={false}
       zIndex={1300}
     >
-      <Collapse in={showCollapse} appear unmountOnExit>
+      <Collapse
+        in={showCollapse}
+        onTransitionEnd={() => {
+          setShowCollapse(true);
+        }}
+      >
         <Grid
           container
           alignItems='center'
@@ -67,44 +67,28 @@ export default function VillagerDialog({ dialogVillager, showVillagerDialog } : 
         >
           <Grid item>
             <Stack direction="row" spacing={2}>
-              <Box
-                position="relative"
+              <CustomImage
+                src={villagerData.image_url}
+                alt={`${history.name} image`}
+                title={history.name}
+                width={2 * baseDim}
                 height={3 * baseDim}
-              >
-                <Suspense fallback={<Skeleton variant="rectangular" width={2 * baseDim} height={3 * baseDim} />}>
-                  <Image
-                    src={villagerData.image_url}
-                    alt={`${history.name} image`}
-                    title={history.name}
-                    width={4 * baseDim}
-                    height={0}
-                    sizes="100vw"
-                    style={{
-                      width: 'auto',
-                      height: '100%',
-                    }}
-                  />
-                </Suspense>
-              </Box>
+              />
               <Stack alignItems="center">
-                <Suspense fallback={<Skeleton variant="rectangular" width={baseDim} height={baseDim} />}>
-                  <Image
-                    src={villagerData.nh_details.icon_url}
-                    alt={`${history.name} icon`}
-                    title={history.name}
-                    width={baseDim}
-                    height={baseDim}
-                  />
-                </Suspense>
-                <Suspense fallback={<Skeleton variant="rectangular" width={2 * baseDim} height={2 * baseDim} />}>
-                  <Image
-                    src={villagerData.nh_details.photo_url}
-                    alt={`${history.name} photo`}
-                    title={history.name}
-                    width={2 * baseDim}
-                    height={2 * baseDim}
-                  />
-                </Suspense>
+                <CustomImage
+                  src={villagerData.nh_details.icon_url}
+                  alt={`${history.name} icon`}
+                  title={history.name}
+                  width={baseDim}
+                  height={baseDim}
+                />
+                <CustomImage
+                  src={villagerData.nh_details.photo_url}
+                  alt={`${history.name} photo`}
+                  title={history.name}
+                  width={2 * baseDim}
+                  height={2 * baseDim}
+                />
               </Stack>
             </Stack>
           </Grid>
@@ -153,7 +137,7 @@ export default function VillagerDialog({ dialogVillager, showVillagerDialog } : 
                 target="_blank"
                 rel="noreferrer"
                 underline="hover"
-                >
+              >
                 Nookipedia page
                 <OpenInNewRoundedIcon fontSize='inherit'/>
               </Link>
