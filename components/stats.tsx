@@ -246,7 +246,6 @@ export default function Stats() {
       open={showDurationDialog}
       onClose={() => setShowDurationDialog(false)}
       maxWidth={false}
-      keepMounted
       zIndex={1200}
     >
       <DialogContent>
@@ -269,7 +268,6 @@ export default function Stats() {
     </CustomDialog>
     <CustomDialog
       open={showTraitDialog}
-      keepMounted
       onClose={() => setShowTraitDialog(false)}
       maxWidth={false}
       zIndex={1200}
@@ -289,7 +287,6 @@ export default function Stats() {
       open={!smallScreen && showPhotoDialog}
       onClose={() => setShowPhotoDialog(false)}
       maxWidth={false}
-      keepMounted
       zIndex={1200}
     >
       <DialogContent>
@@ -304,7 +301,6 @@ export default function Stats() {
       open={smallScreen && showPhotoDialog}
       onClose={() => setShowPhotoDialog(false)}
       maxWidth={false}
-      keepMounted
       zIndex={1200}
     >
       <Collapse
@@ -356,7 +352,6 @@ export default function Stats() {
       open={showIslandmatesDialog}
       onClose={() => setShowIslandmatesDialog(false)}
       maxWidth={false}
-      keepMounted
       zIndex={1200}
     >
       <DialogContent>

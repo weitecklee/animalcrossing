@@ -92,11 +92,6 @@ const CustomFade = ({active, ...props}: CustomFadeProps) => (
   <Fade
     {...props}
     in={active}
-    style={{
-      transitionDelay: (active ? fadeTimeout.exit : 0) + 'ms',
-    }}
-    unmountOnExit
-    appear
     timeout={fadeTimeout}
   />
 );
@@ -134,6 +129,16 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
   const [allReady, setAllReady] = useState(false);
   const mediumScreen = useMediaQuery(theme.breakpoints.down('md'), { noSsr: true });
   const smallScreen = useMediaQuery(theme.breakpoints.down('sm'), { noSsr: true });
+  const [showFade, setShowFade] = useState(true);
+  const handleComponentChange = (compo: string) => {
+    if (compo !== component) {
+      setShowFade(false);
+      setTimeout(() => {
+        setComponent(compo);
+        setShowFade(true);
+      }, fadeTimeout.exit);
+    }
+  };
 
   useEffect(() => {
     const preppedData = prepareData(mongoData);
@@ -171,42 +176,18 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
         <ScreenContext.Provider value={{mediumScreen, smallScreen}}>
           <TopBar
             component={component}
-            setComponent={setComponent}
+            setComponent={handleComponentChange}
           />
           {allReady && <CssBaseline>
             <CustomFade
-              active={component === 'Index'}
+              active={showFade}
             >
               <CustomBox smallScreen={smallScreen}>
-                <IndexComponent />
-              </CustomBox>
-            </CustomFade>
-            <CustomFade
-              active={component === 'Villagers'}
-            >
-              <CustomBox smallScreen={smallScreen}>
-                <Cards />
-              </CustomBox>
-            </CustomFade>
-            <CustomFade
-              active={component === 'Timeline'}
-            >
-              <CustomBox smallScreen={smallScreen}>
-                <Timeline />
-              </CustomBox>
-            </CustomFade>
-            <CustomFade
-              active={component === 'Stats'}
-            >
-              <CustomBox smallScreen={smallScreen}>
-                <Stats/>
-              </CustomBox>
-            </CustomFade>
-            <CustomFade
-              active={component === 'About'}
-            >
-              <CustomBox smallScreen={smallScreen}>
-                <About />
+                {component === 'Index' && <IndexComponent />}
+                {component === 'Villagers' && <Cards />}
+                {component === 'Timeline' && <Timeline />}
+                {component === 'Stats' && <Stats />}
+                {component === 'About' && <About />}
               </CustomBox>
             </CustomFade>
             <VillagerDialog
