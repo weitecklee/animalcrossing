@@ -1,8 +1,8 @@
-import { Box, BoxProps, Container, CssBaseline, Fade, useMediaQuery } from '@mui/material';
+import { Box, Container, CssBaseline, Fade, useMediaQuery } from '@mui/material';
 import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import { createContext, forwardRef, useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import About from '../components/about';
 import Cards from '../components/cards';
 import IndexComponent from '../components/indexComponent';
@@ -12,7 +12,7 @@ import VillagerDialog from '../components/villagerDialog';
 import { villagersData } from '../lib/combinedData';
 import getData from '../lib/getData';
 import prepareData from '../lib/prepareData';
-import { CustomBoxProps, CustomFadeProps, DataContextProperties, PreparedDataProperties, StaticDataProperties } from '../types';
+import { DataContextProperties, PreparedDataProperties, StaticDataProperties } from '../types';
 
 declare module '@mui/material/styles' {
   interface TypographyVariants {
@@ -88,37 +88,6 @@ const fadeTimeout = {
   exit: theme.transitions.duration.standard,
 };
 
-const CustomFade = ({active, ...props}: CustomFadeProps) => (
-  <Fade
-    {...props}
-    in={active}
-    style={{
-      transitionDelay: (active ? fadeTimeout.exit : 0) + 'ms',
-    }}
-    unmountOnExit
-    appear
-    timeout={fadeTimeout}
-  />
-);
-
-const CustomBox = forwardRef((props: CustomBoxProps, ref) => {
-  const { children, smallScreen, ...props2} = props;
-  return <Box
-      {...props2}
-      width='100vw'
-      height={smallScreen ? 'calc(100% - 56px)' : 'calc(100% - 64px)'}
-      pt={1}
-      ref={ref}
-      position='absolute'
-      overflow='auto'
-    >
-      <Container maxWidth='xl' sx={{height: "100%"}}>
-        {children}
-      </Container>
-    </Box>
-});
-CustomBox.displayName = 'CustomBox';
-
 export const DataContext = createContext({} as DataContextProperties);
 export const ScreenContext = createContext({
   mediumScreen: false,
@@ -134,6 +103,16 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
   const [allReady, setAllReady] = useState(false);
   const mediumScreen = useMediaQuery(theme.breakpoints.down('md'), { noSsr: true });
   const smallScreen = useMediaQuery(theme.breakpoints.down('sm'), { noSsr: true });
+  const [showFade, setShowFade] = useState(true);
+  const handleComponentChange = (compo: string) => {
+    if (compo !== component) {
+      setShowFade(false);
+      setTimeout(() => {
+        setComponent(compo);
+        setShowFade(true);
+      }, fadeTimeout.exit);
+    }
+  };
 
   useEffect(() => {
     const preppedData = prepareData(mongoData);
@@ -171,44 +150,35 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
         <ScreenContext.Provider value={{mediumScreen, smallScreen}}>
           <TopBar
             component={component}
-            setComponent={setComponent}
+            setComponent={handleComponentChange}
           />
           {allReady && <CssBaseline>
-            <CustomFade
-              active={component === 'Index'}
+            <Fade
+              in={showFade}
+              timeout={fadeTimeout}
             >
-              <CustomBox smallScreen={smallScreen}>
-                <IndexComponent />
-              </CustomBox>
-            </CustomFade>
-            <CustomFade
-              active={component === 'Villagers'}
-            >
-              <CustomBox smallScreen={smallScreen}>
-                <Cards />
-              </CustomBox>
-            </CustomFade>
-            <CustomFade
-              active={component === 'Timeline'}
-            >
-              <CustomBox smallScreen={smallScreen}>
-                <Timeline />
-              </CustomBox>
-            </CustomFade>
-            <CustomFade
-              active={component === 'Stats'}
-            >
-              <CustomBox smallScreen={smallScreen}>
-                <Stats/>
-              </CustomBox>
-            </CustomFade>
-            <CustomFade
-              active={component === 'About'}
-            >
-              <CustomBox smallScreen={smallScreen}>
-                <About />
-              </CustomBox>
-            </CustomFade>
+              <Box
+                width='100vw'
+                height={smallScreen ? 'calc(100% - 56px)' : 'calc(100% - 64px)'}
+                pt={1}
+                position='absolute'
+                overflow='auto'
+                id='contentBox'
+              >
+                <Container
+                  maxWidth='xl'
+                  sx={{
+                    height: '100%',
+                  }}
+                >
+                  {component === 'Index' && <IndexComponent />}
+                  {component === 'Villagers' && <Cards />}
+                  {component === 'Timeline' && <Timeline />}
+                  {component === 'Stats' && <Stats />}
+                  {component === 'About' && <About />}
+                </Container>
+              </Box>
+            </Fade>
             <VillagerDialog
               dialogVillager={dialogVillager}
               showVillagerDialog={showVillagerDialog}
