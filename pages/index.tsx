@@ -163,6 +163,7 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
                 pt={1}
                 position='absolute'
                 overflow='auto'
+                id='contentBox'
               >
                 <Container
                   maxWidth='xl'
