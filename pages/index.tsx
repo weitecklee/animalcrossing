@@ -1,8 +1,8 @@
-import { Box, BoxProps, Container, CssBaseline, Fade, useMediaQuery } from '@mui/material';
+import { Box, Container, CssBaseline, Fade, useMediaQuery } from '@mui/material';
 import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import { createContext, forwardRef, useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import About from '../components/about';
 import Cards from '../components/cards';
 import IndexComponent from '../components/indexComponent';
@@ -12,7 +12,7 @@ import VillagerDialog from '../components/villagerDialog';
 import { villagersData } from '../lib/combinedData';
 import getData from '../lib/getData';
 import prepareData from '../lib/prepareData';
-import { CustomBoxProps, CustomFadeProps, DataContextProperties, PreparedDataProperties, StaticDataProperties } from '../types';
+import { DataContextProperties, PreparedDataProperties, StaticDataProperties } from '../types';
 
 declare module '@mui/material/styles' {
   interface TypographyVariants {
@@ -88,32 +88,6 @@ const fadeTimeout = {
   exit: theme.transitions.duration.standard,
 };
 
-const CustomFade = ({active, ...props}: CustomFadeProps) => (
-  <Fade
-    {...props}
-    in={active}
-    timeout={fadeTimeout}
-  />
-);
-
-const CustomBox = forwardRef((props: CustomBoxProps, ref) => {
-  const { children, smallScreen, ...props2} = props;
-  return <Box
-      {...props2}
-      width='100vw'
-      height={smallScreen ? 'calc(100% - 56px)' : 'calc(100% - 64px)'}
-      pt={1}
-      ref={ref}
-      position='absolute'
-      overflow='auto'
-    >
-      <Container maxWidth='xl' sx={{height: "100%"}}>
-        {children}
-      </Container>
-    </Box>
-});
-CustomBox.displayName = 'CustomBox';
-
 export const DataContext = createContext({} as DataContextProperties);
 export const ScreenContext = createContext({
   mediumScreen: false,
@@ -179,17 +153,31 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
             setComponent={handleComponentChange}
           />
           {allReady && <CssBaseline>
-            <CustomFade
-              active={showFade}
+            <Fade
+              in={showFade}
+              timeout={fadeTimeout}
             >
-              <CustomBox smallScreen={smallScreen}>
-                {component === 'Index' && <IndexComponent />}
-                {component === 'Villagers' && <Cards />}
-                {component === 'Timeline' && <Timeline />}
-                {component === 'Stats' && <Stats />}
-                {component === 'About' && <About />}
-              </CustomBox>
-            </CustomFade>
+              <Box
+                width='100vw'
+                height={smallScreen ? 'calc(100% - 56px)' : 'calc(100% - 64px)'}
+                pt={1}
+                position='absolute'
+                overflow='auto'
+              >
+                <Container
+                  maxWidth='xl'
+                  sx={{
+                    height: '100%',
+                  }}
+                >
+                  {component === 'Index' && <IndexComponent />}
+                  {component === 'Villagers' && <Cards />}
+                  {component === 'Timeline' && <Timeline />}
+                  {component === 'Stats' && <Stats />}
+                  {component === 'About' && <About />}
+                </Container>
+              </Box>
+            </Fade>
             <VillagerDialog
               dialogVillager={dialogVillager}
               showVillagerDialog={showVillagerDialog}

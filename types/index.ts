@@ -163,11 +163,3 @@ export interface DataContextProperties extends PreparedDataProperties {
   speciesData: TraitProperties[],
   villagersData: Map<string,VillagerProperties2>,
 }
-
-export interface CustomFadeProps extends FadeProps {
-  active: boolean,
-}
-
-export interface CustomBoxProps extends BoxProps {
-  smallScreen: boolean,
-}
