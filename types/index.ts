@@ -1,4 +1,5 @@
 import { BoxProps, DialogProps, FadeProps } from "@mui/material";
+import { ImageProps } from "next/image";
 import { Dispatch, SetStateAction } from 'react';
 
 interface NameProperties {
@@ -162,4 +163,8 @@ export interface DataContextProperties extends PreparedDataProperties {
   setShowVillagerDialog: Dispatch<SetStateAction<boolean>>,
   speciesData: TraitProperties[],
   villagersData: Map<string,VillagerProperties2>,
+}
+
+export interface CustomImageProps extends ImageProps {
+  blurColor: string,
 }

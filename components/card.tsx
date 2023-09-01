@@ -11,6 +11,7 @@ import { DataContext, ScreenContext } from '../pages';
 import { HistoryProperties, VillagerProperties2 } from '../types';
 import CRIcon from './crIcon';
 import IconWithText from './iconWithText';
+import rgbDataURL from '../lib/rgbDataURL';
 
 export default function HistoryCard({ history, villagerData }: {
   history: HistoryProperties,
@@ -39,6 +40,8 @@ export default function HistoryCard({ history, villagerData }: {
           title={history.name}
           width={mediumScreen ? 128 : 192}
           height={mediumScreen ? 128 : 192}
+          placeholder='blur'
+          blurDataURL={rgbDataURL(villagerData.title_color)}
         />
         <Box
           padding={1}
