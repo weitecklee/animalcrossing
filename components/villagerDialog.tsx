@@ -73,6 +73,7 @@ export default function VillagerDialog({ dialogVillager, showVillagerDialog } : 
                 title={history.name}
                 width={2 * baseDim}
                 height={3 * baseDim}
+                blurColor={villagerData.title_color}
               />
               <Stack alignItems="center">
                 <CustomImage
@@ -81,6 +82,7 @@ export default function VillagerDialog({ dialogVillager, showVillagerDialog } : 
                   title={history.name}
                   width={baseDim}
                   height={baseDim}
+                  blurColor={villagerData.title_color}
                 />
                 <CustomImage
                   src={villagerData.nh_details.photo_url}
@@ -88,6 +90,7 @@ export default function VillagerDialog({ dialogVillager, showVillagerDialog } : 
                   title={history.name}
                   width={2 * baseDim}
                   height={2 * baseDim}
+                  blurColor={villagerData.title_color}
                 />
               </Stack>
             </Stack>

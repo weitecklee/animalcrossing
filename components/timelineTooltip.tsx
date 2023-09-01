@@ -13,6 +13,7 @@ import { HistoryProperties, VillagerProperties2 } from '../types';
 import CRBadge from './crBadge';
 import IconWithText from './iconWithText';
 import { dayOrDays } from '../lib/functions';
+import rgbDataURL from '../lib/rgbDataURL';
 
 function DraggablePaper(props: PaperProps) {
   return (
@@ -62,6 +63,8 @@ export default function TimelineTooltip({ villagerData, history, setShowVillager
             height={smallScreen ? 64 : 128}
             width={smallScreen ? 64 : 128}
             title={villagerData.name}
+            placeholder='blur'
+            blurDataURL={rgbDataURL(villagerData.title_color)}
           />
         </CRBadge>
         <Box>
