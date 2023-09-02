@@ -5,7 +5,7 @@ import CameraAltRoundedIcon from '@mui/icons-material/CameraAltRounded';
 import KeyboardDoubleArrowDownRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowDownRounded';
 import KeyboardDoubleArrowUpRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowUpRounded';
 import { Box, Fab, Fade, Grid, Stack, Typography } from '@mui/material';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { RefObject, useContext, useEffect, useRef, useState } from 'react';
 import { DataContext, ScreenContext } from '../pages';
 import HistoryCard from './card';
 import CRIcon from './crIcon';
@@ -42,7 +42,7 @@ function Legend({mediumScreen}: {mediumScreen: boolean}) {
   </>
 }
 
-export default function Cards() {
+export default function Cards({boxRef}: {boxRef: RefObject<HTMLDivElement>}) {
   const {
     histories,
     villagersData,
@@ -51,7 +51,6 @@ export default function Cards() {
 
   const historiesArray = Array.from(histories.values());
 
-  const contentBox = document.querySelector('div#contentBox')!;
   const [showScroll, setShowScroll] = useState(false);
   const timeoutID = useRef<NodeJS.Timeout>();
   const handleScroll = () => {
@@ -62,12 +61,13 @@ export default function Cards() {
     }, 2000);
   };
 
+  const boxDiv = boxRef.current!;
   useEffect(() => {
-    contentBox.addEventListener('scroll', handleScroll)
+    boxDiv.addEventListener('scroll', handleScroll)
     return () => {
-      contentBox.removeEventListener('scroll', handleScroll);
+      boxDiv.removeEventListener('scroll', handleScroll);
     }
-  }, [contentBox]);
+  }, [boxDiv]);
 
   return <Box position='relative' >
     <Legend mediumScreen={mediumScreen} />
@@ -105,7 +105,7 @@ export default function Cards() {
               },
             }}
             onClick={() => {
-              contentBox.scroll({
+              boxDiv.scroll({
                 top: 0,
                 behavior: 'smooth',
               });
@@ -122,8 +122,8 @@ export default function Cards() {
               },
             }}
             onClick={() => {
-              contentBox.scroll({
-                top: contentBox.scrollHeight,
+              boxDiv.scroll({
+                top: boxDiv.scrollHeight,
                 behavior: 'smooth',
               });
             }}

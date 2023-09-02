@@ -2,7 +2,7 @@ import { Box, Container, CssBaseline, Fade, useMediaQuery } from '@mui/material'
 import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useRef, useState } from 'react';
 import About from '../components/about';
 import Cards from '../components/cards';
 import IndexComponent from '../components/indexComponent';
@@ -104,10 +104,12 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
   const mediumScreen = useMediaQuery(theme.breakpoints.down('md'), { noSsr: true });
   const smallScreen = useMediaQuery(theme.breakpoints.down('sm'), { noSsr: true });
   const [showFade, setShowFade] = useState(true);
+  const boxRef = useRef<HTMLDivElement>(null);
   const handleComponentChange = (compo: string) => {
     if (compo !== component) {
       setShowFade(false);
       setTimeout(() => {
+        boxRef.current?.scrollTo(0, 0);
         setComponent(compo);
         setShowFade(true);
       }, fadeTimeout.exit);
@@ -118,10 +120,6 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
     const preppedData = prepareData(mongoData);
     setPreparedData(preppedData);
   }, [mongoData]);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [component]);
 
   useEffect(() => {
     if (Object.keys(preparedData).length > 0) {
@@ -164,6 +162,7 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
                 position='absolute'
                 overflow='auto'
                 id='contentBox'
+                ref={boxRef}
               >
                 <Container
                   maxWidth='xl'
@@ -172,7 +171,7 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
                   }}
                 >
                   {component === 'Index' && <IndexComponent />}
-                  {component === 'Villagers' && <Cards />}
+                  {component === 'Villagers' && <Cards boxRef={boxRef}/>}
                   {component === 'Timeline' && <Timeline />}
                   {component === 'Stats' && <Stats />}
                   {component === 'About' && <About />}
