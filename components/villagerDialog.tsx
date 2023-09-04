@@ -74,6 +74,7 @@ export default function VillagerDialog({ dialogVillager, showVillagerDialog } : 
                 width={2 * baseDim}
                 height={3 * baseDim}
                 blurColor={villagerData.title_color}
+                key={villagerData.image_url}
               />
               <Stack alignItems="center">
                 <CustomImage
@@ -83,6 +84,7 @@ export default function VillagerDialog({ dialogVillager, showVillagerDialog } : 
                   width={baseDim}
                   height={baseDim}
                   blurColor={villagerData.title_color}
+                  key={villagerData.nh_details.icon_url}
                 />
                 <CustomImage
                   src={villagerData.nh_details.photo_url}
@@ -91,6 +93,7 @@ export default function VillagerDialog({ dialogVillager, showVillagerDialog } : 
                   width={2 * baseDim}
                   height={2 * baseDim}
                   blurColor={villagerData.title_color}
+                  key={villagerData.nh_details.photo_url}
                 />
               </Stack>
             </Stack>
