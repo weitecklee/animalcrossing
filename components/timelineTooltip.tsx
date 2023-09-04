@@ -65,6 +65,7 @@ export default function TimelineTooltip({ villagerData, history, setShowVillager
             title={villagerData.name}
             placeholder='blur'
             blurDataURL={rgbDataURL(villagerData.title_color)}
+            key={villagerData.nh_details.icon_url}
           />
         </CRBadge>
         <Box>
