@@ -31,6 +31,11 @@ export default function HistoryCard({ history, villagerData }: {
       sx={{
         background: theme.palette.success.light,
         position: 'relative',
+        cursor: 'pointer',
+      }}
+      onClick={() => {
+        setDialogVillager(history.name);
+        setShowVillagerDialog(true);
       }}
     >
       <Stack direction="row">
@@ -74,20 +79,6 @@ export default function HistoryCard({ history, villagerData }: {
             text={dayOrDays(history.duration)}
             screenBoolean={mediumScreen}
           />
-          <IconButton
-            onClick={() => {
-              setDialogVillager(history.name);
-              setShowVillagerDialog(true);
-            }}
-            size={mediumScreen ? 'small' : 'medium'}
-            sx={{
-              position: 'absolute',
-              bottom:   '5px' ,
-              right:  '5px',
-            }}
-          >
-            <MoreHorizRoundedIcon fontSize="inherit" />
-          </IconButton>
         </Box>
       </Stack>
     </Paper>
