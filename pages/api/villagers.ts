@@ -1,4 +1,5 @@
 import { villagersData, jpData } from '../../lib/apiData';
+import { catchphraseData } from '../../lib/catchphrases';
 
 for (const v of jpData) {
   if (!villagersData.has(v.title.en_name)) {
@@ -11,6 +12,11 @@ for (const v of jpData) {
 const vData = [];
 
 villagersData.forEach((v, k) => {
+  if (!catchphraseData.has(v.id)) {
+    console.log(v.id);
+  } else {
+    v.ja_phrase = catchphraseData.get(v.id).JPja;
+  }
   vData.push(v);
 })
 
