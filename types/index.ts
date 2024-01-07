@@ -98,6 +98,7 @@ export interface VillagerProperties2 {
   appearances: string[],
   nh_details: NH_Details,
   ja_name: string,
+  ja_phrase: string,
 }
 
 export interface TraitProperties {
