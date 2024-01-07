@@ -1,6 +1,4 @@
-import { VillagerProperties2 } from "../types";
-
-const data: VillagerProperties2[] = [
+const data = [
   {
       "name": "Ace",
       "url": "https://nookipedia.com/wiki/Ace",
@@ -53,7 +51,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "フェザー"
+      "ja_name": "フェザー",
+      "ja_phrase": "でヤス"
   },
   {
       "name": "Admiral",
@@ -107,7 +106,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "イッテツ"
+      "ja_name": "イッテツ",
+      "ja_phrase": "ってか"
   },
   {
       "name": "Agent S",
@@ -164,7 +164,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "２ごう"
+      "ja_name": "２ごう",
+      "ja_phrase": "せいやっ"
   },
   {
       "name": "Agnes",
@@ -218,7 +219,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "アグネス"
+      "ja_name": "アグネス",
+      "ja_phrase": "ブフフ"
   },
   {
       "name": "Al",
@@ -274,7 +276,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "たもつ"
+      "ja_name": "たもつ",
+      "ja_phrase": "ウヒョッ"
   },
   {
       "name": "Alfonso",
@@ -335,7 +338,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "アルベルト"
+      "ja_name": "アルベルト",
+      "ja_phrase": "だワニ"
   },
   {
       "name": "Alice",
@@ -391,7 +395,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "メルボルン"
+      "ja_name": "メルボルン",
+      "ja_phrase": "キラリ"
   },
   {
       "name": "Alli",
@@ -450,7 +455,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "クロコ"
+      "ja_name": "クロコ",
+      "ja_phrase": "どすえ"
   },
   {
       "name": "Amelia",
@@ -510,7 +516,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "アンデス"
+      "ja_name": "アンデス",
+      "ja_phrase": "カラカラ"
   },
   {
       "name": "Anabelle",
@@ -566,7 +573,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "あるみ"
+      "ja_name": "あるみ",
+      "ja_phrase": "マジでー"
   },
   {
       "name": "Anchovy",
@@ -626,7 +634,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "アンチョビ"
+      "ja_name": "アンチョビ",
+      "ja_phrase": "でシ"
   },
   {
       "name": "Angus",
@@ -682,7 +691,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "セルバンテス"
+      "ja_name": "セルバンテス",
+      "ja_phrase": "ふふ"
   },
   {
       "name": "Anicotti",
@@ -739,7 +749,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ラザニア"
+      "ja_name": "ラザニア",
+      "ja_phrase": "ルンルン"
   },
   {
       "name": "Ankha",
@@ -796,7 +807,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ナイル"
+      "ja_name": "ナイル",
+      "ja_phrase": "クフフ"
   },
   {
       "name": "Annalisa",
@@ -850,7 +862,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "みやび"
+      "ja_name": "みやび",
+      "ja_phrase": "をかし"
   },
   {
       "name": "Annalise",
@@ -906,7 +919,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "シルブプレ"
+      "ja_name": "シルブプレ",
+      "ja_phrase": "サヴァ"
   },
   {
       "name": "Antonio",
@@ -962,7 +976,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "マコト"
+      "ja_name": "マコト",
+      "ja_phrase": "ホントに"
   },
   {
       "name": "Apollo",
@@ -1021,7 +1036,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "アポロ"
+      "ja_name": "アポロ",
+      "ja_phrase": "だワイ"
   },
   {
       "name": "Apple",
@@ -1075,7 +1091,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "アップル"
+      "ja_name": "アップル",
+      "ja_phrase": "キュルン"
   },
   {
       "name": "Astrid",
@@ -1133,7 +1150,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "キッズ"
+      "ja_name": "キッズ",
+      "ja_phrase": "だパンク"
   },
   {
       "name": "Audie",
@@ -1184,7 +1202,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "モニカ"
+      "ja_name": "モニカ",
+      "ja_phrase": "アハッ"
   },
   {
       "name": "Aurora",
@@ -1243,7 +1262,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "オーロラ"
+      "ja_name": "オーロラ",
+      "ja_phrase": "だジョー"
   },
   {
       "name": "Ava",
@@ -1300,7 +1320,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ドミグラ"
+      "ja_name": "ドミグラ",
+      "ja_phrase": "のよぉ"
   },
   {
       "name": "Avery",
@@ -1356,7 +1377,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "クスケチャ"
+      "ja_name": "クスケチャ",
+      "ja_phrase": "アリョイ"
   },
   {
       "name": "Axel",
@@ -1413,7 +1435,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "エックスエル"
+      "ja_name": "エックスエル",
+      "ja_phrase": "でゴンス"
   },
   {
       "name": "Azalea",
@@ -1465,7 +1488,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "ペチュニア"
+      "ja_name": "ペチュニア",
+      "ja_phrase": "メルシー"
   },
   {
       "name": "Baabara",
@@ -1524,7 +1548,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "トロワ"
+      "ja_name": "トロワ",
+      "ja_phrase": "アンドゥ"
   },
   {
       "name": "Bam",
@@ -1581,7 +1606,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "タケル"
+      "ja_name": "タケル",
+      "ja_phrase": "ナラね"
   },
   {
       "name": "Bangle",
@@ -1637,7 +1663,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "ルーズ"
+      "ja_name": "ルーズ",
+      "ja_phrase": "なのぉー"
   },
   {
       "name": "Barold",
@@ -1690,7 +1717,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "ニッシー"
+      "ja_name": "ニッシー",
+      "ja_phrase": "いっそ"
   },
   {
       "name": "Bea",
@@ -1745,7 +1773,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "ベーグル"
+      "ja_name": "ベーグル",
+      "ja_phrase": "グー"
   },
   {
       "name": "Beardo",
@@ -1798,7 +1827,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ベアード"
+      "ja_name": "ベアード",
+      "ja_phrase": "オッホン"
   },
   {
       "name": "Beau",
@@ -1852,7 +1882,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ペーター"
+      "ja_name": "ペーター",
+      "ja_phrase": "おろおろ"
   },
   {
       "name": "Becky",
@@ -1907,7 +1938,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "アリア"
+      "ja_name": "アリア",
+      "ja_phrase": "ハレルヤ"
   },
   {
       "name": "Bella",
@@ -1964,7 +1996,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "イザベラ"
+      "ja_name": "イザベラ",
+      "ja_phrase": "ギャハッ"
   },
   {
       "name": "Benedict",
@@ -2020,7 +2053,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ぺしみち"
+      "ja_name": "ぺしみち",
+      "ja_phrase": "ウヒョー"
   },
   {
       "name": "Benjamin",
@@ -2072,7 +2106,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "ハチ"
+      "ja_name": "ハチ",
+      "ja_phrase": "ではでは"
   },
   {
       "name": "Bertha",
@@ -2129,7 +2164,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "あんこ"
+      "ja_name": "あんこ",
+      "ja_phrase": "そうです"
   },
   {
       "name": "Bettina",
@@ -2184,7 +2220,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "マルコ"
+      "ja_name": "マルコ",
+      "ja_phrase": "ですよね"
   },
   {
       "name": "Bianca",
@@ -2237,7 +2274,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "コユキ"
+      "ja_name": "コユキ",
+      "ja_phrase": "でヒョウ"
   },
   {
       "name": "Biff",
@@ -2293,7 +2331,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "ガブリエル"
+      "ja_name": "ガブリエル",
+      "ja_phrase": "じゃけん"
   },
   {
       "name": "Big Top",
@@ -2349,7 +2388,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "３ごう"
+      "ja_name": "３ごう",
+      "ja_phrase": "うりゃー"
   },
   {
       "name": "Bill",
@@ -2407,7 +2447,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ピータン"
+      "ja_name": "ピータン",
+      "ja_phrase": "だね"
   },
   {
       "name": "Billy",
@@ -2462,7 +2503,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "アーシンド"
+      "ja_name": "アーシンド",
+      "ja_phrase": "よのう"
   },
   {
       "name": "Biskit",
@@ -2521,7 +2563,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ロビン"
+      "ja_name": "ロビン",
+      "ja_phrase": "だイヌ"
   },
   {
       "name": "Bitty",
@@ -2576,7 +2619,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "エーミー"
+      "ja_name": "エーミー",
+      "ja_phrase": "だピー"
   },
   {
       "name": "Blaire",
@@ -2635,7 +2679,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "シルエット"
+      "ja_name": "シルエット",
+      "ja_phrase": "ふふん"
   },
   {
       "name": "Blanche",
@@ -2689,7 +2734,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "しのぶ"
+      "ja_name": "しのぶ",
+      "ja_phrase": "ですのね"
   },
   {
       "name": "Bluebear",
@@ -2748,7 +2794,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "グルミン"
+      "ja_name": "グルミン",
+      "ja_phrase": "キュン"
   },
   {
       "name": "Bob",
@@ -2807,7 +2854,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ニコバン"
+      "ja_name": "ニコバン",
+      "ja_phrase": "ネコ"
   },
   {
       "name": "Bonbon",
@@ -2861,7 +2909,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ミミィ"
+      "ja_name": "ミミィ",
+      "ja_phrase": "ヤバッ"
   },
   {
       "name": "Bones",
@@ -2920,7 +2969,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "トミ"
+      "ja_name": "トミ",
+      "ja_phrase": "ネッ"
   },
   {
       "name": "Boomer",
@@ -2977,7 +3027,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ショーイ"
+      "ja_name": "ショーイ",
+      "ja_phrase": "ツーツツ"
   },
   {
       "name": "Boone",
@@ -3033,7 +3084,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "まんたろう"
+      "ja_name": "まんたろう",
+      "ja_phrase": "ウルトラ"
   },
   {
       "name": "Boots",
@@ -3088,7 +3140,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "ホウサク"
+      "ja_name": "ホウサク",
+      "ja_phrase": "だぴょん"
   },
   {
       "name": "Boris",
@@ -3143,7 +3196,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "ダリー"
+      "ja_name": "ダリー",
+      "ja_phrase": "ブヒッ"
   },
   {
       "name": "Boyd",
@@ -3196,7 +3250,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "ボイド"
+      "ja_name": "ボイド",
+      "ja_phrase": "おうおう"
   },
   {
       "name": "Bree",
@@ -3253,7 +3308,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "サラ"
+      "ja_name": "サラ",
+      "ja_phrase": "なーんて"
   },
   {
       "name": "Broccolo",
@@ -3309,7 +3365,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ブロッコリー"
+      "ja_name": "ブロッコリー",
+      "ja_phrase": "ピコ"
   },
   {
       "name": "Broffina",
@@ -3363,7 +3420,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "カサンドラ"
+      "ja_name": "カサンドラ",
+      "ja_phrase": "ケッコー"
   },
   {
       "name": "Bruce",
@@ -3417,7 +3475,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ブルース"
+      "ja_name": "ブルース",
+      "ja_phrase": "しかしな"
   },
   {
       "name": "Bubbles",
@@ -3473,7 +3532,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "チャコ"
+      "ja_name": "チャコ",
+      "ja_phrase": "でガンス"
   },
   {
       "name": "Buck",
@@ -3532,7 +3592,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ヴァヤシコフ"
+      "ja_name": "ヴァヤシコフ",
+      "ja_phrase": "なんちて"
   },
   {
       "name": "Bud",
@@ -3593,7 +3654,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "グラさん"
+      "ja_name": "グラさん",
+      "ja_phrase": "メ～ン"
   },
   {
       "name": "Bunnie",
@@ -3651,7 +3713,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "リリアン"
+      "ja_name": "リリアン",
+      "ja_phrase": "みたいな"
   },
   {
       "name": "Butch",
@@ -3710,7 +3773,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ジョン"
+      "ja_name": "ジョン",
+      "ja_phrase": "ノン"
   },
   {
       "name": "Buzz",
@@ -3765,7 +3829,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "ひでよし"
+      "ja_name": "ひでよし",
+      "ja_phrase": "ッキーッ"
   },
   {
       "name": "Cally",
@@ -3822,7 +3887,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "パセリ"
+      "ja_name": "パセリ",
+      "ja_phrase": "ララー"
   },
   {
       "name": "Camofrog",
@@ -3881,7 +3947,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "フルメタル"
+      "ja_name": "フルメタル",
+      "ja_phrase": "わい"
   },
   {
       "name": "Canberra",
@@ -3934,7 +4001,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "キャンベラ"
+      "ja_name": "キャンベラ",
+      "ja_phrase": "え～"
   },
   {
       "name": "Candi",
@@ -3989,7 +4057,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "かんゆ"
+      "ja_name": "かんゆ",
+      "ja_phrase": "ですワ"
   },
   {
       "name": "Carmen",
@@ -4044,7 +4113,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "チョコ"
+      "ja_name": "チョコ",
+      "ja_phrase": "まじで"
   },
   {
       "name": "Caroline",
@@ -4102,7 +4172,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "キャロライン"
+      "ja_name": "キャロライン",
+      "ja_phrase": "ユー"
   },
   {
       "name": "Carrie",
@@ -4157,7 +4228,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "マミィ"
+      "ja_name": "マミィ",
+      "ja_phrase": "だフン"
   },
   {
       "name": "Cashmere",
@@ -4212,7 +4284,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "ラムール"
+      "ja_name": "ラムール",
+      "ja_phrase": "ありんす"
   },
   {
       "name": "Celia",
@@ -4266,7 +4339,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ティファニー"
+      "ja_name": "ティファニー",
+      "ja_phrase": "そうね"
   },
   {
       "name": "Cephalobot",
@@ -4317,7 +4391,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "ギーガー"
+      "ja_name": "ギーガー",
+      "ja_phrase": "チュドン"
   },
   {
       "name": "Cesar",
@@ -4377,7 +4452,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "アラン"
+      "ja_name": "アラン",
+      "ja_phrase": "ウホウホ"
   },
   {
       "name": "Chabwick",
@@ -4429,7 +4505,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "のぶお"
+      "ja_name": "のぶお",
+      "ja_phrase": "ブツブツ"
   },
   {
       "name": "Chadder",
@@ -4483,7 +4560,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "チーズ"
+      "ja_name": "チーズ",
+      "ja_phrase": "まあね"
   },
   {
       "name": "Chai",
@@ -4535,7 +4613,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "フィーカ"
+      "ja_name": "フィーカ",
+      "ja_phrase": "ロルロル"
   },
   {
       "name": "Charlise",
@@ -4590,7 +4669,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "チャーミー"
+      "ja_name": "チャーミー",
+      "ja_phrase": "よいしょ"
   },
   {
       "name": "Chelsea",
@@ -4642,7 +4722,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "チェルシー"
+      "ja_name": "チェルシー",
+      "ja_phrase": "メロメロ"
   },
   {
       "name": "Cheri",
@@ -4698,7 +4779,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "アセロラ"
+      "ja_name": "アセロラ",
+      "ja_phrase": "なんてね"
   },
   {
       "name": "Cherry",
@@ -4752,7 +4834,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ハンナ"
+      "ja_name": "ハンナ",
+      "ja_phrase": "だってネ"
   },
   {
       "name": "Chester",
@@ -4806,7 +4889,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "パンタ"
+      "ja_name": "パンタ",
+      "ja_phrase": "だバンブ"
   },
   {
       "name": "Chevre",
@@ -4865,7 +4949,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ユキ"
+      "ja_name": "ユキ",
+      "ja_phrase": "っぺ"
   },
   {
       "name": "Chief",
@@ -4924,7 +5009,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "チーフ"
+      "ja_name": "チーフ",
+      "ja_phrase": "やんか"
   },
   {
       "name": "Chops",
@@ -4977,7 +5063,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "トンファン"
+      "ja_name": "トンファン",
+      "ja_phrase": "だトン"
   },
   {
       "name": "Chow",
@@ -5035,7 +5122,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "チャウヤン"
+      "ja_name": "チャウヤン",
+      "ja_phrase": "アルヨ"
   },
   {
       "name": "Chrissy",
@@ -5090,7 +5178,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "クリスチーヌ"
+      "ja_name": "クリスチーヌ",
+      "ja_phrase": "リララ"
   },
   {
       "name": "Claude",
@@ -5145,7 +5234,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ビネガー"
+      "ja_name": "ビネガー",
+      "ja_phrase": "ぶいぶい"
   },
   {
       "name": "Claudia",
@@ -5199,7 +5289,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "マリリン"
+      "ja_name": "マリリン",
+      "ja_phrase": "アハ～ン"
   },
   {
       "name": "Clay",
@@ -5253,7 +5344,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "どぐろう"
+      "ja_name": "どぐろう",
+      "ja_phrase": "どきどき"
   },
   {
       "name": "Cleo",
@@ -5308,7 +5400,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "アイソトープ"
+      "ja_name": "アイソトープ",
+      "ja_phrase": "あそばせ"
   },
   {
       "name": "Clyde",
@@ -5363,7 +5456,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "デースケ"
+      "ja_name": "デースケ",
+      "ja_phrase": "ぴろぴろ"
   },
   {
       "name": "Coach",
@@ -5415,7 +5509,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "テッチャン"
+      "ja_name": "テッチャン",
+      "ja_phrase": "ジョリッ"
   },
   {
       "name": "Cobb",
@@ -5472,7 +5567,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ハカセ"
+      "ja_name": "ハカセ",
+      "ja_phrase": "でアール"
   },
   {
       "name": "Coco",
@@ -5531,7 +5627,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "やよい"
+      "ja_name": "やよい",
+      "ja_phrase": "はにょ"
   },
   {
       "name": "Cole",
@@ -5587,7 +5684,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "アマミン"
+      "ja_name": "アマミン",
+      "ja_phrase": "そうさね"
   },
   {
       "name": "Colton",
@@ -5641,7 +5739,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "アンソニー"
+      "ja_name": "アンソニー",
+      "ja_phrase": "ごらんよ"
   },
   {
       "name": "Cookie",
@@ -5698,7 +5797,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ペリーヌ"
+      "ja_name": "ペリーヌ",
+      "ja_phrase": "プリリン"
   },
   {
       "name": "Cousteau",
@@ -5756,7 +5856,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ハルマキ"
+      "ja_name": "ハルマキ",
+      "ja_phrase": "のことよ"
   },
   {
       "name": "Cranston",
@@ -5810,7 +5911,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "トキオ"
+      "ja_name": "トキオ",
+      "ja_phrase": "およよ"
   },
   {
       "name": "Croque",
@@ -5863,7 +5965,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "タイシ"
+      "ja_name": "タイシ",
+      "ja_phrase": "しからば"
   },
   {
       "name": "Cube",
@@ -5924,7 +6027,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ビス"
+      "ja_name": "ビス",
+      "ja_phrase": "ペンペン"
   },
   {
       "name": "Curlos",
@@ -5978,7 +6082,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "カルロス"
+      "ja_name": "カルロス",
+      "ja_phrase": "ベイビー"
   },
   {
       "name": "Curly",
@@ -6037,7 +6142,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ハムカツ"
+      "ja_name": "ハムカツ",
+      "ja_phrase": "どもども"
   },
   {
       "name": "Curt",
@@ -6093,7 +6199,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ガンテツ"
+      "ja_name": "ガンテツ",
+      "ja_phrase": "ウム"
   },
   {
       "name": "Cyd",
@@ -6144,7 +6251,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "パンクス"
+      "ja_name": "パンクス",
+      "ja_phrase": "ウス"
   },
   {
       "name": "Cyrano",
@@ -6204,7 +6312,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "さくらじま"
+      "ja_name": "さくらじま",
+      "ja_phrase": "でごわす"
   },
   {
       "name": "Daisy",
@@ -6265,7 +6374,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "バニラ"
+      "ja_name": "バニラ",
+      "ja_phrase": "だよね"
   },
   {
       "name": "Deena",
@@ -6326,7 +6436,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "まりも"
+      "ja_name": "まりも",
+      "ja_phrase": "マル"
   },
   {
       "name": "Deirdre",
@@ -6378,7 +6489,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ナディア"
+      "ja_name": "ナディア",
+      "ja_phrase": "まいっか"
   },
   {
       "name": "Del",
@@ -6434,7 +6546,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ヤマト"
+      "ja_name": "ヤマト",
+      "ja_phrase": "プシュー"
   },
   {
       "name": "Deli",
@@ -6488,7 +6601,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "デリー"
+      "ja_name": "デリー",
+      "ja_phrase": "だぜ"
   },
   {
       "name": "Derwin",
@@ -6547,7 +6661,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ボン"
+      "ja_name": "ボン",
+      "ja_phrase": "ね！ママ"
   },
   {
       "name": "Diana",
@@ -6601,7 +6716,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ナタリー"
+      "ja_name": "ナタリー",
+      "ja_phrase": "でしょ"
   },
   {
       "name": "Diva",
@@ -6655,7 +6771,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "アイーダ"
+      "ja_name": "アイーダ",
+      "ja_phrase": "ハーン"
   },
   {
       "name": "Dizzy",
@@ -6712,7 +6829,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "ヒュージ"
+      "ja_name": "ヒュージ",
+      "ja_phrase": "だゾウ"
   },
   {
       "name": "Dobie",
@@ -6768,7 +6886,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "けん"
+      "ja_name": "けん",
+      "ja_phrase": "ゴホゴホ"
   },
   {
       "name": "Doc",
@@ -6824,7 +6943,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "トビオ"
+      "ja_name": "トビオ",
+      "ja_phrase": "ですね"
   },
   {
       "name": "Dom",
@@ -6875,7 +6995,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "ちゃちゃまる"
+      "ja_name": "ちゃちゃまる",
+      "ja_phrase": "ふんふん"
   },
   {
       "name": "Dora",
@@ -6934,7 +7055,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "とめ"
+      "ja_name": "とめ",
+      "ja_phrase": "だべ"
   },
   {
       "name": "Dotty",
@@ -6993,7 +7115,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "マーサ"
+      "ja_name": "マーサ",
+      "ja_phrase": "ラン"
   },
   {
       "name": "Drago",
@@ -7047,7 +7170,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "タツオ"
+      "ja_name": "タツオ",
+      "ja_phrase": "えーと"
   },
   {
       "name": "Drake",
@@ -7103,7 +7227,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "フォアグラ"
+      "ja_name": "フォアグラ",
+      "ja_phrase": "かもね"
   },
   {
       "name": "Drift",
@@ -7163,7 +7288,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ドク"
+      "ja_name": "ドク",
+      "ja_phrase": "ゲロゲロ"
   },
   {
       "name": "Ed",
@@ -7221,7 +7347,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "キザノホマレ"
+      "ja_name": "キザノホマレ",
+      "ja_phrase": "じゃない"
   },
   {
       "name": "Egbert",
@@ -7279,7 +7406,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "しもやけ"
+      "ja_name": "しもやけ",
+      "ja_phrase": "だヨ"
   },
   {
       "name": "Elise",
@@ -7335,7 +7463,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "モンこ"
+      "ja_name": "モンこ",
+      "ja_phrase": "だモン"
   },
   {
       "name": "Ellie",
@@ -7392,7 +7521,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "エクレア"
+      "ja_name": "エクレア",
+      "ja_phrase": "ララン"
   },
   {
       "name": "Elmer",
@@ -7451,7 +7581,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "サブレ"
+      "ja_name": "サブレ",
+      "ja_phrase": "だヒヒン"
   },
   {
       "name": "Eloise",
@@ -7510,7 +7641,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "エレフィン"
+      "ja_name": "エレフィン",
+      "ja_phrase": "ルン"
   },
   {
       "name": "Elvis",
@@ -7566,7 +7698,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "キング"
+      "ja_name": "キング",
+      "ja_phrase": "ダロガ"
   },
   {
       "name": "Erik",
@@ -7619,7 +7752,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "チャック"
+      "ja_name": "チャック",
+      "ja_phrase": "しかじか"
   },
   {
       "name": "Étoile",
@@ -7671,7 +7805,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "エトワール"
+      "ja_name": "エトワール",
+      "ja_phrase": "ふわもこ"
   },
   {
       "name": "Eugene",
@@ -7725,7 +7860,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ロッキー"
+      "ja_name": "ロッキー",
+      "ja_phrase": "おいおい"
   },
   {
       "name": "Eunice",
@@ -7783,7 +7919,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "モヘア"
+      "ja_name": "モヘア",
+      "ja_phrase": "メェー"
   },
   {
       "name": "Faith",
@@ -7836,7 +7973,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "マーチ"
+      "ja_name": "マーチ",
+      "ja_phrase": "サクッ"
   },
   {
       "name": "Fang",
@@ -7894,7 +8032,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "シベリア"
+      "ja_name": "シベリア",
+      "ja_phrase": "ですダス"
   },
   {
       "name": "Fauna",
@@ -7948,7 +8087,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ドレミ"
+      "ja_name": "ドレミ",
+      "ja_phrase": "でしか"
   },
   {
       "name": "Felicity",
@@ -8003,7 +8143,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "みかっち"
+      "ja_name": "みかっち",
+      "ja_phrase": "ね"
   },
   {
       "name": "Filbert",
@@ -8062,7 +8203,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "リッキー"
+      "ja_name": "リッキー",
+      "ja_phrase": "でしゅ"
   },
   {
       "name": "Flip",
@@ -8116,7 +8258,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "さすけ"
+      "ja_name": "さすけ",
+      "ja_phrase": "どっこい"
   },
   {
       "name": "Flo",
@@ -8170,7 +8313,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "レイラ"
+      "ja_name": "レイラ",
+      "ja_phrase": "じゃんよ"
   },
   {
       "name": "Flora",
@@ -8224,7 +8368,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "フララ"
+      "ja_name": "フララ",
+      "ja_phrase": "だミン"
   },
   {
       "name": "Flurry",
@@ -8278,7 +8423,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ゆきみ"
+      "ja_name": "ゆきみ",
+      "ja_phrase": "なのです"
   },
   {
       "name": "Francine",
@@ -8334,7 +8480,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "フランソワ"
+      "ja_name": "フランソワ",
+      "ja_phrase": "ルララ"
   },
   {
       "name": "Frank",
@@ -8389,7 +8536,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ハルク"
+      "ja_name": "ハルク",
+      "ja_phrase": "ダンケ"
   },
   {
       "name": "Freckles",
@@ -8447,7 +8595,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "マグロ"
+      "ja_name": "マグロ",
+      "ja_phrase": "ぎょぎょ"
   },
   {
       "name": "Frett",
@@ -8499,7 +8648,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "シャンペン"
+      "ja_name": "シャンペン",
+      "ja_phrase": "ったく"
   },
   {
       "name": "Freya",
@@ -8557,7 +8707,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ツンドラ"
+      "ja_name": "ツンドラ",
+      "ja_phrase": "なのだわ"
   },
   {
       "name": "Friga",
@@ -8616,7 +8767,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "サブリナ"
+      "ja_name": "サブリナ",
+      "ja_phrase": "ツルルン"
   },
   {
       "name": "Frita",
@@ -8670,7 +8822,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ウェンディ"
+      "ja_name": "ウェンディ",
+      "ja_phrase": "だポテ"
   },
   {
       "name": "Frobert",
@@ -8727,7 +8880,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "コージィ"
+      "ja_name": "コージィ",
+      "ja_phrase": "クルリ"
   },
   {
       "name": "Fuchsia",
@@ -8781,7 +8935,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ジェシカ"
+      "ja_name": "ジェシカ",
+      "ja_phrase": "なんしか"
   },
   {
       "name": "Gabi",
@@ -8840,7 +8995,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ペチカ"
+      "ja_name": "ペチカ",
+      "ja_phrase": "だっち"
   },
   {
       "name": "Gala",
@@ -8895,7 +9051,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ためこ"
+      "ja_name": "ためこ",
+      "ja_phrase": "ちゃりん"
   },
   {
       "name": "Gaston",
@@ -8954,7 +9111,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "モサキチ"
+      "ja_name": "モサキチ",
+      "ja_phrase": "ムホッ"
   },
   {
       "name": "Gayle",
@@ -9007,7 +9165,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "アリゲッティ"
+      "ja_name": "アリゲッティ",
+      "ja_phrase": "ワニャン"
   },
   {
       "name": "Genji",
@@ -9068,7 +9227,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ゲンジ"
+      "ja_name": "ゲンジ",
+      "ja_phrase": "まろ"
   },
   {
       "name": "Gigi",
@@ -9123,7 +9283,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "リンダ"
+      "ja_name": "リンダ",
+      "ja_phrase": "ベイビィ"
   },
   {
       "name": "Gladys",
@@ -9180,7 +9341,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ちとせ"
+      "ja_name": "ちとせ",
+      "ja_phrase": "ですの"
   },
   {
       "name": "Gloria",
@@ -9235,7 +9397,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "スワンソン"
+      "ja_name": "スワンソン",
+      "ja_phrase": "ぎゃくに"
   },
   {
       "name": "Goldie",
@@ -9294,7 +9457,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "キャラメル"
+      "ja_name": "キャラメル",
+      "ja_phrase": "ワン"
   },
   {
       "name": "Gonzo",
@@ -9349,7 +9513,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "ゴンゾー"
+      "ja_name": "ゴンゾー",
+      "ja_phrase": "だがや"
   },
   {
       "name": "Goose",
@@ -9408,7 +9573,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ケンタ"
+      "ja_name": "ケンタ",
+      "ja_phrase": "だコケ"
   },
   {
       "name": "Graham",
@@ -9462,7 +9628,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "グラハム"
+      "ja_name": "グラハム",
+      "ja_phrase": "ですぞ"
   },
   {
       "name": "Greta",
@@ -9516,7 +9683,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ふくこ"
+      "ja_name": "ふくこ",
+      "ja_phrase": "おほほ"
   },
   {
       "name": "Grizzly",
@@ -9576,7 +9744,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ムー"
+      "ja_name": "ムー",
+      "ja_phrase": "だクマ"
   },
   {
       "name": "Groucho",
@@ -9634,7 +9803,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "クロー"
+      "ja_name": "クロー",
+      "ja_phrase": "ワォー"
   },
   {
       "name": "Gruff",
@@ -9691,7 +9861,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ビリー"
+      "ja_name": "ビリー",
+      "ja_phrase": "イェーイ"
   },
   {
       "name": "Gwen",
@@ -9749,7 +9920,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "ポーラ"
+      "ja_name": "ポーラ",
+      "ja_phrase": "ウフフ"
   },
   {
       "name": "Hamlet",
@@ -9803,7 +9975,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ハムスケ"
+      "ja_name": "ハムスケ",
+      "ja_phrase": "ハム"
   },
   {
       "name": "Hamphrey",
@@ -9856,7 +10029,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "ハムジ"
+      "ja_name": "ハムジ",
+      "ja_phrase": "カーッ"
   },
   {
       "name": "Hans",
@@ -9910,7 +10084,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "スナイル"
+      "ja_name": "スナイル",
+      "ja_phrase": "いえてる"
   },
   {
       "name": "Harry",
@@ -9966,7 +10141,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "オリバー"
+      "ja_name": "オリバー",
+      "ja_phrase": "でっせ"
   },
   {
       "name": "Hazel",
@@ -10019,7 +10195,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "アイリス"
+      "ja_name": "アイリス",
+      "ja_phrase": "だもんね"
   },
   {
       "name": "Henry",
@@ -10073,7 +10250,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ヘンリー"
+      "ja_name": "ヘンリー",
+      "ja_phrase": "むにゃ"
   },
   {
       "name": "Hippeux",
@@ -10127,7 +10305,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ディビッド"
+      "ja_name": "ディビッド",
+      "ja_phrase": "イェス"
   },
   {
       "name": "Hopkins",
@@ -10180,7 +10359,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "プースケ"
+      "ja_name": "プースケ",
+      "ja_phrase": "ぷぅ"
   },
   {
       "name": "Hopper",
@@ -10240,7 +10420,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ダルマン"
+      "ja_name": "ダルマン",
+      "ja_phrase": "ちぅねん"
   },
   {
       "name": "Hornsby",
@@ -10294,7 +10475,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "みつお"
+      "ja_name": "みつお",
+      "ja_phrase": "のネン"
   },
   {
       "name": "Huck",
@@ -10349,7 +10531,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "ストロー"
+      "ja_name": "ストロー",
+      "ja_phrase": "とかー"
   },
   {
       "name": "Hugh",
@@ -10407,7 +10590,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "クッチャネ"
+      "ja_name": "クッチャネ",
+      "ja_phrase": "とかね"
   },
   {
       "name": "Iggly",
@@ -10461,7 +10645,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "のりまき"
+      "ja_name": "のりまき",
+      "ja_phrase": "クルクル"
   },
   {
       "name": "Ike",
@@ -10513,7 +10698,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "ダイク"
+      "ja_name": "ダイク",
+      "ja_phrase": "ボウズ"
   },
   {
       "name": "Ione",
@@ -10564,7 +10750,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "スピカ"
+      "ja_name": "スピカ",
+      "ja_phrase": "キラキラ"
   },
   {
       "name": "Jacob",
@@ -10616,7 +10803,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "ジャコテン"
+      "ja_name": "ジャコテン",
+      "ja_phrase": "っつーの"
   },
   {
       "name": "Jacques",
@@ -10670,7 +10858,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ジョッキー"
+      "ja_name": "ジョッキー",
+      "ja_phrase": "チェケラ"
   },
   {
       "name": "Jambette",
@@ -10725,7 +10914,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "エスメラルダ"
+      "ja_name": "エスメラルダ",
+      "ja_phrase": "ですわよ"
   },
   {
       "name": "Jay",
@@ -10783,7 +10973,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ツバクロ"
+      "ja_name": "ツバクロ",
+      "ja_phrase": "でおます"
   },
   {
       "name": "Jeremiah",
@@ -10841,7 +11032,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "クワトロ"
+      "ja_name": "クワトロ",
+      "ja_phrase": "にゃむ"
   },
   {
       "name": "Jitters",
@@ -10896,7 +11088,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ジーニョ"
+      "ja_name": "ジーニョ",
+      "ja_phrase": "だニョ"
   },
   {
       "name": "Joey",
@@ -10953,7 +11146,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "リチャード"
+      "ja_name": "リチャード",
+      "ja_phrase": "でヤンス"
   },
   {
       "name": "Judy",
@@ -11004,7 +11198,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "みすず"
+      "ja_name": "みすず",
+      "ja_phrase": "あらら"
   },
   {
       "name": "Julia",
@@ -11057,7 +11252,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "ジュリア"
+      "ja_name": "ジュリア",
+      "ja_phrase": "やだわね"
   },
   {
       "name": "Julian",
@@ -11111,7 +11307,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ジュリー"
+      "ja_name": "ジュリー",
+      "ja_phrase": "ね、キミ"
   },
   {
       "name": "June",
@@ -11165,7 +11362,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "メイ"
+      "ja_name": "メイ",
+      "ja_phrase": "アルネ"
   },
   {
       "name": "Kabuki",
@@ -11223,7 +11421,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "かぶきち"
+      "ja_name": "かぶきち",
+      "ja_phrase": "ぃよぉー"
   },
   {
       "name": "Katt",
@@ -11276,7 +11475,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ちょい"
+      "ja_name": "ちょい",
+      "ja_phrase": "じゃね"
   },
   {
       "name": "Keaton",
@@ -11330,7 +11530,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "フランク"
+      "ja_name": "フランク",
+      "ja_phrase": "でーッス"
   },
   {
       "name": "Ken",
@@ -11383,7 +11584,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "クロベエ"
+      "ja_name": "クロベエ",
+      "ja_phrase": "コッケイ"
   },
   {
       "name": "Ketchup",
@@ -11435,7 +11637,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "ケチャップ"
+      "ja_name": "ケチャップ",
+      "ja_phrase": "プチ"
   },
   {
       "name": "Kevin",
@@ -11489,7 +11692,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "イノッチ"
+      "ja_name": "イノッチ",
+      "ja_phrase": "ウリウリ"
   },
   {
       "name": "Kid Cat",
@@ -11545,7 +11749,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "１ごう"
+      "ja_name": "１ごう",
+      "ja_phrase": "とぉっ"
   },
   {
       "name": "Kidd",
@@ -11600,7 +11805,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "やさお"
+      "ja_name": "やさお",
+      "ja_phrase": "はぁ～"
   },
   {
       "name": "Kiki",
@@ -11660,7 +11866,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "キャビア"
+      "ja_name": "キャビア",
+      "ja_phrase": "だニ"
   },
   {
       "name": "Kitt",
@@ -11719,7 +11926,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "アップリケ"
+      "ja_name": "アップリケ",
+      "ja_phrase": "ッポン"
   },
   {
       "name": "Kitty",
@@ -11777,7 +11985,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ショコラ"
+      "ja_name": "ショコラ",
+      "ja_phrase": "フフ"
   },
   {
       "name": "Klaus",
@@ -11830,7 +12039,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "クマロス"
+      "ja_name": "クマロス",
+      "ja_phrase": "オパー"
   },
   {
       "name": "Knox",
@@ -11885,7 +12095,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "キンカク"
+      "ja_name": "キンカク",
+      "ja_phrase": "せいッ"
   },
   {
       "name": "Kody",
@@ -11946,7 +12157,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "アイダホ"
+      "ja_name": "アイダホ",
+      "ja_phrase": "のこころ"
   },
   {
       "name": "Kyle",
@@ -12000,7 +12212,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "リカルド"
+      "ja_name": "リカルド",
+      "ja_phrase": "オゥイェ"
   },
   {
       "name": "Leonardo",
@@ -12055,7 +12268,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ヒョウタ"
+      "ja_name": "ヒョウタ",
+      "ja_phrase": "じゃが"
   },
   {
       "name": "Leopold",
@@ -12110,7 +12324,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "ティーチャー"
+      "ja_name": "ティーチャー",
+      "ja_phrase": "よな"
   },
   {
       "name": "Lily",
@@ -12171,7 +12386,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "レイニー"
+      "ja_name": "レイニー",
+      "ja_phrase": "でちゅ"
   },
   {
       "name": "Limberg",
@@ -12230,7 +12446,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "らっきょ"
+      "ja_name": "らっきょ",
+      "ja_phrase": "てやんで"
   },
   {
       "name": "Lionel",
@@ -12284,7 +12501,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ライオネル"
+      "ja_name": "ライオネル",
+      "ja_phrase": "まさしく"
   },
   {
       "name": "Lobo",
@@ -12343,7 +12561,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ブンジロウ"
+      "ja_name": "ブンジロウ",
+      "ja_phrase": "だぜよ"
   },
   {
       "name": "Lolly",
@@ -12398,7 +12617,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ラムネ"
+      "ja_name": "ラムネ",
+      "ja_phrase": "あのね"
   },
   {
       "name": "Lopez",
@@ -12451,7 +12671,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "トムソン"
+      "ja_name": "トムソン",
+      "ja_phrase": "がぜん"
   },
   {
       "name": "Louie",
@@ -12510,7 +12731,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "マッスル"
+      "ja_name": "マッスル",
+      "ja_phrase": "コング"
   },
   {
       "name": "Lucha",
@@ -12563,7 +12785,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "マスカラス"
+      "ja_name": "マスカラス",
+      "ja_phrase": "カァー"
   },
   {
       "name": "Lucky",
@@ -12621,7 +12844,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ラッキー"
+      "ja_name": "ラッキー",
+      "ja_phrase": "らしいよ"
   },
   {
       "name": "Lucy",
@@ -12680,7 +12904,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ルーシー"
+      "ja_name": "ルーシー",
+      "ja_phrase": "よぅ"
   },
   {
       "name": "Lyman",
@@ -12734,7 +12959,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "オズモンド"
+      "ja_name": "オズモンド",
+      "ja_phrase": "わ～い"
   },
   {
       "name": "Mac",
@@ -12788,7 +13014,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "チャンプ"
+      "ja_name": "チャンプ",
+      "ja_phrase": "モグ"
   },
   {
       "name": "Maddie",
@@ -12844,7 +13071,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "マロン"
+      "ja_name": "マロン",
+      "ja_phrase": "ワンツー"
   },
   {
       "name": "Maelle",
@@ -12902,7 +13130,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "アンヌ"
+      "ja_name": "アンヌ",
+      "ja_phrase": "ふぅ"
   },
   {
       "name": "Maggie",
@@ -12955,7 +13184,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "マーガレット"
+      "ja_name": "マーガレット",
+      "ja_phrase": "うん"
   },
   {
       "name": "Mallary",
@@ -13014,7 +13244,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "スミモモ"
+      "ja_name": "スミモモ",
+      "ja_phrase": "ヨネ"
   },
   {
       "name": "Maple",
@@ -13073,7 +13304,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "メープル"
+      "ja_name": "メープル",
+      "ja_phrase": "だベア"
   },
   {
       "name": "Marcel",
@@ -13128,7 +13360,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "もんじゃ"
+      "ja_name": "もんじゃ",
+      "ja_phrase": "なんじゃ"
   },
   {
       "name": "Marcie",
@@ -13182,7 +13415,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "マリア"
+      "ja_name": "マリア",
+      "ja_phrase": "いいのよ"
   },
   {
       "name": "Margie",
@@ -13240,7 +13474,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "サリー"
+      "ja_name": "サリー",
+      "ja_phrase": "シャララ"
   },
   {
       "name": "Marina",
@@ -13296,7 +13531,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "タコリーナ"
+      "ja_name": "タコリーナ",
+      "ja_phrase": "きゃ"
   },
   {
       "name": "Marlo",
@@ -13347,7 +13583,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "ドンチャン"
+      "ja_name": "ドンチャン",
+      "ja_phrase": "じゃけえ"
   },
   {
       "name": "Marshal",
@@ -13401,7 +13638,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ジュン"
+      "ja_name": "ジュン",
+      "ja_phrase": "あながち"
   },
   {
       "name": "Marty",
@@ -13453,7 +13691,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "マーティー"
+      "ja_name": "マーティー",
+      "ja_phrase": "ポムッ"
   },
   {
       "name": "Mathilda",
@@ -13511,7 +13750,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "アザラク"
+      "ja_name": "アザラク",
+      "ja_phrase": "ッハ"
   },
   {
       "name": "Megan",
@@ -13562,7 +13802,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "キャンディ"
+      "ja_name": "キャンディ",
+      "ja_phrase": "ぺろ"
   },
   {
       "name": "Melba",
@@ -13617,7 +13858,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "アデレード"
+      "ja_name": "アデレード",
+      "ja_phrase": "とっても"
   },
   {
       "name": "Merengue",
@@ -13671,7 +13913,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "パティ"
+      "ja_name": "パティ",
+      "ja_phrase": "でシュガ"
   },
   {
       "name": "Merry",
@@ -13726,7 +13969,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "さっち"
+      "ja_name": "さっち",
+      "ja_phrase": "にゃん"
   },
   {
       "name": "Midge",
@@ -13783,7 +14027,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "うずまき"
+      "ja_name": "うずまき",
+      "ja_phrase": "キョン"
   },
   {
       "name": "Mint",
@@ -13842,7 +14087,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ミント"
+      "ja_name": "ミント",
+      "ja_phrase": "うっふん"
   },
   {
       "name": "Mira",
@@ -13896,7 +14142,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ミラコ"
+      "ja_name": "ミラコ",
+      "ja_phrase": "だムーン"
   },
   {
       "name": "Miranda",
@@ -13952,7 +14199,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ミランダ"
+      "ja_name": "ミランダ",
+      "ja_phrase": "なにさ"
   },
   {
       "name": "Mitzi",
@@ -14010,7 +14258,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "マール"
+      "ja_name": "マール",
+      "ja_phrase": "ニャー"
   },
   {
       "name": "Moe",
@@ -14067,7 +14316,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ジンペイ"
+      "ja_name": "ジンペイ",
+      "ja_phrase": "な"
   },
   {
       "name": "Molly",
@@ -14121,7 +14371,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "カモミ"
+      "ja_name": "カモミ",
+      "ja_phrase": "そうかも"
   },
   {
       "name": "Monique",
@@ -14180,7 +14431,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ジェーン"
+      "ja_name": "ジェーン",
+      "ja_phrase": "ウフーン"
   },
   {
       "name": "Monty",
@@ -14234,7 +14486,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "サルモンティ"
+      "ja_name": "サルモンティ",
+      "ja_phrase": "バナーナ"
   },
   {
       "name": "Moose",
@@ -14288,7 +14541,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "ピン"
+      "ja_name": "ピン",
+      "ja_phrase": "にゃろ"
   },
   {
       "name": "Mott",
@@ -14342,7 +14596,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "リック"
+      "ja_name": "リック",
+      "ja_phrase": "ハハハ"
   },
   {
       "name": "Muffy",
@@ -14396,7 +14651,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "フリル"
+      "ja_name": "フリル",
+      "ja_phrase": "おつかれ"
   },
   {
       "name": "Murphy",
@@ -14453,7 +14709,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "のりお"
+      "ja_name": "のりお",
+      "ja_phrase": "ですばい"
   },
   {
       "name": "Nan",
@@ -14510,7 +14767,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "スミ"
+      "ja_name": "スミ",
+      "ja_phrase": "っしょ"
   },
   {
       "name": "Nana",
@@ -14565,7 +14823,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "チッチ"
+      "ja_name": "チッチ",
+      "ja_phrase": "ウキャ"
   },
   {
       "name": "Naomi",
@@ -14619,7 +14878,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ハナコ"
+      "ja_name": "ハナコ",
+      "ja_phrase": "セボーン"
   },
   {
       "name": "Nate",
@@ -14676,7 +14936,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "バッカス"
+      "ja_name": "バッカス",
+      "ja_phrase": "んだ"
   },
   {
       "name": "Nibbles",
@@ -14734,7 +14995,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "ガリガリ"
+      "ja_name": "ガリガリ",
+      "ja_phrase": "ガジガジ"
   },
   {
       "name": "Norma",
@@ -14787,7 +15049,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "いさこ"
+      "ja_name": "いさこ",
+      "ja_phrase": "うふ"
   },
   {
       "name": "O'Hare",
@@ -14843,7 +15106,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "サントス"
+      "ja_name": "サントス",
+      "ja_phrase": "アミーゴ"
   },
   {
       "name": "Octavian",
@@ -14902,7 +15166,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "おくたろう"
+      "ja_name": "おくたろう",
+      "ja_phrase": "タコ"
   },
   {
       "name": "Olaf",
@@ -14955,7 +15220,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "アントニオ"
+      "ja_name": "アントニオ",
+      "ja_phrase": "ムーチョ"
   },
   {
       "name": "Olive",
@@ -15009,7 +15275,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "ピッコロ"
+      "ja_name": "ピッコロ",
+      "ja_phrase": "マグ"
   },
   {
       "name": "Olivia",
@@ -15068,7 +15335,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "オリビア"
+      "ja_name": "オリビア",
+      "ja_phrase": "なんやん"
   },
   {
       "name": "Opal",
@@ -15127,7 +15395,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "オパール"
+      "ja_name": "オパール",
+      "ja_phrase": "ヨン"
   },
   {
       "name": "Ozzie",
@@ -15183,7 +15452,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "ドングリ"
+      "ja_name": "ドングリ",
+      "ja_phrase": "ククッ"
   },
   {
       "name": "Pancetti",
@@ -15237,7 +15507,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ブリトニー"
+      "ja_name": "ブリトニー",
+      "ja_phrase": "やだも～"
   },
   {
       "name": "Pango",
@@ -15296,7 +15567,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "パトラ"
+      "ja_name": "パトラ",
+      "ja_phrase": "だっしー"
   },
   {
       "name": "Paolo",
@@ -15351,7 +15623,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "パオロ"
+      "ja_name": "パオロ",
+      "ja_phrase": "パオ"
   },
   {
       "name": "Papi",
@@ -15403,7 +15676,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "オカッピ"
+      "ja_name": "オカッピ",
+      "ja_phrase": "だっけ"
   },
   {
       "name": "Pashmina",
@@ -15456,7 +15730,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "バーバラ"
+      "ja_name": "バーバラ",
+      "ja_phrase": "かな"
   },
   {
       "name": "Pate",
@@ -15515,7 +15790,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ナッキー"
+      "ja_name": "ナッキー",
+      "ja_phrase": "メソメソ"
   },
   {
       "name": "Patty",
@@ -15576,7 +15852,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "カルピ"
+      "ja_name": "カルピ",
+      "ja_phrase": "だモー"
   },
   {
       "name": "Paula",
@@ -15630,7 +15907,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "レイチェル"
+      "ja_name": "レイチェル",
+      "ja_phrase": "ヤッホー"
   },
   {
       "name": "Peaches",
@@ -15688,7 +15966,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ドサコ"
+      "ja_name": "ドサコ",
+      "ja_phrase": "だポン"
   },
   {
       "name": "Peanut",
@@ -15746,7 +16025,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ももこ"
+      "ja_name": "ももこ",
+      "ja_phrase": "なのよ"
   },
   {
       "name": "Pecan",
@@ -15805,7 +16085,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "レベッカ"
+      "ja_name": "レベッカ",
+      "ja_phrase": "つんっ"
   },
   {
       "name": "Peck",
@@ -15859,7 +16140,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ふみたろう"
+      "ja_name": "ふみたろう",
+      "ja_phrase": "ブン"
   },
   {
       "name": "Peewee",
@@ -15920,7 +16202,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ダンベル"
+      "ja_name": "ダンベル",
+      "ja_phrase": "ガオ"
   },
   {
       "name": "Peggy",
@@ -15976,7 +16259,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ちえり"
+      "ja_name": "ちえり",
+      "ja_phrase": "ぷるる"
   },
   {
       "name": "Pekoe",
@@ -16031,7 +16315,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ジャスミン"
+      "ja_name": "ジャスミン",
+      "ja_phrase": "チャ"
   },
   {
       "name": "Penelope",
@@ -16085,7 +16370,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "チューこ"
+      "ja_name": "チューこ",
+      "ja_phrase": "でちゅの"
   },
   {
       "name": "Petri",
@@ -16136,7 +16422,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "リカ"
+      "ja_name": "リカ",
+      "ja_phrase": "ふむふむ"
   },
   {
       "name": "Phil",
@@ -16189,7 +16476,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "ケイン"
+      "ja_name": "ケイン",
+      "ja_phrase": "ホロロ"
   },
   {
       "name": "Phoebe",
@@ -16243,7 +16531,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ヒノコ"
+      "ja_name": "ヒノコ",
+      "ja_phrase": "アツイわ"
   },
   {
       "name": "Pierce",
@@ -16304,7 +16593,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "セバスチャン"
+      "ja_name": "セバスチャン",
+      "ja_phrase": "バサバサ"
   },
   {
       "name": "Pietro",
@@ -16358,7 +16648,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ジュペッティ"
+      "ja_name": "ジュペッティ",
+      "ja_phrase": "グフフ"
   },
   {
       "name": "Pinky",
@@ -16419,7 +16710,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "タンタン"
+      "ja_name": "タンタン",
+      "ja_phrase": "わぉ"
   },
   {
       "name": "Piper",
@@ -16474,7 +16766,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "レイコ"
+      "ja_name": "レイコ",
+      "ja_phrase": "けどー"
   },
   {
       "name": "Pippy",
@@ -16533,7 +16826,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ロッタ"
+      "ja_name": "ロッタ",
+      "ja_phrase": "なのサ"
   },
   {
       "name": "Plucky",
@@ -16589,7 +16883,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "パタヤ"
+      "ja_name": "パタヤ",
+      "ja_phrase": "どうだい"
   },
   {
       "name": "Pompom",
@@ -16648,7 +16943,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "のりっぺ"
+      "ja_name": "のりっぺ",
+      "ja_phrase": "だっピ"
   },
   {
       "name": "Poncho",
@@ -16706,7 +17002,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ポンチョ"
+      "ja_name": "ポンチョ",
+      "ja_phrase": "モン"
   },
   {
       "name": "Poppy",
@@ -16761,7 +17058,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "グミ"
+      "ja_name": "グミ",
+      "ja_phrase": "デス"
   },
   {
       "name": "Portia",
@@ -16820,7 +17118,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ブレンダ"
+      "ja_name": "ブレンダ",
+      "ja_phrase": "フンッ"
   },
   {
       "name": "Prince",
@@ -16878,7 +17177,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "カール"
+      "ja_name": "カール",
+      "ja_phrase": "ですだ"
   },
   {
       "name": "Puck",
@@ -16936,7 +17236,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ホッケー"
+      "ja_name": "ホッケー",
+      "ja_phrase": "さぶー"
   },
   {
       "name": "Puddles",
@@ -16994,7 +17295,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "チョキ"
+      "ja_name": "チョキ",
+      "ja_phrase": "っちゃ"
   },
   {
       "name": "Pudge",
@@ -17054,7 +17356,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "きんぞう"
+      "ja_name": "きんぞう",
+      "ja_phrase": "んもう"
   },
   {
       "name": "Punchy",
@@ -17111,7 +17414,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ビンタ"
+      "ja_name": "ビンタ",
+      "ja_phrase": "だのら"
   },
   {
       "name": "Purrl",
@@ -17170,7 +17474,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "たま"
+      "ja_name": "たま",
+      "ja_phrase": "ふんっ"
   },
   {
       "name": "Queenie",
@@ -17229,7 +17534,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "タキュ"
+      "ja_name": "タキュ",
+      "ja_phrase": "やっぱし"
   },
   {
       "name": "Quillson",
@@ -17283,7 +17589,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "タックン"
+      "ja_name": "タックン",
+      "ja_phrase": "マジかよ"
   },
   {
       "name": "Quinn",
@@ -17334,7 +17641,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "シオン"
+      "ja_name": "シオン",
+      "ja_phrase": "しっかり"
   },
   {
       "name": "Raddle",
@@ -17387,7 +17695,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "カックン"
+      "ja_name": "カックン",
+      "ja_phrase": "へくしっ"
   },
   {
       "name": "Rasher",
@@ -17446,7 +17755,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "グレオ"
+      "ja_name": "グレオ",
+      "ja_phrase": "まんねん"
   },
   {
       "name": "Raymond",
@@ -17497,7 +17807,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "ジャック"
+      "ja_name": "ジャック",
+      "ja_phrase": "キリッ"
   },
   {
       "name": "Renée",
@@ -17550,7 +17861,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "おさい"
+      "ja_name": "おさい",
+      "ja_phrase": "パネェ"
   },
   {
       "name": "Reneigh",
@@ -17601,7 +17913,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "リアーナ"
+      "ja_name": "リアーナ",
+      "ja_phrase": "スン"
   },
   {
       "name": "Rex",
@@ -17656,7 +17969,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "サンデー"
+      "ja_name": "サンデー",
+      "ja_phrase": "だオン"
   },
   {
       "name": "Rhonda",
@@ -17712,7 +18026,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ユメコ"
+      "ja_name": "ユメコ",
+      "ja_phrase": "ンフ"
   },
   {
       "name": "Ribbot",
@@ -17773,7 +18088,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ガチャ"
+      "ja_name": "ガチャ",
+      "ja_phrase": "だロボ"
   },
   {
       "name": "Ricky",
@@ -17829,7 +18145,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "カジロウ"
+      "ja_name": "カジロウ",
+      "ja_phrase": "キッ"
   },
   {
       "name": "Rilla",
@@ -17881,7 +18198,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "リラ"
+      "ja_name": "リラ",
+      "ja_phrase": "ハロー"
   },
   {
       "name": "Rio",
@@ -17935,7 +18253,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "デジャネイロ"
+      "ja_name": "デジャネイロ",
+      "ja_phrase": "リン"
   },
   {
       "name": "Rizzo",
@@ -17993,7 +18312,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ちょろきち"
+      "ja_name": "ちょろきち",
+      "ja_phrase": "がってん"
   },
   {
       "name": "Roald",
@@ -18052,7 +18372,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ペンタ"
+      "ja_name": "ペンタ",
+      "ja_phrase": "だペン"
   },
   {
       "name": "Robin",
@@ -18111,7 +18432,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "パーチク"
+      "ja_name": "パーチク",
+      "ja_phrase": "さ"
   },
   {
       "name": "Rocco",
@@ -18170,7 +18492,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ゴンザレス"
+      "ja_name": "ゴンザレス",
+      "ja_phrase": "だぎゃー"
   },
   {
       "name": "Rocket",
@@ -18224,7 +18547,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "４ごう"
+      "ja_name": "４ごう",
+      "ja_phrase": "そりゃっ"
   },
   {
       "name": "Rod",
@@ -18281,7 +18605,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ジャン"
+      "ja_name": "ジャン",
+      "ja_phrase": "すっげぇ"
   },
   {
       "name": "Rodeo",
@@ -18337,7 +18662,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ロデオ"
+      "ja_name": "ロデオ",
+      "ja_phrase": "さすがに"
   },
   {
       "name": "Rodney",
@@ -18391,7 +18717,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ジミー"
+      "ja_name": "ジミー",
+      "ja_phrase": "ヒュー"
   },
   {
       "name": "Rolf",
@@ -18450,7 +18777,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "チョモラン"
+      "ja_name": "チョモラン",
+      "ja_phrase": "だガー"
   },
   {
       "name": "Rooney",
@@ -18503,7 +18831,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "マイク"
+      "ja_name": "マイク",
+      "ja_phrase": "やるぜ"
   },
   {
       "name": "Rory",
@@ -18557,7 +18886,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "アーサー"
+      "ja_name": "アーサー",
+      "ja_phrase": "ナハッ"
   },
   {
       "name": "Roscoe",
@@ -18614,7 +18944,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "シュバルツ"
+      "ja_name": "シュバルツ",
+      "ja_phrase": "ブルル"
   },
   {
       "name": "Rosie",
@@ -18673,7 +19004,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ブーケ"
+      "ja_name": "ブーケ",
+      "ja_phrase": "チェキ"
   },
   {
       "name": "Roswell",
@@ -18725,7 +19057,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "ピロンコン"
+      "ja_name": "ピロンコン",
+      "ja_phrase": "パヨマケ"
   },
   {
       "name": "Rowan",
@@ -18783,7 +19116,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ゴメス"
+      "ja_name": "ゴメス",
+      "ja_phrase": "まったく"
   },
   {
       "name": "Ruby",
@@ -18839,7 +19173,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ルナ"
+      "ja_name": "ルナ",
+      "ja_phrase": "フツーに"
   },
   {
       "name": "Rudy",
@@ -18893,7 +19228,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "チャス"
+      "ja_name": "チャス",
+      "ja_phrase": "とかナ"
   },
   {
       "name": "Sally",
@@ -18951,7 +19287,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "ララミー"
+      "ja_name": "ララミー",
+      "ja_phrase": "ったら"
   },
   {
       "name": "Samson",
@@ -19010,7 +19347,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ピース"
+      "ja_name": "ピース",
+      "ja_phrase": "チュー"
   },
   {
       "name": "Sandy",
@@ -19065,7 +19403,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "ラン"
+      "ja_name": "ラン",
+      "ja_phrase": "だチョー"
   },
   {
       "name": "Sasha",
@@ -19116,7 +19455,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "ミッチェル"
+      "ja_name": "ミッチェル",
+      "ja_phrase": "くりりん"
   },
   {
       "name": "Savannah",
@@ -19175,7 +19515,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "サバンナ"
+      "ja_name": "サバンナ",
+      "ja_phrase": "ってば"
   },
   {
       "name": "Scoot",
@@ -19233,7 +19574,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "マモル"
+      "ja_name": "マモル",
+      "ja_phrase": "グワッ"
   },
   {
       "name": "Shari",
@@ -19287,7 +19629,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "シェリー"
+      "ja_name": "シェリー",
+      "ja_phrase": "ウキキ"
   },
   {
       "name": "Sheldon",
@@ -19340,7 +19683,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "クリス"
+      "ja_name": "クリス",
+      "ja_phrase": "クリクリ"
   },
   {
       "name": "Shep",
@@ -19396,7 +19740,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ボブ"
+      "ja_name": "ボブ",
+      "ja_phrase": "ワンダー"
   },
   {
       "name": "Sherb",
@@ -19447,7 +19792,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "レム"
+      "ja_name": "レム",
+      "ja_phrase": "ふわぁ"
   },
   {
       "name": "Shino",
@@ -19498,7 +19844,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "よしの"
+      "ja_name": "よしの",
+      "ja_phrase": "とにかく"
   },
   {
       "name": "Simon",
@@ -19554,7 +19901,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "エテキチ"
+      "ja_name": "エテキチ",
+      "ja_phrase": "でござる"
   },
   {
       "name": "Skye",
@@ -19607,7 +19955,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "リリィ"
+      "ja_name": "リリィ",
+      "ja_phrase": "フワワ"
   },
   {
       "name": "Sly",
@@ -19660,7 +20009,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "ハイド"
+      "ja_name": "ハイド",
+      "ja_phrase": "カサコソ"
   },
   {
       "name": "Snake",
@@ -19719,7 +20069,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "モモチ"
+      "ja_name": "モモチ",
+      "ja_phrase": "ニンニン"
   },
   {
       "name": "Snooty",
@@ -19773,7 +20124,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "こまち"
+      "ja_name": "こまち",
+      "ja_phrase": "たもれ"
   },
   {
       "name": "Soleil",
@@ -19827,7 +20179,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "シャンティ"
+      "ja_name": "シャンティ",
+      "ja_phrase": "だってば"
   },
   {
       "name": "Sparro",
@@ -19881,7 +20234,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ちゅんのすけ"
+      "ja_name": "ちゅんのすけ",
+      "ja_phrase": "だチュン"
   },
   {
       "name": "Spike",
@@ -19936,7 +20290,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "スクワット"
+      "ja_name": "スクワット",
+      "ja_phrase": "でヤンキ"
   },
   {
       "name": "Spork",
@@ -19993,7 +20348,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "ポーク"
+      "ja_name": "ポーク",
+      "ja_phrase": "だブー"
   },
   {
       "name": "Sprinkle",
@@ -20047,7 +20403,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "フラッペ"
+      "ja_name": "フラッペ",
+      "ja_phrase": "ヒヤリ"
   },
   {
       "name": "Sprocket",
@@ -20102,7 +20459,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "ヘルツ"
+      "ja_name": "ヘルツ",
+      "ja_phrase": "だメカ"
   },
   {
       "name": "Static",
@@ -20161,7 +20519,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "スパーク"
+      "ja_name": "スパーク",
+      "ja_phrase": "ピカッ"
   },
   {
       "name": "Stella",
@@ -20215,7 +20574,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "アクリル"
+      "ja_name": "アクリル",
+      "ja_phrase": "ウール"
   },
   {
       "name": "Sterling",
@@ -20270,7 +20630,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ギンカク"
+      "ja_name": "ギンカク",
+      "ja_phrase": "やあッ"
   },
   {
       "name": "Stinky",
@@ -20328,7 +20689,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "アセクサ"
+      "ja_name": "アセクサ",
+      "ja_phrase": "ダァーッ"
   },
   {
       "name": "Stitches",
@@ -20384,7 +20746,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "パッチ"
+      "ja_name": "パッチ",
+      "ja_phrase": "なのれす"
   },
   {
       "name": "Stu",
@@ -20440,7 +20803,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "モーリス"
+      "ja_name": "モーリス",
+      "ja_phrase": "だなっす"
   },
   {
       "name": "Sydney",
@@ -20497,7 +20861,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "シドニー"
+      "ja_name": "シドニー",
+      "ja_phrase": "だコアラ"
   },
   {
       "name": "Sylvana",
@@ -20550,7 +20915,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "もんぺ"
+      "ja_name": "もんぺ",
+      "ja_phrase": "ひゅん"
   },
   {
       "name": "Sylvia",
@@ -20607,7 +20973,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "シルビア"
+      "ja_name": "シルビア",
+      "ja_phrase": "よねー"
   },
   {
       "name": "T-Bone",
@@ -20664,7 +21031,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ボルシチ"
+      "ja_name": "ボルシチ",
+      "ja_phrase": "だっぺ"
   },
   {
       "name": "Tabby",
@@ -20723,7 +21091,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "トラこ"
+      "ja_name": "トラこ",
+      "ja_phrase": "にゃは"
   },
   {
       "name": "Tad",
@@ -20778,7 +21147,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "タンボ"
+      "ja_name": "タンボ",
+      "ja_phrase": "だよん"
   },
   {
       "name": "Tammi",
@@ -20833,7 +21203,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "エイプリル"
+      "ja_name": "エイプリル",
+      "ja_phrase": "ワオ"
   },
   {
       "name": "Tammy",
@@ -20887,7 +21258,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "アネッサ"
+      "ja_name": "アネッサ",
+      "ja_phrase": "だってサ"
   },
   {
       "name": "Tangy",
@@ -20946,7 +21318,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ヒャクパー"
+      "ja_name": "ヒャクパー",
+      "ja_phrase": "みかん"
   },
   {
       "name": "Tank",
@@ -21005,7 +21378,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "くるぶし"
+      "ja_name": "くるぶし",
+      "ja_phrase": "ですサイ"
   },
   {
       "name": "Tasha",
@@ -21058,7 +21432,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "ナターシャ"
+      "ja_name": "ナターシャ",
+      "ja_phrase": "やるわね"
   },
   {
       "name": "Teddy",
@@ -21116,7 +21491,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "たいへいた"
+      "ja_name": "たいへいた",
+      "ja_phrase": "ですたい"
   },
   {
       "name": "Tex",
@@ -21170,7 +21546,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ボルト"
+      "ja_name": "ボルト",
+      "ja_phrase": "ベイベッ"
   },
   {
       "name": "Tia",
@@ -21224,7 +21601,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ティーナ"
+      "ja_name": "ティーナ",
+      "ja_phrase": "ホッ"
   },
   {
       "name": "Tiansheng",
@@ -21275,7 +21653,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "テンシン"
+      "ja_name": "テンシン",
+      "ja_phrase": "ハオハオ"
   },
   {
       "name": "Tiffany",
@@ -21331,7 +21710,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "バズレー"
+      "ja_name": "バズレー",
+      "ja_phrase": "ってさ"
   },
   {
       "name": "Timbra",
@@ -21385,7 +21765,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "つかさ"
+      "ja_name": "つかさ",
+      "ja_phrase": "まつわ"
   },
   {
       "name": "Tipper",
@@ -21441,7 +21822,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "まきば"
+      "ja_name": "まきば",
+      "ja_phrase": "ミルミル"
   },
   {
       "name": "Toby",
@@ -21493,7 +21875,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "トビー"
+      "ja_name": "トビー",
+      "ja_phrase": "けろけろ"
   },
   {
       "name": "Tom",
@@ -21551,7 +21934,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "バンタム"
+      "ja_name": "バンタム",
+      "ja_phrase": "ナックル"
   },
   {
       "name": "Truffles",
@@ -21610,7 +21994,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "トンコ"
+      "ja_name": "トンコ",
+      "ja_phrase": "だわさ"
   },
   {
       "name": "Tucker",
@@ -21664,7 +22049,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "はじめ"
+      "ja_name": "はじめ",
+      "ja_phrase": "もじゃ"
   },
   {
       "name": "Tutu",
@@ -21722,7 +22108,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "れんにゅう"
+      "ja_name": "れんにゅう",
+      "ja_phrase": "ファイト"
   },
   {
       "name": "Twiggy",
@@ -21781,7 +22168,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ピーチク"
+      "ja_name": "ピーチク",
+      "ja_phrase": "ッピ"
   },
   {
       "name": "Tybalt",
@@ -21836,7 +22224,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "ハリマオ"
+      "ja_name": "ハリマオ",
+      "ja_phrase": "だトラ"
   },
   {
       "name": "Ursala",
@@ -21891,7 +22280,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "ネーヤ"
+      "ja_name": "ネーヤ",
+      "ja_phrase": "やーねぇ"
   },
   {
       "name": "Velma",
@@ -21947,7 +22337,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "ピティエ"
+      "ja_name": "ピティエ",
+      "ja_phrase": "ザーマス"
   },
   {
       "name": "Vesta",
@@ -22006,7 +22397,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "メリヤス"
+      "ja_name": "メリヤス",
+      "ja_phrase": "なのね"
   },
   {
       "name": "Vic",
@@ -22060,7 +22452,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ノルマン"
+      "ja_name": "ノルマン",
+      "ja_phrase": "モイ"
   },
   {
       "name": "Victoria",
@@ -22116,7 +22509,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "セントアロー"
+      "ja_name": "セントアロー",
+      "ja_phrase": "いくわよ"
   },
   {
       "name": "Violet",
@@ -22173,7 +22567,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "ウズメ"
+      "ja_name": "ウズメ",
+      "ja_phrase": "アイヤ"
   },
   {
       "name": "Vivian",
@@ -22226,7 +22621,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "ヴァネッサ"
+      "ja_name": "ヴァネッサ",
+      "ja_phrase": "だわよ"
   },
   {
       "name": "Vladimir",
@@ -22283,7 +22679,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "HHD"
       ],
-      "ja_name": "ガビ"
+      "ja_name": "ガビ",
+      "ja_phrase": "やんけ"
   },
   {
       "name": "Wade",
@@ -22336,7 +22733,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "カマボコ"
+      "ja_name": "カマボコ",
+      "ja_phrase": "だからね"
   },
   {
       "name": "Walker",
@@ -22392,7 +22790,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ベン"
+      "ja_name": "ベン",
+      "ja_phrase": "バウ"
   },
   {
       "name": "Walt",
@@ -22445,7 +22844,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "カンロク"
+      "ja_name": "カンロク",
+      "ja_phrase": "じゃのう"
   },
   {
       "name": "Wart Jr.",
@@ -22503,7 +22903,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "サム"
+      "ja_name": "サム",
+      "ja_phrase": "だぎゃ"
   },
   {
       "name": "Weber",
@@ -22558,7 +22959,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "アチョット"
+      "ja_name": "アチョット",
+      "ja_phrase": "ピヨ"
   },
   {
       "name": "Wendy",
@@ -22613,7 +23015,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "みぞれ"
+      "ja_name": "みぞれ",
+      "ja_phrase": "イシシ"
   },
   {
       "name": "Whitney",
@@ -22670,7 +23073,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ビアンカ"
+      "ja_name": "ビアンカ",
+      "ja_phrase": "ステキね"
   },
   {
       "name": "Willow",
@@ -22726,7 +23130,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "マリー"
+      "ja_name": "マリー",
+      "ja_phrase": "ですのよ"
   },
   {
       "name": "Winnie",
@@ -22784,7 +23189,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "マキバスター"
+      "ja_name": "マキバスター",
+      "ja_phrase": "みゃあ"
   },
   {
       "name": "Wolfgang",
@@ -22843,7 +23249,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ロボ"
+      "ja_name": "ロボ",
+      "ja_phrase": "のな"
   },
   {
       "name": "Yuka",
@@ -22902,7 +23309,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ユーカリ"
+      "ja_name": "ユーカリ",
+      "ja_phrase": "アラ"
   },
   {
       "name": "Zell",
@@ -22956,7 +23364,8 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "ネルソン"
+      "ja_name": "ネルソン",
+      "ja_phrase": "たしかに"
   },
   {
       "name": "Zoe",
@@ -23012,7 +23421,8 @@ const data: VillagerProperties2[] = [
           "NH",
           "PC"
       ],
-      "ja_name": "ビーフン"
+      "ja_name": "ビーフン",
+      "ja_phrase": "ハフーン"
   },
   {
       "name": "Zucker",
@@ -23066,11 +23476,12 @@ const data: VillagerProperties2[] = [
           "HHD",
           "PC"
       ],
-      "ja_name": "タコヤ"
+      "ja_name": "タコヤ",
+      "ja_phrase": "せやねん"
   }
 ];
 
-const villagersData: Map<string, VillagerProperties2> = new Map();
+const villagersData = new Map();
 
 for (const v of data) {
   villagersData.set(v.name, v);
