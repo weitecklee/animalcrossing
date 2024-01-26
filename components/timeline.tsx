@@ -272,7 +272,13 @@ export default function Timeline() {
           badgeContent={<OpenWithRoundedIcon
             fontSize='small'
             sx={{
-              cursor: 'move',
+              cursor: 'grab',
+              '&:hover': {
+                cursor: 'grab',
+              },
+              '&:active': {
+                cursor: 'grabbing',
+              },
             }}
           />}
         >

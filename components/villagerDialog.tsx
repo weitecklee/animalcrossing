@@ -112,7 +112,7 @@ export default function VillagerDialog({ dialogVillager, showVillagerDialog } : 
               <br />
               Quote: <Box component="span" sx={{fontStyle: 'italic'}}>&quot;{villagerData.nh_details.quote}&quot;</Box>
               <br />
-              Catchphrase: <Box component="span" sx={{fontStyle: 'italic'}}>&quot;{villagerData.nh_details.catchphrase}&quot;&ensp;&quot;{villagerData.ja_phrase}&quot;</Box>
+              Catchphrase: <Box component="span" sx={{fontStyle: 'italic'}}>&quot;{villagerData.nh_details.catchphrase}&quot;&ensp;「{villagerData.ja_phrase}」</Box>
               <br /><br />
               Moved in on {dateFormatter(history.startDateDate)}
             </Typography>
