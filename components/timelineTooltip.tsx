@@ -50,25 +50,38 @@ export default function TimelineTooltip({ villagerData, history, setShowVillager
           id="dragHandle"
           fontSize={smallScreen ? 'small' : 'medium'}
           sx={{
-            cursor: 'move',
+            cursor: 'grab',
+            '&:hover': {
+              cursor: 'grab',
+            },
+            '&:active': {
+              cursor: 'grabbing',
+            },
             position: 'absolute',
             top: '1%',
             left: '1%',
           }}
         />
-        <CRBadge invisible={!history.currentResident}>
-          <Image
-            src={villagerData.nh_details.icon_url}
-            alt={villagerData.name}
-            height={smallScreen ? 64 : 128}
-            width={smallScreen ? 64 : 128}
-            title={villagerData.name}
-            placeholder='blur'
-            blurDataURL={rgbDataURL(villagerData.title_color)}
-            key={villagerData.nh_details.icon_url}
-          />
-        </CRBadge>
-        <Box>
+        <Box
+          onClick={() => {
+            setShowVillagerDialog(true);
+          }}
+          sx={{
+            cursor: 'pointer',
+          }}
+        >
+          <CRBadge invisible={!history.currentResident}>
+            <Image
+              src={villagerData.nh_details.icon_url}
+              alt={villagerData.name}
+              height={smallScreen ? 64 : 128}
+              width={smallScreen ? 64 : 128}
+              title={villagerData.name}
+              placeholder='blur'
+              blurDataURL={rgbDataURL(villagerData.title_color)}
+              key={villagerData.nh_details.icon_url}
+            />
+          </CRBadge>
           <Stack direction="row" alignItems="center">
             <span
               style={{
@@ -102,19 +115,6 @@ export default function TimelineTooltip({ villagerData, history, setShowVillager
             screenBoolean={smallScreen}
           />
         </Box>
-        <IconButton
-          onClick={() => {
-            setShowVillagerDialog(true);
-          }}
-          size={smallScreen ? "small" : "medium"}
-          sx={{
-            position: 'absolute',
-            bottom: 0,
-            right: 0,
-          }}
-        >
-          <MoreHorizRoundedIcon fontSize="inherit" />
-        </IconButton>
       </DraggablePaper>
   )
 }
