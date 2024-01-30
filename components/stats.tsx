@@ -258,7 +258,7 @@ export default function Stats() {
                     villager={villager}
                   />
                   <Typography>
-                    &nbsp;&nbsp;{duration.trait} days
+                    &nbsp;&nbsp;{dayOrDays(duration.trait)}
                   </Typography>
                 </Box>
               </ListItem>
