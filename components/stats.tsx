@@ -179,7 +179,7 @@ export default function Stats() {
             title={
               <ClickAwayListener onClickAway={() => {setShowTooltip(false);}}>
                 <Typography>
-                  You can interact with villagers to raise your friendship level with them, usually by talking to them, giving them gifts, or completing tasks for them. Once this friendship level is high enough, villagers may randomly give you their photo. The full breakdown shows the wide range of time it can take to receive photos, even though I try to interact with each of the villagers at least once every day. (And then there are those who never gave me their photos even after over half a year...)
+                  You can interact with villagers to raise your friendship level with them, usually by talking to them, giving them gifts, or completing tasks for them. Once this friendship level is high enough, villagers may randomly give you their photo after being gifted a high quality item. I usually try to wait till I have received a villager&#39;s photo before I let them leave the island.
                 </Typography>
               </ClickAwayListener>
             }
