@@ -1,4 +1,4 @@
-import { BoxProps, DialogProps, FadeProps } from "@mui/material";
+import { DialogProps } from "@mui/material";
 import { ImageProps } from "next/image";
 import { Dispatch, SetStateAction } from 'react';
 
@@ -39,12 +39,15 @@ export interface MongoProperties {
   endDate: string,
   photoDate: string,
   islandmates: string[],
-  _id: string,
   currentResident: boolean,
   photo: boolean,
   startDateString: string,
   photoDateString: string,
   daysToPhoto: number,
+}
+
+export interface MongoPropertiesOrig extends MongoProperties {
+  _id: string,
 }
 
 export interface HistoryProperties extends MongoProperties {
@@ -168,4 +171,14 @@ export interface DataContextProperties extends PreparedDataProperties {
 
 export interface CustomImageProps extends ImageProps {
   blurColor: string,
+}
+
+export interface EventProperties {
+  date: string,
+  villager: string,
+  event: string,
+}
+
+export interface EventPropertiesOrig extends EventProperties {
+  _id: string,
 }
