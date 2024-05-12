@@ -6,19 +6,19 @@ export default function prepareData(mongoData: MongoProperties[]): PreparedDataP
 
   const histories: Map<string,HistoryProperties> = new Map();
   const photoStats2: PhotoStats2Properties = {
-    shortestAfterReceiving: {
+    shortestAfterGiving: {
       trait: '',
       count: 0,
       villagers: [],
       duration: 10000,
     },
-    longestAfterReceiving: {
+    longestAfterGiving: {
       trait: '',
       count: 0,
       villagers: [],
       duration: 0,
     },
-    longestWithoutReceiving: {
+    longestWithoutGiving: {
       trait: '',
       count: 0,
       villagers: [],
@@ -53,20 +53,20 @@ export default function prepareData(mongoData: MongoProperties[]): PreparedDataP
     tmpHist.endDateString = tmpHist.endDateDate.toLocaleDateString("en-ZA");
     if (mongoDatum.photo) {
       tmpHist.photoDateDate = new Date(mongoDatum.photoDate);
-      const stayAfterReceiving = calculateDays(tmpHist.photoDateDate, tmpHist.endDateDate);
+      const stayAfterGiving = calculateDays(tmpHist.photoDateDate, tmpHist.endDateDate);
       if (!mongoDatum.currentResident) {
-        if (stayAfterReceiving < photoStats2.shortestAfterReceiving.duration) {
-          photoStats2.shortestAfterReceiving.duration = stayAfterReceiving;
-          photoStats2.shortestAfterReceiving.villagers = [mongoDatum.name];
-        } else if (stayAfterReceiving === photoStats2.shortestAfterReceiving.duration) {
-          photoStats2.shortestAfterReceiving.villagers.push(mongoDatum.name);
+        if (stayAfterGiving < photoStats2.shortestAfterGiving.duration) {
+          photoStats2.shortestAfterGiving.duration = stayAfterGiving;
+          photoStats2.shortestAfterGiving.villagers = [mongoDatum.name];
+        } else if (stayAfterGiving === photoStats2.shortestAfterGiving.duration) {
+          photoStats2.shortestAfterGiving.villagers.push(mongoDatum.name);
         }
       }
-      if (stayAfterReceiving > photoStats2.longestAfterReceiving.duration) {
-        photoStats2.longestAfterReceiving.duration = stayAfterReceiving;
-        photoStats2.longestAfterReceiving.villagers = [mongoDatum.name];
-      } else if (stayAfterReceiving === photoStats2.longestAfterReceiving.duration) {
-        photoStats2.longestAfterReceiving.villagers.push(mongoDatum.name);
+      if (stayAfterGiving > photoStats2.longestAfterGiving.duration) {
+        photoStats2.longestAfterGiving.duration = stayAfterGiving;
+        photoStats2.longestAfterGiving.villagers = [mongoDatum.name];
+      } else if (stayAfterGiving === photoStats2.longestAfterGiving.duration) {
+        photoStats2.longestAfterGiving.villagers.push(mongoDatum.name);
       }
     } else {
       if (!noPhotoMap.has(tmpHist.duration)) {
@@ -123,9 +123,9 @@ export default function prepareData(mongoData: MongoProperties[]): PreparedDataP
   const noPhotoData = Array.from(noPhotoMap.values());
   noPhotoData.sort((a, b) => b.duration - a.duration);
 
-  photoStats2.longestWithoutReceiving = noPhotoData[0];
-  photoStats2.longestAfterReceiving.trait = photoStats2.longestAfterReceiving.duration.toString();
-  photoStats2.shortestAfterReceiving.trait = photoStats2.shortestAfterReceiving.duration.toString();
+  photoStats2.longestWithoutGiving = noPhotoData[0];
+  photoStats2.longestAfterGiving.trait = photoStats2.longestAfterGiving.duration.toString();
+  photoStats2.shortestAfterGiving.trait = photoStats2.shortestAfterGiving.duration.toString();
 
   return {
     durationData,

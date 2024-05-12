@@ -22,7 +22,7 @@ export default function Events() {
           </ListItemAvatar>
           <ListItemText primary={event} secondary={dateFormatter(new Date(date))}/>
         </ListItem>
-})}
+        })}
     </List>
   </Box>
 

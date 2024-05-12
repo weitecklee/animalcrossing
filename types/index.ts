@@ -120,9 +120,9 @@ export interface PhotoStatsProperties {
 }
 
 export interface PhotoStats2Properties {
-  shortestAfterReceiving: DurationProperties,
-  longestAfterReceiving: DurationProperties,
-  longestWithoutReceiving: DurationProperties,
+  shortestAfterGiving: DurationProperties,
+  longestAfterGiving: DurationProperties,
+  longestWithoutGiving: DurationProperties,
 }
 
 export interface CustomDialogProps extends DialogProps {

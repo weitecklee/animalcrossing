@@ -117,9 +117,9 @@ export default function VillagerDialog({ dialogVillager, showVillagerDialog } : 
               Moved in on {dateFormatter(history.startDateDate)}
             </Typography>
               {history.photo ? <Typography>
-                Photo received on {dateFormatter(history.photoDateDate)}
+                Gave photo on {dateFormatter(history.photoDateDate)}
                 <br />
-                Time to receive: {history.daysToPhoto} days
+                Time to give: {history.daysToPhoto} days
                 </Typography> : ""}
               {history.currentResident ? "" : <Typography>
                 Moved out on {dateFormatter(history.endDateDate)}

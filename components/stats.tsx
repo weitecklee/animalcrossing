@@ -41,7 +41,7 @@ export default function Stats() {
       alignItems: "center"
     }}>
       <Divider>
-        <Chip label="Time to receive (stay after receiving)" color="secondary" />
+        <Chip label="Time to give (stay after giving)" color="secondary" />
       </Divider>
       <List>
         {photoData.map((photo) => (
@@ -66,7 +66,7 @@ export default function Stats() {
       alignItems: "center"
     }}>
       <Divider>
-        <Chip label="Stay without receiving" color="secondary" />
+        <Chip label="Stay without giving" color="secondary" />
       </Divider>
       <List>
         {noPhotoData.map((noPhoto) => (
@@ -192,9 +192,9 @@ export default function Stats() {
       />
     </Divider>
     <Typography>
-      Received: {photoStats.count} ({(photoStats.count / histories.size * 100).toFixed(2)}%)
+      Given: {photoStats.count} ({(photoStats.count / histories.size * 100).toFixed(2)}%)
       <br />
-      Average time to receive: {photoStats.average.toFixed(2)} days
+      Average time to give: {photoStats.average.toFixed(2)} days
       <br />
       Quickest: {photoData[0].trait} days
     </Typography>
@@ -208,22 +208,22 @@ export default function Stats() {
       traitData={photoData[photoData.length - 1]}
     />
     <Typography>
-      Shortest stay after receving photo: {dayOrDays(photoStats2.shortestAfterReceiving.duration - 1)}
+      Shortest stay after giving photo: {dayOrDays(photoStats2.shortestAfterGiving.duration - 1)}
     </Typography>
     <IconGrid
-      traitData={photoStats2.shortestAfterReceiving}
+      traitData={photoStats2.shortestAfterGiving}
     />
     <Typography>
-      Longest stay after receiving photo: {dayOrDays(photoStats2.longestAfterReceiving.duration - 1)}
+      Longest stay after giving photo: {dayOrDays(photoStats2.longestAfterGiving.duration - 1)}
     </Typography>
     <IconGrid
-      traitData={photoStats2.longestAfterReceiving}
+      traitData={photoStats2.longestAfterGiving}
     />
     <Typography>
-      Longest stay without receiving photo: {photoStats2.longestWithoutReceiving.duration} days
+      Longest stay without giving photo: {photoStats2.longestWithoutGiving.duration} days
     </Typography>
     <IconGrid
-      traitData={photoStats2.longestWithoutReceiving}
+      traitData={photoStats2.longestWithoutGiving}
     />
     <BreakdownLink onClick={() => {setShowPhotoDialog(true); setShowPhotoCollapse(true);}} />
     <Divider>
