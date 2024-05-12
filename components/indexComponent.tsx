@@ -2,6 +2,7 @@ import { Box, Link, Typography } from '@mui/material';
 import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
 import Image from 'next/image';
 import AvatarPNG from '../public/avatar13.png';
+import Events from './events';
 
 const BoldSpan = ({text}: {text: string}) => <Box component="span" sx={{fontFamily: 'Coustard'}}>
   {text}
@@ -9,6 +10,7 @@ const BoldSpan = ({text}: {text: string}) => <Box component="span" sx={{fontFami
 
 export default function IndexComponent() {
   return <>
+    <Events />
     <Typography>
       Hello there!
     </Typography>

@@ -131,6 +131,7 @@ export interface CustomDialogProps extends DialogProps {
 
 export interface StaticDataProperties {
   currentResidents: string[],
+  eventData: EventProperties[],
   genderData: TraitProperties[],
   islandmatesData: TraitProperties[],
   mongoData: MongoProperties[],
@@ -167,6 +168,7 @@ export interface DataContextProperties extends PreparedDataProperties {
   setShowVillagerDialog: Dispatch<SetStateAction<boolean>>,
   speciesData: TraitProperties[],
   villagersData: Map<string,VillagerProperties2>,
+  eventData: EventProperties[],
 }
 
 export interface CustomImageProps extends ImageProps {

@@ -94,7 +94,7 @@ export const ScreenContext = createContext({
   smallScreen: false,
 });
 
-export default function HomePage({ mongoData, speciesData, personalityData, genderData, photoData, photoStats, currentResidents, islandmatesData }: StaticDataProperties) {
+export default function HomePage({ mongoData, speciesData, personalityData, genderData, photoData, photoStats, currentResidents, islandmatesData, eventData}: StaticDataProperties) {
 
   const [component, setComponent] =  useState('Index');
   const [showVillagerDialog, setShowVillagerDialog] = useState(false);
@@ -143,7 +143,8 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
         setDialogVillager,
         setShowVillagerDialog,
         speciesData,
-        villagersData
+        villagersData,
+        eventData,
       }}>
         <ScreenContext.Provider value={{mediumScreen, smallScreen}}>
           <TopBar
