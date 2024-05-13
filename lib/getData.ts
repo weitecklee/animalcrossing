@@ -1,6 +1,6 @@
 import { villagersData } from './combinedData';
 import { calculateDays } from './functions';
-import { DurationProperties, MongoProperties, PhotoStatsProperties, TraitProperties } from '../types';
+import { DurationProperties, EventProperties, EventPropertiesOrig, MongoProperties, MongoPropertiesOrig, PhotoStatsProperties, TraitProperties } from '../types';
 
 export default async function getData(): Promise<{
   mongoData: MongoProperties[];
@@ -11,6 +11,7 @@ export default async function getData(): Promise<{
   photoStats: PhotoStatsProperties;
   currentResidents: string[];
   islandmatesData: DurationProperties[];
+  eventData: EventProperties[];
 }> {
 
   const payload = {
@@ -30,7 +31,10 @@ export default async function getData(): Promise<{
   })
 
   const mongoResponse = await res.json();
-  const mongoData: MongoProperties[] = mongoResponse.documents;
+  const mongoData: MongoProperties[] = mongoResponse.documents.map((doc: MongoPropertiesOrig) => {
+    const { _id, ...others } = doc;
+    return others;
+  });
 
   const speciesMap: Map<string, TraitProperties> = new Map();
   const personalityMap: Map<string, TraitProperties> = new Map();
@@ -134,6 +138,32 @@ export default async function getData(): Promise<{
   const islandmatesData = Array.from(islandmatesMap.values());
   islandmatesData.sort((a, b) => b.duration - a.duration);
 
+  const payload2 = {
+    dataSource: 'AnimalCrossing',
+    database: 'lasagnark',
+    collection: 'events',
+    filter: {},
+    sort: {
+      _id: -1,
+    },
+    limit: 10,
+  }
+
+  const res2 = await fetch(`${process.env.api_url}/action/find`, {
+    method: 'POST',
+    headers: {
+      'api-key': `${process.env.api_key}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload2)
+  })
+
+  const mongoResponse2 = await res2.json();
+  const eventData: EventProperties[] = mongoResponse2.documents.map((doc: EventPropertiesOrig) => {
+    const {_id, ...others } = doc;
+    return others;
+  });
+
   return {
     mongoData,
     speciesData,
@@ -143,5 +173,6 @@ export default async function getData(): Promise<{
     photoStats,
     currentResidents,
     islandmatesData,
+    eventData,
   };
 }

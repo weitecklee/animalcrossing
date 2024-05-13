@@ -1,4 +1,4 @@
-import { BoxProps, DialogProps, FadeProps } from "@mui/material";
+import { DialogProps } from "@mui/material";
 import { ImageProps } from "next/image";
 import { Dispatch, SetStateAction } from 'react';
 
@@ -39,12 +39,15 @@ export interface MongoProperties {
   endDate: string,
   photoDate: string,
   islandmates: string[],
-  _id: string,
   currentResident: boolean,
   photo: boolean,
   startDateString: string,
   photoDateString: string,
   daysToPhoto: number,
+}
+
+export interface MongoPropertiesOrig extends MongoProperties {
+  _id: string,
 }
 
 export interface HistoryProperties extends MongoProperties {
@@ -117,9 +120,9 @@ export interface PhotoStatsProperties {
 }
 
 export interface PhotoStats2Properties {
-  shortestAfterReceiving: DurationProperties,
-  longestAfterReceiving: DurationProperties,
-  longestWithoutReceiving: DurationProperties,
+  shortestAfterGiving: DurationProperties,
+  longestAfterGiving: DurationProperties,
+  longestWithoutGiving: DurationProperties,
 }
 
 export interface CustomDialogProps extends DialogProps {
@@ -128,6 +131,7 @@ export interface CustomDialogProps extends DialogProps {
 
 export interface StaticDataProperties {
   currentResidents: string[],
+  eventData: EventProperties[],
   genderData: TraitProperties[],
   islandmatesData: TraitProperties[],
   mongoData: MongoProperties[],
@@ -164,8 +168,19 @@ export interface DataContextProperties extends PreparedDataProperties {
   setShowVillagerDialog: Dispatch<SetStateAction<boolean>>,
   speciesData: TraitProperties[],
   villagersData: Map<string,VillagerProperties2>,
+  eventData: EventProperties[],
 }
 
 export interface CustomImageProps extends ImageProps {
   blurColor: string,
+}
+
+export interface EventProperties {
+  date: string,
+  villager: string,
+  event: string,
+}
+
+export interface EventPropertiesOrig extends EventProperties {
+  _id: string,
 }

@@ -26,7 +26,7 @@ function Legend({mediumScreen}: {mediumScreen: boolean}) {
     />
     <IconWithText
       Icon={CameraAltRoundedIcon}
-      text={'Photo reception date'}
+      text={'Photo date'}
       screenBoolean={mediumScreen}
     />
     <IconWithText

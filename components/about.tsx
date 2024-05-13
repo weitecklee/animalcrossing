@@ -36,7 +36,7 @@ export default function About() {
       <Box component="span" sx={{fontStyle: 'italic'}}>
         Animal Crossing: New Horizons
       </Box>
-      &nbsp;since its release on March 20, 2020. These days, I&apos;m mostly playing out of habit and my own weird interest in recordkeeping and statistics. I keep my own records of my gameplay, noting when villagers come and go and when I receive their photos. All the other villager information (species, personality, etc.) is provided by&nbsp;
+      &nbsp;since its release on March 20, 2020. These days, I&apos;m mostly playing out of habit and my own weird interest in recordkeeping and statistics. I keep my own records of my gameplay, noting when villagers come and go and when they give me their photos. All the other villager information (species, personality, etc.) is provided by&nbsp;
       <Link
         href="https://nookipedia.com/"
         target="_blank"

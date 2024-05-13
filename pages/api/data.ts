@@ -13,6 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     photoStats,
     currentResidents,
     islandmatesData,
+    eventData,
   } = data;
 
   res.status(200).json({
@@ -24,5 +25,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     photoStats,
     currentResidents,
     islandmatesData,
+    eventData,
   });
 }
