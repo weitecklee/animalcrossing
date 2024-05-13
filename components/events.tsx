@@ -1,4 +1,4 @@
-import { Box, Chip, Divider, List, ListItem, ListItemAvatar, ListItemText } from '@mui/material';
+import { Paper, Chip, Divider, List, ListItem, ListItemAvatar, ListItemText, useTheme } from '@mui/material';
 import { useContext } from 'react';
 import { DataContext, ScreenContext } from '../pages';
 import VillagerIcon from './villagerIcon';
@@ -7,7 +7,8 @@ import { dateFormatter } from '../lib/functions';
 export default function Events() {
 
   const { eventData, villagersData } = useContext(DataContext);
-  const { mediumScreen } = useContext(ScreenContext);
+  const { smallScreen, mediumScreen } = useContext(ScreenContext);
+  const theme = useTheme();
 
   const rewordEvent = (villager: string, event: string) : string => {
     if (event === 'gave photo') {
@@ -19,12 +20,18 @@ export default function Events() {
     return `${villager} ${event}`;
   }
 
-  return <Box>
+  return <Paper
+    elevation={4}
+    sx={{
+      background: theme.palette.success.light,
+      px: 2,
+    }}
+  >
     <List dense={mediumScreen} >
       <Divider>
         <Chip label="Latest Happenings" color="secondary" />
       </Divider>
-      {eventData.map((eventDatum) => {
+      {eventData.slice(0, smallScreen ? 3 : 10).map((eventDatum) => {
         const {date, event, villager} = eventDatum;
         const listItemKey = `${villager} ${event}`;
         return <ListItem key={listItemKey}>
@@ -35,6 +42,6 @@ export default function Events() {
         </ListItem>
         })}
     </List>
-  </Box>
+  </Paper>
 
 }
