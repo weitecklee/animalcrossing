@@ -7,10 +7,10 @@ import BoldSpan from './boldSpan';
 
 export default function IndexComponent() {
   return <Grid container justifyContent='space-between' direction='row-reverse'>
-    <Grid item>
+    <Grid item xs={4}>
       <Events />
     </Grid>
-    <Grid item>
+    <Grid item xs={8}>
       <Typography>
         Hello there!
       </Typography>

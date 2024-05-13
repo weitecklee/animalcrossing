@@ -1,12 +1,13 @@
 import { Box, Chip, Divider, List, ListItem, ListItemAvatar, ListItemText } from '@mui/material';
 import { useContext } from 'react';
-import { DataContext } from '../pages';
+import { DataContext, ScreenContext } from '../pages';
 import VillagerIcon from './villagerIcon';
 import { dateFormatter } from '../lib/functions';
 
 export default function Events() {
 
   const { eventData, villagersData } = useContext(DataContext);
+  const { mediumScreen } = useContext(ScreenContext);
 
   const rewordEvent = (villager: string, event: string) : string => {
     if (event === 'gave photo') {
@@ -19,7 +20,7 @@ export default function Events() {
   }
 
   return <Box>
-    <List>
+    <List dense={mediumScreen} >
       <Divider>
         <Chip label="Latest Happenings" color="secondary" />
       </Divider>
