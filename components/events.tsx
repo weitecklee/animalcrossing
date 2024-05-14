@@ -10,12 +10,14 @@ export default function Events() {
   const { smallScreen, mediumScreen } = useContext(ScreenContext);
   const theme = useTheme();
 
+  const determinePronoun = (villager: string) => villagersData.get(villager)!.gender === 'Male' ? 'his' : 'her';
+
   const rewordEvent = (villager: string, event: string) : string => {
     if (event === 'gave photo') {
-      if (villagersData.get(villager)!.gender === 'Male') {
-        return `${villager} gave his photo`;
-      }
-      return `${villager} gave her photo`
+      return `${villager} gave ${determinePronoun(villager)} photo`;
+    }
+    if (event === 'birthday') {
+      return `${villager} celebrated ${determinePronoun(villager)} birthday`;
     }
     return `${villager} ${event}`;
   }
