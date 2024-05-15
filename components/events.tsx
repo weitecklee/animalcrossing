@@ -26,7 +26,7 @@ export default function Events() {
     elevation={4}
     sx={{
       background: theme.palette.success.light,
-      px: 2,
+      px: mediumScreen ? 1 : 2,
     }}
   >
     <List dense={mediumScreen} >

@@ -19,6 +19,7 @@ export default function CRBadge({...props}: BadgeProps) {
           border: "1px solid black",
         }
       }}
+      title='Current Resident'
     />
   )
 }
