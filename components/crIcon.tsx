@@ -33,6 +33,7 @@ export default function CRIcon() {
       display: 'flex',
       alignItems: 'center',
     }}
+    title='Current Resident'
   >
     <Typography component="span" variant="body2">
       CR
