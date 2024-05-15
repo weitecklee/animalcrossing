@@ -6,7 +6,12 @@ import Events from './events';
 import BoldSpan from './boldSpan';
 
 export default function IndexComponent() {
-  return <Grid container justifyContent='space-between' direction='row-reverse'>
+  return <Grid
+    container
+    justifyContent='space-between'
+    direction='row-reverse'
+    spacing={1}
+  >
     <Grid item xs={12} sm={4} sx={{pt: 1, pb: 2}}>
       <Events />
     </Grid>
