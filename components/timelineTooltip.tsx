@@ -1,9 +1,8 @@
 import AccessTimeRoundedIcon from '@mui/icons-material/AccessTimeRounded';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
-import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
 import OpenWithRoundedIcon from '@mui/icons-material/OpenWithRounded';
-import { Box, IconButton, Stack, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import Paper, { PaperProps } from '@mui/material/Paper';
 import Image from 'next/image';
 import { Dispatch, SetStateAction, useContext } from 'react';
