@@ -27,31 +27,31 @@ export default function VillagerIcon({ villager, customOnClick } : {
   return (
     <VillagerTooltip villager={villager}>
       <Box>
-      <CRBadge invisible={!histories.get(villager)!.currentResident}>
-        <Image
-          src={villagerData.nh_details.icon_url}
-          alt={villager}
-          title={villager}
-          height={mediumScreen ? 48 : 64}
-          width={mediumScreen ? 48 : 64}
-          onClick={() => {
-            if (customOnClick) {
-              customOnClick();
-              setTimeout(() => {
+        <CRBadge invisible={!histories.get(villager)!.currentResident}>
+          <Image
+            src={villagerData.nh_details.icon_url}
+            alt={villager}
+            title={villager}
+            height={mediumScreen ? 48 : 64}
+            width={mediumScreen ? 48 : 64}
+            onClick={() => {
+              if (customOnClick) {
+                customOnClick();
+                setTimeout(() => {
+                  setDialogVillager(villager);
+                }, theme.transitions.duration.standard);
+              } else {
                 setDialogVillager(villager);
-              }, theme.transitions.duration.standard);
-            } else {
-              setDialogVillager(villager);
-              setShowVillagerDialog(true);
-            }
-          }}
-          style={{
-            cursor: 'pointer',
-          }}
-          placeholder='blur'
-          blurDataURL={rgbDataURL(villagerData.title_color)}
-        />
-      </CRBadge>
+                setShowVillagerDialog(true);
+              }
+            }}
+            style={{
+              cursor: 'pointer',
+            }}
+            placeholder='blur'
+            blurDataURL={rgbDataURL(villagerData.title_color)}
+          />
+        </CRBadge>
       </Box>
     </VillagerTooltip>
   );
