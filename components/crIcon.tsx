@@ -35,7 +35,7 @@ export default function CRIcon() {
     }}
     title='Current Resident'
   >
-    <Typography component="span" variant="body2">
+    <Typography component="span" variant="body2" fontFamily="Coustard">
       CR
     </Typography>
   </Box>
