@@ -1,4 +1,4 @@
-import { DialogProps } from "@mui/material";
+import { DialogProps, TooltipProps } from "@mui/material";
 import { ImageProps } from "next/image";
 import { Dispatch, SetStateAction } from 'react';
 
@@ -183,4 +183,8 @@ export interface EventProperties {
 
 export interface EventPropertiesOrig extends EventProperties {
   _id: string,
+}
+
+export interface VillagerTooltipProps extends Omit<TooltipProps, 'title'> {
+  villager: string,
 }

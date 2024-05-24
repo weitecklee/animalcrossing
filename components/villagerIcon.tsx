@@ -4,6 +4,8 @@ import { useContext } from 'react';
 import { DataContext, ScreenContext } from '../pages';
 import CRBadge from './crBadge';
 import rgbDataURL from '../lib/rgbDataURL';
+import VillagerTooltip from './villagerTooltip';
+import { Box } from '@mui/material';
 
 export default function VillagerIcon({ villager, customOnClick } : {
   villager: string,
@@ -23,31 +25,35 @@ export default function VillagerIcon({ villager, customOnClick } : {
   const villagerData = villagersData.get(villager)!;
 
   return (
-    <CRBadge invisible={!histories.get(villager)!.currentResident}>
-      <Image
-        src={villagerData.nh_details.icon_url}
-        alt={villager}
-        height={mediumScreen ? 48 : 64}
-        width={mediumScreen ? 48 : 64}
-        title={villager}
-        onClick={() => {
-          if (customOnClick) {
-            customOnClick();
-            setTimeout(() => {
-              setDialogVillager(villager);
-            }, theme.transitions.duration.standard);
-          } else {
-            setDialogVillager(villager);
-            setShowVillagerDialog(true);
-          }
-        }}
-        style={{
-          cursor: 'pointer',
-        }}
-        placeholder='blur'
-        blurDataURL={rgbDataURL(villagerData.title_color)}
-      />
-    </CRBadge>
+    <VillagerTooltip villager={villager}>
+      <Box>
+        <CRBadge invisible={!histories.get(villager)!.currentResident}>
+          <Image
+            src={villagerData.nh_details.icon_url}
+            alt={villager}
+            title={villager}
+            height={mediumScreen ? 48 : 64}
+            width={mediumScreen ? 48 : 64}
+            onClick={() => {
+              if (customOnClick) {
+                customOnClick();
+                setTimeout(() => {
+                  setDialogVillager(villager);
+                }, theme.transitions.duration.standard);
+              } else {
+                setDialogVillager(villager);
+                setShowVillagerDialog(true);
+              }
+            }}
+            style={{
+              cursor: 'pointer',
+            }}
+            placeholder='blur'
+            blurDataURL={rgbDataURL(villagerData.title_color)}
+          />
+        </CRBadge>
+      </Box>
+    </VillagerTooltip>
   );
 
 }

@@ -92,7 +92,12 @@ export default function Stats() {
   }) => (
     <Button
       size="small"
-      sx={{fontSize: "1rem"}}
+      variant="contained"
+      disableElevation
+      color="secondary"
+      sx={{
+        fontFamily: "Coustard",
+      }}
       onClick={() => {
         if (traitData) {
           setDialogTraitData(traitData);
