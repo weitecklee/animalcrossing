@@ -5,7 +5,7 @@ import { Dispatch, ElementType, MouseEvent, SetStateAction, useContext, useEffec
 import { ScreenContext } from '../pages';
 import FavIcon from '../public/lasagnark8.png';
 
-const pages = ['Villagers', 'Timeline', 'Stats', 'About'];
+const pages = ['Villagers', 'Timeline', 'Stats', 'Search', 'About'];
 
 export default function TopBar({ component, setComponent }: {
   component: string,

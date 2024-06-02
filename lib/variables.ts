@@ -1,0 +1,3 @@
+export const SPECIES = ['Alligator', 'Anteater', 'Bear', 'Bear cub', 'Bird', 'Bull', 'Cat', 'Chicken', 'Cow', 'Deer', 'Dog', 'Duck', 'Eagle', 'Elephant', 'Frog', 'Goat', 'Gorilla', 'Hamster', 'Hippo', 'Horse', 'Kangaroo', 'Koala', 'Lion', 'Monkey', 'Mouse', 'Octopus', 'Ostrich', 'Penguin', 'Pig', 'Rabbit', 'Rhinoceros', 'Sheep', 'Squirrel', 'Tiger', 'Wolf'];
+
+export const PERSONALITIES = ['Big sister', 'Cranky', 'Jock', 'Lazy', 'Normal', 'Peppy', 'Smug', 'Snooty'];

@@ -14,6 +14,7 @@ import getData from '../lib/getData';
 import prepareData from '../lib/prepareData';
 import { DataContextProperties, PreparedDataProperties, StaticDataProperties } from '../types';
 import { theme, fadeTimeout } from '../styles/theme';
+import Search from '../components/search';
 
 const Timeline = dynamic(() => import('../components/timeline'), {ssr: false})
 
@@ -105,6 +106,7 @@ export default function HomePage({ mongoData, speciesData, personalityData, gend
                   {component === 'Timeline' && <Timeline />}
                   {component === 'Stats' && <Stats />}
                   {component === 'About' && <About />}
+                  {component === 'Search' && <Search />}
                 </Container>
               </Box>
             </Fade>
