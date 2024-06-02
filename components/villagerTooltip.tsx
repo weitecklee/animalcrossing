@@ -20,13 +20,13 @@ export default function VillagerTooltip({ villager, ...props }: VillagerTooltipP
   const { smallScreen } = useContext(ScreenContext);
 
   const villagerData = villagersData.get(villager)!;
-  const history = histories.get(villager)!;
+  const history = histories.get(villager);
 
   return <Tooltip
     {...props}
     title={<Box padding={1}>
       <Stack>
-        <CRBadge invisible={!history.currentResident}>
+        <CRBadge invisible={!history?.currentResident}>
           <Image
             src={villagerData.nh_details.icon_url}
             alt={villagerData.name}
@@ -41,22 +41,28 @@ export default function VillagerTooltip({ villager, ...props }: VillagerTooltipP
         <Typography display="inline" variant={smallScreen ? 'subtitle2' : 'h6'} fontFamily="Coustard">
         {villagerData.name}
         </Typography>
+        {history ?
         <IconWithText
           Icon={ArrowForwardRoundedIcon}
-          text={history.startDateString}
+          text={history?.startDateString}
           screenBoolean={smallScreen}
-        />
-        {!history.currentResident ?
+          /> : ''
+        }
+        {history && !history?.currentResident ?
           <IconWithText
             Icon={ArrowBackRoundedIcon}
-            text={history.endDateString}
+            text={history?.endDateString}
             screenBoolean={smallScreen}
-          /> : ''}
-        <IconWithText
-          Icon={AccessTimeRoundedIcon}
-          text={dayOrDays(history.duration)}
-          screenBoolean={smallScreen}
-        />
+          /> : ''
+        }
+        {history ?
+          <IconWithText
+            Icon={AccessTimeRoundedIcon}
+            text={dayOrDays(history?.duration)}
+            screenBoolean={smallScreen}
+          /> : ''
+        }
+
       </Stack>
     </Box>}
   />

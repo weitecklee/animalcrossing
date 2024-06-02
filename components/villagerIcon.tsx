@@ -27,7 +27,7 @@ export default function VillagerIcon({ villager, customOnClick } : {
   return (
     <VillagerTooltip villager={villager}>
       <Box>
-        <CRBadge invisible={!histories.get(villager)!.currentResident}>
+        <CRBadge invisible={!histories.get(villager)?.currentResident}>
           <Image
             src={villagerData.nh_details.icon_url}
             alt={villager}

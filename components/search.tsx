@@ -1,7 +1,9 @@
 import { ExpandMore } from '@mui/icons-material';
 import { Accordion, AccordionDetails, AccordionSummary, Checkbox, Chip, FormControlLabel, FormGroup, TextField, Typography } from '@mui/material';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useContext, useEffect, useState } from 'react';
 import { PERSONALITIES, SPECIES } from '../lib/variables';
+import IconGrid from './iconGrid';
+import { DataContext } from '../pages';
 
 const handleChips = (map: Map<string, boolean>) => Array.from(map).filter(([k, v]) => v).map(([k, v]) => <Chip key={k} label={k}/>);
 
@@ -45,6 +47,15 @@ export default function Search() {
 
   const [personalitiesMap, setPersonalitiesMap]= useState<Map<string, boolean>>(new Map(PERSONALITIES.map((key) => [key, false])));
   const [speciesMap, setSpeciesMap]= useState<Map<string, boolean>>(new Map(SPECIES.map((key) => [key, false])));
+  const [searchResults, setSearchResults] = useState<string[]>([]);
+
+  const {
+    villagersData,
+  } = useContext(DataContext);
+
+  useEffect(() => {
+    setSearchResults(Array.from(villagersData.values()).filter((v) => personalitiesMap.get(v.personality) || speciesMap.get(v.species)).map((v) => v.name));
+  }, [personalitiesMap, speciesMap, villagersData]);
 
   return <>
     <Typography>
@@ -66,5 +77,9 @@ export default function Search() {
       checkboxMap={personalitiesMap}
       setCheckboxMap={setPersonalitiesMap}
     />
+    <Typography>
+      Results
+    </Typography>
+    <IconGrid villagers={searchResults}/>
   </>
 }

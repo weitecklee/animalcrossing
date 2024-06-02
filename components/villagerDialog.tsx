@@ -20,7 +20,7 @@ export default function VillagerDialog({ dialogVillager, showVillagerDialog } : 
   } = useContext(DataContext);
   const { mediumScreen } = useContext(ScreenContext);
 
-  const history = histories.get(dialogVillager)!;
+  const history = histories.get(dialogVillager);
   const villagerData = villagersData.get(dialogVillager)!;
   const [showCollapse, setShowCollapse] = useState(true);
   const [baseDim, setBaseDim] = useState(128);
@@ -40,10 +40,6 @@ export default function VillagerDialog({ dialogVillager, showVillagerDialog } : 
       setBaseDim(128);
     }
   }, [mediumScreen]);
-
-  if (!history || !villagerData) {
-    return;
-  }
 
   return (<>
     <CustomDialog
@@ -69,8 +65,8 @@ export default function VillagerDialog({ dialogVillager, showVillagerDialog } : 
             <Stack direction="row" spacing={2}>
               <CustomImage
                 src={villagerData.image_url}
-                alt={`${history.name} image`}
-                title={history.name}
+                alt={`${villagerData.name} image`}
+                title={villagerData.name}
                 width={2 * baseDim}
                 height={3 * baseDim}
                 blurColor={villagerData.title_color}
@@ -79,8 +75,8 @@ export default function VillagerDialog({ dialogVillager, showVillagerDialog } : 
               <Stack alignItems="center">
                 <CustomImage
                   src={villagerData.nh_details.icon_url}
-                  alt={`${history.name} icon`}
-                  title={history.name}
+                  alt={`${villagerData.name} icon`}
+                  title={villagerData.name}
                   width={baseDim}
                   height={baseDim}
                   blurColor={villagerData.title_color}
@@ -88,8 +84,8 @@ export default function VillagerDialog({ dialogVillager, showVillagerDialog } : 
                 />
                 <CustomImage
                   src={villagerData.nh_details.photo_url}
-                  alt={`${history.name} photo`}
-                  title={history.name}
+                  alt={`${villagerData.name} photo`}
+                  title={villagerData.name}
                   width={2 * baseDim}
                   height={2 * baseDim}
                   blurColor={villagerData.title_color}
@@ -101,9 +97,9 @@ export default function VillagerDialog({ dialogVillager, showVillagerDialog } : 
           <Grid item maxWidth={mediumScreen? 40 * 8 : 64 * 9 }>
             <Stack direction="row" alignItems="center">
               <Typography variant="h6" fontFamily="Coustard">
-                {history.name}&ensp;{villagerData.ja_name}&ensp;
+                {villagerData.name}&ensp;{villagerData.ja_name}&ensp;
               </Typography>
-              {history.currentResident ? <CRIcon /> : ''}
+              {history && history.currentResident ? <CRIcon /> : ''}
             </Stack>
             <Typography>
               {villagerData.personality} {villagerData.gender} {villagerData.species}
@@ -113,29 +109,38 @@ export default function VillagerDialog({ dialogVillager, showVillagerDialog } : 
               Quote: <Box component="span" sx={{fontStyle: 'italic'}}>&quot;{villagerData.nh_details.quote}&quot;</Box>
               <br />
               Catchphrase: <Box component="span" sx={{fontStyle: 'italic'}}>&quot;{villagerData.nh_details.catchphrase}&quot;&ensp;「{villagerData.ja_phrase}」</Box>
-              <br /><br />
-              Moved in on {dateFormatter(history.startDateDate)}
             </Typography>
-              {history.photo ? <Typography>
+
+            {history ?
+              <Typography>
+                <br />
+                Moved in on {dateFormatter(history.startDateDate)}
+              </Typography> : ''
+            }
+            {history?.photo ?
+              <Typography>
                 Gave photo on {dateFormatter(history.photoDateDate)}
                 <br />
                 Time to give: {history.daysToPhoto} days
-                </Typography> : ""}
-              {history.currentResident ? "" : <Typography>
+              </Typography> : ''
+            }
+            {history && !history?.currentResident ?
+              <Typography>
                 Moved out on {dateFormatter(history.endDateDate)}
-                </Typography>}
-            <Typography>
-              Duration of residence:&nbsp;
-              {dayOrDays(history.duration)}{history.currentResident && " and counting"}
-            </Typography>
-            <br />
-            <Typography>
-              {history.islandmates.length} islandmates:
-            </Typography>
-            <IconGrid
-              villagers={history.islandmates}
-              customOnClick={handleClose}
-            />
+              </Typography> : ''
+            }
+            {history ? <>
+              <Typography>
+                Duration of residence:&nbsp;
+                {dayOrDays(history.duration)}{history.currentResident && " and counting"}
+              <br /><br />
+                {history.islandmates.length} islandmates:
+              </Typography>
+              <IconGrid
+                villagers={history.islandmates}
+                customOnClick={handleClose}
+              /></>  : ''
+            }
             <br />
             <Typography variant="body2">
               <Link
