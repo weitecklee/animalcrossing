@@ -21,7 +21,7 @@ export default function VillagerDialog({ dialogVillager, showVillagerDialog } : 
   const { mediumScreen } = useContext(ScreenContext);
 
   const history = histories.get(dialogVillager);
-  const villagerData = villagersData.get(dialogVillager)!;
+  const villagerData = villagersData.get(dialogVillager);
   const [showCollapse, setShowCollapse] = useState(true);
   const [baseDim, setBaseDim] = useState(128);
 
@@ -40,6 +40,10 @@ export default function VillagerDialog({ dialogVillager, showVillagerDialog } : 
       setBaseDim(128);
     }
   }, [mediumScreen]);
+
+  if (!villagerData) {
+    return;
+  }
 
   return (<>
     <CustomDialog

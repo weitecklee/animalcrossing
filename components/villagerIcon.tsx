@@ -23,6 +23,7 @@ export default function VillagerIcon({ villager, customOnClick } : {
   const { mediumScreen } = useContext(ScreenContext);
 
   const villagerData = villagersData.get(villager)!;
+  const isResident = !!histories.get(villager);
 
   return (
     <VillagerTooltip villager={villager}>
@@ -47,6 +48,7 @@ export default function VillagerIcon({ villager, customOnClick } : {
             }}
             style={{
               cursor: 'pointer',
+              opacity: isResident ? 1 : .4,
             }}
             placeholder='blur'
             blurDataURL={rgbDataURL(villagerData.title_color)}
