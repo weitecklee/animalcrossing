@@ -35,8 +35,6 @@ export default function IndexComponent() {
         <br/>
         &emsp;&emsp;<BoldSpan text={'Stats'} />: all sorts of fun stats
         <br/>
-        &emsp;&emsp;<BoldSpan text={'Map'} />: a map of my island (coming soon!)
-        <br/>
         &emsp;&emsp;<BoldSpan text={'About'} />: info about the game and me
         <br/>
         <br/>
