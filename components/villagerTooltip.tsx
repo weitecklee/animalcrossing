@@ -24,6 +24,7 @@ export default function VillagerTooltip({ villager, ...props }: VillagerTooltipP
 
   return <Tooltip
     {...props}
+    followCursor
     title={<Box padding={1}>
       <Stack>
         <CRBadge invisible={!history.currentResident}>

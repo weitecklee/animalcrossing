@@ -54,7 +54,7 @@ export default function VillagerDialog({ dialogVillager, showVillagerDialog } : 
     >
       <Collapse
         in={showCollapse}
-        onTransitionEnd={() => {
+        onExited={() => {
           setShowCollapse(true);
         }}
       >
