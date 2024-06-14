@@ -13,6 +13,7 @@ export default function About() {
         width: '90vw',
         maxWidth: 500,
         height: 'auto',
+        margin: 'auto',
       }}
     />
     <Typography>
@@ -29,6 +30,7 @@ export default function About() {
         width: '90vw',
         maxWidth: 200,
         height: 'auto',
+        margin: 'auto',
       }}
     />
     <Typography>
