@@ -1,6 +1,6 @@
 import { ArrowBackRounded, ArrowForwardRounded } from '@mui/icons-material';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import { Box, Button, Chip, ClickAwayListener, Collapse, DialogContent, Divider, Fab, List, ListItem, Stack, Tooltip, Typography } from '@mui/material';
+import { Box, Button, Chip, ClickAwayListener, Collapse, DialogContent, Divider, Fab, List, ListItem, Stack, Tooltip, Typography, useTheme } from '@mui/material';
 import { useContext, useState } from 'react';
 import { dayOrDays } from '../lib/functions';
 import { DataContext, ScreenContext } from '../pages';
@@ -26,6 +26,7 @@ export default function Stats() {
     speciesData,
   } = useContext(DataContext);
   const { smallScreen } = useContext(ScreenContext);
+  const theme = useTheme();
 
   const [dialogTraitData, setDialogTraitData] = useState<TraitProperties[]>([]);
   const [showTraitDialog, setShowTraitDialog] = useState(false);
@@ -35,6 +36,20 @@ export default function Stats() {
   const [showTooltip, setShowTooltip] = useState(false);
   const [photoDialogTab, setPhotoDialogTab] = useState(true);
   const [showPhotoCollapse, setShowPhotoCollapse] = useState(false);
+  const [traitDialogTitle, setTraitDialogTitle] = useState('');
+
+  const TitleChip = ({title}: {title: string}) => (
+    <Box
+      display="flex"
+      justifyContent="center"
+      mb={1}
+      py={1}
+      px={2}
+      bgcolor={theme.palette.secondary.main}
+      borderRadius={Number.MAX_SAFE_INTEGER}
+    >
+      <Typography fontFamily='Coustard' fontSize='1.2rem'>{title}</Typography>
+    </Box>)
 
   const PhotoDialogContent = (
     <Stack sx={{
@@ -86,9 +101,10 @@ export default function Stats() {
     </Stack>
   );
 
-  const BreakdownLink = ({traitData, onClick} : {
+  const BreakdownLink = ({traitData, onClick, trait} : {
     traitData?: TraitProperties[],
     onClick?: () => void,
+    trait?: string,
   }) => (
     <Button
       size="small"
@@ -99,7 +115,8 @@ export default function Stats() {
         fontFamily: "Coustard",
       }}
       onClick={() => {
-        if (traitData) {
+        if (traitData && trait) {
+          setTraitDialogTitle(trait);
           setDialogTraitData(traitData);
           setShowTraitDialog(true);
         } else {
@@ -151,7 +168,7 @@ export default function Stats() {
       traitData={speciesData[0]}
     />
     <Typography>
-      <BreakdownLink traitData={speciesData}/>
+      <BreakdownLink traitData={speciesData} trait='Species'/>
     </Typography>
     <Divider>
       <Chip label="Personality" color="secondary" />
@@ -163,7 +180,7 @@ export default function Stats() {
       traitData={personalityData[0]}
     />
     <Typography>
-      <BreakdownLink traitData={personalityData}/>
+      <BreakdownLink traitData={personalityData} trait='Personality' />
     </Typography>
     <Divider>
       <Chip label="Gender" color="secondary" />
@@ -173,7 +190,7 @@ export default function Stats() {
       <br />
       {genderData[1].trait}: {genderData[1].count}
       <br />
-      <BreakdownLink traitData={genderData}/>
+      <BreakdownLink traitData={genderData} trait='Gender' />
     </Typography>
     <Divider>
       <Chip
@@ -254,10 +271,11 @@ export default function Stats() {
       zIndex={1200}
     >
       <DialogContent>
+        <TitleChip title={'Duration of Residence'}/>
         <List>
           {durationData.map((duration) => (
             duration.villagers.map((villager) => (
-              <ListItem key={villager} disablePadding>
+              <ListItem key={villager} disablePadding sx={{display: 'flex', justifyContent: 'center'}}>
                 <Box display="flex" alignItems="center">
                   <VillagerIcon
                     villager={villager}
@@ -278,6 +296,7 @@ export default function Stats() {
       zIndex={1200}
     >
       <DialogContent>
+        <TitleChip title={traitDialogTitle}/>
         {dialogTraitData.map((traitData) => (<Box key={traitData.trait}>
           <Divider>
             <Chip label={`${traitData.trait}: ${traitData.count}`} color="secondary" />
@@ -295,6 +314,7 @@ export default function Stats() {
       zIndex={1200}
     >
       <DialogContent>
+        <TitleChip title='Photos' />
         <Stack direction="row" spacing={2}>
           {PhotoDialogContent}
           <Divider orientation='vertical' flexItem/>
@@ -317,6 +337,7 @@ export default function Stats() {
         }}
       >
         <DialogContent>
+          <TitleChip title='Photos' />
           {photoDialogTab ? PhotoDialogContent : PhotoDialogContent2}
         </DialogContent>
       </Collapse>
@@ -360,16 +381,17 @@ export default function Stats() {
       zIndex={1200}
     >
       <DialogContent>
+        <TitleChip title='Islandmates' />
         <List>
           {islandmatesData.map((islandmates) => (
             islandmates.villagers.map((villager) => (
-              <ListItem key={villager} disablePadding>
+              <ListItem key={villager} disablePadding sx={{display: 'flex', justifyContent: 'center'}}>
                 <Box display="flex" alignItems="center">
                   <VillagerIcon
                     villager={villager}
                   />
                   <Typography>
-                    &nbsp;&nbsp;{islandmates.trait} islandmates
+                    &nbsp;&nbsp;{islandmates.trait}
                   </Typography>
                 </Box>
               </ListItem>
