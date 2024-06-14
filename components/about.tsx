@@ -3,9 +3,10 @@ import { Box, Link, Stack, Typography } from '@mui/material';
 import Image from 'next/image';
 import NHLogo from '../public/NH_Logo.png';
 import AvatarPNG from '../public/avatar02.png';
+import BottomSpacing from './bottomSpacing';
 
 export default function About() {
-  return <Stack maxWidth="80rem" spacing={2}>
+  return <><Stack maxWidth="80rem" spacing={2}>
     <Image
       src={NHLogo}
       alt="Animal Crossing: New Horizons logo"
@@ -50,4 +51,5 @@ export default function About() {
       .
     </Typography>
   </Stack>
+  <BottomSpacing /></ >
 }

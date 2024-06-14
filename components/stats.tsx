@@ -9,6 +9,7 @@ import CRIcon from './crIcon';
 import CustomDialog from './customDialog';
 import IconGrid from './iconGrid';
 import VillagerIcon from './villagerIcon';
+import BottomSpacing from './bottomSpacing';
 
 export default function Stats() {
 
@@ -257,6 +258,7 @@ export default function Stats() {
       traitData={islandmatesData[islandmatesData.length - 1]}
       />
     <BreakdownLink onClick={() => {setShowIslandmatesDialog(true);}} />
+    <BottomSpacing />
     <CustomDialog
       open={showDurationDialog}
       onClose={() => setShowDurationDialog(false)}

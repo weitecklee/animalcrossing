@@ -10,6 +10,7 @@ import { DataContext, ScreenContext } from '../pages';
 import HistoryCard from './card';
 import CRIcon from './crIcon';
 import IconWithText from './iconWithText';
+import BottomSpacing from './bottomSpacing';
 
 function Legend({mediumScreen}: {mediumScreen: boolean}) {
   return <>
@@ -86,6 +87,7 @@ export default function Cards({boxRef}: {boxRef: RefObject<HTMLDivElement>}) {
       )}
     </Grid>
     <Legend mediumScreen={mediumScreen} />
+    <BottomSpacing />
     <Fade in={showScroll}>
       <Box position='absolute' right='8px'>
         <Stack
