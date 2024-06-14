@@ -36,7 +36,7 @@ function Legend({mediumScreen}: {mediumScreen: boolean}) {
     />
     <IconWithText
       Icon={AccessTimeRoundedIcon}
-      text={'Duration of residence'}
+      text={'Length of Stay'}
       screenBoolean={mediumScreen}
     />
   </>

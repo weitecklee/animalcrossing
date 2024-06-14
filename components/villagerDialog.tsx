@@ -125,7 +125,7 @@ export default function VillagerDialog({ dialogVillager, showVillagerDialog } : 
                 Moved out on {dateFormatter(history.endDateDate)}
                 </Typography>}
             <Typography>
-              Duration of residence:&nbsp;
+              Length of stay:&nbsp;
               {dayOrDays(history.duration)}{history.currentResident && " and counting"}
             </Typography>
             <br />
