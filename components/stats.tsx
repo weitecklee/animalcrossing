@@ -140,7 +140,7 @@ export default function Stats() {
     </Stack>
     <IconGrid villagers={currentResidents} />
     <Divider>
-      <Chip label="Duration of Residence" color="secondary" />
+      <Chip label="Length of Stay" color="secondary" />
     </Divider>
     <Typography>
       Average: {(Array.from(histories.values()).reduce((a, b) => a + b.duration, 0) / histories.size).toFixed(2)} days
@@ -271,7 +271,7 @@ export default function Stats() {
       zIndex={1200}
     >
       <DialogContent>
-        <TitleChip title={'Duration of Residence'}/>
+        <TitleChip title={'Length of Stay'}/>
         <List>
           {durationData.map((duration) => (
             duration.villagers.map((villager) => (
