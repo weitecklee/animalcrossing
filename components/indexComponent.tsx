@@ -4,9 +4,10 @@ import Image from 'next/image';
 import AvatarPNG from '../public/avatar13.png';
 import Events from './events';
 import BoldSpan from './boldSpan';
+import BottomSpacing from './bottomSpacing';
 
 export default function IndexComponent() {
-  return <Grid
+  return <><Grid
     container
     justifyContent='space-between'
     direction='row-reverse'
@@ -90,4 +91,6 @@ export default function IndexComponent() {
       </Typography>
     </Grid>
   </Grid>
+  <BottomSpacing />
+  </>
 }
