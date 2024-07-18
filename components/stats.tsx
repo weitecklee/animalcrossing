@@ -1,6 +1,6 @@
 import { ArrowBackRounded, ArrowForwardRounded } from '@mui/icons-material';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import { Box, Button, Chip, ClickAwayListener, Collapse, DialogContent, Divider, Fab, List, ListItem, Stack, Tooltip, Typography, useTheme } from '@mui/material';
+import { Box, Button, Chip, ChipProps, ClickAwayListener, Collapse, DialogContent, Divider, Fab, List, ListItem, Stack, Tooltip, Typography, useTheme } from '@mui/material';
 import { useContext, useState } from 'react';
 import { dayOrDays } from '../lib/functions';
 import { DataContext, ScreenContext } from '../pages';
@@ -9,6 +9,7 @@ import CRIcon from './crIcon';
 import CustomDialog from './customDialog';
 import IconGrid from './iconGrid';
 import VillagerIcon from './villagerIcon';
+import BottomSpacing from './bottomSpacing';
 
 export default function Stats() {
 
@@ -128,6 +129,12 @@ export default function Stats() {
     </Button>
   );
 
+  const StatsDivider = (props: ChipProps) => (
+    <Divider sx={{pt: 2, pb: 1}}>
+      <Chip {...props} color="secondary" />
+    </Divider>
+  )
+
   return <>
     <Typography>
       Number of Villagers: {histories.size}
@@ -139,9 +146,7 @@ export default function Stats() {
       </Typography>
     </Stack>
     <IconGrid villagers={currentResidents} />
-    <Divider>
-      <Chip label="Length of Stay" color="secondary" />
-    </Divider>
+    <StatsDivider label='Length of Stay' />
     <Typography>
       Average: {(Array.from(histories.values()).reduce((a, b) => a + b.duration, 0) / histories.size).toFixed(2)} days
       <br />
@@ -158,9 +163,7 @@ export default function Stats() {
       traitData={durationData[durationData.length - 1]}
     />
     <BreakdownLink onClick={() => {setShowDurationDialog(true);}} />
-    <Divider>
-      <Chip label="Species" color="secondary" />
-    </Divider>
+    <StatsDivider label='Species' />
     <Typography>
       Most common: {speciesData[0].trait}
     </Typography>
@@ -170,9 +173,7 @@ export default function Stats() {
     <Typography>
       <BreakdownLink traitData={speciesData} trait='Species'/>
     </Typography>
-    <Divider>
-      <Chip label="Personality" color="secondary" />
-    </Divider>
+    <StatsDivider label='Personality' />
     <Typography>
       Most common: {personalityData[0].trait}
     </Typography>
@@ -182,9 +183,7 @@ export default function Stats() {
     <Typography>
       <BreakdownLink traitData={personalityData} trait='Personality' />
     </Typography>
-    <Divider>
-      <Chip label="Gender" color="secondary" />
-    </Divider>
+    <StatsDivider label='Gender' />
     <Typography>
       {genderData[0].trait}: {genderData[0].count}
       <br />
@@ -192,27 +191,24 @@ export default function Stats() {
       <br />
       <BreakdownLink traitData={genderData} trait='Gender' />
     </Typography>
-    <Divider>
-      <Chip
-        label="Photos"
-        color="secondary"
-        deleteIcon={
-          <Tooltip
-            title={
-              <ClickAwayListener onClickAway={() => {setShowTooltip(false);}}>
-                <Typography>
-                  You can interact with villagers to raise your friendship level with them, usually by talking to them, giving them gifts, or completing tasks for them. Once this friendship level is high enough, villagers may randomly give you their photo after being gifted a high quality item. I usually try to wait till I have received a villager&#39;s photo before I let them leave the island.
-                </Typography>
-              </ClickAwayListener>
-            }
-            open={showTooltip}
-          >
-            <InfoOutlinedIcon />
-          </Tooltip>
-        }
-        onDelete={() => {setShowTooltip((a) => !a)}}
-      />
-    </Divider>
+    <StatsDivider
+      label="Photos"
+      deleteIcon={
+        <Tooltip
+          title={
+            <ClickAwayListener onClickAway={() => {setShowTooltip(false);}}>
+              <Typography>
+                You can interact with villagers to raise your friendship level with them, usually by talking to them, giving them gifts, or completing tasks for them. Once this friendship level is high enough, villagers may randomly give you their photo after being gifted a high quality item. I usually try to wait till I have received a villager&#39;s photo before I let them leave the island.
+              </Typography>
+            </ClickAwayListener>
+          }
+          open={showTooltip}
+        >
+          <InfoOutlinedIcon />
+        </Tooltip>
+      }
+      onDelete={() => {setShowTooltip((a) => !a)}}
+    />
     <Typography>
       Given: {photoStats.count} ({(photoStats.count / histories.size * 100).toFixed(2)}%)
       <br />
@@ -248,9 +244,7 @@ export default function Stats() {
       traitData={photoStats2.longestWithoutGiving}
     />
     <BreakdownLink onClick={() => {setShowPhotoDialog(true); setShowPhotoCollapse(true);}} />
-    <Divider>
-      <Chip label="Islandmates" color="secondary" />
-    </Divider>
+    <StatsDivider label='Islandmates' />
     <Typography>
       Most islandmates: {islandmatesData[0].trait}
     </Typography>
@@ -264,6 +258,7 @@ export default function Stats() {
       traitData={islandmatesData[islandmatesData.length - 1]}
       />
     <BreakdownLink onClick={() => {setShowIslandmatesDialog(true);}} />
+    <BottomSpacing />
     <CustomDialog
       open={showDurationDialog}
       onClose={() => setShowDurationDialog(false)}
