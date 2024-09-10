@@ -1,6 +1,13 @@
-import { villagersData } from './combinedData';
-import { calculateDays } from './functions';
-import { DurationProperties, EventProperties, EventPropertiesOrig, MongoProperties, MongoPropertiesOrig, PhotoStatsProperties, TraitProperties } from '../types';
+import { villagersData } from "./combinedData";
+import { calculateDays } from "./functions";
+import {
+  DurationProperties,
+  EventProperties,
+  MongoProperties,
+  PhotoStatsProperties,
+  TraitProperties,
+} from "../types";
+import { MongoClient, ServerApiVersion } from "mongodb";
 
 export default async function getData(): Promise<{
   mongoData: MongoProperties[];
@@ -13,28 +20,21 @@ export default async function getData(): Promise<{
   islandmatesData: DurationProperties[];
   eventData: EventProperties[];
 }> {
-
-  const payload = {
-    dataSource: 'AnimalCrossing',
-    database: 'lasagnark',
-    collection: 'history',
-    filter: {},
-  }
-
-  const res = await fetch(`${process.env.api_url}/action/find`, {
-    method: 'POST',
-    headers: {
-      'api-key': `${process.env.api_key}`,
-      'Content-Type': 'application/json'
+  const client = new MongoClient(process.env.MONGODB_URI!, {
+    serverApi: {
+      version: ServerApiVersion.v1,
+      strict: true,
+      deprecationErrors: true,
     },
-    body: JSON.stringify(payload)
-  })
-
-  const mongoResponse = await res.json();
-  const mongoData: MongoProperties[] = mongoResponse.documents.map((doc: MongoPropertiesOrig) => {
-    const { _id, ...others } = doc;
-    return others;
   });
+  await client.connect();
+
+  const mongoData = (await client
+    .db("lasagnark")
+    .collection("history")
+    .find({})
+    .project({ _id: 0 })
+    .toArray()) as MongoProperties[];
 
   const speciesMap: Map<string, TraitProperties> = new Map();
   const personalityMap: Map<string, TraitProperties> = new Map();
@@ -47,7 +47,7 @@ export default async function getData(): Promise<{
   };
   const currentResidents: string[] = [];
 
-  mongoData.sort((a, b) => a.startDate < b.startDate ? -1 : 1);
+  mongoData.sort((a, b) => (a.startDate < b.startDate ? -1 : 1));
 
   for (const mongoDatum of mongoData) {
     const startDateDate = new Date(mongoDatum.startDate);
@@ -58,7 +58,7 @@ export default async function getData(): Promise<{
       mongoDatum.currentResident = false;
     }
     if (mongoDatum.photoDate) {
-      mongoDatum.photo = true
+      mongoDatum.photo = true;
       const photoDateDate = new Date(mongoDatum.photoDate);
       mongoDatum.photoDateString = photoDateDate.toLocaleDateString("en-ZA");
       mongoDatum.daysToPhoto = calculateDays(startDateDate, photoDateDate);
@@ -70,12 +70,11 @@ export default async function getData(): Promise<{
           count: 0,
           villagers: [],
           duration: mongoDatum.daysToPhoto,
-        })
+        });
       }
       const tmp = photoMap.get(mongoDatum.daysToPhoto)!;
       tmp.count++;
       tmp.villagers.push(mongoDatum.name);
-
     } else {
       mongoDatum.photo = false;
     }
@@ -138,31 +137,16 @@ export default async function getData(): Promise<{
   const islandmatesData = Array.from(islandmatesMap.values());
   islandmatesData.sort((a, b) => b.duration - a.duration);
 
-  const payload2 = {
-    dataSource: 'AnimalCrossing',
-    database: 'lasagnark',
-    collection: 'events',
-    filter: {},
-    sort: {
-      _id: -1,
-    },
-    limit: 10,
-  }
+  const eventData = (await client
+    .db("lasagnark")
+    .collection("events")
+    .find({})
+    .sort({ _id: -1 })
+    .project({ _id: 0 })
+    .limit(10)
+    .toArray()) as EventProperties[];
 
-  const res2 = await fetch(`${process.env.api_url}/action/find`, {
-    method: 'POST',
-    headers: {
-      'api-key': `${process.env.api_key}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(payload2)
-  })
-
-  const mongoResponse2 = await res2.json();
-  const eventData: EventProperties[] = mongoResponse2.documents.map((doc: EventPropertiesOrig) => {
-    const {_id, ...others } = doc;
-    return others;
-  });
+  client.close();
 
   return {
     mongoData,
