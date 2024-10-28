@@ -19,36 +19,36 @@ declare module '@mui/material/Typography' {
 const theme0 = createTheme({
   palette: {
     primary: {
-      main: "#418869",
+      main: '#418869',
     },
     secondary: {
-      main: "#79d6c2",
+      main: '#79d6c2',
     },
     success: {
-      main: "#F5F7E1"
-    }
+      main: '#F5F7E1',
+    },
   },
   typography: {
-    fontFamily: "Montserrat",
+    fontFamily: 'Montserrat',
     title: {
-      fontFamily: "Coustard", // Zilla Slab, Sanchez
-    }
+      fontFamily: 'Coustard', // Zilla Slab, Sanchez
+    },
   },
   components: {
     MuiLink: {
       styleOverrides: {
         root: {
-          fontFamily: "Coustard",
-        }
-      }
+          fontFamily: 'Coustard',
+        },
+      },
     },
     MuiChip: {
       styleOverrides: {
         label: {
-          fontFamily: "Coustard",
-        }
-      }
-    }
+          fontFamily: 'Coustard',
+        },
+      },
+    },
   },
   breakpoints: {
     values: {
@@ -58,7 +58,7 @@ const theme0 = createTheme({
       lg: 1200,
       xl: 1400,
     },
-  }
+  },
 });
 
 export const theme = responsiveFontSizes(theme0, {

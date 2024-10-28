@@ -1,8 +1,8 @@
-import OpenInNewRoundedIcon from "@mui/icons-material/OpenInNewRounded";
-import { Box, Link, Stack, Typography } from "@mui/material";
-import Image from "next/image";
-import NHLogo from "../public/NH_Logo.png";
-import AvatarPNG from "../public/avatar02.png";
+import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
+import { Box, Link, Stack, Typography } from '@mui/material';
+import Image from 'next/image';
+import NHLogo from '../public/NH_Logo.png';
+import AvatarPNG from '../public/avatar02.png';
 
 export default function About() {
   return (
@@ -11,13 +11,13 @@ export default function About() {
         src={NHLogo}
         alt="Animal Crossing: New Horizons logo"
         style={{
-          width: "90vw",
+          width: '90vw',
           maxWidth: 500,
-          height: "auto",
+          height: 'auto',
         }}
       />
       <Typography>
-        <Box component="span" sx={{ fontStyle: "italic" }}>
+        <Box component="span" sx={{ fontStyle: 'italic' }}>
           Animal Crossing: New Horizons
         </Box>
         &nbsp;is a simulation game made by Nintendo. In it, the player develops
@@ -31,14 +31,14 @@ export default function About() {
         alt="My Villager"
         priority
         style={{
-          width: "90vw",
+          width: '90vw',
           maxWidth: 200,
-          height: "auto",
+          height: 'auto',
         }}
       />
       <Typography>
         I have been playing&nbsp;
-        <Box component="span" sx={{ fontStyle: "italic" }}>
+        <Box component="span" sx={{ fontStyle: 'italic' }}>
           Animal Crossing: New Horizons
         </Box>
         &nbsp;since its release on March 20, 2020. These days, I&apos;m mostly

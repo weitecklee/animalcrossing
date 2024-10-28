@@ -15,6 +15,6 @@ export default function rgbDataURL(blurColor: string): string {
   const b = bigint & 255;
 
   return `data:image/gif;base64,R0lGODlhAQABAPAA${
-      triplet(0, r, g) + triplet(b, 255, 255)
-    }/yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==`;
+    triplet(0, r, g) + triplet(b, 255, 255)
+  }/yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==`;
 }

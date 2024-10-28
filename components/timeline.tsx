@@ -1,6 +1,13 @@
 import OpenWithRoundedIcon from '@mui/icons-material/OpenWithRounded';
 import ViewTimelineRoundedIcon from '@mui/icons-material/ViewTimelineRounded';
-import { Alert, Badge, Box, Button, Snackbar, useMediaQuery } from '@mui/material';
+import {
+  Alert,
+  Badge,
+  Box,
+  Button,
+  Snackbar,
+  useMediaQuery,
+} from '@mui/material';
 import {
   BarElement,
   CategoryScale,
@@ -33,7 +40,7 @@ ChartJS.register(
 );
 
 const options = {
-  indexAxis: 'y' as const ,
+  indexAxis: 'y' as const,
   maintainAspectRatio: false,
   elements: {
     bar: {
@@ -81,8 +88,8 @@ const options = {
     },
     y: {
       display: false,
-    }
-  }
+    },
+  },
 } as any;
 
 const options2 = JSON.parse(JSON.stringify(options));
@@ -92,7 +99,6 @@ options2.plugins.zoom.limits = {
 };
 
 export default function Timeline() {
-
   const {
     histories,
     setDialogVillager,
@@ -118,7 +124,9 @@ export default function Timeline() {
   const [barData, setBarData] = useState<number[][] | number[]>(timelineData);
   const [barLabels, setBarLabels] = useState(timelineLabels);
   const [barColors, setBarColors] = useState(timelineColors);
-  const [barBackground, setBarBackground] = useState<number[][] | number[]>([0]);
+  const [barBackground, setBarBackground] = useState<number[][] | number[]>([
+    0,
+  ]);
   const lastBackgroundIndex = useRef(0);
   const lastBackgroundIndex2 = useRef(0);
   const lastBackgroundIndex3 = useRef(0);
@@ -136,18 +144,21 @@ export default function Timeline() {
     options2.plugins.tooltip.external = options.plugins.tooltip.external;
     options2.scales.x = {
       min: 0,
-      max: Math.ceil(Math.max(... timelineData2) / 10 + .5) * 10,
+      max: Math.ceil(Math.max(...timelineData2) / 10 + 0.5) * 10,
     };
   }, [timelineData2]);
 
   const [barOptions, setBarOptions] = useState(options);
 
-  const handleClose = (event?: Event | React.SyntheticEvent, reason?: string) => {
+  const handleClose = (
+    event?: Event | React.SyntheticEvent,
+    reason?: string,
+  ) => {
     if (reason === 'clickaway') {
       return;
     }
     setOpenSnackbar(false);
-  }
+  };
 
   useEffect(() => {
     setOpenSnackbar(smallScreen);
@@ -174,8 +185,16 @@ export default function Timeline() {
       setBarColors(timelineColors3);
       setBarLabels(timelineLabels3);
     }
-
-  }, [timelineMode, timelineData, timelineData2, timelineData3, timelineColors, timelineColors3, timelineLabels, timelineLabels3]);
+  }, [
+    timelineMode,
+    timelineData,
+    timelineData2,
+    timelineData3,
+    timelineColors,
+    timelineColors3,
+    timelineLabels,
+    timelineLabels3,
+  ]);
 
   useEffect(() => {
     if (timelineVillager === '') {
@@ -184,142 +203,150 @@ export default function Timeline() {
     if (timelineMode === 0) {
       timelineBackground.current[lastBackgroundIndex.current] = [];
       lastBackgroundIndex.current = timelineNameIndex.get(timelineVillager)!;
-      timelineBackground.current[lastBackgroundIndex.current] = [options.scales.x.min, options.scales.x.max];
+      timelineBackground.current[lastBackgroundIndex.current] = [
+        options.scales.x.min,
+        options.scales.x.max,
+      ];
       setBarBackground(timelineBackground.current);
     } else if (timelineMode === 1) {
       timelineBackground2.current[lastBackgroundIndex2.current] = 0;
       lastBackgroundIndex2.current = timelineNameIndex.get(timelineVillager)!;
-      timelineBackground2.current[lastBackgroundIndex2.current] = options2.scales.x.max;
+      timelineBackground2.current[lastBackgroundIndex2.current] =
+        options2.scales.x.max;
       setBarBackground(timelineBackground2.current);
     } else if (timelineMode === 2) {
       timelineBackground3.current[lastBackgroundIndex3.current] = 0;
       lastBackgroundIndex3.current = timelineNameIndex3.get(timelineVillager)!;
-      timelineBackground3.current[lastBackgroundIndex3.current] = options2.scales.x.max;
+      timelineBackground3.current[lastBackgroundIndex3.current] =
+        options2.scales.x.max;
       setBarBackground(timelineBackground3.current);
     }
   }, [timelineVillager, timelineMode, timelineNameIndex, timelineNameIndex3]);
 
-  return <Box sx={{
-    position: "relative",
-    width: "100%",
-    height: "100%",
-  }}>
-    <Snackbar
-      open={openSnackbar}
-      onClose={handleClose}
-    >
-      <Alert
-        variant="filled"
-        severity="warning"
-        onClose={handleClose}
-        sx={{
-          width: "100%"
-        }}
-      >
-        This page is best viewed on a large screen.
-      </Alert>
-    </Snackbar>
-    <Bar
-      data={{
-        labels: barLabels,
-        datasets: [
-          {
-            label: 'Villagers',
-            data: barData,
-            backgroundColor: barColors,
-            grouped: false,
-          },
-          {
-            label: 'Background',
-            data: barBackground,
-            backgroundColor: 'rgba(0, 0, 0, .25)',
-            borderWidth: 0,
-            borderRadius: 0,
-            grouped: false,
-            barPercentage: 1,
-            categoryPercentage: 1,
-            animation: false,
-          },
-        ]
+  return (
+    <Box
+      sx={{
+        position: 'relative',
+        width: '100%',
+        height: '100%',
       }}
-      options={barOptions}
-    />
-    {showTooltip &&
-      <TimelineTooltip
-        villagerData={villagersData.get(timelineVillager)!}
-        history={histories.get(timelineVillager)!}
-        setShowVillagerDialog={setShowVillagerDialog}
-      />
-    }
-    <Draggable
-      handle="#dragFab"
-      bounds="parent"
-      cancel="#changeViewButton"
     >
-      <Box
-        sx={{
-          position: "absolute",
-          right: "1%",
-          top: "50%",
-        }}
-      >
-        <Badge
-          id="dragFab"
-          anchorOrigin={{
-            horizontal: 'left',
-            vertical: 'top',
+      <Snackbar open={openSnackbar} onClose={handleClose}>
+        <Alert
+          variant="filled"
+          severity="warning"
+          onClose={handleClose}
+          sx={{
+            width: '100%',
           }}
-          badgeContent={<OpenWithRoundedIcon
-            fontSize='small'
-            sx={{
-              cursor: 'grab',
-              '&:hover': {
-                cursor: 'grab',
-              },
-              '&:active': {
-                cursor: 'grabbing',
-              },
-            }}
-          />}
         >
-          <Button
-            id="changeViewButton"
-            variant="contained"
-            color="secondary"
-            startIcon={<ViewTimelineRoundedIcon />}
-            onClick={() => {
-              setTimelineMode((mode) => mode === 2 ? 0 : (mode + 1));
+          This page is best viewed on a large screen.
+        </Alert>
+      </Snackbar>
+      <Bar
+        data={{
+          labels: barLabels,
+          datasets: [
+            {
+              label: 'Villagers',
+              data: barData,
+              backgroundColor: barColors,
+              grouped: false,
+            },
+            {
+              label: 'Background',
+              data: barBackground,
+              backgroundColor: 'rgba(0, 0, 0, .25)',
+              borderWidth: 0,
+              borderRadius: 0,
+              grouped: false,
+              barPercentage: 1,
+              categoryPercentage: 1,
+              animation: false,
+            },
+          ],
+        }}
+        options={barOptions}
+      />
+      {showTooltip && (
+        <TimelineTooltip
+          villagerData={villagersData.get(timelineVillager)!}
+          history={histories.get(timelineVillager)!}
+          setShowVillagerDialog={setShowVillagerDialog}
+        />
+      )}
+      <Draggable handle="#dragFab" bounds="parent" cancel="#changeViewButton">
+        <Box
+          sx={{
+            position: 'absolute',
+            right: '1%',
+            top: '50%',
+          }}
+        >
+          <Badge
+            id="dragFab"
+            anchorOrigin={{
+              horizontal: 'left',
+              vertical: 'top',
             }}
-            sx={{
-              boxShadow: 5,
-              display: smallScreen ? "none" : "",
-              ':hover': {
-                bgcolor: "white"
-              },
-              fontFamily: 'Coustard',
-            }}
+            badgeContent={
+              <OpenWithRoundedIcon
+                fontSize="small"
+                sx={{
+                  cursor: 'grab',
+                  '&:hover': {
+                    cursor: 'grab',
+                  },
+                  '&:active': {
+                    cursor: 'grabbing',
+                  },
+                }}
+              />
+            }
           >
-            {timelineMode === 0 ? "Timeline view" : timelineMode === 1 ? "Lined-up view" : "Sorted view"}
-          </Button>
-          <Button
-            id="changeViewButton"
-            variant="contained"
-            color="secondary"
-            onClick={() => {
-              setTimelineMode((mode) => mode === 2 ? 0 : (mode + 1));
-            }}
-            sx={{
-              boxShadow: 5,
-              display: smallScreen ? "" : "none",
-              ':hover': {
-                bgcolor: "white"
-              },
-            }}
-          >
-            <ViewTimelineRoundedIcon />
-          </Button>
-        </Badge>
-      </Box>
-    </Draggable>
-  </Box>
+            <Button
+              id="changeViewButton"
+              variant="contained"
+              color="secondary"
+              startIcon={<ViewTimelineRoundedIcon />}
+              onClick={() => {
+                setTimelineMode((mode) => (mode === 2 ? 0 : mode + 1));
+              }}
+              sx={{
+                boxShadow: 5,
+                display: smallScreen ? 'none' : '',
+                ':hover': {
+                  bgcolor: 'white',
+                },
+                fontFamily: 'Coustard',
+              }}
+            >
+              {timelineMode === 0
+                ? 'Timeline view'
+                : timelineMode === 1
+                  ? 'Lined-up view'
+                  : 'Sorted view'}
+            </Button>
+            <Button
+              id="changeViewButton"
+              variant="contained"
+              color="secondary"
+              onClick={() => {
+                setTimelineMode((mode) => (mode === 2 ? 0 : mode + 1));
+              }}
+              sx={{
+                boxShadow: 5,
+                display: smallScreen ? '' : 'none',
+                ':hover': {
+                  bgcolor: 'white',
+                },
+              }}
+            >
+              <ViewTimelineRoundedIcon />
+            </Button>
+          </Badge>
+        </Box>
+      </Draggable>
+    </Box>
+  );
 }

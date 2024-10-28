@@ -1,8 +1,10 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import getData from '../../lib/getData';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   const data = await getData();
   const {
     mongoData,
