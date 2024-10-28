@@ -15,15 +15,14 @@ import IconWithText from './iconWithText';
 const lowElevation = 4;
 const highElevation = 14;
 
-export default function HistoryCard({ history, villagerData }: {
-  history: HistoryProperties,
-  villagerData: VillagerProperties2,
+export default function HistoryCard({
+  history,
+  villagerData,
+}: {
+  history: HistoryProperties;
+  villagerData: VillagerProperties2;
 }) {
-
-  const {
-    setDialogVillager,
-    setShowVillagerDialog,
-  } = useContext(DataContext);
+  const { setDialogVillager, setShowVillagerDialog } = useContext(DataContext);
   const { mediumScreen } = useContext(ScreenContext);
   const theme = useTheme();
   const [elevation, setElevation] = useState(lowElevation);
@@ -54,14 +53,15 @@ export default function HistoryCard({ history, villagerData }: {
           title={history.name}
           width={mediumScreen ? 128 : 192}
           height={mediumScreen ? 128 : 192}
-          placeholder='blur'
+          placeholder="blur"
           blurDataURL={rgbDataURL(villagerData.title_color)}
         />
-        <Box
-          padding={1}
-        >
+        <Box padding={1}>
           <Stack direction="row" spacing={1} alignItems="center">
-            <Typography variant={mediumScreen ? 'subtitle2' : 'h6'} fontFamily="Coustard">
+            <Typography
+              variant={mediumScreen ? 'subtitle2' : 'h6'}
+              fontFamily="Coustard"
+            >
               {history.name}
             </Typography>
             {history.currentResident ? <CRIcon /> : ''}
@@ -71,18 +71,24 @@ export default function HistoryCard({ history, villagerData }: {
             text={history.startDateString}
             screenBoolean={mediumScreen}
           />
-          {history.photo ?
+          {history.photo ? (
             <IconWithText
               Icon={CameraAltRoundedIcon}
               text={history.photoDateString}
               screenBoolean={mediumScreen}
-            /> : ''}
-          {!history.currentResident ?
+            />
+          ) : (
+            ''
+          )}
+          {!history.currentResident ? (
             <IconWithText
               Icon={ArrowBackRoundedIcon}
               text={history.endDateString}
               screenBoolean={mediumScreen}
-            /> : ''}
+            />
+          ) : (
+            ''
+          )}
           <IconWithText
             Icon={AccessTimeRoundedIcon}
             text={dayOrDays(history.duration)}

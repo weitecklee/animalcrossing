@@ -50,7 +50,7 @@ export default function HomePage({
   const [showVillagerDialog, setShowVillagerDialog] = useState(false);
   const [dialogVillager, setDialogVillager] = useState('');
   const [preparedData, setPreparedData] = useState(
-    {} as PreparedDataProperties
+    {} as PreparedDataProperties,
   );
   const [allReady, setAllReady] = useState(false);
   const mediumScreen = useMediaQuery(theme.breakpoints.down('md'), {

@@ -15,7 +15,7 @@ endDate.setDate(currentDate.getDate() + 30);
 endDate.setHours(0, 0, 0);
 
 export default function prepareData(
-  mongoData: MongoProperties[]
+  mongoData: MongoProperties[],
 ): PreparedDataProperties {
   const histories: Map<string, HistoryProperties> = new Map();
   const photoStats2: PhotoStats2Properties = {
@@ -63,7 +63,7 @@ export default function prepareData(
       tmpHist.endDateDate = new Date(mongoDatum.endDate);
       tmpHist.duration = calculateDays(
         tmpHist.startDateDate,
-        tmpHist.endDateDate
+        tmpHist.endDateDate,
       );
     }
     tmpHist.endDateString = tmpHist.endDateDate.toLocaleDateString('en-ZA');
@@ -71,7 +71,7 @@ export default function prepareData(
       tmpHist.photoDateDate = new Date(mongoDatum.photoDate);
       const stayAfterGiving = calculateDays(
         tmpHist.photoDateDate,
-        tmpHist.endDateDate
+        tmpHist.endDateDate,
       );
       if (!mongoDatum.currentResident) {
         if (stayAfterGiving < photoStats2.shortestAfterGiving.duration) {

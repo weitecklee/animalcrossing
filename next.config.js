@@ -3,10 +3,10 @@ module.exports = {
     unoptimized: true,
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "dodo.ac",
-        port: "",
-        pathname: "/np/images/**",
+        protocol: 'https',
+        hostname: 'dodo.ac',
+        port: '',
+        pathname: '/np/images/**',
       },
     ],
   },
