@@ -1,10 +1,23 @@
 import { villagersData } from '../lib/combinedData';
 import { calculateDays } from '../lib/functions';
-import { DurationProperties, HistoryProperties, MongoProperties, PhotoStats2Properties, PreparedDataProperties } from '../types';
+import {
+  DurationProperties,
+  HistoryProperties,
+  MongoProperties,
+  PhotoStats2Properties,
+  PreparedDataProperties,
+} from '../types';
 
-export default function prepareData(mongoData: MongoProperties[]): PreparedDataProperties {
+const currentDate = new Date();
+currentDate.setHours(0, 0, 0);
+const endDate = new Date();
+endDate.setDate(currentDate.getDate() + 30);
+endDate.setHours(0, 0, 0);
 
-  const histories: Map<string,HistoryProperties> = new Map();
+export default function prepareData(
+  mongoData: MongoProperties[]
+): PreparedDataProperties {
+  const histories: Map<string, HistoryProperties> = new Map();
   const photoStats2: PhotoStats2Properties = {
     shortestAfterGiving: {
       trait: '',
@@ -24,7 +37,7 @@ export default function prepareData(mongoData: MongoProperties[]): PreparedDataP
       villagers: [],
       duration: 0,
     },
-  }
+  };
 
   const timelineLabels: string[] = [];
   const timelineData: number[][] = [];
@@ -37,28 +50,36 @@ export default function prepareData(mongoData: MongoProperties[]): PreparedDataP
 
   for (const mongoDatum of mongoData) {
     const tmpHist: HistoryProperties = {
-      ... mongoDatum
+      ...mongoDatum,
     } as HistoryProperties;
     tmpHist.startDateDate = new Date(mongoDatum.startDate);
+    if (tmpHist.startDateDate > currentDate) {
+      continue;
+    }
     if (!mongoDatum.endDate) {
-      tmpHist.endDateDate = new Date();
-      tmpHist.endDateDate.setHours(0, 0, 0);
-      tmpHist.duration = calculateDays(tmpHist.startDateDate, tmpHist.endDateDate);
-      tmpHist.endDateDate.setDate(tmpHist.endDateDate.getDate() + 30);
-      tmpHist.endDateDate.setHours(0, 0, 0);
+      tmpHist.endDateDate = endDate;
+      tmpHist.duration = calculateDays(tmpHist.startDateDate, currentDate);
     } else {
       tmpHist.endDateDate = new Date(mongoDatum.endDate);
-      tmpHist.duration = calculateDays(tmpHist.startDateDate, tmpHist.endDateDate);
+      tmpHist.duration = calculateDays(
+        tmpHist.startDateDate,
+        tmpHist.endDateDate
+      );
     }
-    tmpHist.endDateString = tmpHist.endDateDate.toLocaleDateString("en-ZA");
+    tmpHist.endDateString = tmpHist.endDateDate.toLocaleDateString('en-ZA');
     if (mongoDatum.photo) {
       tmpHist.photoDateDate = new Date(mongoDatum.photoDate);
-      const stayAfterGiving = calculateDays(tmpHist.photoDateDate, tmpHist.endDateDate);
+      const stayAfterGiving = calculateDays(
+        tmpHist.photoDateDate,
+        tmpHist.endDateDate
+      );
       if (!mongoDatum.currentResident) {
         if (stayAfterGiving < photoStats2.shortestAfterGiving.duration) {
           photoStats2.shortestAfterGiving.duration = stayAfterGiving;
           photoStats2.shortestAfterGiving.villagers = [mongoDatum.name];
-        } else if (stayAfterGiving === photoStats2.shortestAfterGiving.duration) {
+        } else if (
+          stayAfterGiving === photoStats2.shortestAfterGiving.duration
+        ) {
           photoStats2.shortestAfterGiving.villagers.push(mongoDatum.name);
         }
       }
@@ -87,15 +108,18 @@ export default function prepareData(mongoData: MongoProperties[]): PreparedDataP
         count: 0,
         villagers: [],
         duration: tmpHist.duration,
-      })
+      });
     }
     const tmpDuration = durationMap.get(tmpHist.duration)!;
     tmpDuration.count++;
     tmpDuration.villagers.push(tmpHist.name);
     histories.set(tmpHist.name, tmpHist);
     timelineLabels.push(mongoDatum.name);
-    timelineData.push([tmpHist.startDateDate.valueOf(), tmpHist.endDateDate.valueOf()])
-    timelineColors.push('#' + villagersData.get(tmpHist.name)?.title_color!)
+    timelineData.push([
+      tmpHist.startDateDate.valueOf(),
+      tmpHist.endDateDate.valueOf(),
+    ]);
+    timelineColors.push('#' + villagersData.get(tmpHist.name)?.title_color!);
     timelineData2.push(tmpHist.duration);
     timelineNameIndex.set(tmpHist.name, i);
     i++;
@@ -124,8 +148,10 @@ export default function prepareData(mongoData: MongoProperties[]): PreparedDataP
   noPhotoData.sort((a, b) => b.duration - a.duration);
 
   photoStats2.longestWithoutGiving = noPhotoData[0];
-  photoStats2.longestAfterGiving.trait = photoStats2.longestAfterGiving.duration.toString();
-  photoStats2.shortestAfterGiving.trait = photoStats2.shortestAfterGiving.duration.toString();
+  photoStats2.longestAfterGiving.trait =
+    photoStats2.longestAfterGiving.duration.toString();
+  photoStats2.shortestAfterGiving.trait =
+    photoStats2.shortestAfterGiving.duration.toString();
 
   return {
     durationData,
@@ -141,5 +167,5 @@ export default function prepareData(mongoData: MongoProperties[]): PreparedDataP
     timelineLabels3,
     timelineNameIndex,
     timelineNameIndex3,
-  }
+  };
 }

@@ -1,13 +1,15 @@
-import { villagersData } from "./combinedData";
-import { calculateDays } from "./functions";
+import { villagersData } from './combinedData';
+import { calculateDays } from './functions';
 import {
   DurationProperties,
   EventProperties,
   MongoProperties,
   PhotoStatsProperties,
   TraitProperties,
-} from "../types";
-import { MongoClient, ServerApiVersion } from "mongodb";
+} from '../types';
+import { MongoClient, ServerApiVersion } from 'mongodb';
+
+const currentDate = new Date();
 
 export default async function getData(): Promise<{
   mongoData: MongoProperties[];
@@ -30,8 +32,8 @@ export default async function getData(): Promise<{
   await client.connect();
 
   const mongoData = (await client
-    .db("lasagnark")
-    .collection("history")
+    .db('lasagnark')
+    .collection('history')
     .find({})
     .project({ _id: 0 })
     .toArray()) as MongoProperties[];
@@ -51,6 +53,9 @@ export default async function getData(): Promise<{
 
   for (const mongoDatum of mongoData) {
     const startDateDate = new Date(mongoDatum.startDate);
+    if (startDateDate > currentDate) {
+      continue;
+    }
     if (!mongoDatum.endDate) {
       mongoDatum.currentResident = true;
       currentResidents.push(mongoDatum.name);
@@ -60,7 +65,7 @@ export default async function getData(): Promise<{
     if (mongoDatum.photoDate) {
       mongoDatum.photo = true;
       const photoDateDate = new Date(mongoDatum.photoDate);
-      mongoDatum.photoDateString = photoDateDate.toLocaleDateString("en-ZA");
+      mongoDatum.photoDateString = photoDateDate.toLocaleDateString('en-ZA');
       mongoDatum.daysToPhoto = calculateDays(startDateDate, photoDateDate);
       photoStats.count++;
       photoStats.average += mongoDatum.daysToPhoto;
@@ -78,7 +83,7 @@ export default async function getData(): Promise<{
     } else {
       mongoDatum.photo = false;
     }
-    mongoDatum.startDateString = startDateDate.toLocaleDateString("en-ZA");
+    mongoDatum.startDateString = startDateDate.toLocaleDateString('en-ZA');
     const species = villagersData.get(mongoDatum.name)!.species;
     if (!speciesMap.has(species)) {
       speciesMap.set(species, {
@@ -138,8 +143,8 @@ export default async function getData(): Promise<{
   islandmatesData.sort((a, b) => b.duration - a.duration);
 
   const eventData = (await client
-    .db("lasagnark")
-    .collection("events")
+    .db('lasagnark')
+    .collection('events')
     .find({})
     .sort({ _id: -1 })
     .project({ _id: 0 })

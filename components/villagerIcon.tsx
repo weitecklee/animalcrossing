@@ -7,27 +7,26 @@ import rgbDataURL from '../lib/rgbDataURL';
 import VillagerTooltip from './villagerTooltip';
 import { Box } from '@mui/material';
 
-export default function VillagerIcon({ villager, customOnClick } : {
-  villager: string,
-  customOnClick?: () => void,
+export default function VillagerIcon({
+  villager,
+  customOnClick,
+}: {
+  villager: string;
+  customOnClick?: () => void;
 }) {
-
   const theme = useTheme();
 
-  const {
-    histories,
-    setDialogVillager,
-    setShowVillagerDialog,
-    villagersData,
-  } = useContext(DataContext);
+  const { histories, setDialogVillager, setShowVillagerDialog, villagersData } =
+    useContext(DataContext);
   const { mediumScreen } = useContext(ScreenContext);
 
   const villagerData = villagersData.get(villager)!;
+  const isResident = !!histories.get(villager);
 
   return (
     <VillagerTooltip villager={villager}>
       <Box>
-        <CRBadge invisible={!histories.get(villager)!.currentResident}>
+        <CRBadge invisible={!histories.get(villager)?.currentResident}>
           <Image
             src={villagerData.nh_details.icon_url}
             alt={villager}
@@ -47,13 +46,13 @@ export default function VillagerIcon({ villager, customOnClick } : {
             }}
             style={{
               cursor: 'pointer',
+              opacity: isResident ? 1 : 0.4,
             }}
-            placeholder='blur'
+            placeholder="blur"
             blurDataURL={rgbDataURL(villagerData.title_color)}
           />
         </CRBadge>
       </Box>
     </VillagerTooltip>
   );
-
 }
