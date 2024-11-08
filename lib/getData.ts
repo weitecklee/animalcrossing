@@ -35,7 +35,15 @@ export default async function getData(): Promise<{
     .db('lasagnark')
     .collection('history')
     .find({})
-    .project({ _id: 0 })
+    .project({
+      _id: 0,
+      name: 1,
+      houseNumber: 1,
+      islandmates: 1,
+      startDate: { $toString: '$startDate' },
+      endDate: { $toString: '$endDate' },
+      photoDate: { $toString: '$photoDate' },
+    })
     .toArray()) as MongoProperties[];
 
   const speciesMap: Map<string, TraitProperties> = new Map();

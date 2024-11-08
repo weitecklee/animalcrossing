@@ -24,6 +24,7 @@ import {
   StaticDataProperties,
 } from '../types';
 import { theme, fadeTimeout } from '../styles/theme';
+import Search from '../components/search';
 
 const Timeline = dynamic(() => import('../components/timeline'), {
   ssr: false,
@@ -50,7 +51,7 @@ export default function HomePage({
   const [showVillagerDialog, setShowVillagerDialog] = useState(false);
   const [dialogVillager, setDialogVillager] = useState('');
   const [preparedData, setPreparedData] = useState(
-    {} as PreparedDataProperties,
+    {} as PreparedDataProperties
   );
   const [allReady, setAllReady] = useState(false);
   const mediumScreen = useMediaQuery(theme.breakpoints.down('md'), {
@@ -134,6 +135,7 @@ export default function HomePage({
                       {component === 'Villagers' && <Cards boxRef={boxRef} />}
                       {component === 'Timeline' && <Timeline />}
                       {component === 'Stats' && <Stats />}
+                      {component === 'Search' && <Search />}
                       {component === 'About' && <About />}
                     </Container>
                   </Box>
