@@ -7,7 +7,7 @@ import {
   PhotoStatsProperties,
   TraitProperties,
 } from '../types';
-import { MongoClient, ServerApiVersion } from 'mongodb';
+import connectToMongo from './connectToMongo';
 
 const currentDate = new Date();
 
@@ -22,20 +22,20 @@ export default async function getData(): Promise<{
   islandmatesData: DurationProperties[];
   eventData: EventProperties[];
 }> {
-  const client = new MongoClient(process.env.MONGODB_URI!, {
-    serverApi: {
-      version: ServerApiVersion.v1,
-      strict: true,
-      deprecationErrors: true,
-    },
-  });
-  await client.connect();
+  const db = await connectToMongo();
 
-  const mongoData = (await client
-    .db('lasagnark')
+  const mongoData = (await db
     .collection('history')
     .find({})
-    .project({ _id: 0 })
+    .project({
+      _id: 0,
+      name: 1,
+      houseNumber: 1,
+      islandmates: 1,
+      startDate: { $toString: '$startDate' },
+      endDate: { $toString: '$endDate' },
+      photoDate: { $toString: '$photoDate' },
+    })
     .toArray()) as MongoProperties[];
 
   const speciesMap: Map<string, TraitProperties> = new Map();
@@ -142,16 +142,13 @@ export default async function getData(): Promise<{
   const islandmatesData = Array.from(islandmatesMap.values());
   islandmatesData.sort((a, b) => b.duration - a.duration);
 
-  const eventData = (await client
-    .db('lasagnark')
+  const eventData = (await db
     .collection('events')
     .find({})
     .sort({ _id: -1 })
     .project({ _id: 0 })
     .limit(10)
     .toArray()) as EventProperties[];
-
-  client.close();
 
   return {
     mongoData,
