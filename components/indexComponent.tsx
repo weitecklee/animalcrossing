@@ -41,6 +41,9 @@ export default function IndexComponent() {
             <BoldSpan text={'Stats'} />: all sorts of fun stats
             <br />
             &emsp;&emsp;
+            <BoldSpan text={'Search'} />: find villagers by traits
+            <br />
+            &emsp;&emsp;
             <BoldSpan text={'About'} />: info about the game and me
             <br />
             <br />
