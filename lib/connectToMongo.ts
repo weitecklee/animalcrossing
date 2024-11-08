@@ -1,5 +1,3 @@
-'use server';
-
 import { Db, MongoClient, ServerApiVersion } from 'mongodb';
 
 let client: MongoClient;

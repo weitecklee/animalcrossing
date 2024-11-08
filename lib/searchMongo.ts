@@ -1,5 +1,3 @@
-'use server';
-
 import { AdvancedSearchOptions, SearchFilter, SearchOptions } from '../types';
 import connectToMongo from './connectToMongo';
 

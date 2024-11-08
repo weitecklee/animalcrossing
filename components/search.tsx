@@ -1,5 +1,3 @@
-'use client';
-
 import IconGrid from '../components/iconGrid';
 import { AdvancedSearchOptions, SearchOptions } from '../types';
 import {
