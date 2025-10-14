@@ -179,7 +179,7 @@ export interface CustomImageProps extends ImageProps {
 export interface EventProperties {
   date: string;
   villager: string;
-  event: string;
+  event: Number;
 }
 
 export interface EventPropertiesOrig extends EventProperties {

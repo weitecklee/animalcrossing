@@ -23,17 +23,27 @@ export default function Events() {
   const determinePronoun = (villager: string) =>
     villagersData.get(villager)!.gender === 'Male' ? 'his' : 'her';
 
-  const rewordEvent = (villager: string, event: string, date: Date): string => {
-    if (event === 'gave photo') {
+  const rewordEvent = (villager: string, event: Number, date: Date): string => {
+    date.setTime(date.getTime() + 23 * 60 * 60 * 1000 + 59 * 60 * 1000);
+    if (event === 2) {
       return `${villager} gave ${determinePronoun(villager)} photo`;
     }
-    if (event === 'birthday') {
+    if (event === 1) {
+      if (date > currentDate) {
+        return `${villager} celebrating ${determinePronoun(villager)} birthday`;
+      }
       return `${villager} celebrated ${determinePronoun(villager)} birthday`;
     }
-    if (event === 'moved in' && date > currentDate) {
-      return `${villager} moving in`;
+    if (event === 0) {
+      if (date > currentDate) {
+        return `${villager} moving in`;
+      }
+      return `${villager} moved in`;
     }
-    return `${villager} ${event}`;
+    if (date > currentDate) {
+      return `${villager} moving out`;
+    }
+    return `${villager} moved out`;
   };
 
   return (

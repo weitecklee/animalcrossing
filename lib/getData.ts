@@ -145,7 +145,7 @@ export default async function getData(): Promise<{
   const eventData = (await db
     .collection('events')
     .find({})
-    .sort({ _id: -1 })
+    .sort({ date: -1, event: -1 })
     .project({ _id: 0 })
     .limit(10)
     .toArray()) as EventProperties[];
